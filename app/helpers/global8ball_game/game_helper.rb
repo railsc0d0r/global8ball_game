@@ -14,5 +14,10 @@ module Global8ballGame
 
       assets
     end
+
+    def load_global8ball_game
+      javascript_include_tag "global8ball_game/global8ball_game"
+    end
+
   end
 end
