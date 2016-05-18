@@ -19,5 +19,7 @@ module Global8ballGame
       javascript_include_tag "global8ball_game/global8ball_game"
     end
 
+    def start_global8ball_game
+    end
   end
 end
