@@ -1,0 +1,5 @@
+<% environment.context_class.instance_eval { include Global8ballGame::GameHelper } %>
+
+window.assets = window.assets || {};
+
+window.assets.images = <%= raw(game_assets.to_json) %>;
