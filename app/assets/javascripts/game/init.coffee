@@ -4,7 +4,7 @@
 # The real game will take data and events from the server.
 window.initGlobal8Ball = (e) ->
   config =
-    imageUrlMap: window.assets.images
+    imageUrlMap: window.assets.game
     parent: document.getElementById 'da-game'
     size:
       width: 800

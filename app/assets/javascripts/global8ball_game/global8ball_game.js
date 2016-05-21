@@ -10,4 +10,4 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
+//= require global8ball_game/game_assets.js
