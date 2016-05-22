@@ -1,7 +1,7 @@
 module Global8ballGame
   module GameHelper
     def game_assets
-      image_asset_dir = Rails.root.join('app', 'assets', 'images')
+      image_asset_dir = Global8ballGame::Engine.root.join('app', 'assets', 'images')
 
       assets = {}
 
