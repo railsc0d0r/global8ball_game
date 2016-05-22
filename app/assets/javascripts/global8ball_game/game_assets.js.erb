@@ -1,4 +1,4 @@
-<% environment.context_class.instance_eval { include Global8ballGame::GameHelper } %>
+<% environment.context_class.class_eval { include Global8ballGame::GameHelper } %>
 
 window.assets = window.assets || {};
 
