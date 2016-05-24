@@ -1,0 +1,7 @@
+en:
+  game:
+    show_victory:
+    win: '%{name} ist der Gewinner!'
+    player_info:
+      you: 'Du: %{name}'
+      enemy: 'Gegner: %{name}'
