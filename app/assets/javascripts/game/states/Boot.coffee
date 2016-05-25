@@ -1,5 +1,7 @@
 #= require game/prolog
 
+# The first state. Contains only minor initializations and everything necessary
+# to start the next state, Preload.
 class global8ball.Boot extends Phaser.State
   constructor: (@g8bGame)->
 

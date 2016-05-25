@@ -3,7 +3,6 @@
 class global8ball.PlayForBegin extends global8ball.PlayState
   constructor: (g8bGame, @eventSource) ->
     super g8bGame
-    @shot.add @shoot
 
   create: ->
     super()
@@ -90,26 +89,6 @@ class global8ball.PlayForBegin extends global8ball.PlayState
       @youShot = true
     if @eventSource.enemyShot() and not @enemyShot
       @enemyShot = true
-
-  # Attempt to shoot. If shooting is allowed, teleport the shooting player's
-  # cue to an appropriate position and accelerate it accordingly.
-  # Shooting positions are abstract board positions and must be translated back.
-  #
-  # @param {Point} start
-  # @param {Point} end
-  # @param {string} player
-  shoot: (start, end, player) =>
-    rs = @g8bGame.translatePositionBack start
-    re = @g8bGame.translatePositionBack end
-    dx = re.x - rs.x
-    dy = re.y - rs.y
-    abs = Math.sqrt dx*dx + dy*dy
-    f = if abs > MAX_FORCE then MAX_FORCE / abs else 1
-    dx *= FORCE_FACTOR / f
-    dy *= FORCE_FACTOR / f
-    @balls.filter((ball) -> ball.id is 'you').forEach (ball) ->
-      ball.body.velocity.x = dx
-      ball.body.velocity.y = dy
 
   # @inheritdoc
   canShoot: ->

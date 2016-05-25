@@ -1,4 +1,5 @@
 #= require game/game
+#= require game/Controls.coffee
 #= require game/states/Boot
 #= require game/states/Preload
 #= require game/states/PlayForBegin
@@ -51,6 +52,10 @@ class Game
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, new global8ball.EventSource
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory @
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult @
+
+    controls = new global8ball.Controls @
+    controls.attach @phaserGame.state.states.PlayForBegin
+    controls.attach @phaserGame.state.states.PlayForVictory
 
   currentState: ->
     switch @data.state

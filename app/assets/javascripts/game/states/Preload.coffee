@@ -1,5 +1,6 @@
 #= require game/prolog
 
+# Preload state. Used for loading graphics, sounds, etc.
 class global8ball.Preload extends Phaser.State
   constructor: (@g8bGame) ->
 
