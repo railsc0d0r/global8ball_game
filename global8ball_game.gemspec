@@ -7,11 +7,11 @@ require "global8ball_game/version"
 Gem::Specification.new do |s|
   s.name        = "global8ball_game"
   s.version     = Global8ballGame::VERSION
-  s.authors     = ["stephan"]
+  s.authors     = ["Stephan Barth"]
   s.email       = ["railsc0d0r@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Global8ballGame."
-  s.description = "TODO: Description of Global8ballGame."
+  s.homepage    = "https://p2501.twilightparadox.com"
+  s.summary     = "Provides the game for Global8Ball"
+  s.description = "Rails-engine to provide the game for Global8Ball. Contains the assets and the scripts including phaser."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
