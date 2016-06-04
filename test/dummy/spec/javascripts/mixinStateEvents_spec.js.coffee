@@ -8,59 +8,65 @@ describe 'State events Mixin', () ->
   # All relevant state events.
   events = ["init", "preload", "create", "update", "shutdown"]
 
-  events.forEach (event) ->
+  describe 'An observer', () ->
 
-    it 'calls observers with the state and a ' + event + ' event', () ->
+    events.forEach (event) ->
 
-      class State
+      it 'is called with the state and a ' + event + ' event', () ->
 
-      state = mixinStateEvents(new State)
+        class State
 
-      observedState = null
-      observedEvent = null
-      listener = (state, event) ->
-        observedState = state
-        observedEvent = event
+        state = mixinStateEvents(new State)
 
-      state.addStateEventListener event, listener
+        observedState = null
+        observedEvent = null
+        listener = (state, event) ->
+          observedState = state
+          observedEvent = event
 
-      state[event]()
+        state.addStateEventListener event, listener
 
-      expect(observedState).to.equal state
-      expect(observedEvent).to.equal event
+        state[event]()
 
-    it 'allows observers to be called with a specific context for ' + event + 'event', () ->
+        expect(observedState).to.equal state
+        expect(observedEvent).to.equal event
 
-      class State
-      state = mixinStateEvents(new State)
+      it 'is called within a specific context for ' + event + ' event', () ->
 
-      observedContext = null
-      listener = (state, event) ->
-        observedContext = @
+        class State
+        state = mixinStateEvents(new State)
 
-      context = {}
-      state.addStateEventListener event, listener, context
+        observedContext = null
+        listener = (state, event) ->
+          observedContext = @
 
-      state[event]()
+        context = {}
+        state.addStateEventListener event, listener, context
 
-      expect(observedContext).to.equal context
+        state[event]()
 
-    it 'calls the original ' + event + '() method with the right context', () ->
+        expect(observedContext).to.equal context
 
-      class State
-      events.forEach (event) -> State::[event] = () -> @[event + '_called'] = @
+  describe 'State', () ->
 
-      state = mixinStateEvents(new State)
+    events.forEach (event) ->
 
-      state[event]()
+      it 'calls the original ' + event + '() method with the right context', () ->
 
-      expect(state[event + '_called']).to.equal state
+        class State
+        events.forEach (event) -> State::[event] = () -> @[event + '_called'] = @
 
-    it 'tolerates if no ' + event + '() method exists.', () ->
+        state = mixinStateEvents(new State)
 
-      class State
-      events.filter((ev) -> ev isnt event).forEach (event) -> State::[event] = () ->
+        state[event]()
 
-      state = mixinStateEvents new State
+        expect(state[event + '_called']).to.equal state
 
-      state[event]()
+      it 'gains a ' + event + '() method if it had none', () ->
+
+        class State
+        events.filter((ev) -> ev isnt event).forEach (event) -> State::[event] = () ->
+
+        state = mixinStateEvents new State
+
+        state[event]()
