@@ -70,6 +70,20 @@ describe 'State events Mixin', () ->
 
         expect(observedArguments).to.deep.equal additionalArguments
 
+
+      it 'can be removed for ' + event + ' events', () ->
+
+        listenerCalled = no
+        listener = () -> listenerCalled = yes
+
+        state = mixinStateEvents(new class State)
+        binding = state.addStateEventListener event, listener
+        binding.detach()
+
+        state[event]()
+
+        expect(listenerCalled).to.equal no
+
   describe 'State', () ->
 
     events.forEach (event) ->
