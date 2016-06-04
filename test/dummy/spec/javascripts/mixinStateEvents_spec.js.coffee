@@ -14,16 +14,13 @@ describe 'State events Mixin', () ->
 
       it 'is called with the state and a ' + event + ' event', () ->
 
-        class State
-
-        state = mixinStateEvents(new State)
-
         observedState = null
         observedEvent = null
         listener = (state, event) ->
           observedState = state
           observedEvent = event
 
+        state = mixinStateEvents(new class State)
         state.addStateEventListener event, listener
 
         state[event]()
@@ -33,13 +30,11 @@ describe 'State events Mixin', () ->
 
       it 'is called within a specific context for ' + event + ' event', () ->
 
-        class State
-        state = mixinStateEvents(new State)
-
         observedContext = null
         listener = (state, event) ->
           observedContext = @
 
+        state = mixinStateEvents(new class State)
         context = {}
         state.addStateEventListener event, listener, context
 
@@ -49,14 +44,12 @@ describe 'State events Mixin', () ->
 
       it 'is called with respect to its priority for ' + event + ' events', () ->
 
-        class State
-
         calls = []
         firstListener = () -> calls.push 'first'
         secondListener = () -> calls.push 'second'
         thirdListener = () -> calls.push 'third'
 
-        state = mixinStateEvents new State
+        state = mixinStateEvents(new class State)
         state.addStateEventListener event, secondListener, undefined, 50
         state.addStateEventListener event, thirdListener, undefined, 0
         state.addStateEventListener event, firstListener, undefined, 100
