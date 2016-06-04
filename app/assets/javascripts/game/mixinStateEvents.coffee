@@ -13,8 +13,8 @@ global8ball.mixinStateEvents = (state) ->
   stateEventSignals = {}
   events.forEach (event) -> stateEventSignals[event] = new Phaser.Signal
 
-  state.addStateEventListener = (event, listener, context) ->
-    stateEventSignals[event].add listener, context
+  state.addStateEventListener = (event, listener, context, priority) ->
+    stateEventSignals[event].add listener, context, priority
 
   events.forEach (event) ->
     if state[event]

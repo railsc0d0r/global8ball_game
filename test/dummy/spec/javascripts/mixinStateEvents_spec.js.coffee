@@ -47,6 +47,23 @@ describe 'State events Mixin', () ->
 
         expect(observedContext).to.equal context
 
+      it 'is called with respect to its priority for ' + event + ' events', () ->
+
+        class State
+
+        calls = []
+        firstListener = () -> calls.push 'first'
+        secondListener = () -> calls.push 'second'
+        thirdListener = () -> calls.push 'third'
+
+        state = mixinStateEvents new State
+        state.addStateEventListener event, secondListener, undefined, 50
+        state.addStateEventListener event, thirdListener, undefined, 0
+        state.addStateEventListener event, firstListener, undefined, 100
+        state[event]()
+
+        expect(calls).to.deep.equal ['first', 'second', 'third']
+
   describe 'State', () ->
 
     events.forEach (event) ->
