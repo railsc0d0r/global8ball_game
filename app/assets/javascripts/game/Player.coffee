@@ -4,3 +4,7 @@
 # represents such a player.
 class global8ball.Player
   constructor: (@account) ->
+
+  # @return {string}
+  getName: () ->
+    @account.name

@@ -4,3 +4,7 @@
 # be one of the player or an unrelated spectator.
 class global8ball.Viewer
   constructor: (@account) ->
+
+  # @return {string}
+  getName: () ->
+    @account.name
