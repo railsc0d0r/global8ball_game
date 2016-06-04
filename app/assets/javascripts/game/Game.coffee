@@ -89,6 +89,26 @@ class Game
       (x, y, text, style, group) ->
         oldAddText x, y, (if typeof text is 'string' then I18n.t(text) else I18n.t(text.message, text.context)), style, group
 
+  # Returns holes positions.
+  holesData: () ->
+    center = new Phaser.Point @phaserGame.width / 2, @phaserGame.height / 2
+    xDiff = 480
+    yDiff = 238
+    yCenterDiff = 9
+    # Minor corrections because table is slightly asymmetrical.
+    leftTop:
+      pos: center.clone().add -xDiff, -yDiff - 1
+    centerTop:
+      pos: center.clone().add 0, -yDiff - yCenterDiff - 1
+    rightTop:
+      pos: center.clone().add xDiff - 2, -yDiff - 2
+    leftBottom:
+      pos: center.clone().add -xDiff, yDiff - 1
+    centerBottom:
+      pos: center.clone().add 0, yDiff + yCenterDiff - 1
+    rightBottom:
+      pos: center.clone().add xDiff + 1, yDiff - 4
+
 # Helper class to overload methods.
 class Game.Overload
   overload: (context, methodName, newMethodFactory) ->

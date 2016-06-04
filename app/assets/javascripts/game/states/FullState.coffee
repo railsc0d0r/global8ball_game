@@ -124,7 +124,7 @@ class global8ball.FullState extends Phaser.State
       pos: center.clone().add hXDiff, -hYDiff - 7
 
   createHoles: ->
-    holesData = @holesData()
+    holesData = @g8bGame.holesData()
     @holes = (@createHole key, holesData[key] for key of holesData)
 
   # @return {Hole}
@@ -132,25 +132,6 @@ class global8ball.FullState extends Phaser.State
     sprite = @createSprite 'holes', holeData.pos.x, holeData.pos.y, holeKey: key
     sprite.anchor.setTo 0.5, 0.5
     return sprite
-
-  holesData: () ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
-    xDiff = 480
-    yDiff = 238
-    yCenterDiff = 9
-    # Minor corrections because table is slightly asymmetrical.
-    leftTop:
-      pos: center.clone().add -xDiff, -yDiff - 1
-    centerTop:
-      pos: center.clone().add 0, -yDiff - yCenterDiff - 1
-    rightTop:
-      pos: center.clone().add xDiff - 2, -yDiff - 2
-    leftBottom:
-      pos: center.clone().add -xDiff, yDiff - 1
-    centerBottom:
-      pos: center.clone().add 0, yDiff + yCenterDiff - 1
-    rightBottom:
-      pos: center.clone().add xDiff + 1, yDiff - 4
 
   createPlayerInfos: () ->
     you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @g8bGame.you().name } }
