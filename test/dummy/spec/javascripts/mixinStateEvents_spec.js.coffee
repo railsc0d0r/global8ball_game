@@ -30,6 +30,22 @@ describe 'State events Mixin', () ->
       expect(observedState).to.equal state
       expect(observedEvent).to.equal event
 
+    it 'allows observers to be called with a specific context for ' + event + 'event', () ->
+
+      class State
+      state = mixinStateEvents(new State)
+
+      observedContext = null
+      listener = (state, event) ->
+        observedContext = @
+
+      context = {}
+      state.addStateEventListener event, listener, context
+
+      state[event]()
+
+      expect(observedContext).to.equal context
+
     it 'calls the original ' + event + '() method with the right context', () ->
 
       class State
