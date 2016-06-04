@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n-js", ">= 3.0.0.rc11"
   s.add_dependency "coffee-rails", "~> 4.1.0"
 
+  s.add_development_dependency "konacha"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "pry-rails"
 end
