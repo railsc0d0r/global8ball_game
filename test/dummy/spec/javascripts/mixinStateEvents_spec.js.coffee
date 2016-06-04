@@ -57,6 +57,19 @@ describe 'State events Mixin', () ->
 
         expect(calls).to.deep.equal ['first', 'second', 'third']
 
+      it 'is called with additional arguments for ' + event + ' events', () ->
+
+        additionalArguments = ['foo', 'bar']
+        observedArguments = []
+        listener = (state, event, rest...) -> observedArguments = rest
+
+        state = mixinStateEvents(new class State)
+        state.addStateEventListener event, listener, undefined, undefined, additionalArguments...
+
+        state[event]()
+
+        expect(observedArguments).to.deep.equal additionalArguments
+
   describe 'State', () ->
 
     events.forEach (event) ->
