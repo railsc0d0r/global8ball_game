@@ -17,9 +17,13 @@ global8ball.mixinStateEvents = (state) ->
     stateEventSignals[event].add listener
 
   events.forEach (event) ->
-    oldMethod = state[event]
-    state[event] = () ->
-      oldMethod.call state
-      stateEventSignals[event].dispatch state, event
+    if state[event]
+      oldMethod = state[event]
+      state[event] = () ->
+        oldMethod.call state
+        stateEventSignals[event].dispatch state, event
+    else
+      state[event] = () ->
+        stateEventSignals[event].dispatch state, event
 
   return state

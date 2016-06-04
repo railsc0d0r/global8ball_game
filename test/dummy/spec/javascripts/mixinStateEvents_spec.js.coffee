@@ -40,3 +40,12 @@ describe 'State events Mixin', () ->
       state[event]()
 
       expect(state[event + '_called']).to.equal state
+
+    it 'tolerates if no ' + event + '() method exists.', () ->
+
+      class State
+      events.filter((ev) -> ev isnt event).forEach (event) -> State::[event] = () ->
+
+      state = mixinStateEvents new State
+
+      state[event]()
