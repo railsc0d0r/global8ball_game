@@ -10,15 +10,14 @@ class global8ball.Controls
   #
   # @param {Phaser.State} state
   attach: (state) ->
-    state.stateEvents.add @stateEventHappened, @
+    state.addStateEventListener 'create', @createEventHappened, @
 
-  # Listener attached to state events.
+  # Listener attached to create events of a state.
   #
   # @param {Phaser.State} state State causing the event.
   # @param {string} eventType
-  stateEventHappened: (state, eventType) ->
-    if eventType is 'create'
-      @addControls state
+  createEventHappened: (state, eventType) ->
+    @addControls state
 
   # Add controls to a state.
   #
@@ -65,19 +64,12 @@ class StateControls
       return @
     @attach = () =>
 
-    @stateEventBinding = @state.stateEvents.add @stateEventHappened, @
+    @stateUpdateEventBinding = @state.addStateEventListener 'update', @update, @
+    @stateShutdownEventBinding = @state.addStateEventListener 'shutdown', @shutdown, @
     @addCueControlGui @state
     @state.input.onDown.add @pointerDown, @
     @state.input.onUp.add @pointerUp, @
     @state.input.addMoveCallback @pointerMove
-
-  # Callback for state events.
-  #
-  # @param {Phaser.State} state
-  # @param {string} eventType
-  stateEventHappened: (state, eventType) ->
-    if typeof @[eventType] is 'function'
-      @[eventType]()
 
   # Called when the state shutdowns. Sprites do not need to be cleaned up (they
   # are automatically deleted by Phaser), but event bindings have to be
@@ -86,7 +78,8 @@ class StateControls
   # Phaser.Signal). Listeners added to the various Phaser.Input signals are
   # automatically removed when switching to another state.
   shutdown: () ->
-    @stateEventBinding.detach()
+    @stateUpdateEventBinding.detach()
+    @stateShutdownEventBinding.detach()
 
   # Called on every update of the state. Handles changes regarding shot strength.
   update: () ->
