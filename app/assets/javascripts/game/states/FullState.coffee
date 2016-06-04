@@ -82,7 +82,7 @@ class global8ball.FullState extends Phaser.State
           @physicsGroups[specId].collides @collisionGroups[collision.groupId]
 
   createBorders: ->
-    bordersData = @borderData()
+    bordersData = @g8bGame.borderData()
     for borderKey of bordersData
       borderData = bordersData[borderKey]
       config =
@@ -94,34 +94,6 @@ class global8ball.FullState extends Phaser.State
       border = @createSprite 'borders', borderData.pos.x, borderData.pos.y, config
       border.body.setRectangleFromSprite border
     @spriteGroups.borders
-
-  # There a six borders, they are located between the holes.
-  borderData: ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
-    horizontalSize = width: 460, height: 15
-    verticalSize = width: 15, height: 460
-    hXDiff = 240
-    hYDiff = 245
-    vXDiff = 485
-    vYDiff = 0
-    bottomLeft:
-      size: horizontalSize
-      pos: center.clone().add -hXDiff, hYDiff
-    bottomRight:
-      size: horizontalSize
-      pos: center.clone().add hXDiff, hYDiff
-    left:
-      size: verticalSize
-      pos: center.clone().add -vXDiff - 5, vYDiff
-    right:
-      size: verticalSize
-      pos: center.clone().add vXDiff, vYDiff
-    topLeft:
-      size: horizontalSize
-      pos: center.clone().add -hXDiff, -hYDiff - 7
-    topRight:
-      size: horizontalSize
-      pos: center.clone().add hXDiff, -hYDiff - 7
 
   createHoles: ->
     holesData = @g8bGame.holesData()

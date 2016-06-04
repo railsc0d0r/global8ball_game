@@ -109,6 +109,34 @@ class Game
     rightBottom:
       pos: center.clone().add xDiff + 1, yDiff - 4
 
+  # There a six borders, they are located between the holes.
+  borderData: ->
+    center = new Phaser.Point @phaserGame.width / 2, @phaserGame.height / 2
+    horizontalSize = width: 460, height: 15
+    verticalSize = width: 15, height: 460
+    hXDiff = 240
+    hYDiff = 245
+    vXDiff = 485
+    vYDiff = 0
+    bottomLeft:
+      size: horizontalSize
+      pos: center.clone().add -hXDiff, hYDiff
+    bottomRight:
+      size: horizontalSize
+      pos: center.clone().add hXDiff, hYDiff
+    left:
+      size: verticalSize
+      pos: center.clone().add -vXDiff - 5, vYDiff
+    right:
+      size: verticalSize
+      pos: center.clone().add vXDiff, vYDiff
+    topLeft:
+      size: horizontalSize
+      pos: center.clone().add -hXDiff, -hYDiff - 7
+    topRight:
+      size: horizontalSize
+      pos: center.clone().add hXDiff, -hYDiff - 7
+
 # Helper class to overload methods.
 class Game.Overload
   overload: (context, methodName, newMethodFactory) ->
