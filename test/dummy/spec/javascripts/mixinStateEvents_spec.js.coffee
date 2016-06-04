@@ -13,7 +13,6 @@ describe 'State events Mixin', () ->
     it 'calls observers with the state and a ' + event + ' event', () ->
 
       class State
-      events.forEach (event) -> State::[event] = () ->
 
       state = mixinStateEvents(new State)
 
