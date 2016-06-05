@@ -6,8 +6,8 @@ class global8ball.PlayForBegin extends global8ball.PlayState
 
   create: ->
     super()
-    @youShot = @g8bGame.data.players.you.shot
-    @enemyShot = @g8bGame.data.players.enemy.shot
+    @youShot = no
+    @enemyShot = no
     @createWhiteBalls()
     @yourCue.setTargetBall @yourBall
     @enemyCue.setTargetBall @enemyBall

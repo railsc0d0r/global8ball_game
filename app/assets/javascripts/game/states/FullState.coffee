@@ -96,10 +96,10 @@ class global8ball.FullState extends Phaser.State
     return sprite
 
   createPlayerInfos: () ->
-    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @g8bGame.you().name } }
+    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @g8bGame.getPlayers().getFirst().getName() } }
     you.anchor.setTo 0, 0
     you.fill = '#ffffff'
-    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @g8bGame.enemy().name } }
+    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @g8bGame.getPlayers().getSecond().getName() } }
     enemy.anchor.setTo 1, 0
     enemy.fill = '#ffffff'
     @players =

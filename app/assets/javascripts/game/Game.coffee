@@ -1,5 +1,6 @@
 #= require game/game
 #= require game/Controls.coffee
+#= require game/Players
 #= require game/states/Boot
 #= require game/states/Preload
 #= require game/states/PlayForBegin
@@ -49,6 +50,8 @@ class Game
       @config.physicsConfig
     )
 
+    @players = global8ball.Players.create @data.players, @data.viewer
+
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, new global8ball.EventSource
@@ -70,11 +73,9 @@ class Game
   balls: ->
     @data.balls ? []
 
-  enemy: ->
-    @data.players.enemy
-
-  you: ->
-    @data.players.you
+  # @return {global8ball.Players}
+  getPlayers: ->
+    @players
 
   # To avoid using the image URL mapping over and over again, replace image
   # methods on loader with methods doing the mapping before.

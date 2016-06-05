@@ -20,12 +20,17 @@ window.initGlobal8Ball = (e) ->
                     return v / -377.95
   gameState =
     players:
-      you:
+      first:
+        id: 'david'
         name: "David"
         shot: false
-      enemy:
+      second:
+        id: 'goliath'
         name: "Goliath"
         shot: false
+    viewer:
+      id: 'david'
+      name: 'David'
     state: 'PlayForBegin'
     balls: [
       {
