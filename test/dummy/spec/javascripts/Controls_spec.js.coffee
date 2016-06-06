@@ -55,6 +55,9 @@ describe 'Game controls', () ->
 
     state.input.onDown.dispatch pointer
     state.update()
+    pointer.x = 150
+    pointer.y = 250
+    state.input.moveCallbacks.forEach (callback) -> callback pointer, pointer.x, pointer.y
     state.update()
 
     expect(state.aims.length).to.equal 1
