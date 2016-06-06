@@ -35,12 +35,15 @@ describe 'Game controls', () ->
     aimAt: (x, y) ->
       @aims.push x: x, y: y
 
-  it 'aims the cue on clicking', () ->
+  state = null
+
+  beforeEach () ->
     state = global8ball.mixinStateEvents createMockState()
     controls = new global8ball.Controls
     controls.attach state
-
     state.create()
+
+  it 'aims the cue on clicking', () ->
     state.input.onDown.dispatch { x: 100, y: 200 }
     state.update()
 
@@ -48,12 +51,8 @@ describe 'Game controls', () ->
     expect(state.aims[0]).to.deep.equal x: 100, y: 200
 
   it 'stops aiming the cue when pointer button is not held down', () ->
-    state = global8ball.mixinStateEvents createMockState()
-    controls = new global8ball.Controls
-    controls.attach state
     pointer = { x: 100, y: 200, isDown: false }
 
-    state.create()
     state.input.onDown.dispatch pointer
     state.update()
     state.update()
@@ -61,12 +60,8 @@ describe 'Game controls', () ->
     expect(state.aims.length).to.equal 1
 
   it 'continues aiming the cue when pointer button is held down', () ->
-    state = global8ball.mixinStateEvents createMockState()
-    controls = new global8ball.Controls
-    controls.attach state
     pointer = { x: 100, y: 200, isDown: true }
 
-    state.create()
     state.input.onDown.dispatch pointer
     state.update()
     pointer.x = 150
