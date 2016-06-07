@@ -1,5 +1,4 @@
 #= require game/Controls
-#= require game/EventSource
 #= require game/Players
 #= require game/prolog
 #= require game/states/Boot
@@ -55,7 +54,7 @@ class Game
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, new global8ball.EventSource
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory @
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult @
 

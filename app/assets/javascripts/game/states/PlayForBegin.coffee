@@ -3,7 +3,7 @@
 #= require game/states/PlayState
 
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (g8bGame, @eventSource) ->
+  constructor: (g8bGame) ->
     super g8bGame
 
   create: ->
@@ -87,10 +87,6 @@ class global8ball.PlayForBegin extends global8ball.PlayState
 
   update: ->
     super()
-    if @eventSource.youShot() and not @youShot
-      @youShot = true
-    if @eventSource.enemyShot() and not @enemyShot
-      @enemyShot = true
 
   # @inheritdoc
   canShoot: ->
