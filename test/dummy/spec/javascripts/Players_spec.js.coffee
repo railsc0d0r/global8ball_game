@@ -4,84 +4,40 @@ createPlayers = global8ball.Players.create
 
 describe 'Players', () ->
 
+  playersData =
+    first:
+      id: 'first'
+      name: 'First'
+    second:
+      id: 'second'
+      name: 'Second'
+  thirdAccount =
+    id: 'third'
+    name: 'Third'
+
   it 'exposes the viewer', () ->
-    playersData =
-      first:
-        id: 'first'
-        name: 'First'
-      second:
-        id: 'second'
-        name: 'Second'
-    viewersData =
-      id: 'someone'
-      name: 'Someone'
+    players = createPlayers playersData, thirdAccount
 
-    players = createPlayers playersData, viewersData
-
-    expect(players.getViewer().getName()).to.equal 'Someone'
+    expect(players.getViewer().getName()).to.equal thirdAccount.name
 
   it 'exposes the players ordered as given when viewer is none of the players', () ->
-    playersData =
-      first:
-        id: '1st'
-        name: 'Number 1'
-      second:
-        id: '2nd'
-        name: 'Number 2'
-    viewersData =
-      id: 'unrelated',
-      name: 'An unrelated person'
+    players = createPlayers playersData, thirdAccount
 
-    players = createPlayers playersData, viewersData
-
-    expect(players.getFirst().getName()).to.equal 'Number 1'
-    expect(players.getSecond().getName()).to.equal 'Number 2'
+    expect(players.getFirst().getName()).to.equal playersData.first.name
+    expect(players.getSecond().getName()).to.equal playersData.second.name
 
   it 'swaps players when the viewer is the second player', () ->
-    playersData =
-      first:
-        id: 'no-2'
-        name: '# 2'
-      second:
-        id: 'no-1'
-        name: '# 1'
-    viewersData =
-      id: 'no-1'
-      name: '# 1'
+    players = createPlayers playersData, playersData.second
 
-    players = createPlayers playersData, viewersData
-
-    expect(players.getFirst().getName()).to.equal '# 1'
-    expect(players.getSecond().getName()).to.equal '# 2'
+    expect(players.getFirst().getName()).to.equal playersData.second.name
+    expect(players.getSecond().getName()).to.equal playersData.first.name
 
   it 'exposes if the viewer is one of the players', () ->
-    playersData =
-      first:
-        id: 'first'
-        name: 'First'
-      second:
-        id: 'second'
-        name: 'Second'
-    viewersData =
-      id: 'first'
-      name: 'Second'
-
-    players = createPlayers playersData, viewersData
+    players = createPlayers playersData, playersData.first
 
     expect(players.viewerPlays()).to.be.ok
 
   it 'exposes if the viewer is not one of the players', () ->
-    playersData =
-      first:
-        id: 'no-1'
-        name: '#1'
-      second:
-        id: 'no-2'
-        name: '#2'
-    viewersData =
-      id: 'no-3'
-      name: '#3'
-
-    players = createPlayers playersData, viewersData
+    players = createPlayers playersData, thirdAccount
 
     expect(players.viewerPlays()).to.not.be.ok
