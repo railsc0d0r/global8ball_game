@@ -1,6 +1,7 @@
 #= require game/game
 #= require game/Controls.coffee
 #= require game/Players
+#= require game/prolog
 #= require game/states/Boot
 #= require game/states/Preload
 #= require game/states/PlayForBegin

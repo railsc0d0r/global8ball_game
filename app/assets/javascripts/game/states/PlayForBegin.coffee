@@ -1,3 +1,4 @@
+#= require game/prolog
 #= require game/states/PlayState
 
 class global8ball.PlayForBegin extends global8ball.PlayState

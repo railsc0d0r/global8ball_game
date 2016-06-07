@@ -1,3 +1,4 @@
+#= require game/prolog
 #= require game/states/FullState
 
 class global8ball.ShowResult extends global8ball.FullState
