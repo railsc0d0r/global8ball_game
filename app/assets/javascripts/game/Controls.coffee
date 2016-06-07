@@ -5,8 +5,6 @@
 # instance every time a play state is entered (exactly: when Phaser.State.create()
 # is called).
 class global8ball.Controls
-  constructor: (@g8bGame) ->
-
   # Attaches itself to the events of a state.
   #
   # @param {Phaser.State} state
