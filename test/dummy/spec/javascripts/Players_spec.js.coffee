@@ -53,3 +53,35 @@ describe 'Players', () ->
 
     expect(players.getFirst().getName()).to.equal '# 1'
     expect(players.getSecond().getName()).to.equal '# 2'
+
+  it 'exposes if the viewer is one of the players', () ->
+    playersData =
+      first:
+        id: 'first'
+        name: 'First'
+      second:
+        id: 'second'
+        name: 'Second'
+    viewersData =
+      id: 'first'
+      name: 'Second'
+
+    players = createPlayers playersData, viewersData
+
+    expect(players.viewerPlays()).to.be.ok
+
+  it 'exposes if the viewer is not one of the players', () ->
+    playersData =
+      first:
+        id: 'no-1'
+        name: '#1'
+      second:
+        id: 'no-2'
+        name: '#2'
+    viewersData =
+      id: 'no-3'
+      name: '#3'
+
+    players = createPlayers playersData, viewersData
+
+    expect(players.viewerPlays()).to.not.be.ok

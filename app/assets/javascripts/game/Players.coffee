@@ -21,6 +21,12 @@ class global8ball.Players
   getSecond: () ->
     @second
 
+  # @return {boolean}
+  viewerPlays: () ->
+    # Only first player needs to be checked, because if the second player would
+    # be the viewer, she becomes the first player.
+    @viewer.account.equals @first.account
+
 # @param {object} playerData
 # @param {object} viewerData
 # @return {global8ball.Players}
