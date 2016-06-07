@@ -1,4 +1,4 @@
-#= require game/Cue
+#= require game/sprites/Cue
 #= require game/prolog
 #= require game/states/FullState
 

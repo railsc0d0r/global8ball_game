@@ -1,4 +1,4 @@
-#= require game/Hole
+#= require game/sprites/Hole
 #= require game/mixinStateEvents
 #= require game/PhysicsGroup
 #= require game/prolog
