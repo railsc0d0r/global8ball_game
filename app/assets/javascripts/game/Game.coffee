@@ -58,9 +58,10 @@ class Game
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory @
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult @
 
-    controls = new global8ball.Controls
-    controls.attach @phaserGame.state.states.PlayForBegin
-    controls.attach @phaserGame.state.states.PlayForVictory
+    if @players.viewerPlays()
+      controls = new global8ball.Controls
+      controls.attach @phaserGame.state.states.PlayForBegin
+      controls.attach @phaserGame.state.states.PlayForVictory
 
   currentState: ->
     switch @data.state
