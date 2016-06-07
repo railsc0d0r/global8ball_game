@@ -1,4 +1,6 @@
+#= require game/Hole
 #= require game/mixinStateEvents
+#= require game/PhysicsGroup
 #= require game/prolog
 
 # Base class for all full Phaser states (i.e. with all images etc.)

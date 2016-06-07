@@ -1,3 +1,4 @@
+#= require game/Ball
 #= require game/prolog
 #= require game/states/PlayState
 

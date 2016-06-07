@@ -1,5 +1,5 @@
-#= require game/game
 #= require game/Controls
+#= require game/EventSource
 #= require game/Players
 #= require game/prolog
 #= require game/states/Boot
