@@ -1,4 +1,5 @@
 #= require game/prolog
+#= require game/ShotStrength
 
 # Adds cue controls to a Phaser state. This is done by creating a StateControls
 # instance every time a play state is entered (exactly: when Phaser.State.create()
@@ -31,9 +32,7 @@ class global8ball.Controls
 # @member {object} aimingNextFrame When the player clicks, this will be set to
 #   the coordinates of the click. Is consumed immediately on the next update() call.
 # @member {boolean} aiming Wether the player is currently aiming with the cue.
-# @member {number} shotStrength Current shot strength.
-# @member {number} shotStrengthChange Used when the player presses one of the
-#   buttons for decreasing/increasing the shot strength.
+# @member {global8ball.ShotStrength} shotStrength Current shot strength.
 # @member {boolean} currentlySettingForce Wether the play is currently setting
 #   the shot strength via the strengthmeter.
 # @member {Phaser.Graphics} shotStrengthMask Mask used together with the strengthmether
@@ -53,8 +52,7 @@ class StateControls
   constructor: (@state) ->
     @aimingNextFrame = null
     @aiming = false
-    @shotStrength = 0.5
-    @shotStrengthChange = 0
+    @shotStrength = new global8ball.ShotStrength
     @currentlySettingForce = false
     @inputDownHandledBySprite = false
 
@@ -88,9 +86,8 @@ class StateControls
 
   # Checks for changes regarding the shot strength and updates it accordingly.
   updateShotStrength: () ->
-    if @shotStrengthChange isnt 0
-      @shotStrength = Math.min 1, Math.max 0, @shotStrength + @shotStrengthChange
-      @updateShotStrengthMask()
+    @shotStrength.update()
+    @updateShotStrengthMask()
 
   # When there was a click in the last frame, check if the cue should be aimed.
   # Why not do it directly? Generic input listeners are called before sprite-specific
@@ -189,22 +186,19 @@ class StateControls
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
   startLesseningForce: (sprite, pointer) =>
-    @shotStrengthChange = -@forceChangeSpeed
+    @shotStrength.startLessening()
 
   # Called when player starts increasing the shot strength via the corresponding button.
   #
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
   startStrengtheningForce: (sprite, pointer) =>
-    @shotStrengthChange = @forceChangeSpeed
-
-  # Speed with which the shot strength is changed per call to update().
-  forceChangeSpeed: 0.001
+    @shotStrength.startStrengthening()
 
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
   startSettingForce: (sprite, pointer) =>
-    @stopChangingForce()
+    @shotStrength.stopChanging()
     @currentlySettingForce = true
 
   # @param {Phaser.Sprite} sprite
@@ -217,12 +211,12 @@ class StateControls
   # @param {number} y
   settingForce: (pointer, x, y) ->
     if @currentlySettingForce
-      @shotStrength = Math.min 1, Math.max 0, (x + (@cueControlGui.forceStrength.width - @state.game.width) / 2) / @cueControlGui.forceStrength.width
+      @shotStrength.setTo (x + (@cueControlGui.forceStrength.width - @state.game.width) / 2) / @cueControlGui.forceStrength.width
       @updateShotStrengthMask()
 
   # Stop shot strength changing (increase/decrease buttons)
   stopChangingForce: () =>
-    @shotStrengthChange = 0
+    @shotStrength.stopChanging()
 
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
@@ -242,7 +236,7 @@ class StateControls
   updateShotStrengthMask: ->
     @shotStrengthMask.clear()
     x = (@state.game.width - @cueControlGui.forceStrength.width) / 2
-    width = @cueControlGui.forceStrength.width * @shotStrength
+    width = @cueControlGui.forceStrength.width * @shotStrength.get()
     @shotStrengthMask.drawRect x, 0, width, @state.game.height
 
   # Listener called when a sprite is clicked.
