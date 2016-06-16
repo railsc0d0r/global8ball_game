@@ -68,9 +68,6 @@ class Game
       when 'PlayForBegin', 'PlayForVictory', 'ShowResult' then @data.state
       else throw new Error "Invalid game state."
 
-  winner: ->
-    "Someone"
-
   balls: ->
     @data.balls ? []
 
