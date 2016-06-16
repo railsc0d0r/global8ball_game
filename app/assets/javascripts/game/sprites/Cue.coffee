@@ -19,6 +19,7 @@ class global8ball.Cue extends Phaser.Sprite
       @updatePosition()
       @visible = yes
 
+  # @param {global8ball.Ball} targetBall
   setTargetBall: (@targetBall) ->
     @updatePosition()
 
