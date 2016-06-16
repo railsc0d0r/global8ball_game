@@ -2,11 +2,14 @@
 #= require game/phaser
 
 class global8ball.Cue extends Phaser.Sprite
-  LENGTH = 250
+  # Default distance to ball.
+  DEFAULT_DISTANCE_TO_BALL = 20
+
   MATH_FACTOR = Math.PI/180
 
   power: 0
   targetBall: null
+  distanceToBall: null
 
   hide: ->
     @visible = no
@@ -31,5 +34,14 @@ class global8ball.Cue extends Phaser.Sprite
 
   updatePosition: ()->
     if @targetBall
-      @body.x = @targetBall.x + LENGTH * Math.cos(MATH_FACTOR * @body.angle)
-      @body.y = @targetBall.y + LENGTH * Math.sin(MATH_FACTOR * @body.angle)
+      @body.x = @targetBall.x + @getOffsetToBall() * Math.cos(MATH_FACTOR * @body.angle)
+      @body.y = @targetBall.y + @getOffsetToBall() * Math.sin(MATH_FACTOR * @body.angle)
+
+  # Set distance between cue and ball. Can also be set to null, which means the default value is used.
+  #
+  # @param {number} distance
+  setDistanceToBall: (@distanceToBall) ->
+
+  # @return {number}
+  getOffsetToBall: () ->
+    @width / 2 + if typeof @distanceToBall is 'number' then @distanceToBall else DEFAULT_DISTANCE_TO_BALL
