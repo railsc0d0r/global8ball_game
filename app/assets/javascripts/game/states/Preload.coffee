@@ -2,7 +2,7 @@
 
 # Preload state. Used for loading graphics, sounds, etc.
 class global8ball.Preload extends Phaser.State
-  constructor: (@g8bGame) ->
+  constructor: (@startState) ->
 
   preload: ->
     preloader = @game.add.sprite @game.width / 2, @game.height / 2, 'preloader-bar'
@@ -47,4 +47,4 @@ class global8ball.Preload extends Phaser.State
       height: 440
 
   create: ->
-    @game.state.start @g8bGame.currentState()
+    @game.state.start @startState

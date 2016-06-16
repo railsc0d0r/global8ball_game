@@ -55,7 +55,7 @@ class Game
     gameConfig = new Game.Config @phaserGame, @players
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
-    @phaserGame.state.add 'Preload', new global8ball.Preload @
+    @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, gameConfig
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
