@@ -5,7 +5,7 @@
 
 # Base class for all full Phaser states (i.e. with all images etc.)
 class global8ball.FullState extends Phaser.State
-  constructor: (@g8bGame) ->
+  constructor: (@gameConfig) ->
     global8ball.mixinStateEvents @
 
   addGroup: (collisionGroupName, spriteGroupName = collisionGroupName, spriteClassType = Phaser.Sprite) ->
@@ -74,7 +74,7 @@ class global8ball.FullState extends Phaser.State
           @physicsGroups[specId].collides @collisionGroups[collision.groupId]
 
   createBorders: ->
-    bordersData = @g8bGame.borderData()
+    bordersData = @gameConfig.borderData()
     for borderKey of bordersData
       borderData = bordersData[borderKey]
       config =
@@ -88,7 +88,7 @@ class global8ball.FullState extends Phaser.State
     @spriteGroups.borders
 
   createHoles: ->
-    holesData = @g8bGame.holesData()
+    holesData = @gameConfig.holesData()
     @holes = (@createHole key, holesData[key] for key of holesData)
 
   # @return {Hole}
@@ -98,10 +98,10 @@ class global8ball.FullState extends Phaser.State
     return sprite
 
   createPlayerInfos: () ->
-    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @g8bGame.getPlayers().getFirst().getName() } }
+    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @gameConfig.getPlayers().getFirst().getName() } }
     you.anchor.setTo 0, 0
     you.fill = '#ffffff'
-    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @g8bGame.getPlayers().getSecond().getName() } }
+    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @gameConfig.getPlayers().getSecond().getName() } }
     enemy.anchor.setTo 1, 0
     enemy.fill = '#ffffff'
     @players =

@@ -2,6 +2,9 @@
 #= require game/states/FullState
 
 class global8ball.ShowResult extends global8ball.FullState
+  constructor: (gameConfig) ->
+    super gameConfig
+
   init: (@winner) ->
     super()
 

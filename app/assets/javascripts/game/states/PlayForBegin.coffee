@@ -3,8 +3,8 @@
 #= require game/states/PlayState
 
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (g8bGame) ->
-    super g8bGame
+  constructor: (@g8bGame, gameConfig) ->
+    super gameConfig
 
   create: ->
     super()

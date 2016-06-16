@@ -3,8 +3,8 @@
 #= require game/states/FullState
 
 class global8ball.PlayState extends global8ball.FullState
-  constructor: (g8bGame, @hasUi = true) ->
-    super(g8bGame)
+  constructor: (gameConfig, @hasUi = true) ->
+    super gameConfig
 
   create: ->
     super()

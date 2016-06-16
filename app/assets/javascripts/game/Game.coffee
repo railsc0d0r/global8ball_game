@@ -52,11 +52,13 @@ class Game
 
     @players = global8ball.Players.create @data.players, @data.viewer
 
+    gameConfig = new Game.Config @phaserGame, @players
+
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @
-    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory @
-    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult @
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, gameConfig
+    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
+    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
 
     if @players.viewerPlays()
       controls = new global8ball.Controls
@@ -90,9 +92,12 @@ class Game
       (x, y, text, style, group) ->
         oldAddText x, y, (if typeof text is 'string' then I18n.t(text) else I18n.t(text.message, text.context)), style, group
 
+class Game.Config
+  constructor: (@game, @players) ->
+
   # Returns holes positions.
-  holesData: () ->
-    center = new Phaser.Point @phaserGame.width / 2, @phaserGame.height / 2
+  holesData: ->
+    center = new Phaser.Point @game.width / 2, @game.height / 2
     xDiff = 500
     yDiff = 245
     yCenterDiff = 9
@@ -111,7 +116,7 @@ class Game
 
   # There a six borders, they are located between the holes.
   borderData: ->
-    center = new Phaser.Point @phaserGame.width / 2, @phaserGame.height / 2
+    center = new Phaser.Point @game.width / 2, @game.height / 2
     horizontalSize = width: 460, height: 15
     verticalSize = width: 15, height: 460
     hXDiff = 240
@@ -136,6 +141,9 @@ class Game
     topRight:
       size: horizontalSize
       pos: center.clone().add hXDiff, -hYDiff - 7
+
+  getPlayers: () ->
+    @players
 
 # Helper class to overload methods.
 class Game.Overload
