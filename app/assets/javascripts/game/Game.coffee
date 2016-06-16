@@ -96,22 +96,21 @@ class Game
   # Returns holes positions.
   holesData: () ->
     center = new Phaser.Point @phaserGame.width / 2, @phaserGame.height / 2
-    xDiff = 480
-    yDiff = 238
+    xDiff = 500
+    yDiff = 245
     yCenterDiff = 9
-    # Minor corrections because table is slightly asymmetrical.
     leftTop:
-      pos: center.clone().add -xDiff, -yDiff - 1
+      pos: center.clone().add -xDiff, -yDiff
     centerTop:
-      pos: center.clone().add 0, -yDiff - yCenterDiff - 1
+      pos: center.clone().add 0, -yDiff - yCenterDiff
     rightTop:
-      pos: center.clone().add xDiff - 2, -yDiff - 2
+      pos: center.clone().add xDiff, -yDiff
     leftBottom:
-      pos: center.clone().add -xDiff, yDiff - 1
+      pos: center.clone().add -xDiff, yDiff
     centerBottom:
-      pos: center.clone().add 0, yDiff + yCenterDiff - 1
+      pos: center.clone().add 0, yDiff + yCenterDiff
     rightBottom:
-      pos: center.clone().add xDiff + 1, yDiff - 4
+      pos: center.clone().add xDiff, yDiff
 
   # There a six borders, they are located between the holes.
   borderData: ->
