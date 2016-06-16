@@ -10,14 +10,15 @@ window.initGlobal8Ball = (e) ->
       width: 800
       height: 600
     physicsConfig:
-            mpx: (v) ->
-                    return v * 377.95
-            mpxi: (v) ->
-                    return v * -377.95
-            pxm: (v) ->
-                    return v / 377.95
-            pxmi: (v) ->
-                    return v / -377.95
+      mpx: (v) ->
+        v * 377.95
+      mpxi: (v) ->
+        v * -377.95
+      pxm: (v) ->
+        v / 377.95
+      pxmi: (v) ->
+        v / -377.95
+
   gameState =
     players:
       first:
