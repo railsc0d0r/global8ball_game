@@ -56,7 +56,7 @@ class Game
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin @, gameConfig
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig).setBallsData @balls()
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
 
@@ -71,7 +71,10 @@ class Game
       else throw new Error "Invalid game state."
 
   balls: ->
-    @data.balls ? []
+    (@data.balls ? []).map (ball) =>
+      id: ball.id
+      color: ball.color
+      pos: @translatePosition ball.pos
 
   # @return {global8ball.Players}
   getPlayers: ->

@@ -3,8 +3,9 @@
 #= require game/states/PlayState
 
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (@g8bGame, gameConfig) ->
+  constructor: (gameConfig) ->
     super gameConfig
+    @ballsData = []
 
   create: ->
     super()
@@ -73,15 +74,16 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     classes.white2 = global8ball.Ball
     return classes
 
+  setBallsData: (@ballsData) ->
+    return @
+
   createWhiteBalls: () ->
-    @g8bGame.
-      balls().
+    @ballsData.
       filter((ballData) -> ballData.id is 'you' or ballData.id is 'enemy').
       forEach (ballData) =>
         physicsGroupId = if ballData.id is 'you' then 'white1' else 'white2'
         ballProperty = if ballData.id is 'you' then 'yourBall' else 'enemyBall'
-        pos = @g8bGame.translatePosition ballData.pos
-        @[ballProperty] = @createSprite physicsGroupId, pos.x, pos.y, data: ballData, id: ballData.id
+        @[ballProperty] = @createSprite physicsGroupId, ballData.pos.x, ballData.pos.y, data: ballData, id: ballData.id
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
 
