@@ -6,6 +6,9 @@
 # Depending on the received information, next state is one of the play states
 # or showing results.
 class global8ball.WaitForConfiguration extends Phaser.State
+  CLEAR_WORLD = yes
+  PRESERVE_CACHE = no
+
   # @param {global8ball.Backend} backend
   constructor: (@backend) ->
 
@@ -25,4 +28,4 @@ class global8ball.WaitForConfiguration extends Phaser.State
 
   update: ->
     if @tableParameters and @playerInformation and @gameState
-      @game.state.start @gameState.state
+      @game.state.start @gameState.state, CLEAR_WORLD, PRESERVE_CACHE
