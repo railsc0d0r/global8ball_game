@@ -47,4 +47,4 @@ class global8ball.Preload extends Phaser.State
       height: 440
 
   create: ->
-    @game.state.start @startState
+    @game.state.start 'WaitForConfiguration'

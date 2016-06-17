@@ -1,4 +1,5 @@
 #= require game/Controls
+#= require game/FakeBackend
 #= require game/Players
 #= require game/prolog
 #= require game/states/Boot
@@ -6,6 +7,7 @@
 #= require game/states/PlayForBegin
 #= require game/states/PlayForVictory
 #= require game/states/ShowResult
+#= require game/states/WaitForConfiguration
 
 class Game
   # @config is the game config
@@ -56,6 +58,7 @@ class Game
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
+    @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForConfiguration new global8ball.FakeBackend
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig).setBallsData @balls()
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
