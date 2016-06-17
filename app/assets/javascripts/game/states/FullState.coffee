@@ -104,9 +104,6 @@ class global8ball.FullState extends Phaser.State
     enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @gameConfig.getPlayers().getSecond().getName() } }
     enemy.anchor.setTo 1, 0
     enemy.fill = '#ffffff'
-    @players =
-      you: you
-      enemy: enemy
 
   createSprite: (physicsId, x, y, config = {}) ->
     @physicsGroups[physicsId].create x, y, config
