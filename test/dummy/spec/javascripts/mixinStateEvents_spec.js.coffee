@@ -19,7 +19,6 @@ describe 'State events Mixin', () ->
         listener = (state, event) ->
           observedState = state
           observedEvent = event
-
         state = mixinStateEvents(new class State)
         state.addStateEventListener event, listener
 
@@ -33,7 +32,6 @@ describe 'State events Mixin', () ->
         observedContext = null
         listener = (state, event) ->
           observedContext = @
-
         state = mixinStateEvents(new class State)
         context = {}
         state.addStateEventListener event, listener, context
@@ -48,11 +46,11 @@ describe 'State events Mixin', () ->
         firstListener = () -> calls.push 'first'
         secondListener = () -> calls.push 'second'
         thirdListener = () -> calls.push 'third'
-
         state = mixinStateEvents(new class State)
         state.addStateEventListener event, secondListener, undefined, 50
         state.addStateEventListener event, thirdListener, undefined, 0
         state.addStateEventListener event, firstListener, undefined, 100
+
         state[event]()
 
         expect(calls).to.deep.equal ['first', 'second', 'third']
@@ -62,7 +60,6 @@ describe 'State events Mixin', () ->
         additionalArguments = ['foo', 'bar']
         observedArguments = []
         listener = (state, event, rest...) -> observedArguments = rest
-
         state = mixinStateEvents(new class State)
         state.addStateEventListener event, listener, undefined, undefined, additionalArguments...
 
@@ -75,7 +72,6 @@ describe 'State events Mixin', () ->
 
         listenerCalled = no
         listener = () -> listenerCalled = yes
-
         state = mixinStateEvents(new class State)
         binding = state.addStateEventListener event, listener
         binding.detach()
@@ -92,7 +88,6 @@ describe 'State events Mixin', () ->
 
         class State
         events.forEach (event) -> State::[event] = () -> @[event + '_called'] = @
-
         state = mixinStateEvents(new State)
 
         state[event]()
@@ -105,7 +100,6 @@ describe 'State events Mixin', () ->
 
         class State
         events.forEach (event) -> State::[event] = (args...) -> @[event + '_args'] = args
-
         state = mixinStateEvents(new State)
 
         state[event] additionalArguments...
