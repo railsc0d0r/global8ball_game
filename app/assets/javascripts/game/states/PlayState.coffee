@@ -6,6 +6,9 @@ class global8ball.PlayState extends global8ball.FullState
   constructor: (gameConfig, @hasUi = true) ->
     super gameConfig
 
+  init: (config) ->
+    super config
+
   create: ->
     super()
     @yourCue = @createSprite 'cue1', 10, 10, visible: no

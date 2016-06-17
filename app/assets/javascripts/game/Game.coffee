@@ -1,6 +1,4 @@
-#= require game/Controls
 #= require game/FakeBackend
-#= require game/Players
 #= require game/prolog
 #= require game/states/Boot
 #= require game/states/Preload
@@ -52,9 +50,7 @@ class Game
       @config.physicsConfig
     )
 
-    @players = global8ball.Players.create @data.players, @data.viewer
-
-    gameConfig = new Game.Config @phaserGame, @players
+    gameConfig = new Game.Config @phaserGame
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
@@ -62,11 +58,6 @@ class Game
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig).setBallsData @balls()
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
-
-    if @players.viewerPlays()
-      controls = new global8ball.Controls
-      controls.attach @phaserGame.state.states.PlayForBegin
-      controls.attach @phaserGame.state.states.PlayForVictory
 
   currentState: ->
     switch @data.state
@@ -78,10 +69,6 @@ class Game
       id: ball.id
       color: ball.color
       pos: @translatePosition ball.pos
-
-  # @return {global8ball.Players}
-  getPlayers: ->
-    @players
 
   # To avoid using the image URL mapping over and over again, replace image
   # methods on loader with methods doing the mapping before.
@@ -99,7 +86,7 @@ class Game
         oldAddText x, y, (if typeof text is 'string' then I18n.t(text) else I18n.t(text.message, text.context)), style, group
 
 class Game.Config
-  constructor: (@game, @players) ->
+  constructor: (@game) ->
 
   # Returns holes positions.
   holesData: ->
@@ -147,9 +134,6 @@ class Game.Config
     topRight:
       size: horizontalSize
       pos: center.clone().add hXDiff, -hYDiff - 7
-
-  getPlayers: () ->
-    @players
 
 # Helper class to overload methods.
 class Game.Overload

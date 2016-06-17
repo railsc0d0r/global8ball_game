@@ -14,7 +14,8 @@ class global8ball.FullState extends Phaser.State
       @spriteGroups[spriteGroupName] = @add.group()
       @spriteGroups[spriteGroupName].classType = spriteClassType
 
-  init: ->
+  init: (config) ->
+    @players = config.players
     @spriteGroups = {}
     @collisionGroups = {}
     @physicsGroups = {}
@@ -98,10 +99,10 @@ class global8ball.FullState extends Phaser.State
     return sprite
 
   createPlayerInfos: () ->
-    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @gameConfig.getPlayers().getFirst().getName() } }
+    you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @players.getFirst().getName() } }
     you.anchor.setTo 0, 0
     you.fill = '#ffffff'
-    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @gameConfig.getPlayers().getSecond().getName() } }
+    enemy = @game.add.text @game.width - 20, 30, {message: 'game.player_info.enemy', context: { name: @players.getSecond().getName() } }
     enemy.anchor.setTo 1, 0
     enemy.fill = '#ffffff'
 

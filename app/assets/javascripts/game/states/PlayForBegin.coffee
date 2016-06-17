@@ -7,6 +7,9 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     super gameConfig
     @ballsData = []
 
+  init: (config) ->
+    super config
+
   create: ->
     super()
     @youShot = no
