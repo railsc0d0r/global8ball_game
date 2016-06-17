@@ -99,6 +99,19 @@ describe 'State events Mixin', () ->
 
         expect(state[event + '_called']).to.equal state
 
+      it 'calls the original ' + event + '() method with additional parameters', () ->
+
+        additionalArguments = ['I', 'am', 'an', 'argument']
+
+        class State
+        events.forEach (event) -> State::[event] = (args...) -> @[event + '_args'] = args
+
+        state = mixinStateEvents(new State)
+
+        state[event] additionalArguments...
+
+        expect(state[event + '_args']).to.deep.equal additionalArguments
+
       it 'gains a ' + event + '() method if it had none', () ->
 
         class State
