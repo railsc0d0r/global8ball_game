@@ -229,6 +229,10 @@ class StateControls
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
   pressShootButton: (sprite, pointer) =>
+    @onShoot()
+
+  # Overwrite with a real event handler.
+  onShoot: ->
 
   # Updates the shot strength mask used to show the current strength.
   updateShotStrengthMask: ->
