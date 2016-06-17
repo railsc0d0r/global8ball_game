@@ -9,3 +9,7 @@ class global8ball.Player
   # @return {string}
   getName: () ->
     @account.name
+
+  # @return {string}
+  getId: () ->
+    @account.id
