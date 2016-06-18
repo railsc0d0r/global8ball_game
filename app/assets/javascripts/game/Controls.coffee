@@ -198,6 +198,7 @@ class StateControls
   startSettingForce: (sprite, pointer) =>
     @shotStrength.stopChanging()
     @currentlySettingForce = true
+    @settingForce pointer, pointer.x, pointer.y
 
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
