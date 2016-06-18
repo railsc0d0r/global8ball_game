@@ -5,6 +5,9 @@
 # instance every time a play state is entered (exactly: when Phaser.State.create()
 # is called).
 class global8ball.Controls
+  # @param {function} onShoot Function called when the shoot button is pressed.
+  constructor: (@onShoot = () ->)->
+
   # Attaches itself to the events of a state.
   #
   # @param {Phaser.State} state
@@ -22,7 +25,7 @@ class global8ball.Controls
   #
   # @param {Phaser.State} state
   addControls: (state) ->
-    StateControls.addTo state
+    (StateControls.addTo state).onShoot = @onShoot
 
 # When entering a play state, an instance of this class is created and used
 # to add controls and connect events.
@@ -66,6 +69,7 @@ class StateControls
     @state.input.onDown.add @pointerDown, @
     @state.input.onUp.add @pointerUp, @
     @state.input.addMoveCallback @pointerMove
+    return @
 
   # Called when the state shutdowns. Sprites do not need to be cleaned up (they
   # are automatically deleted by Phaser), but event bindings have to be
