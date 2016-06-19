@@ -1,4 +1,5 @@
 #= require game/config/prolog
+#= require game/config/Round
 
 class global8ball.config.CurrentStage
   constructor: (data) ->
