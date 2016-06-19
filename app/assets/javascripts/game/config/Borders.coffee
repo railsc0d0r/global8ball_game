@@ -7,4 +7,4 @@ class global8ball.config.Borders
 
 class global8ball.config.Border
   constructor: (borderData) ->
-    @points = borderData.map (pointData) -> new global8ball.config.Point pointData.x, pointData.y
+    @vertices = borderData.map (pointData) -> new global8ball.config.Point pointData.x, pointData.y
