@@ -1,6 +1,4 @@
-#= require game/prolog
-
-global8ball.config = global8ball.config or {}
+#= require game/config/prolog
 
 class global8ball.config.TableParameters
   constructor: (params) ->
