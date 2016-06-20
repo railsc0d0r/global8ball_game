@@ -46,3 +46,16 @@ class global8ball.Cue extends Phaser.Sprite
   # @return {number}
   getOffsetToBall: () ->
     @width / 2 + if typeof @distanceToBall is 'number' then @distanceToBall else DEFAULT_DISTANCE_TO_BALL
+
+  # Let the cue shoot.
+  shoot: (power) ->
+    @body.velocity.mx = - power * Math.cos(MATH_FACTOR * @body.angle)
+    @body.velocity.my = - power * Math.sin(MATH_FACTOR * @body.angle)
+
+  # Moves the cue away from the table, hides it, etc..
+  retreatFromTable: () ->
+    @body.velocity.mx = 0
+    @body.velocity.my = 0
+    @x = -10000
+    @y = -10000
+    @hide()
