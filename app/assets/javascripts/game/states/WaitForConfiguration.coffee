@@ -27,7 +27,7 @@ class global8ball.WaitForConfiguration extends Phaser.State
   receivePlayerInformation: (playerInformation = null) ->
     @players = global8ball.Players.create playerInformation.players, playerInformation.viewer
     if @players.viewerPlays()
-      controls = new global8ball.Controls
+      controls = new global8ball.Controls (power) => @state.states[@state.current].shoot power
       controls.attach @state.states.PlayForBegin
       controls.attach @state.states.PlayForVictory
 

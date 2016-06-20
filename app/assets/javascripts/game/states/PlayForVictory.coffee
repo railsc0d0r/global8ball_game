@@ -2,8 +2,8 @@
 #= require game/states/PlayState
 
 class global8ball.PlayForVictory extends global8ball.PlayState
-  constructor: (global8Game, gameConfig) ->
-    super gameConfig
+  constructor: (global8Game, gameConfig, eventSink) ->
+    super gameConfig, eventSink
 
   create: ->
     super()

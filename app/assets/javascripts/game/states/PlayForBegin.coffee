@@ -3,8 +3,8 @@
 #= require game/states/PlayState
 
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (gameConfig) ->
-    super gameConfig
+  constructor: (gameConfig, eventSink) ->
+    super gameConfig, eventSink
     @ballsData = []
 
   init: (config) ->
@@ -98,3 +98,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
   # @inheritdoc
   canShoot: ->
     not @youShot
+
+  shoot: (power) ->
+    @yourCue.shoot power
+    @eventSink.send new global8ball.events.ShotEvent @yourCue.getShotDirectionInRadians(), power

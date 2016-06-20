@@ -1,3 +1,4 @@
+#= require game/events
 #= require game/FakeBackend
 #= require game/prolog
 #= require game/states/Boot
@@ -51,13 +52,14 @@ class Game
     )
 
     gameConfig = new Game.Config @phaserGame
+    eventSink = new global8ball.events.EventSink
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForConfiguration new global8ball.FakeBackend
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig).setBallsData @balls()
-    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig
-    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, eventSink).setBallsData(@balls())
+    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, eventSink
+    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, eventSink
 
   currentState: ->
     switch @data.state

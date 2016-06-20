@@ -3,8 +3,8 @@
 #= require game/states/FullState
 
 class global8ball.PlayState extends global8ball.FullState
-  constructor: (gameConfig, @hasUi = true) ->
-    super gameConfig
+  constructor: (gameConfig, eventSink, @hasUi = true) ->
+    super gameConfig, eventSink
 
   init: (config) ->
     super config
@@ -44,3 +44,5 @@ class global8ball.PlayState extends global8ball.FullState
   # A cue collides with a (white) ball. Immediately make the cue go away.
   cueCollidesWithWhiteBall: (cueBody, ballBody) =>
     cueBody.sprite.retreatFromTable()
+
+  shoot: (power) ->
