@@ -234,7 +234,7 @@ class StateControls
   # @param {Phaser.Sprite} sprite
   # @param {Phaser.Pointer} pointer
   pressShootButton: (sprite, pointer) =>
-    @onShoot()
+    @onShoot @shotStrength.get()
 
   # Overwrite with a real event handler.
   onShoot: ->
