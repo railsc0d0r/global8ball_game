@@ -52,6 +52,10 @@ class global8ball.Cue extends Phaser.Sprite
     @body.velocity.mx = - power * Math.cos(MATH_FACTOR * @body.angle)
     @body.velocity.my = - power * Math.sin(MATH_FACTOR * @body.angle)
 
+  # @return {number}
+  getShotDirectionInRadians: ->
+    (@body.rotation + 1.5 * Math.PI) % (2 * Math.PI)
+
   # Moves the cue away from the table, hides it, etc..
   retreatFromTable: () ->
     @body.velocity.mx = 0
