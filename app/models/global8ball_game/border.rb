@@ -1,6 +1,6 @@
 module Global8ballGame
   class Border
-    BORDER_DEFINITION = {}
+    BORDER_DEFINITION = []
 
     class << self
       def config
