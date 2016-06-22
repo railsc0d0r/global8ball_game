@@ -118,6 +118,10 @@ module Global8ballGame
       def config
         BORDER_DEFINITION
       end
+
+      def config_json
+        self.config.to_json
+      end
     end
   end
 end
