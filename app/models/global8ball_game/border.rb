@@ -1,6 +1,6 @@
 module Global8ballGame
-  class Border
-    BORDER_DEFINITION = {
+  class Border < Config
+    @definition = {
       borders:
         [
           [
@@ -113,15 +113,5 @@ module Global8ballGame
           ]
         ]
     }
-
-    class << self
-      def config
-        BORDER_DEFINITION
-      end
-
-      def config_json
-        self.config.to_json
-      end
-    end
   end
 end
