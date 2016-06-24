@@ -8,4 +8,8 @@ class Game < ApplicationRecord
 
     game.config = config.to_json
   end
+
+  def config_hash
+    JSON.parse(config)
+  end
 end
