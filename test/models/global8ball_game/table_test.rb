@@ -1,0 +1,9 @@
+require 'test_helper'
+
+module Global8ballGame
+  class TableTest < ActiveSupport::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
+end
