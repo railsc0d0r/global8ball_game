@@ -6,7 +6,7 @@
     <%= javascript_include_tag 'translations' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
-      window.addEventListener('load', window.initGlobal8Ball, false);
+      window.addEventListener('load', function() { window.initGlobal8Ball(<%= raw @game.config %>) }, false);
     </script>
     <style type="text/css">
       #da-game {
