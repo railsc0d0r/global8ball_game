@@ -1,7 +1,7 @@
 #= require game/Game
 
 # Currently mostly for testing purposes.
-# The real game will take data and events from the server.
+# TODO: Implement gameConfig from backend
 window.initGlobal8Ball = (gameConfig) ->
   config =
     imageUrlMap: window.assets.game
@@ -11,13 +11,13 @@ window.initGlobal8Ball = (gameConfig) ->
       height: 600
     physicsConfig:
       mpx: (v) ->
-        v * 377.95
+        v * gameConfig.table.scaling_factor
       mpxi: (v) ->
-        v * -377.95
+        v * -(gameConfig.table.scaling_factor)
       pxm: (v) ->
-        v / 377.95
+        v / gameConfig.table.scaling_factor
       pxmi: (v) ->
-        v / -377.95
+        v / -(gameConfig.table.scaling_factor)
 
   gameState =
     players:
