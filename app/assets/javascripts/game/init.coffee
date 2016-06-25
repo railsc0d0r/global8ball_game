@@ -2,7 +2,7 @@
 
 # Currently mostly for testing purposes.
 # The real game will take data and events from the server.
-window.initGlobal8Ball = (e) ->
+window.initGlobal8Ball = (gameConfig) ->
   config =
     imageUrlMap: window.assets.game
     parent: document.getElementById 'da-game'
