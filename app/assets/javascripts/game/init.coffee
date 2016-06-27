@@ -22,12 +22,12 @@ window.initGlobal8Ball = (gameConfig) ->
   gameState =
     players:
       first:
-        id: 'david'
-        name: "David"
+        id: gameConfig.player_1.user_id
+        name: gameConfig.player_1.name
         shot: false
       second:
-        id: 'goliath'
-        name: "Goliath"
+        id: gameConfig.player_2.user_id
+        name: gameConfig.player_2.name
         shot: false
     viewer:
       id: 'david'
