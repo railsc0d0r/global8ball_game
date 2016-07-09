@@ -4,34 +4,34 @@ module Global8ballGame
       holes:
         [
           {
-            x: 0,
-            y: 0,
-            radius: 0
+            x: -1.3282,
+            y: 0.6932,
+            radius: 0.0582
+          },
+          {
+            x: -1.3282,
+            y: -0.6932,
+            radius: 0.0582
           },
           {
             x: 0,
-            y: 0,
-            radius: 0
+            y: -0.6932,
+            radius: 0.0582
+          },
+          {
+            x: 1.3282,
+            y: -0.6932,
+            radius: 0.0582
+          },
+          {
+            x: 1.3282,
+            y: 0.6932,
+            radius: 0.0582
           },
           {
             x: 0,
-            y: 0,
-            radius: 0
-          },
-          {
-            x: 0,
-            y: 0,
-            radius: 0
-          },
-          {
-            x: 0,
-            y: 0,
-            radius: 0
-          },
-          {
-            x: 0,
-            y: 0,
-            radius: 0
+            y: 0.6932,
+            radius: 0.0582
           }
         ]
     }
