@@ -1,117 +1,131 @@
 module Global8ballGame
   class Border < Config
+    # scalingFactor = 377.95 =>
+    @halfWidth=1.27         # 480px
+    @quarterWidth=0.635     # 240px
+    @cushionWidth=0.0582    # 22px
+    @angleDiff36px=0.0953   # 36px
+    @angleDiff32px=0.0847   # 32px
+    @angleDiff30px=0.0794   # 30px
+    @angleDiff10px=0.0265   # 10px
+
     @definition = {
       borders:
-        [
+        { left:
           [
             {
-              x: -1.3282,
-              y: -0.6085
+              x: -( @halfWidth + @cushionWidth ),
+              y: @quarterWidth - @angleDiff10px
             },
             {
-              x: -1.3282,
-              y: 0.6085
+              x: -( @halfWidth + @cushionWidth ),
+              y: -( @quarterWidth - @angleDiff10px )
             },
             {
-              x: -1.27,
-              y: 0.5397
+              x: -@halfWidth,
+              y: -( @quarterWidth - @angleDiff36px )
             },
             {
-              x: -1.27,
-              y: -0.5397
+              x: -@halfWidth,
+              y: @quarterWidth - @angleDiff36px
             }
           ],
+          leftBottom:
           [
             {
-              x: -1.2435,
-              y: 0.6932
+              x: -( @halfWidth - @angleDiff10px ),
+              y: @quarterWidth + @cushionWidth
             },
             {
-              x: -0.0582,
-              y: 0.6932
+              x: -@cushionWidth,
+              y: @quarterWidth + @cushionWidth
             },
             {
-              x: -0.0794,
-              y: 0.635
+              x: -@angleDiff30px,
+              y: @quarterWidth
             },
             {
-              x: -1.1853,
-              y: 0.635
+              x: -( @halfWidth - @angleDiff32px ),
+              y: @quarterWidth
             }
           ],
+          rightBottom:
           [
             {
-              x: 0.0582,
-              y: 0.6932
+              x: @cushionWidth,
+              y: @quarterWidth + @cushionWidth
             },
             {
-              x: 1.2435,
-              y: 0.6932
+              x: @halfWidth - @angleDiff10px,
+              y: @quarterWidth + @cushionWidth
             },
             {
-              x: 1.1853,
-              y: 0.635
+              x: @halfWidth - @angleDiff32px,
+              y: @quarterWidth
             },
             {
-              x: 0.0794,
-              y: 0.635
+              x: @angleDiff30px,
+              y: @quarterWidth
             }
           ],
+          right:
           [
             {
-              x: 1.3282,
-              y: 0.6085
+              x: @halfWidth + @cushionWidth,
+              y: @quarterWidth - @angleDiff10px
             },
             {
-              x: 1.3282,
-              y: -0.6085
+              x: @halfWidth + @cushionWidth,
+              y: -@quarterWidth - @angleDiff10px
             },
             {
-              x: 1.27,
-              y: -0.5397
+              x: @halfWidth,
+              y: -( @quarterWidth - @angleDiff36px )
             },
             {
-              x: 1.27,
-              y: 0.5397
+              x: @halfWidth,
+              y: @quarterWidth - @angleDiff36px
             }
           ],
+          rightTop:
           [
             {
-              x: 1.2435,
-              y: -0.6932
+              x: @halfWidth - @angleDiff10px,
+              y: -( @quarterWidth + @cushionWidth )
             },
             {
-              x: 0.0582,
-              y: -0.6932
+              x: @cushionWidth,
+              y: -( @quarterWidth + @cushionWidth )
             },
             {
-              x: 0.0794,
-              y: -0.635
+              x: @angleDiff30px,
+              y: -@quarterWidth
             },
             {
-              x: 1.1853,
-              y: -0.635
+              x: @halfWidth - @angleDiff32px,
+              y: -@quarterWidth
             }
           ],
+          leftTop:
           [
             {
-              x: -0.0582,
-              y: -0.6932
+              x: -@cushionWidth,
+              y: -( @quarterWidth + @cushionWidth )
             },
             {
-              x: -1.2435,
-              y: -0.6932
+              x: -( @halfWidth - @angleDiff10px ),
+              y: -( @quarterWidth + @cushionWidth )
             },
             {
-              x: -1.1853,
-              y: -0.635
+              x: -( @halfWidth - @angleDiff32px ),
+              y: -@quarterWidth
             },
             {
-              x: -0.0794,
-              y: -0.635
+              x: -@angleDiff30px,
+              y: -@quarterWidth
             }
           ]
-        ]
+        }
     }
   end
 end
