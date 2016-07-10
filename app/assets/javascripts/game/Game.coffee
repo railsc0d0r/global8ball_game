@@ -51,7 +51,7 @@ class Game
       @config.physicsConfig
     )
 
-    gameConfig = new Game.Config @phaserGame
+    gameConfig = new Game.Config @phaserGame, @config
     eventSink = new global8ball.events.EventSink
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
@@ -88,7 +88,7 @@ class Game
         oldAddText x, y, (if typeof text is 'string' then I18n.t(text) else I18n.t(text.message, text.context)), style, group
 
 class Game.Config
-  constructor: (@game) ->
+  constructor: (@game, @config) ->
 
   # Returns holes positions.
   holesData: ->
