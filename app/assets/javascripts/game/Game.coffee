@@ -93,9 +93,9 @@ class Game.Config
   # Returns holes positions.
   holesData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
-    xDiff = 500
-    yDiff = 245
-    yCenterDiff = 9
+    xDiff = 491
+    yDiff = 251
+    yCenterDiff = 11
     leftTop:
       pos: center.clone().add -xDiff, -yDiff
     centerTop:
