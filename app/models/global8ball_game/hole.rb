@@ -1,43 +1,49 @@
 module Global8ballGame
   class Hole < Config
+    @xWidth=1.27
+    @yWidth=0.635
+    @radius=0.0582
+    @cushionWidth=0.0582
+    @cushionWidthHalf=0.0291
+
     @definition = {
       holes:
         {
           leftTop:
             {
-              x: -1.2991,
-              y: -0.6641,
-              radius: 0.0582
+              x: -( @xWidth + @cushionWidthHalf ),
+              y: -( @yWidth + @cushionWidthHalf ),
+              radius: @radius
             },
           leftBottom:
             {
-              x: -1.2991,
-              y: 0.6641,
-              radius: 0.0582
+              x: -( @xWidth + @cushionWidthHalf ),
+              y: @yWidth + @cushionWidthHalf,
+              radius: @radius
             },
           centerBottom:
             {
               x: 0,
-              y: 0.6932,
-              radius: 0.0582
+              y: @yWidth + @cushionWidth,
+              radius: @radius
             },
           rightBottom:
             {
-              x: 1.2991,
-              y: 0.6641,
-              radius: 0.0582
+              x: @xWidth + @cushionWidthHalf,
+              y: @yWidth + @cushionWidthHalf,
+              radius: @radius
             },
           rightTop:
             {
-              x: 1.2991,
-              y: -0.6641,
-              radius: 0.0582
+              x: @xWidth + @cushionWidthHalf,
+              y: -( @yWidth + @cushionWidthHalf ),
+              radius: @radius
             },
           centerTop:
             {
               x: 0,
-              y: -0.6932,
-              radius: 0.0582
+              y: -( @yWidth + @cushionWidth ),
+              radius: @radius
             }
         }
     }
