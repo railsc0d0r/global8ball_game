@@ -5,14 +5,14 @@ module Global8ballGame
         {
           leftTop:
             {
-              x: -1.3282,
-              y: -0.6932,
+              x: -1.2991,
+              y: -0.6641,
               radius: 0.0582
             },
           leftBottom:
             {
-              x: -1.3282,
-              y: 0.6932,
+              x: -1.2991,
+              y: 0.6641,
               radius: 0.0582
             },
           centerBottom:
@@ -23,14 +23,14 @@ module Global8ballGame
             },
           rightBottom:
             {
-              x: 1.3282,
-              y: 0.6932,
+              x: 1.2991,
+              y: 0.6641,
               radius: 0.0582
             },
           rightTop:
             {
-              x: 1.3282,
-              y: -0.6932,
+              x: 1.2991,
+              y: -0.6641,
               radius: 0.0582
             },
           centerTop:
