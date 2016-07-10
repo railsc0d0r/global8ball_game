@@ -10,6 +10,7 @@ window.initGlobal8Ball = (gameConfig) ->
       width: 800
       height: 600
     holes: gameConfig.holes
+    borders:gameConfig.borders
     physicsConfig:
       mpx: (v) ->
         v * gameConfig.table.scaling_factor
