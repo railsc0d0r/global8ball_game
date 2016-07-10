@@ -93,21 +93,18 @@ class Game.Config
   # Returns holes positions.
   holesData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
-    xDiff = 491
-    yDiff = 251
-    yCenterDiff = 11
     leftTop:
-      pos: center.clone().add -xDiff, -yDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.leftTop.x), @config.physicsConfig.mpx(@config.holes.leftTop.y)
     centerTop:
-      pos: center.clone().add 0, -yDiff - yCenterDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.centerTop.x), @config.physicsConfig.mpx(@config.holes.centerTop.y)
     rightTop:
-      pos: center.clone().add xDiff, -yDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.rightTop.x), @config.physicsConfig.mpx(@config.holes.rightTop.y)
     leftBottom:
-      pos: center.clone().add -xDiff, yDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.leftBottom.x), @config.physicsConfig.mpx(@config.holes.leftBottom.y)
     centerBottom:
-      pos: center.clone().add 0, yDiff + yCenterDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.centerBottom.x), @config.physicsConfig.mpx(@config.holes.centerBottom.y)
     rightBottom:
-      pos: center.clone().add xDiff, yDiff
+      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.rightBottom.x), @config.physicsConfig.mpx(@config.holes.rightBottom.y)
 
   # There a six borders, they are located between the holes.
   borderData: ->
