@@ -93,18 +93,14 @@ class Game.Config
   # Returns holes positions.
   holesData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
-    leftTop:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.leftTop.x), @config.physicsConfig.mpx(@config.holes.leftTop.y)
-    centerTop:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.centerTop.x), @config.physicsConfig.mpx(@config.holes.centerTop.y)
-    rightTop:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.rightTop.x), @config.physicsConfig.mpx(@config.holes.rightTop.y)
-    leftBottom:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.leftBottom.x), @config.physicsConfig.mpx(@config.holes.leftBottom.y)
-    centerBottom:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.centerBottom.x), @config.physicsConfig.mpx(@config.holes.centerBottom.y)
-    rightBottom:
-      pos: center.clone().add @config.physicsConfig.mpx(@config.holes.rightBottom.x), @config.physicsConfig.mpx(@config.holes.rightBottom.y)
+
+    holes = @config.holes
+    convertMeterToPx = @config.physicsConfig.mpx
+
+    Object.keys(holes).map (key, index) ->
+                             holes[key] = pos: center.clone().add convertMeterToPx(holes[key].x), convertMeterToPx(holes[key].y)
+
+    return holes
 
   # There a six borders, they are located between the holes.
   borderData: ->
