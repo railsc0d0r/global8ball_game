@@ -75,6 +75,8 @@ class global8ball.FullState extends Phaser.State
           @physicsGroups[specId].collides @collisionGroups[collision.groupId]
 
   createBorders: ->
+    # TODO: Instead of rectangular borders, polygonal borders (with data received from backend)
+    # are used. Beware: Setting the shape of a body resets its collision groups!
     bordersData = @gameConfig.borderData()
     for borderKey of bordersData
       borderData = bordersData[borderKey]
