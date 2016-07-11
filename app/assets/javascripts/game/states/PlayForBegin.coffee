@@ -77,6 +77,16 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         groupId: 'white2'
       }
     ]
+
+    specs.holes.collides = [
+      {
+        groupId: 'white1'
+      }
+      {
+        groupId: 'white2'
+      }
+    ]
+
     return specs
 
   spriteClasses: () ->
