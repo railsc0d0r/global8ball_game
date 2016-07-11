@@ -34,7 +34,13 @@ class global8ball.PhysicsGroup
     sprite = @spriteGroup.create x, y, @spriteKey
     for prop of config
       sprite[prop] = config[prop]
+    @applyCollisions sprite
+    return sprite
+
+  # Apply collision configuration to a sprite.
+  #
+  # @param {Phaser.Sprite} sprite
+  applyCollisions: (sprite) ->
     sprite.body.setCollisionGroup @collisionGroup
     @collisionSpecs.forEach (collision) ->
       sprite.body.collides collision.group, collision.callback, collision.context
-    return sprite

@@ -88,6 +88,7 @@ class global8ball.FullState extends Phaser.State
         visible: no
       border = @createSprite 'borders', borderData.pos.x, borderData.pos.y, config
       border.body.setRectangleFromSprite border
+      @physicsGroups['borders'].applyCollisions border
     @spriteGroups.borders
 
   createHoles: ->
