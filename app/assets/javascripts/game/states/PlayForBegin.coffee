@@ -69,7 +69,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         groupId: 'white2'
       }
     ]
-    specs
+    return specs
 
   spriteClasses: () ->
     classes = super()
