@@ -34,6 +34,10 @@ class global8ball.PlayForBegin extends global8ball.PlayState
           groupId: 'borders'
           callback: 'whiteBallCollidesWithBorder'
         }
+        {
+          groupId: 'holes'
+          callback: 'whiteBallFallsIntoHole'
+        }
       ]
     specs.white2 =
       spriteKey: 'whiteBall'
@@ -46,6 +50,10 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         {
           groupId: 'borders'
           callback: 'whiteBallCollidesWithBorder'
+        }
+        {
+          groupId: 'holes'
+          callback: 'whiteBallFallsIntoHole'
         }
       ]
     specs.cue1.collides = [
@@ -91,6 +99,8 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         @[ballProperty] = @createSprite physicsGroupId, ballData.pos.x, ballData.pos.y, data: ballData, id: ballData.id
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
+
+  whiteBallFallsIntoHole: (ballBody, holeBody) =>
 
   update: ->
     super()
