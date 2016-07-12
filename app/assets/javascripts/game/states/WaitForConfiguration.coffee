@@ -15,14 +15,11 @@ class global8ball.WaitForConfiguration extends Phaser.State
   constructor: (@backend) ->
 
   create: ->
-    @request 'table_parameters', 'TableParameters'
     @request 'player_information', 'PlayerInformation'
     @request 'game_state', 'GameState'
 
   request: (id, methodPart) ->
     @backend.request id, (error, response) => @['receive' + methodPart] response
-
-  receiveTableParameters: (@tableParameters = null) ->
 
   receivePlayerInformation: (playerInformation = null) ->
     @players = global8ball.Players.create playerInformation.players, playerInformation.viewer
@@ -34,7 +31,7 @@ class global8ball.WaitForConfiguration extends Phaser.State
   receiveGameState: (@gameState = null) ->
 
   update: ->
-    if @tableParameters and @players and @gameState
+    if @players and @gameState
       config =
         players: @players
       @game.state.start @gameState.state, CLEAR_WORLD, PRESERVE_CACHE, config
