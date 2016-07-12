@@ -98,7 +98,7 @@ class Game.Config
     convertMeterToPx = @config.physicsConfig.mpx
 
     Object.keys(holes).map (key, index) ->
-                             holes[key] = pos: center.clone().add convertMeterToPx(holes[key].x), convertMeterToPx(holes[key].y)
+      holes[key] = pos: center.clone().add convertMeterToPx(holes[key].x), convertMeterToPx(holes[key].y)
 
     return holes
 
