@@ -88,16 +88,10 @@ class global8ball.FullState extends Phaser.State
       poly = new Phaser.Polygon(borderData)
 
       setBorderBody = (body) ->
-        body.loadPolygon null, poly
+        body.static = true
+        body.addPolygon {}, borderData.map (point) -> [point.x, point.y]
 
-      border = @createSprite 'borders', borderData[0].x, borderData[0].y, config, setBorderBody
-
-      console.log(border)
-
-      graphics = @game.add.graphics(0,0)
-      graphics.beginFill(0xFF33FF)
-      graphics.drawPolygon(poly.points)
-      graphics.endFill()
+      border = @createSprite 'borders', 0, 0, config, setBorderBody
 
     @spriteGroups.borders
 
