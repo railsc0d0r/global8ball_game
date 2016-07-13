@@ -76,7 +76,7 @@ module Global8ballGame
             },
             {
               x: @halfWidth + @cushionWidth,
-              y: -@quarterWidth - @angleDiff10px
+              y: -( @quarterWidth - @angleDiff10px )
             },
             {
               x: @halfWidth,
