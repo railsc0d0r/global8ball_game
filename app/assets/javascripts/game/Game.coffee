@@ -105,30 +105,17 @@ class Game.Config
   # There a six borders, they are located between the holes.
   borderData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
-    horizontalSize = width: 460, height: 15
-    verticalSize = width: 15, height: 460
-    hXDiff = 240
-    hYDiff = 245
-    vXDiff = 485
-    vYDiff = 0
-    bottomLeft:
-      size: horizontalSize
-      pos: center.clone().add -hXDiff, hYDiff
-    bottomRight:
-      size: horizontalSize
-      pos: center.clone().add hXDiff, hYDiff
-    left:
-      size: verticalSize
-      pos: center.clone().add -vXDiff - 5, vYDiff
-    right:
-      size: verticalSize
-      pos: center.clone().add vXDiff, vYDiff
-    topLeft:
-      size: horizontalSize
-      pos: center.clone().add -hXDiff, -hYDiff - 7
-    topRight:
-      size: horizontalSize
-      pos: center.clone().add hXDiff, -hYDiff - 7
+
+    borders = @config.borders
+    convertMeterToPx = @config.physicsConfig.mpx
+
+    Object.keys(borders).map (key, index) ->
+                             points = []
+                             for point of borders[key]
+                                phaserPoint = center.clone().add convertMeterToPx(borders[key][point].x), convertMeterToPx(borders[key][point].y)
+                                points.push(phaserPoint)
+                             borders[key] = points
+    return borders
 
 # Helper class to overload methods.
 class Game.Overload
