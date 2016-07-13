@@ -82,12 +82,19 @@ class global8ball.FullState extends Phaser.State
       borderData = bordersData[borderKey]
       config =
         borderKey: borderKey
-        height: borderData.size.height
         static: yes
-        width: borderData.size.width
         visible: no
-      border = @createSprite 'borders', borderData.pos.x, borderData.pos.y, config
-      border.body.setRectangleFromSprite border
+      border = @createSprite 'borders', borderData[0].x, borderData[0].y, config
+      poly = new Phaser.Polygon(borderData)
+      border.body.loadPolygon(null, poly)
+
+      console.log(border)
+
+      graphics = @game.add.graphics(0,0)
+      graphics.beginFill(0xFF33FF)
+      graphics.drawPolygon(poly.points)
+      graphics.endFill()
+
       @physicsGroups['borders'].applyCollisions border
     @spriteGroups.borders
 
