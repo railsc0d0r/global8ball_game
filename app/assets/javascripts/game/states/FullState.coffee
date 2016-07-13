@@ -84,9 +84,13 @@ class global8ball.FullState extends Phaser.State
         borderKey: borderKey
         static: yes
         visible: no
-      border = @createSprite 'borders', borderData[0].x, borderData[0].y, config
+
       poly = new Phaser.Polygon(borderData)
-      border.body.loadPolygon(null, poly)
+
+      setBorderBody = (body) ->
+        body.loadPolygon(null, poly)
+
+      border = @createSprite 'borders', borderData[0].x, borderData[0].y, config, setBorderBody
 
       console.log(border)
 
@@ -95,7 +99,6 @@ class global8ball.FullState extends Phaser.State
       graphics.drawPolygon(poly.points)
       graphics.endFill()
 
-      @physicsGroups['borders'].applyCollisions border
     @spriteGroups.borders
 
   createHoles: ->
@@ -117,5 +120,5 @@ class global8ball.FullState extends Phaser.State
     enemy.anchor.setTo 1, 0
     enemy.fill = '#ffffff'
 
-  createSprite: (physicsId, x, y, config = {}) ->
-    @physicsGroups[physicsId].create x, y, config
+  createSprite: (physicsId, x, y, config = {}, bodyModifier = () ->) ->
+    @physicsGroups[physicsId].create x, y, config, bodyModifier
