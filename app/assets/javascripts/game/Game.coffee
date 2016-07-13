@@ -102,7 +102,7 @@ class Game.Config
 
     return holes
 
-  # There a six borders, they are located between the holes.
+  # There are six borders, they are located between the holes.
   borderData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
 
