@@ -88,7 +88,7 @@ class global8ball.FullState extends Phaser.State
       poly = new Phaser.Polygon(borderData)
 
       setBorderBody = (body) ->
-        body.loadPolygon(null, poly)
+        body.loadPolygon null, poly
 
       border = @createSprite 'borders', borderData[0].x, borderData[0].y, config, setBorderBody
 
