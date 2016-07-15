@@ -1,7 +1,12 @@
 module Global8ballGame
   class Hole < Config
-    @xWidth=1.27
-    @yWidth=0.635
+    # scalingFactor = 377.95 =>
+    @width = 2.54
+    @halfWidth = @width / 2         # 480px
+    @quarterWidth = @halfWidth / 2  # 240px
+
+    @xWidth=@halfWidth
+    @yWidth=@quarterWidth
     @radius=0.0582
     @cushionWidth=0.0582
     @cushionWidthHalf=0.0291
