@@ -8,7 +8,7 @@ module Global8ballGame
     @diameter = 0.0582              # 22px
     @radius = @diameter / 2         # 11px
     @xDiff = Math.sqrt(3 * @radius ** 2)
-    @yDiff = @radius
+    @yDiff = @diameter
 
     @positions = {
       'PlayForBegin': {
