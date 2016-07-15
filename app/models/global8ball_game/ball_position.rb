@@ -10,7 +10,30 @@ module Global8ballGame
     @yDiff = @radius
 
     @positions = {
-      'PlayForBegin': {},
+      'PlayForBegin': {
+                        balls: [
+                          {
+                            id: 1,
+                            type: 'breakball',
+                            color: 'white',
+                            owner: nil,
+                            position: {
+                              x: -@halfWidth,
+                              y: -@quarterWidth
+                            }
+                          },
+                          {
+                            id: 2,
+                            type: 'breakball',
+                            color: 'white',
+                            owner: nil,
+                            position: {
+                              x: -@halfWidth,
+                              y: @quarterWidth
+                            }
+                          }
+                        ]
+                      },
       'PlayForVictory': {}
     }
 
