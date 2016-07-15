@@ -20,7 +20,7 @@ class global8ball.Preload extends Phaser.State
     background:      'background'
     blackBall:       'black_ball'
     border:          'border'
-    crosshair:       'crosshair'
+#    crosshair:       'crosshair'
     cue:             'cue'
     hole:            'hole'
     redBall:         'red_ball'
