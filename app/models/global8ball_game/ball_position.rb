@@ -1,5 +1,14 @@
 module Global8ballGame
   class BallPosition < Config
+    # scalingFactor = 377.95 =>
+    @width = 2.54
+    @halfWidth = @width / 2         # 480px
+    @quarterWidth = @halfWidth / 2  # 240px
+    @diameter = 0.0582              # 22px
+    @radius = @diameter / 2         # 11px
+    @xDiff = Math.sqrt(3 * @radius ** 2)
+    @yDiff = @radius
+
     @positions = {
       'PlayForBegin': {},
       'PlayForVictory': {}
