@@ -52,22 +52,36 @@ module Global8ballGame
     }
 
     counter = 1
+    color = 'red'
 
     0.upto(4) do |x|
       0.upto(x) do |y|
-        unless counter == 5
-          counter += 1
+        counter += 1
+        unless counter == 6
           position = {
             id: counter,
             type: 'playball',
-            color: 'white',
+            color: color,
             owner: nil,
             position: {
               x: @quarterWidth + (x-2) * @xDiff,
-              y: 0 + (1) * @yDiff # TODO: compute values dynamically
+              y: -(x * @radius) + y * @yDiff
+            }
+          }
+          color = color == 'red' ? 'gold' : 'red'
+        else
+          position = {
+            id: counter,
+            type: '8ball',
+            color: 'black',
+            owner: nil,
+            position: {
+              x: @quarterWidth + (x-2) * @xDiff,
+              y: -(x * @radius) + y * @yDiff
             }
           }
         end
+        @positions['PlayForVictory'.to_sym][:balls] << position
       end
     end
 
