@@ -8,7 +8,7 @@ module Global8ballGame
     class << self
       def config state=''
         raise "No state given to get starting ball-positions for." if state.blank?
-        raise "Invalid state given to get starting ball-positions for. Known states: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless state == 'PlayForBegin' || state == 'PlayForVictory'
+        raise "Invalid state given to get starting ball-positions for. Known states: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? state
 
         @positions[state.to_sym]
       end
