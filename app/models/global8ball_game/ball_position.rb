@@ -2,8 +2,9 @@ module Global8ballGame
   class BallPosition < Config
     # scalingFactor = 377.95 =>
     @width = 2.54
-    @halfWidth = @width / 2         # 480px
-    @quarterWidth = @halfWidth / 2  # 240px
+    @halfWidth = @width / 2          # 480px
+    @quarterWidth = @halfWidth / 2   # 240px
+    @eighthWidth = @quarterWidth / 2 # 120px
     @diameter = 0.0582              # 22px
     @radius = @diameter / 2         # 11px
     @xDiff = Math.sqrt(3 * @radius ** 2)
@@ -18,8 +19,8 @@ module Global8ballGame
                             color: 'white',
                             owner: nil,
                             position: {
-                              x: -@halfWidth,
-                              y: -@quarterWidth
+                              x: -@quarterWidth,
+                              y: -@eighthWidth
                             }
                           },
                           {
@@ -28,14 +29,47 @@ module Global8ballGame
                             color: 'white',
                             owner: nil,
                             position: {
-                              x: -@halfWidth,
-                              y: @quarterWidth
+                              x: -@quarterWidth,
+                              y: @eighthWidth
                             }
                           }
                         ]
                       },
-      'PlayForVictory': {}
+      'PlayForVictory': {
+                          balls: [
+                            {
+                              id: 1,
+                              type: 'breakball',
+                              color: 'white',
+                              owner: nil,
+                              position: {
+                                x: -@quarterWidth,
+                                y: 0
+                              }
+                            }
+                          ]
+                        }
     }
+
+    counter = 1
+
+    0.upto(4) do |x|
+      0.upto(x) do |y|
+        unless counter == 5
+          counter += 1
+          position = {
+            id: counter,
+            type: 'playball',
+            color: 'white',
+            owner: nil,
+            position: {
+              x: @quarterWidth + (x-2) * @xDiff,
+              y: 0 + (1) * @yDiff # TODO: compute values dynamically
+            }
+          }
+        end
+      end
+    end
 
     class << self
       def config state=''
