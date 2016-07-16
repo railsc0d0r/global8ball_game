@@ -16,4 +16,26 @@ module ApplicationHelper
 
     html
   end
+
+  def current_stage_select
+    stages = [
+      'PlayForBegin',
+      'PlayForVictory',
+      'ShowResult'
+    ]
+
+    html = "<select id='current_stage'>".html_safe
+
+    stages.each do |stage|
+      unless stage == stages.first
+        html.safe_concat " <option value='#{stage}'>#{stage}</option>"
+      else
+        html.safe_concat " <option value='#{stage}' selected='selected'>#{stage}</option>"
+      end
+    end
+
+    html.safe_concat "</select>"
+
+    html
+  end
 end
