@@ -16,4 +16,4 @@ class global8ball.WaitForGameState extends Phaser.State
       if @events.hasGameState()
         gameState = @events.getGameState()
         @events.clearGameState()
-        @game.state.start 'PlayForBegin'
+        @game.state.start gameState.current_stage.stage_name
