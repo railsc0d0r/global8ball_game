@@ -6,9 +6,9 @@ module ApplicationHelper
 
     players.each do | player |
       unless player == players.first
-        html.safe_concat "  <option value='{\"user_id\": \"#{player.id}\", \"name\": \"#{player.name}\"}'>#{player.name}</option>"
+        html.safe_concat "  <option value='{\"user_id\": #{player.id}, \"name\": \"#{player.name}\"}'>#{player.name}</option>"
       else
-        html.safe_concat "  <option value='{\"user_id\": \"#{player.id}\", \"name\": \"#{player.name}\"}' selected='selected'>#{player.name}</option>"
+        html.safe_concat "  <option value='{\"user_id\": #{player.id}, \"name\": \"#{player.name}\"}' selected='selected'>#{player.name}</option>"
       end
     end
 
