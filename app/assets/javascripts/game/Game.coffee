@@ -60,12 +60,20 @@ class Game
     gameConfig = new Game.Config @phaserGame, @config
     eventSink = new global8ball.events.EventSink
 
+    @players = global8ball.Players.create @config.players, @config.viewer
+
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForConfiguration new global8ball.FakeBackend
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, eventSink).setBallsData(@balls())
-    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, eventSink
-    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, eventSink
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, eventSink, @players).setBallsData(@balls())
+    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, eventSink, @players
+    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, eventSink, @players
+
+    if @players.viewerPlays()
+      controls = new global8ball.Controls (power) => @phaserGame.state.states[@phaserGame.state.current].shoot power
+      controls.attach @phaserGame.state.states.PlayForBegin
+      controls.attach @phaserGame.state.states.PlayForVictory
+
     return @
 
   currentState: ->

@@ -5,11 +5,8 @@
 # Base class for all states where players can play, i.e. there are cues, balls
 # are shot, etc.
 class global8ball.PlayState extends global8ball.FullState
-  constructor: (gameConfig, eventSink, @hasUi = true) ->
-    super gameConfig, eventSink
-
-  init: (config) ->
-    super config
+  constructor: (gameConfig, eventSink, players, @hasUi = true) ->
+    super gameConfig, eventSink, players
 
   create: ->
     super()

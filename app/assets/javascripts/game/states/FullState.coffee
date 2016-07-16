@@ -5,7 +5,7 @@
 
 # Base class for all full Phaser states (i.e. with all images etc.)
 class global8ball.FullState extends Phaser.State
-  constructor: (@gameConfig, @eventSink) ->
+  constructor: (@gameConfig, @eventSink, @players) ->
     global8ball.mixinStateEvents @
 
   addGroup: (collisionGroupName, spriteGroupName = collisionGroupName, spriteClassType = Phaser.Sprite) ->
@@ -14,8 +14,7 @@ class global8ball.FullState extends Phaser.State
       @spriteGroups[spriteGroupName] = @add.group()
       @spriteGroups[spriteGroupName].classType = spriteClassType
 
-  init: (config) ->
-    @players = config.players
+  init: () ->
     @spriteGroups = {}
     @collisionGroups = {}
     @physicsGroups = {}

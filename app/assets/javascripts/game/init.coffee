@@ -20,8 +20,6 @@ window.initGlobal8Ball = (gameConfig) ->
         v / gameConfig.table.scaling_factor
       pxmi: (v) ->
         v / -(gameConfig.table.scaling_factor)
-
-  gameState =
     players:
       first:
         id: gameConfig.player_1.user_id
@@ -32,8 +30,10 @@ window.initGlobal8Ball = (gameConfig) ->
         name: gameConfig.player_2.name
         shot: false
     viewer:
-      id: 'david'
-      name: 'David'
+      id: gameConfig.current_viewer.user_id
+      name: gameConfig.current_viewer.name
+
+  gameState =
     state: 'PlayForBegin'
     balls: [
       {
