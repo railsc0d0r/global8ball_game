@@ -60,6 +60,7 @@ class Game
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, eventSink).setBallsData(@balls())
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, eventSink
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, eventSink
+    return @
 
   currentState: ->
     switch @data.state
