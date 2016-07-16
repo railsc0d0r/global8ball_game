@@ -2,6 +2,8 @@
 #= require game/prolog
 #= require game/states/PlayState
 
+# State for determining which player may shoot first in the first round of
+# normal play.
 class global8ball.PlayForBegin extends global8ball.PlayState
   constructor: (gameConfig, eventSink) ->
     super gameConfig, eventSink

@@ -1,6 +1,7 @@
 #= require game/prolog
 #= require game/states/FullState
 
+# State for showing results after the state is over.
 class global8ball.ShowResult extends global8ball.FullState
   constructor: (gameConfig, eventSink) ->
     super gameConfig, eventSink
