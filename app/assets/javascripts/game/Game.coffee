@@ -16,6 +16,10 @@ class Game
     @renderer = if @config.server then Phaser.HEADLESS else Phaser.CANVAS
     @I18n = I18n
     @createPositionTranslation()
+    @events =
+      onShot: new Phaser.Signal
+      onSetState: new Phaser.Signal
+      onGetState: new Phaser.Signal
 
   createPositionTranslation: ->
     first =
