@@ -14,14 +14,14 @@
         config['current_viewer'] = current_viewer;
 
         var current_stage_select = document.getElementById('current_stage');
-        var current_stage = current_stage_select.options[current_stage_select.selectedIndex].value;
+        window.current_stage = current_stage_select.options[current_stage_select.selectedIndex].value;
 
         document.getElementById('menu_top').style.display = 'none';
         document.getElementById('menu_right').style.display = 'inline';
 
-        var game = window.initGlobal8Ball(config);
+        window.game = window.initGlobal8Ball(config);
 
-        // console.log(game);
+        window.game.events.onGetState.add(parseGetCurrentState);
       };
     </script>
     <style type="text/css">
