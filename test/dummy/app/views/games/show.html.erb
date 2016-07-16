@@ -13,10 +13,15 @@
         var current_viewer = JSON.parse(current_viewer_select.options[current_viewer_select.selectedIndex].value);
         config['current_viewer'] = current_viewer;
 
+        var current_stage_select = document.getElementById('current_stage');
+        var current_stage = current_stage_select.options[current_stage_select.selectedIndex].value;
+
         document.getElementById('menu_top').style.display = 'none';
         document.getElementById('menu_right').style.display = 'inline';
 
-        window.initGlobal8Ball(config);
+        var game = window.initGlobal8Ball(config);
+
+        // console.log(game);
       };
     </script>
     <style type="text/css">
@@ -34,7 +39,6 @@
         border-left: 1px solid #CCCCCC;
       }
       .menu select {
-        margin-bottom: 20px;
       }
       .menu_right {
         float: right;
@@ -47,8 +51,8 @@
   </head>
   <body>
     <div id="menu_top" class="menu">
-      Select the current viewer: <%= current_viewer_select %>
-      <br />
+      <p>Select the current viewer: <%= current_viewer_select %></p>
+      <p>Select the current stage: <%= current_stage_select%></p>
       <a href="#" id="lets_play" class="button" onclick="loadGame();">Let's play</a>
     </div>
     <div id="menu_right" class="menu menu_right" style="display: none;">
