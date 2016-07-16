@@ -6,6 +6,26 @@
     <%= javascript_include_tag 'translations' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
+      function parseGetCurrentState(e) {
+        var config = <%= raw @game.config %>;
+
+        ball_positions = {};
+        ball_positions['PlayForBegin'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForBegin" %>;
+        ball_positions['PlayForBegin'].balls[0].owner = config.player_1.user_id;
+        ball_positions['PlayForBegin'].balls[1].owner = config.player_2.user_id;
+
+        ball_positions['PlayForVictory'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForVictory" %>;
+
+        options = {
+          current_stage: {
+            stage_name: window.current_stage,
+            round: 0
+          },
+          balls: ball_positions[window.current_stage].balls
+        };
+
+        window.game.events.onSetState.dispatch(options);
+      };
       function loadGame() {
         var config = <%= raw @game.config %>;
 
