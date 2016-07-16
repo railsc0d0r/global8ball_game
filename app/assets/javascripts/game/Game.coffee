@@ -1,3 +1,4 @@
+#= require game/GameEvents
 #= require game/prolog
 #= require game/states/Boot
 #= require game/states/Preload
@@ -15,10 +16,7 @@ class Game
     @renderer = if @config.server then Phaser.HEADLESS else Phaser.CANVAS
     @I18n = I18n
     @createPositionTranslation()
-    @events =
-      onShot: new Phaser.Signal
-      onSetState: new Phaser.Signal
-      onGetState: new Phaser.Signal
+    @events = new global8ball.GameEvents
 
   createPositionTranslation: ->
     first =
@@ -61,7 +59,7 @@ class Game
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
-    @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState
+    @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState @events
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, @players).setBallsData(@balls())
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, @players
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, @players

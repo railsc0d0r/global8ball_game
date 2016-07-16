@@ -7,5 +7,13 @@
 # Depending on the received information, next state is one of the play states
 # or showing results.
 class global8ball.WaitForGameState extends Phaser.State
+  constructor: (@events) ->
+
+  create: ->
+    @events.requestNewGameState()
+
   update: ->
-      @game.state.start 'PlayForBegin'
+      if @events.hasGameState()
+        gameState = @events.getGameState()
+        @events.clearGameState()
+        @game.state.start 'PlayForBegin'
