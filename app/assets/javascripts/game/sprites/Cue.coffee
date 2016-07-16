@@ -58,8 +58,8 @@ class global8ball.Cue extends Phaser.Sprite
 
   # Moves the cue away from the table, hides it, etc..
   retreatFromTable: () ->
+    @body.x = -10000
+    @body.y = -10000
     @body.velocity.mx = 0
     @body.velocity.my = 0
-    @x = -10000
-    @y = -10000
     @hide()
