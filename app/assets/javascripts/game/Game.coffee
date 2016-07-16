@@ -8,6 +8,7 @@
 #= require game/states/ShowResult
 #= require game/states/WaitForConfiguration
 
+# Wrapper around the whole game, also provides the public API.
 class Game
   # @config is the game config
   # @data is the current state of the game, i.e. which ball is where, has anybody won, etc.
@@ -43,6 +44,7 @@ class Game
   t: (args...) ->
     @I18n.t.apply @I18n, args
 
+  # @return {Game} The game itself.
   start: ->
     @phaserGame = new Phaser.Game(
       @config.size.width,
