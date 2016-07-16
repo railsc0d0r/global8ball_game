@@ -5,8 +5,8 @@
 # State for determining which player may shoot first in the first round of
 # normal play.
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (gameConfig, eventSink, players) ->
-    super gameConfig, eventSink, players
+  constructor: (gameConfig, players) ->
+    super gameConfig, players
     @ballsData = []
 
   create: ->
@@ -120,4 +120,3 @@ class global8ball.PlayForBegin extends global8ball.PlayState
 
   shoot: (power) ->
     @yourCue.shoot power
-    @eventSink.send new global8ball.events.ShotEvent @yourCue.getShotDirectionInRadians(), power

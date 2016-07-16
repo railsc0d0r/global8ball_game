@@ -1,4 +1,3 @@
-#= require game/events
 #= require game/prolog
 #= require game/states/Boot
 #= require game/states/Preload
@@ -57,16 +56,15 @@ class Game
     )
 
     gameConfig = new Game.Config @phaserGame, @config
-    eventSink = new global8ball.events.EventSink
 
     @players = global8ball.Players.create @config.players, @config.viewer
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState
-    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, eventSink, @players).setBallsData(@balls())
-    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, eventSink, @players
-    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, eventSink, @players
+    @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin(gameConfig, @players).setBallsData(@balls())
+    @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, @players
+    @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, @players
 
     if @players.viewerPlays()
       controls = new global8ball.Controls (power) => @phaserGame.state.states[@phaserGame.state.current].shoot power

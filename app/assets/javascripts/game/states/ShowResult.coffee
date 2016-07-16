@@ -3,8 +3,8 @@
 
 # State for showing results after the state is over.
 class global8ball.ShowResult extends global8ball.FullState
-  constructor: (gameConfig, eventSink, players) ->
-    super gameConfig, eventSink, players
+  constructor: (gameConfig, players) ->
+    super gameConfig, players
 
   init: (@winner) ->
     super()
