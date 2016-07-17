@@ -45,3 +45,8 @@ class global8ball.PlayState extends global8ball.FullState
     cueBody.sprite.retreatFromTable()
 
   shoot: (power) ->
+
+  # @param {Object[]} ballsData
+  # @return global8ball.PlayForBegin
+  setBallsData: (@ballsData) ->
+    return @

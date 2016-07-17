@@ -94,11 +94,6 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     classes.white2 = global8ball.Ball
     return classes
 
-  # @param {Object[]} ballsData
-  # @return global8ball.PlayForBegin
-  setBallsData: (@ballsData) ->
-    return @
-
   createWhiteBalls: () ->
     @ballsData.
       filter((ballData) -> ballData.id is 'you' or ballData.id is 'enemy').
