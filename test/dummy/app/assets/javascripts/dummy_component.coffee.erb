@@ -1,5 +1,5 @@
 class this.DummyComponent
-        constructor: (@config, @ball_positions) ->
+        constructor: (@config) ->
 
         loadGame: () ->
                   current_viewer_select = document.getElementById('current_viewer')
@@ -29,18 +29,24 @@ class this.DummyComponent
                   return
 
         requestCurrentState: () ->
-                  @ball_positions['PlayForBegin'].balls[0].owner = @config.player_1.user_id
-                  @ball_positions['PlayForBegin'].balls[1].owner = @config.player_2.user_id
+                  ball_positions = {}
+                  ball_positions['PlayForBegin'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForBegin" %>;
+                  ball_positions['PlayForBegin'].balls[0].owner = @config.player_1.user_id
+                  ball_positions['PlayForBegin'].balls[1].owner = @config.player_2.user_id
 
+
+                  ball_positions['PlayForVictory'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForVictory" %>;
                   current_breaker_select = document.getElementById('current_breaker')
                   current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value)
-                  @ball_positions['PlayForVictory'].balls[0].owner = current_breaker
+                  ball_positions['PlayForVictory'].balls[0].owner = current_breaker
+
+                  ball_positions['ShowResult'] = {};
 
                   options =
                     current_stage:
                       stage_name: window.current_stage
                       round: 0
-                    balls: @ball_positions[window.current_stage].balls
+                    balls: ball_positions[window.current_stage].balls
 
                   if window.current_stage == 'PlayForVictory'
                     options.current_players = [

@@ -7,12 +7,7 @@
     <%= javascript_include_tag 'dummy_component' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
-      var ball_positions = {};
-      ball_positions['PlayForBegin'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForBegin" %>;
-      ball_positions['PlayForVictory'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForVictory" %>;
-      ball_positions['ShowResult'] = {};
-
-      var dummy_component = new DummyComponent(<%= raw @game.config %>, ball_positions);
+      var dummy_component = new DummyComponent(<%= raw @game.config %>);
     </script>
     <style type="text/css">
       html {
