@@ -38,4 +38,26 @@ module ApplicationHelper
 
     html
   end
+
+  def current_break_select
+    players = Player.all
+
+    current_players = []
+    current_players << players[0]
+    current_players << players[1]
+
+    html = "<select id='current_breaker'>".html_safe
+
+    current_players.each do | player |
+      unless player == current_players.first
+        html.safe_concat "  <option value='#{player.id}'>#{player.name}</option>"
+      else
+        html.safe_concat "  <option value='#{player.id}' selected='selected'>#{player.name}</option>"
+      end
+    end
+
+    html.safe_concat "</select>"
+
+    html
+  end
 end
