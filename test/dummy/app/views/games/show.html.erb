@@ -4,6 +4,7 @@
     <title>Play!</title>
     <%= javascript_include_tag 'i18n' %>
     <%= javascript_include_tag 'translations' %>
+    <%= javascript_include_tag 'dummy_game' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
       function parseGetCurrentState(e) {
@@ -42,33 +43,6 @@
 
         window.game.events.onSetState.dispatch(options);
       };
-      function loadGame() {
-        var config = <%= raw @game.config %>;
-
-        var current_viewer_select = document.getElementById('current_viewer');
-        var current_viewer = JSON.parse(current_viewer_select.options[current_viewer_select.selectedIndex].value);
-        config['current_viewer'] = current_viewer;
-
-        var current_stage_select = document.getElementById('current_stage');
-        window.current_stage = current_stage_select.options[current_stage_select.selectedIndex].value;
-
-        document.getElementById('menu_top').style.display = 'none';
-        document.getElementById('menu_right').style.display = 'inline';
-
-        window.game = window.initGlobal8Ball(config);
-
-        window.game.events.onGetState.add(parseGetCurrentState);
-      };
-      function parseCurrentStage() {
-        var current_stage_select = document.getElementById('current_stage');
-        var current_stage = current_stage_select.options[current_stage_select.selectedIndex].value;
-
-        if (current_stage == 'PlayForVictory') {
-          document.getElementById('breaker').style.display = '';
-        } else {
-          document.getElementById('breaker').style.display = 'none';
-        }
-      };
     </script>
     <style type="text/css">
       html {
@@ -100,7 +74,7 @@
       <p>Select the current viewer: <%= current_viewer_select %></p>
       <p>Select the current stage: <%= current_stage_select%></p>
       <p id="breaker" style="display: none;">Select who breaks: <%= current_break_select%></p>
-      <a href="#" id="lets_play" class="button" onclick="loadGame();">Let's play</a>
+      <%= link_to "Let's play", "#", id: "lets_play", class: "button", onclick: "loadGame(#{@game.config});" %>
     </div>
     <div id="menu_right" class="menu menu_right" style="display: none;">
       <a href="#" id="reload" class="button" onclick="window.location = '/';">Reload</a>
