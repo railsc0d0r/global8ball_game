@@ -20,6 +20,8 @@
         var current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value);
         ball_positions['PlayForVictory'].balls[0].owner = current_breaker;
 
+        ball_positions['ShowResult'] = {};
+
         options = {
           current_stage: {
             stage_name: window.current_stage,
