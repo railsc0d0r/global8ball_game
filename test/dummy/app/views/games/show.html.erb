@@ -15,6 +15,9 @@
         ball_positions['PlayForBegin'].balls[1].owner = config.player_2.user_id;
 
         ball_positions['PlayForVictory'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForVictory" %>;
+        var current_breaker_select = document.getElementById('current_breaker');
+        var current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value);
+        ball_positions['PlayForVictory'].balls[0].owner = current_breaker;
 
         options = {
           current_stage: {
@@ -23,6 +26,19 @@
           },
           balls: ball_positions[window.current_stage].balls
         };
+
+        if (window.current_stage == 'PlayForVictory') {
+          options.current_players = [
+            { user_id: current_breaker }
+          ];
+        }
+
+        if (window.current_stage == 'PlayForBegin') {
+          options.current_players = [
+            { user_id: config.player_1.user_id },
+            { user_id: config.player_2.user_id }
+          ];
+        }
 
         window.game.events.onSetState.dispatch(options);
       };
