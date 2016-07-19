@@ -43,11 +43,11 @@ class this.DummyComponent
 
                   ball_positions['ShowResult'] = {};
 
-                  # TODO: Make this private to not expose sensitve information
+                  # TODO: This is for debugging. Do not expose sensitve information in the real app.
                   current_stage_select = document.getElementById('current_stage')
                   @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
-                  # TODO: Make this private to not expose sensitve information
+                  # TODO: This is for debugging. Do not expose sensitve information in the real app.
                   @current_balls = ball_positions[@current_stage].balls
 
                   options =
