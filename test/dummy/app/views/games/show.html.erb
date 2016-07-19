@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Play!</title>
+    <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'i18n' %>
     <%= javascript_include_tag 'translations' %>
     <%= javascript_include_tag 'dummy_component' %>
@@ -9,30 +10,6 @@
     <script type="text/javascript">
       var dummy_component = new DummyComponent(<%= raw @game.config %>);
     </script>
-    <style type="text/css">
-      html {
-        font: bold 24px Arial;
-      }
-      .button {
-        text-decoration: none;
-        background-color: #EEEEEE;
-        color: #333333;
-        padding: 2px 6px 2px 6px;
-        border-top: 1px solid #CCCCCC;
-        border-right: 1px solid #333333;
-        border-bottom: 1px solid #333333;
-        border-left: 1px solid #CCCCCC;
-      }
-      .menu select {
-      }
-      .menu_right {
-        float: right;
-      }
-      #da-game {
-        height:105vh;
-        width:140vh;
-      }
-    </style>
   </head>
   <body>
     <div id="menu_top" class="menu">
@@ -44,7 +21,6 @@
     <div id="menu_right" class="menu menu_right" style="display: none;">
       <a href="#" id="reload" class="button" onclick="window.location = '/';">Reload</a>
     </div>
-    <div id="da-game"></div>
   </body>
   <script type="text/javascript">
     var elem = document.getElementById('current_stage');
