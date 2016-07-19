@@ -2,6 +2,10 @@ class this.DummyComponent
         constructor: (@config) ->
 
         loadGame: () ->
+                  canvas_placeholder = document.createElement('div')
+                  canvas_placeholder.setAttribute('id', 'da-game')
+                  document.body.appendChild(canvas_placeholder)
+
                   current_viewer_select = document.getElementById('current_viewer')
                   current_viewer = JSON.parse(current_viewer_select.options[current_viewer_select.selectedIndex].value)
                   @config.current_viewer = current_viewer
