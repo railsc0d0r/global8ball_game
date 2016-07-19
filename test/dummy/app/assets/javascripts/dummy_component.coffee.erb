@@ -11,13 +11,13 @@ class this.DummyComponent
                   @config.current_viewer = current_viewer
 
                   current_stage_select = document.getElementById('current_stage')
-                  window.current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
+                  @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
                   document.getElementById('menu_top').style.display = 'none'
                   document.getElementById('menu_right').style.display = 'inline'
 
-                  window.game = window.initGlobal8Ball(@config)
-                  window.game.events.onGetState.add(@requestCurrentState, @)
+                  @game = window.initGlobal8Ball(@config)
+                  @game.events.onGetState.add(@requestCurrentState, @)
 
                   return
 
@@ -48,21 +48,21 @@ class this.DummyComponent
 
                   options =
                     current_stage:
-                      stage_name: window.current_stage
+                      stage_name: @current_stage
                       round: 0
-                    balls: ball_positions[window.current_stage].balls
+                    balls: ball_positions[@current_stage].balls
 
-                  if window.current_stage == 'PlayForVictory'
+                  if @current_stage == 'PlayForVictory'
                     options.current_players = [
                       { user_id: current_breaker }
                     ]
 
-                  if window.current_stage == 'PlayForBegin'
+                  if @current_stage == 'PlayForBegin'
                     options.current_players = [
                       { user_id: @config.player_1.user_id },
                       { user_id: @config.player_2.user_id }
                     ]
 
-                  window.game.events.onSetState.dispatch(options)
+                  @game.events.onSetState.dispatch(options)
 
                   return
