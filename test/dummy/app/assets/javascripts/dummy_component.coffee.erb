@@ -10,9 +10,6 @@ class this.DummyComponent
                   current_viewer = JSON.parse(current_viewer_select.options[current_viewer_select.selectedIndex].value)
                   @config.current_viewer = current_viewer
 
-                  current_stage_select = document.getElementById('current_stage')
-                  @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
-
                   document.getElementById('menu_top').style.display = 'none'
                   document.getElementById('menu_right').style.display = 'inline'
 
@@ -45,6 +42,9 @@ class this.DummyComponent
                   ball_positions['PlayForVictory'].balls[0].owner = current_breaker
 
                   ball_positions['ShowResult'] = {};
+
+                  current_stage_select = document.getElementById('current_stage')
+                  @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
                   options =
                     current_stage:
