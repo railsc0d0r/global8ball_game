@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'dummy_component' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
-      var dummy_component = new DummyComponent(<%= raw @game.config %>);
+      var dummy_component = new DummyComponent(<%= @game.id %>,<%= raw @game.config %>);
     </script>
   </head>
   <body>
