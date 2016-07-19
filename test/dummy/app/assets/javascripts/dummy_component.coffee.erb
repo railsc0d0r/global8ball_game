@@ -6,7 +6,7 @@ class this.DummyComponent
                   canvas_placeholder.setAttribute('id', 'da-game')
                   document.body.appendChild(canvas_placeholder)
 
-                  current_viewer_select = document.getElementById('current_viewer')
+                  current_viewer_select = document.getElementById 'current_viewer'
                   current_viewer = JSON.parse(current_viewer_select.options[current_viewer_select.selectedIndex].value)
                   @config.current_viewer = current_viewer
 
@@ -19,13 +19,15 @@ class this.DummyComponent
                   return
 
         parseSelectedStage: () ->
-                  current_stage_select = document.getElementById('current_stage')
+                  current_stage_select = document.getElementById 'current_stage'
                   current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
+                  breaker_element = document.getElementById 'breaker'
+
                   if current_stage == 'PlayForVictory'
-                    document.getElementById('breaker').style.display = ''
+                    breaker_element.style.display = ''
                   else
-                    document.getElementById('breaker').style.display = 'none'
+                    breaker_element.style.display = 'none'
 
                   return
 
@@ -37,14 +39,14 @@ class this.DummyComponent
 
 
                   ball_positions['PlayForVictory'] = <%= raw Global8ballGame::BallPosition.config_json "PlayForVictory" %>;
-                  current_breaker_select = document.getElementById('current_breaker')
+                  current_breaker_select = document.getElementById 'current_breaker'
                   current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value)
                   ball_positions['PlayForVictory'].balls[0].owner = current_breaker
 
                   ball_positions['ShowResult'] = {};
 
                   # TODO: This is for debugging. Do not expose sensitve information in the real app.
-                  current_stage_select = document.getElementById('current_stage')
+                  current_stage_select = document.getElementById 'current_stage'
                   @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
                   # TODO: This is for debugging. Do not expose sensitve information in the real app.
