@@ -16,7 +16,7 @@ class this.DummyComponent
                   document.getElementById('menu_top').style.display = 'none'
                   document.getElementById('menu_right').style.display = 'inline'
 
-                  @game = window.initGlobal8Ball(@config)
+                  @game = initGlobal8Ball(@config)
                   @game.events.onGetState.add(@requestCurrentState, @)
 
                   return

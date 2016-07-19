@@ -2,7 +2,7 @@
 
 # Currently mostly for testing purposes.
 # TODO: Implement gameConfig from backend
-window.initGlobal8Ball = (gameConfig) ->
+this.initGlobal8Ball = (gameConfig) ->
   config =
     imageUrlMap: window.assets.game
     parent: document.getElementById 'da-game'
