@@ -43,14 +43,18 @@ class this.DummyComponent
 
                   ball_positions['ShowResult'] = {};
 
+                  # TODO: Make this private to not expose sensitve information
                   current_stage_select = document.getElementById('current_stage')
                   @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
+
+                  # TODO: Make this private to not expose sensitve information
+                  @current_balls = ball_positions[@current_stage].balls
 
                   options =
                     current_stage:
                       stage_name: @current_stage
                       round: 0
-                    balls: ball_positions[@current_stage].balls
+                    balls: @current_balls
 
                   if @current_stage == 'PlayForVictory'
                     options.current_players = [
