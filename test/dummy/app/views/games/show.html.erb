@@ -7,11 +7,11 @@
     <%= javascript_include_tag 'i18n' %>
     <%= javascript_include_tag 'translations' %>
     <%= javascript_include_tag 'dummy_component' %>
-    <%= javascript_include_tag 'cable' %>
     <%= load_global8ball_game %>
     <script type="text/javascript">
-      var dummy_component = new DummyComponent(<%= @game.id %>,<%= raw @game.config %>);
+      var dummy_component = new DummyComponent(<%= @game.id %>);
     </script>
+    <%= javascript_include_tag 'cable' %>
   </head>
   <body>
     <div id="menu_top" class="menu">
