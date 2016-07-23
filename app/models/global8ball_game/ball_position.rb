@@ -48,7 +48,10 @@ module Global8ballGame
                               }
                             }
                           ]
-                        }
+                        },
+      'ShowResult': {
+                      balls: []
+                    }
     }
 
     counter = 1
