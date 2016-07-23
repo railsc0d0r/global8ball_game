@@ -10,35 +10,39 @@ class StateChannel < ApplicationCable::Channel
   end
 
   def getState data
-    stage_name = data['current_stage']
+    if @game.results.empty?
+      stage_name = data['current_stage']
 
-    state = {
-        current_stage: {
-            stage_name: stage_name,
-            round: 0
-          }
+      state = {
+          current_stage: {
+              stage_name: stage_name,
+              round: 0
+            }
+        }
+
+      state.merge!(Global8ballGame::BallPosition.config stage_name)
+
+      current_players = {
+        current_players: []
       }
 
-    state.merge!(Global8ballGame::BallPosition.config stage_name)
+      if stage_name == 'PlayForVictory'
+        breaker = data['current_breaker']
+        state[:balls][0][:owner] = breaker
+        current_players[:current_players] << { user_id: breaker}
+      end
 
-    current_players = {
-      current_players: []
-    }
+      if stage_name == 'PlayForBegin'
+        state[:balls][0][:owner] = @game.player_1.id
+        state[:balls][1][:owner] = @game.player_2.id
+        current_players[:current_players] << { user_id: @game.player_1.id}
+        current_players[:current_players] << { user_id: @game.player_2.id}
+      end
 
-    if stage_name == 'PlayForVictory'
-      breaker = data['current_breaker']
-      state[:balls][0][:owner] = breaker
-      current_players[:current_players] << { user_id: breaker}
+      state.merge!(current_players)
+    else
+      state = @game.results.last.result_set
     end
-
-    if stage_name == 'PlayForBegin'
-      state[:balls][0][:owner] = @game.player_1.id
-      state[:balls][1][:owner] = @game.player_2.id
-      current_players[:current_players] << { user_id: @game.player_1.id}
-      current_players[:current_players] << { user_id: @game.player_2.id}
-    end
-
-    state.merge!(current_players)
 
     transmit state.to_json
   end
