@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
-class EventsChannel < ApplicationCable::Channel
+class StateChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
     @game = Game.find(params[:game_id])

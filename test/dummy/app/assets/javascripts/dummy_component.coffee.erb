@@ -38,6 +38,6 @@ class this.DummyComponent
                   return
 
         requestCurrentState: () ->
-                  App.events.perform('getState', {current_stage: @current_stage, current_breaker: @current_breaker})
+                  App.state.perform('getState', {current_stage: @current_stage, current_breaker: @current_breaker})
 
                   return

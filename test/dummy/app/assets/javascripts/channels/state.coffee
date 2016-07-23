@@ -1,4 +1,4 @@
-App.events = App.cable.subscriptions.create {channel: "EventsChannel", game_id: dummy_component.game_id},
+App.state = App.cable.subscriptions.create {channel: "StateChannel", game_id: dummy_component.game_id},
   connected: ->
     # Called when the subscription is ready for use on the server
 
