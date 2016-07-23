@@ -5,5 +5,7 @@ App.events = App.cable.subscriptions.create "EventsChannel",
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
-  received: (data) ->
+  received: (state) ->
     # Called when there's incoming data on the websocket for this channel
+    dummy_component.game.events.onSetState.dispatch(JSON.parse state)
+    return
