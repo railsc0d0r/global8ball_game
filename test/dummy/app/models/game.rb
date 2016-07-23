@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  has_many :results
+
   after_initialize do |game|
     game.player_1 = Player.all[0].nil? ? nil : Player.all[0]
     game.player_2 = Player.all[1].nil? ? nil : Player.all[1]
