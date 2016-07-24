@@ -33,6 +33,9 @@ class global8ball.PlayForBegin extends global8ball.PlayState
           groupId: 'cue1'
         }
         {
+          groupId: 'white1'
+        }
+        {
           groupId: 'borders'
           callback: 'whiteBallCollidesWithBorder'
         }
@@ -48,6 +51,9 @@ class global8ball.PlayForBegin extends global8ball.PlayState
       collides: [
         {
           groupId: 'cue2'
+        }
+        {
+          groupId: 'white2'
         }
         {
           groupId: 'borders'
@@ -105,7 +111,14 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         physicsGroupId = ballProperty
         x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
         y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
-        @[ballProperty] = @createSprite physicsGroupId, x, y, data: ballConfig, id: ballConfig.id
+        makeCircularBody = (body) ->
+          body.clearShapes()
+          radius = 10 # TODO: Receive from backend
+          offsetX = 0
+          offsetY = 0
+          rotation = 0
+          body.addCircle radius, offsetX, offsetY, rotation
+        @[ballProperty] = @createSprite physicsGroupId, x, y, data: ballConfig, makeCircularBody
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
 
