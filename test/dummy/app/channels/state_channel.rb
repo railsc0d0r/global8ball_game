@@ -40,6 +40,27 @@ class StateChannel < ApplicationCable::Channel
       end
 
       state.merge!(current_players)
+
+      current_results = {
+        current_results: []
+      }
+
+      if stage_name == 'ShowResult'
+        current_results[:current_results] << {
+          stage_name: 'PlayForBegin',
+          winner: breaker
+        }
+
+        1.upto 3 do |round|
+          current_results[:current_results] << {
+            stage_name: 'PlayForVictory',
+            round: round,
+            winner: breaker
+          }
+        end
+      end
+
+      state.merge!(current_results)
     else
       state = @game.results.last.result_set
     end
