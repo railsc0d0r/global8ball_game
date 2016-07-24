@@ -45,4 +45,68 @@ class Game < ApplicationRecord
   def player_2
     Player.find(player_2_id)
   end
+
+  def reset_results
+    self.results.destroy_all
+  end
+
+  def initialize_state stage_name, breaker
+    state = {
+        current_stage: {
+            stage_name: stage_name,
+            round: 1
+          }
+      }
+
+    state.merge!(Global8ballGame::BallPosition.config stage_name)
+
+    current_players = {
+      current_players: []
+    }
+
+    current_results = {
+      current_results: []
+    }
+
+    if stage_name == 'PlayForBegin'
+      state[:balls][0][:owner] = self.player_1.id
+      state[:balls][1][:owner] = self.player_2.id
+      current_players[:current_players] << { user_id: self.player_1.id}
+      current_players[:current_players] << { user_id: self.player_2.id}
+    end
+
+    if stage_name == 'PlayForVictory'
+      state[:balls][0][:owner] = breaker
+      current_players[:current_players] << { user_id: breaker}
+      current_results[:current_results] << {
+        stage_name: 'PlayForBegin',
+        winner: breaker
+      }
+    end
+
+    state.merge!(current_players)
+
+    if stage_name == 'ShowResult'
+      current_results[:current_results] << {
+        stage_name: 'PlayForBegin',
+        winner: breaker
+      }
+
+      1.upto 3 do |round|
+        current_results[:current_results] << {
+          stage_name: 'PlayForVictory',
+          round: round,
+          winner: breaker
+        }
+      end
+    end
+
+    state.merge!(current_results)
+
+    result = Result.new
+    result.result_set=state
+
+    self.results << result
+    self.save!
+  end
 end
