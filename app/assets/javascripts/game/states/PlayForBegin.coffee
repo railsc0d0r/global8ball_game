@@ -109,16 +109,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
       forEach (ballConfig) =>
         ballProperty = if ballConfig.belongsTo @players.getFirst() then 'white1' else 'white2'
         physicsGroupId = ballProperty
-        x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
-        y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
-        makeCircularBody = (body) ->
-          body.clearShapes()
-          radius = 10 # TODO: Receive from backend
-          offsetX = 0
-          offsetY = 0
-          rotation = 0
-          body.addCircle radius, offsetX, offsetY, rotation
-        @[ballProperty] = @createSprite physicsGroupId, x, y, data: ballConfig, makeCircularBody
+        @[ballProperty] = @createWhiteBallSprite physicsGroupId, ballConfig
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
 

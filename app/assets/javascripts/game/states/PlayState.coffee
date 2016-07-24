@@ -53,3 +53,15 @@ class global8ball.PlayState extends global8ball.FullState
     cueBody.sprite.retreatFromTable()
 
   shoot: (power) ->
+
+  createWhiteBallSprite: (physicsGroupId, ballConfig) ->
+    x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
+    y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
+    makeCircularBody = (body) ->
+      body.clearShapes()
+      radius = 10 # TODO: Receive from backend
+      offsetX = 0
+      offsetY = 0
+      rotation = 0
+      body.addCircle radius, offsetX, offsetY, rotation
+    @createSprite physicsGroupId, x, y, data: ballConfig, makeCircularBody
