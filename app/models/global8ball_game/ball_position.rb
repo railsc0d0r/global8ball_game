@@ -5,8 +5,8 @@ module Global8ballGame
     @halfWidth = @width / 2          # 480px
     @quarterWidth = @halfWidth / 2   # 240px
     @eighthWidth = @quarterWidth / 2 # 120px
-    @diameter = 0.0582              # 22px
-    @radius = @diameter / 2         # 11px
+    @diameter = 0.0582               # 22px
+    @radius = @diameter / 2          # 11px
     @xDiff = Math.sqrt(3 * @radius ** 2)
     @yDiff = @diameter
 
@@ -18,6 +18,7 @@ module Global8ballGame
                             type: 'breakball',
                             color: 'white',
                             owner: nil,
+                            radius: @radius,
                             position: {
                               x: -@quarterWidth,
                               y: -@eighthWidth
@@ -28,6 +29,7 @@ module Global8ballGame
                             type: 'breakball',
                             color: 'white',
                             owner: nil,
+                            radius: @radius,
                             position: {
                               x: -@quarterWidth,
                               y: @eighthWidth
@@ -42,6 +44,7 @@ module Global8ballGame
                               type: 'breakball',
                               color: 'white',
                               owner: nil,
+                              radius: @radius,
                               position: {
                                 x: -@quarterWidth,
                                 y: 0
@@ -66,6 +69,7 @@ module Global8ballGame
             type: 'playball',
             color: color,
             owner: nil,
+            radius: @radius,
             position: {
               x: @quarterWidth + (x-2) * @xDiff,
               y: -(x * @radius) + y * @yDiff
@@ -78,6 +82,7 @@ module Global8ballGame
             type: '8ball',
             color: 'black',
             owner: nil,
+            radius: @radius,
             position: {
               x: @quarterWidth + (x-2) * @xDiff,
               y: -(x * @radius) + y * @yDiff
