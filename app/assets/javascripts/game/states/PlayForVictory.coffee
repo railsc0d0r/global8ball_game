@@ -123,6 +123,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
       {
         groupId: 'black'
       }
+      {
+        groupId: 'white'
+      }
     ]
 
     return specs
