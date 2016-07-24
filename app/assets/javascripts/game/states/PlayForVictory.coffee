@@ -7,6 +7,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
   constructor: (gameConfig, players) ->
     super gameConfig, players
 
+  initGameState: (gameState) ->
+    super gameState
+
   create: ->
     super()
 

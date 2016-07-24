@@ -6,8 +6,7 @@ class global8ball.ShowResult extends global8ball.FullState
   constructor: (gameConfig, players) ->
     super gameConfig, players
 
-  init: (@winner) ->
-    super()
+  initGameState: (gameState) ->
 
   create: ->
     super()

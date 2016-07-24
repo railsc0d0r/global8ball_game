@@ -1,4 +1,5 @@
 #= require game/Controls
+#= require game/PhaserConstants
 #= require game/Players
 #= require game/prolog
 
@@ -15,5 +16,6 @@ class global8ball.WaitForGameState extends Phaser.State
   update: ->
       if @events.hasGameState()
         gameState = @events.getGameState()
+        currentStateName = gameState.current_stage.stage_name
         @events.clearGameState()
-        @game.state.start gameState.current_stage.stage_name
+        @game.state.start currentStateName, global8ball.CLEAR_CACHE, global8ball.PRESERVE_CACHE, gameState
