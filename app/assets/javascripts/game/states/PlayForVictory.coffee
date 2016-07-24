@@ -19,6 +19,12 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     @createWhiteBall()
     @createPlayBalls()
     @createBlackBall()
+    @world.bringToTop @spriteGroups.cues
+    @yourCue.setTargetBall @white
+    @enemyCue.setTargetBall @white
+    @yourCue.setAngleByAim x: @white.position.x + 10, y: @white.position.y
+    @enemyCue.setAngleByAim x: @white.position.x + 10, y: @white.position.y
+    @yourCue.show()
 
   createWhiteBall: () ->
     @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
@@ -101,3 +107,6 @@ class global8ball.PlayForVictory extends global8ball.PlayState
       }
     ]
     return specs
+
+  shoot: (power) ->
+    @yourCue.shoot power
