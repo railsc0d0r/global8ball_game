@@ -33,7 +33,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
           groupId: 'cue1'
         }
         {
-          groupId: 'white1'
+          groupId: 'white2'
         }
         {
           groupId: 'borders'
@@ -53,7 +53,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
           groupId: 'cue2'
         }
         {
-          groupId: 'white2'
+          groupId: 'white1'
         }
         {
           groupId: 'borders'
