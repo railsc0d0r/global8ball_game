@@ -12,11 +12,12 @@ class StateChannel < ApplicationCable::Channel
   def getState data
     if @game.results.empty?
       stage_name = data['current_stage']
+      breaker = data['current_breaker']
 
       state = {
           current_stage: {
               stage_name: stage_name,
-              round: 0
+              round: 1
             }
         }
 
@@ -26,11 +27,9 @@ class StateChannel < ApplicationCable::Channel
         current_players: []
       }
 
-      if stage_name == 'PlayForVictory'
-        breaker = data['current_breaker']
-        state[:balls][0][:owner] = breaker
-        current_players[:current_players] << { user_id: breaker}
-      end
+      current_results = {
+        current_results: []
+      }
 
       if stage_name == 'PlayForBegin'
         state[:balls][0][:owner] = @game.player_1.id
@@ -39,11 +38,16 @@ class StateChannel < ApplicationCable::Channel
         current_players[:current_players] << { user_id: @game.player_2.id}
       end
 
-      state.merge!(current_players)
+      if stage_name == 'PlayForVictory'
+        state[:balls][0][:owner] = breaker
+        current_players[:current_players] << { user_id: breaker}
+        current_results[:current_results] << {
+          stage_name: 'PlayForBegin',
+          winner: breaker
+        }
+      end
 
-      current_results = {
-        current_results: []
-      }
+      state.merge!(current_players)
 
       if stage_name == 'ShowResult'
         current_results[:current_results] << {
