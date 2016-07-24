@@ -16,16 +16,19 @@
   <body>
     <div id="menu_top" class="menu">
       <p>Select the current viewer: <%= current_viewer_select %></p>
-      <p>Select the current stage: <%= current_stage_select%></p>
-      <p id="breaker" style="display: none;">Select who breaks or wins: <%= current_break_select%></p>
+      <% if @game.results.empty? %>
+        <p>Select the current stage: <%= current_stage_select%></p>
+        <p id="breaker" style="display: none;">Select who breaks or wins: <%= current_break_select %></p>
+        <script type="text/javascript">
+          var elem = document.getElementById('current_stage');
+          elem.addEventListener('change', dummy_component.parseSelectedStage, false);
+        </script>
+      <% end %>
       <%= link_to "Let's play", "#", id: "lets_play", class: "button", onclick: "dummy_component.loadGame();" %>
     </div>
     <div id="menu_right" class="menu menu_right" style="display: none;">
       <a href="#" id="reload" class="button" onclick="window.location = '/';">Reload</a>
+      <%= link_to "Reset", "/reset", class: "button" %>
     </div>
   </body>
-  <script type="text/javascript">
-    var elem = document.getElementById('current_stage');
-    elem.addEventListener('change', dummy_component.parseSelectedStage, false);
-  </script>
 </html>
