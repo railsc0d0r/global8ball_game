@@ -11,10 +11,14 @@ class this.DummyComponent
                   @config.current_viewer = current_viewer
 
                   current_breaker_select = document.getElementById 'current_breaker'
-                  @current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value)
+
+                  unless current_breaker_select == null
+                    @current_breaker = parseInt(current_breaker_select.options[current_breaker_select.selectedIndex].value)
 
                   current_stage_select = document.getElementById 'current_stage'
-                  @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
+
+                  unless current_stage_select == null
+                    @current_stage = current_stage_select.options[current_stage_select.selectedIndex].value
 
                   document.getElementById('menu_top').style.display = 'none'
                   document.getElementById('menu_right').style.display = 'inline'
