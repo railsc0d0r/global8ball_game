@@ -18,6 +18,7 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     super()
     @createWhiteBall()
     @createPlayBalls()
+    @createBlackBall()
 
   createWhiteBall: () ->
     @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
@@ -25,6 +26,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
   createPlayBalls: () ->
     @playBalls = @ballsConfig.getPlayBallsConfig().forEach (ballConfig) =>
       @createBallSprite 'playBalls', ballConfig, PLAY_BALL_COLOR_MAPPING[ballConfig.color]
+
+  createBlackBall: () ->
+    @blackBall = @createBallSprite 'black', @ballsConfig.get8BallConfig()
 
   update: ->
     super()

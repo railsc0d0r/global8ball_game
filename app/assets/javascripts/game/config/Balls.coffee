@@ -4,6 +4,7 @@
 class global8ball.config.Balls
   BREAK_BALL = 'breakball'
   PLAY_BALL = 'playball'
+  EIGHT_BALL = '8ball';
 
   constructor: (ballsData) ->
     @balls = ballsData.map (ballData) -> new global8ball.config.Ball ballData
@@ -13,6 +14,9 @@ class global8ball.config.Balls
 
   getPlayBallsConfig: ->
     @balls.filter (ball) -> ball.type is PLAY_BALL
+
+  get8BallConfig: ->
+    @balls.filter((ball) -> ball.type is EIGHT_BALL)[0]
 
 class global8ball.config.Ball
   constructor: (ballData) ->
