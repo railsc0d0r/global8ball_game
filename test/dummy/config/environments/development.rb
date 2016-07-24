@@ -62,5 +62,5 @@ Rails.application.configure do
 
   # Set the config for websockets
   # config.action_cable.url = "ws://localhost:3000/cable"
-  # config.action_cable.allowed_request_origins = ['http://localhost:3000']
+  config.action_cable.allowed_request_origins = ['http://localhost:3000', 'https://railsc0d0r.mooo.com']
 end
