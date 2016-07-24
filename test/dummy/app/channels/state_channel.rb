@@ -77,6 +77,12 @@ class StateChannel < ApplicationCable::Channel
 
     state.merge!(current_results)
 
+    result = new Result
+    result.result_set=state
+
+    @game.results << result
+    @game.save!
+
     state
   end
 end
