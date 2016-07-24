@@ -18,7 +18,6 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     super()
     @createWhiteBall()
     @createPlayBalls()
-    @world.bringToTop @spriteGroups.playBalls
 
   createWhiteBall: () ->
     @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
