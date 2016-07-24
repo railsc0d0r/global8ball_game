@@ -35,17 +35,5 @@ this.initGlobal8Ball = (gameConfig) ->
 
   gameState =
     state: 'PlayForBegin'
-    balls: [
-      {
-        id: 'you'
-        color: 'white'
-        pos: x: -75, y: -25
-      },
-      {
-        id: 'enemy'
-        color: 'white'
-        pos: x: -75, y: 25
-      }
-    ]
   game = new global8ball.Game config, gameState
   game.start()

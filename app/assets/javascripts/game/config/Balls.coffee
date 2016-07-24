@@ -2,8 +2,13 @@
 #= require game/config/Point
 
 class global8ball.config.Balls
+  BREAK_BALL = 'breakball'
+
   constructor: (ballsData) ->
     @balls = ballsData.map (ballData) -> new global8ball.config.Ball ballData
+
+  getBreakBallsConfig: ->
+    @balls.filter (ball) -> ball.type is BREAK_BALL
 
 class global8ball.config.Ball
   constructor: (ballData) ->
@@ -12,3 +17,6 @@ class global8ball.config.Ball
     @color = ballData.color
     @owner = ballData.owner ? null
     @position = new global8ball.config.Point ballData.position.x, ballData.position.y
+
+  belongsTo: (player) ->
+    @owner is player.getId()

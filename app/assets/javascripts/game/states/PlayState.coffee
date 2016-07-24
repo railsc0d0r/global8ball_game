@@ -7,12 +7,14 @@
 class global8ball.PlayState extends global8ball.FullState
   constructor: (gameConfig, players, @hasUi = true) ->
     super gameConfig, players
+    @ballsConfig = []
 
   init: (gameState) ->
     super()
     @initGameState gameState
 
   initGameState: (gameState) ->
+    @ballsConfig = new global8ball.config.Balls gameState.balls
 
   create: ->
     super()
@@ -51,8 +53,3 @@ class global8ball.PlayState extends global8ball.FullState
     cueBody.sprite.retreatFromTable()
 
   shoot: (power) ->
-
-  # @param {Object[]} ballsData
-  # @return global8ball.PlayForBegin
-  setBallsData: (@ballsData) ->
-    return @

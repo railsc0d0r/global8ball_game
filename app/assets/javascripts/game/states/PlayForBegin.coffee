@@ -1,3 +1,4 @@
+#= require game/config/Balls
 #= require game/sprites/Ball
 #= require game/prolog
 #= require game/states/PlayState
@@ -7,7 +8,6 @@
 class global8ball.PlayForBegin extends global8ball.PlayState
   constructor: (gameConfig, players) ->
     super gameConfig, players
-    @ballsData = []
 
   initGameState: (gameState) ->
     super gameState
@@ -17,8 +17,8 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @youShot = no
     @enemyShot = no
     @createWhiteBalls()
-    @yourCue.setTargetBall @yourBall
-    @enemyCue.setTargetBall @enemyBall
+    @yourCue.setTargetBall @white1
+    @enemyCue.setTargetBall @white2
     @world.bringToTop @spriteGroups.cues
     @yourCue.show()
 
@@ -98,12 +98,14 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     return classes
 
   createWhiteBalls: () ->
-    @ballsData.
-      filter((ballData) -> ballData.id is 'you' or ballData.id is 'enemy').
-      forEach (ballData) =>
-        physicsGroupId = if ballData.id is 'you' then 'white1' else 'white2'
-        ballProperty = if ballData.id is 'you' then 'yourBall' else 'enemyBall'
-        @[ballProperty] = @createSprite physicsGroupId, ballData.pos.x, ballData.pos.y, data: ballData, id: ballData.id
+    @ballsConfig.
+      getBreakBallsConfig().
+      forEach (ballConfig) =>
+        ballProperty = if ballConfig.belongsTo @players.getFirst() then 'white1' else 'white2'
+        physicsGroupId = ballProperty
+        x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
+        y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
+        @[ballProperty] = @createSprite physicsGroupId, x, y, data: ballConfig, id: ballConfig.id
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
 
