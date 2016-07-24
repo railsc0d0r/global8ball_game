@@ -32,9 +32,10 @@ class global8ball.PhysicsGroup
   # @param {function} bodyModifier Modifies the body before applying collision specs.
   # @return {Phaser.Sprite|object}
   create: (x, y, config = {}, bodyModifier = (body) ->) ->
-    sprite = @spriteGroup.create x, y, @spriteKey
+    sprite = @spriteGroup.create x, y, config.spriteKey ? @spriteKey
     for prop of config
-      sprite[prop] = config[prop]
+      if prop isnt 'spriteKey'
+        sprite[prop] = config[prop]
     bodyModifier sprite.body
     @applyCollisions sprite
     return sprite

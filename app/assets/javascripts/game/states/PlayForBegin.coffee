@@ -111,7 +111,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
       forEach (ballConfig) =>
         ballProperty = if ballConfig.belongsTo @players.getFirst() then 'white1' else 'white2'
         physicsGroupId = ballProperty
-        @[ballProperty] = @createWhiteBallSprite physicsGroupId, ballConfig
+        @[ballProperty] = @createBallSprite physicsGroupId, ballConfig
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
 

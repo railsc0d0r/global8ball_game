@@ -54,7 +54,7 @@ class global8ball.PlayState extends global8ball.FullState
 
   shoot: (power) ->
 
-  createWhiteBallSprite: (physicsGroupId, ballConfig) ->
+  createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
     y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
     makeCircularBody = (body) ->
@@ -64,4 +64,7 @@ class global8ball.PlayState extends global8ball.FullState
       offsetY = 0
       rotation = 0
       body.addCircle radius, offsetX, offsetY, rotation
-    @createSprite physicsGroupId, x, y, data: ballConfig, makeCircularBody
+    config = data: ballConfig
+    if spriteKey
+      config.spriteKey = spriteKey
+    @createSprite physicsGroupId, x, y, config, makeCircularBody
