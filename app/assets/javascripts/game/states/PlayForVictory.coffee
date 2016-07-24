@@ -12,6 +12,10 @@ class global8ball.PlayForVictory extends global8ball.PlayState
 
   create: ->
     super()
+    @createWhiteBall()
+
+  createWhiteBall: () ->
+    @white = @createWhiteBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
 
   update: ->
     super()
@@ -41,7 +45,7 @@ class global8ball.PlayForVictory extends global8ball.PlayState
           groupId: 'playBalls'
         }
         {
-          groupId: 'blackBall'
+          groupId: 'black'
         }
       ]
 
@@ -59,8 +63,8 @@ class global8ball.PlayForVictory extends global8ball.PlayState
 
     specs.black =
       spriteKey: 'blackBall'
-      spriteGroupId: 'blackBall'
-      collisionGroupId: 'blackBall'
+      spriteGroupId: 'black'
+      collisionGroupId: 'black'
       collides: [
         {
           groupId: 'white'
