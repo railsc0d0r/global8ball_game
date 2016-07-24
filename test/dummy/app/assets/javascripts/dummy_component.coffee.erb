@@ -30,7 +30,7 @@ class this.DummyComponent
 
                   breaker_element = document.getElementById 'breaker'
 
-                  if current_stage == 'PlayForVictory'
+                  if current_stage == 'PlayForVictory' || current_stage == 'ShowResult'
                     breaker_element.style.display = ''
                   else
                     breaker_element.style.display = 'none'
