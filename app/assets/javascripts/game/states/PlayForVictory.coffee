@@ -81,6 +81,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
         {
           groupId: 'playBalls'
         }
+        {
+          groupId: 'borders'
+        }
       ]
 
     specs.black =
@@ -93,6 +96,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
         }
         {
           groupId: 'playBalls'
+        }
+        {
+          groupId: 'borders'
         }
       ]
 
@@ -109,6 +115,16 @@ class global8ball.PlayForVictory extends global8ball.PlayState
         callback: 'cueCollidesWithWhiteBall'
       }
     ]
+
+    specs.borders.collides = [
+      {
+        groupId: 'playBalls'
+      }
+      {
+        groupId: 'black'
+      }
+    ]
+
     return specs
 
   shoot: (power) ->
