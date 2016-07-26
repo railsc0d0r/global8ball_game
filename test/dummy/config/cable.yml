@@ -1,10 +1,6 @@
 # Action Cable uses Redis by default to administer connections, channels, and sending/receiving messages over the WebSocket.
-production:
+development: &development
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://localhost:7779/1
 
-development:
-  adapter: async
-
-test:
-  adapter: async
+test: *development
