@@ -5,9 +5,9 @@ class GamesController < ApplicationController
     render 'show', layout: false
   end
 
-  def reset_results
+  def reset
     @game = Game.first || Game.create!
-    @game.reset_results
+    @game.destroy
 
     redirect_to root_path
   end
