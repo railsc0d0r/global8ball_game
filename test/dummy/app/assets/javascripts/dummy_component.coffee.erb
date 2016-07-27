@@ -25,6 +25,7 @@ class this.DummyComponent
 
                   @game = initGlobal8Ball(@config)
                   @game.events.onGetState.add(@requestCurrentState, @)
+                  @game.events.onSendShot.add(@sendShot, @)
 
                   return
 
@@ -43,5 +44,10 @@ class this.DummyComponent
 
         requestCurrentState: () ->
                   App.state.perform('getState', {current_stage: @current_stage, current_breaker: @current_breaker})
+
+                  return
+
+        sendShot: (shot) ->
+                  App.shot.perform('setShot', shot)
 
                   return
