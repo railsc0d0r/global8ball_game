@@ -18,9 +18,9 @@ class Game < ApplicationRecord
 
     config = {}
 
-    config.merge!(Global8ballGame::Table.config)
-    config.merge!(Global8ballGame::Border.config)
-    config.merge!(Global8ballGame::Hole.config)
+    config.merge!(Global8ballGame::Table.new.config)
+    config.merge!(Global8ballGame::Border.new.config)
+    config.merge!(Global8ballGame::Hole.new.config)
     config.merge!(players_config)
 
     game.config = config.to_json
