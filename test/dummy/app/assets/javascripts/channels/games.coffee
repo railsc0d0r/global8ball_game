@@ -7,5 +7,5 @@ App.games = App.cable.subscriptions.create {channel: "GamesChannel", game_id: du
 
   received: (config) ->
     # Called when there's incoming data on the websocket for this channel
-    dummy_component.config = JSON.parse config
+    dummy_component.config = config
     return

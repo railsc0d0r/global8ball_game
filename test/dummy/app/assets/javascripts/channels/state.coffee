@@ -7,5 +7,5 @@ App.state = App.cable.subscriptions.create {channel: "StateChannel", game_id: du
 
   received: (state) ->
     # Called when there's incoming data on the websocket for this channel
-    dummy_component.game.events.onSetState.dispatch(JSON.parse state)
+    dummy_component.game.events.onSetState.dispatch state
     return

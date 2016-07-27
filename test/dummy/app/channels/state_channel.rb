@@ -19,7 +19,7 @@ class StateChannel < ApplicationCable::Channel
 
     state = @game.results.last.result_set
 
-    transmit state.to_json
+    transmit state
   end
 
 end
