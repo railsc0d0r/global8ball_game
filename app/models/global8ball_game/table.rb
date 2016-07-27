@@ -3,7 +3,7 @@ module Global8ballGame
     @definition = {
       table: {
         border_bounce: 0,
-        table_friction: 0,
+        damping: 0.015,
         cue_hardness: 0,
         scaling_factor: 377.95
       }
