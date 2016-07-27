@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :results
+  has_many :results, dependent: :destroy
 
   after_initialize do |game|
     game.player_1 = Player.all[0].nil? ? nil : Player.all[0]
@@ -44,10 +44,6 @@ class Game < ApplicationRecord
 
   def player_2
     Player.find(player_2_id)
-  end
-
-  def reset_results
-    self.results.destroy_all
   end
 
   def initialize_state stage_name, breaker
