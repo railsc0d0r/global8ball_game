@@ -25,6 +25,7 @@ class global8ball.config.Ball
     @color = ballData.color
     @owner = ballData.owner ? null
     @position = new global8ball.config.Point ballData.position.x, ballData.position.y
+    @radius = ballData.radius
 
   belongsTo: (player) ->
     @owner is player.getId()
