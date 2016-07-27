@@ -11,6 +11,7 @@ this.initGlobal8Ball = (gameConfig) ->
       height: 600
     holes: gameConfig.holes
     borders:gameConfig.borders
+    tableDamping: gameConfig.table.damping
     physicsConfig:
       mpx: (v) ->
         v * gameConfig.table.scaling_factor
