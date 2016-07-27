@@ -3,7 +3,7 @@ module Global8ballGame
     @definition = {
       table: {
         border_bounce: 0,
-        damping: 0.015,
+        damping: 0.025 + Random.new.rand(0.005...0.01),
         cue_hardness: 0,
         scaling_factor: 377.95
       }
