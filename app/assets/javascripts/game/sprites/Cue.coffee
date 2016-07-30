@@ -7,7 +7,6 @@ class global8ball.Cue extends Phaser.Sprite
 
   MATH_FACTOR = Math.PI/180
 
-  power: 0
   targetBall: null
   distanceToBall: null
 
