@@ -22,9 +22,10 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     @world.bringToTop @spriteGroups.cues
     @cues.player1.setTargetBall @white
     @cues.player2.setTargetBall @white
-    @cues.player1.setAngleByAim x: @white.position.x + 10, y: @white.position.y
-    @cues.player2.setAngleByAim x: @white.position.x + 10, y: @white.position.y
-    @cues.player1.show()
+    @cues.player1.putOnTable()
+    @cues.player2.retreatFromTable()
+    @cues.player1.aimAt x: @white.position.x + 10, y: @white.position.y
+    @cues.player2.aimAt x: @white.position.x + 10, y: @white.position.y
 
   createWhiteBall: () ->
     @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]

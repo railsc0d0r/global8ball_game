@@ -45,7 +45,7 @@ class global8ball.PlayState extends global8ball.FullState
     super()
 
   aimAt: (x, y) ->
-    @cues.player1.setAngleByAim x: x, y: y
+    @cues.player1.aimAt x: x, y: y
 
   # @return {Boolean}
   canShoot: ->
