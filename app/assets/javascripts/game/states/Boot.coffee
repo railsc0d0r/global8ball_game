@@ -6,6 +6,7 @@ class global8ball.Boot extends Phaser.State
   constructor: (@g8bGame)->
 
   preload: ->
+    @game.stage.disableVisibilityChange = true
     @g8bGame.overloadImageLoading()
     @g8bGame.makeTextsTranslatable()
     @game.load.image 'preloader-bar', 'game/preloader_bar.png'
