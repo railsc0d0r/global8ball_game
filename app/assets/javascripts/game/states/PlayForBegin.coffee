@@ -17,12 +17,12 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @youShot = no
     @enemyShot = no
     @createWhiteBalls()
-    @yourCue.setTargetBall @white1
-    @enemyCue.setTargetBall @white2
+    @cues.player1.setTargetBall @white1
+    @cues.player2.setTargetBall @white2
     @world.bringToTop @spriteGroups.cues
-    @yourCue.setAngleByAim x: @white1.position.x + 10, y: @white1.position.y
-    @enemyCue.setAngleByAim x: @white2.position.x + 10, y: @white2.position.y
-    @yourCue.show()
+    @cues.player1.setAngleByAim x: @white1.position.x + 10, y: @white1.position.y
+    @cues.player2.setAngleByAim x: @white2.position.x + 10, y: @white2.position.y
+    @cues.player1.show()
 
   getPhysicsGroupSpecs: () ->
     specs = super()
@@ -125,4 +125,4 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     not @youShot
 
   shoot: (power) ->
-    @yourCue.shoot power
+    @cues.player1.shoot power

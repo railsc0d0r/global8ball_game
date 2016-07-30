@@ -18,8 +18,9 @@ class global8ball.PlayState extends global8ball.FullState
 
   create: ->
     super()
-    @yourCue = @createSprite 'cue1', 10, 10, visible: no
-    @enemyCue = @createSprite 'cue2', 10, 10, visible: no
+    @cues =
+      player1: @createSprite 'cue1', 10, 10, visible: no
+      player2: @createSprite 'cue2', 10, 10, visible: no
 
   getPhysicsGroupSpecs: () ->
     specs = super()
@@ -42,7 +43,7 @@ class global8ball.PlayState extends global8ball.FullState
     super()
 
   aimAt: (x, y) ->
-    @yourCue.setAngleByAim x: x, y: y
+    @cues.player1.setAngleByAim x: x, y: y
 
   # @return {Boolean}
   canShoot: ->
@@ -69,7 +70,7 @@ class global8ball.PlayState extends global8ball.FullState
 
   # @return {global8ball.Cue|null}
   currentlyControlledCue: () ->
-    @yourCue
+    @cues.player1
 
   createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
