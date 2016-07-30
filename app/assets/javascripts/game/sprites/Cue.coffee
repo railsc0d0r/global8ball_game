@@ -16,7 +16,7 @@ class global8ball.Cue extends Phaser.Sprite
   DEFAULT_DISTANCE_TO_BALL = 20
 
   targetBall: null
-  distanceToBall: null
+  distanceToBall: DEFAULT_DISTANCE_TO_BALL
 
   constructor: (game, x, y, key, frame) ->
     super game, x, y, key, frame
@@ -62,11 +62,12 @@ class global8ball.Cue extends Phaser.Sprite
   # Set distance between cue and ball. Can also be set to null, which means the default value is used.
   #
   # @param {number} distance
-  setDistanceToBall: (@distanceToBall) ->
+  setDistanceToBall: (distanceToBall) ->
+    @distanceToBall = distanceToBall ? DEFAULT_DISTANCE_TO_BALL
 
   # @return {number}
   getOffsetToBall: () ->
-    @width / 2 + if typeof @distanceToBall is 'number' then @distanceToBall else DEFAULT_DISTANCE_TO_BALL
+    @width / 2 + @distanceToBall
 
   # Let the cue shoot.
   shoot: (power) ->
