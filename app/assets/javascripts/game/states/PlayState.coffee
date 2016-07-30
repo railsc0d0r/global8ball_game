@@ -54,6 +54,9 @@ class global8ball.PlayState extends global8ball.FullState
 
   shoot: (power) ->
 
+  sendShotEvent: (power, onSendShot) ->
+    @shoot power
+
   createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
     y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y

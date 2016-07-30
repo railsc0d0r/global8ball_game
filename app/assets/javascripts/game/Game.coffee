@@ -65,7 +65,8 @@ class Game
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, @players
 
     if @players.viewerPlays()
-      controls = new global8ball.Controls (power) => @phaserGame.state.states[@phaserGame.state.current].shoot power
+      controls = new global8ball.Controls (power) =>
+        @phaserGame.state.states[@phaserGame.state.current].sendShotEvent power, @events.onSendShot
       controls.attach @phaserGame.state.states.PlayForBegin
       controls.attach @phaserGame.state.states.PlayForVictory
 
