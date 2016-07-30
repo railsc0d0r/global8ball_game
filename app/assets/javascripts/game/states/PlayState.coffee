@@ -54,8 +54,22 @@ class global8ball.PlayState extends global8ball.FullState
 
   shoot: (power) ->
 
+  # @param {number} power A value sent from shot control, ranges from 0 to 1.
+  # @param {Phaser.Signal} onSendShot Event sink for shot events.
   sendShotEvent: (power, onSendShot) ->
     @shoot power
+    cue = @currentlyControlledCue()
+    if cue
+      ev =
+        shot:
+          user_id: @players.getFirst().getId()
+          angle: cue.getAngle()
+          strength: power
+      onSendShot.dispatch ev
+
+  # @return {global8ball.Cue|null}
+  currentlyControlledCue: () ->
+    @yourCue
 
   createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x

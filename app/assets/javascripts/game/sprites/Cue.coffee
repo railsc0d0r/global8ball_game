@@ -28,6 +28,10 @@ class global8ball.Cue extends Phaser.Sprite
     @body.angle = newAngle
     @updatePosition()
 
+  # @return {number}
+  getAngle: () ->
+    @body.angle
+
   # @param {Point} Position to aim at. The cue will point TO that position, not FROM it!
   setAngleByAim: (pos) ->
     if @targetBall
