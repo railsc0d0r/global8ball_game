@@ -8,7 +8,7 @@ class ShotChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def setShot shot
-    ActionCable.server.broadcast "shot_#{params[:game_id]}", shot
+  def setShot data
+    ActionCable.server.broadcast "shot_#{params[:game_id]}", data['shot']
   end
 end
