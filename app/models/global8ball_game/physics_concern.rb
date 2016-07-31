@@ -24,7 +24,7 @@ module Global8ballGame
       config
     end
 
-    def initial_state player_1, player_2, stage_name, breaker
+    def initial_state player_1, player_2, stage_name="PlayForBegin", breaker=nil
       state = {
           current_stage: {
               stage_name: stage_name,
