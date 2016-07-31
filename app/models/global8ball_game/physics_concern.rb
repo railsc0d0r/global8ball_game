@@ -24,7 +24,7 @@ module Global8ballGame
       config
     end
 
-    def initial_state stage_name, breaker, player_1, player_2
+    def initial_state player_1, player_2, stage_name, breaker
       state = {
           current_stage: {
               stage_name: stage_name,
@@ -43,10 +43,10 @@ module Global8ballGame
       }
 
       if stage_name == 'PlayForBegin'
-        state[:balls][0][:owner] = self.player_1.id
-        state[:balls][1][:owner] = self.player_2.id
-        current_players[:current_players] << { user_id: self.player_1.id}
-        current_players[:current_players] << { user_id: self.player_2.id}
+        state[:balls][0][:owner] = player_1
+        state[:balls][1][:owner] = player_2
+        current_players[:current_players] << { user_id: player_1}
+        current_players[:current_players] << { user_id: player_2}
       end
 
       if stage_name == 'PlayForVictory'
