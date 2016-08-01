@@ -77,9 +77,10 @@ class global8ball.PlayState extends global8ball.FullState
   createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
     y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
+    radius = @physics.p2.mpx ballConfig.radius
     makeCircularBody = (body) ->
       body.clearShapes()
-      radius = 10 # TODO: Receive from backend
+      radius = radius
       offsetX = 0
       offsetY = 0
       rotation = 0
