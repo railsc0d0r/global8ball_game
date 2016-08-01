@@ -35,17 +35,17 @@ class global8ball.Preload extends Phaser.State
       width: 3660
       height: 444
     lessenForce:
-      url: 'lessen_force'
-      width: 576
-      height: 440
+      url: 'ui_elements/slider-track-minus_combined'
+      width: 52
+      height: 54
     shootButton:
-      url: 'shoot_button'
-      width: 280
-      height: 279
+      url: 'ui_elements/pointer-ball_combined'
+      width: 48
+      height: 49
     strengthenForce:
-      url: 'strengthen_force'
-      width: 576
-      height: 440
+      url: 'ui_elements/slider-track-plus_combined'
+      width: 52
+      height: 54
 
   create: ->
     @game.state.start 'WaitForConfiguration'
