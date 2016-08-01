@@ -51,4 +51,8 @@ class Game < ApplicationRecord
     self.results << result
     self.save!
   end
+
+  def eval_shot shot
+    initialize_table config_hash
+  end
 end

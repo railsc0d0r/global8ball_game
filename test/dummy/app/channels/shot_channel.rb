@@ -2,6 +2,7 @@
 class ShotChannel < ApplicationCable::Channel
   def subscribed
     stream_from "shot_#{params[:game_id]}"
+    @game = Game.find(params[:game_id])
   end
 
   def unsubscribed
@@ -9,6 +10,9 @@ class ShotChannel < ApplicationCable::Channel
   end
 
   def setShot data
-    ActionCable.server.broadcast "shot_#{params[:game_id]}", { shot: data['shot'] }
+    shot = data['shot']
+
+    ActionCable.server.broadcast "shot_#{params[:game_id]}", { shot: shot }
+    @game.eval_shot shot
   end
 end
