@@ -9,7 +9,7 @@ module Global8ballGame
     extend ActiveSupport::Concern
 
     included do
-
+      attr_reader :world
     end
 
     protected
@@ -78,6 +78,48 @@ module Global8ballGame
       state.merge!(current_results)
 
       state
+    end
+
+    def initialize_table table_config
+      @world = P2PhysicsWrapper::P2.World.new
+
+      initialize_borders table_config['borders']
+      initialize_holes table_config['holes']
+    end
+
+    private
+
+    def initialize_borders borders_config
+      body_options = {
+        mass:0,
+        position: [0, 0],
+        angle: 0,
+        velocity: [0, 0],
+        angularVelocity: 0
+      }
+
+      borders_config.keys.each do |key|
+        logger.info "creating border: #{key}"
+        body = P2PhysicsWrapper::P2.Body.new body_options
+
+        vertices = { vertices: borders_config[key].map {|v| v.values} }
+
+        body.addShape convex vertices
+        @world.addBody body
+      end
+
+    end
+
+    def initialize_holes holes_config
+    end
+
+    def convex vertices
+      logger.info "with vertices: #{vertices}"
+      P2PhysicsWrapper::P2.Convex.new vertices
+    end
+
+    def circle radius
+      P2PhysicsWrapper::P2.Circle.new radius
     end
   end
 end
