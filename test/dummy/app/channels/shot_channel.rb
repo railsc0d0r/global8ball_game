@@ -9,6 +9,6 @@ class ShotChannel < ApplicationCable::Channel
   end
 
   def setShot data
-    ActionCable.server.broadcast "shot_#{params[:game_id]}", data['shot']
+    ActionCable.server.broadcast "shot_#{params[:game_id]}", { shot: data['shot'] }
   end
 end
