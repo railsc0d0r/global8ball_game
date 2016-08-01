@@ -21,7 +21,6 @@ class global8ball.Preload extends Phaser.State
     background:      'background'
     blackBall:       'black_ball'
     border:          'border'
-#    crosshair:       'crosshair'
     cue:             'cue'
     hole:            'hole'
     redBall:         'red_ball'
@@ -30,6 +29,10 @@ class global8ball.Preload extends Phaser.State
     yellowBall:      'yellow_ball'
 
   @SPRITESHEETS:
+    crosshair:
+      url: 'ui_elements/pointer-crosshair_combined'
+      width: 15
+      height: 15
     forceStrength:
       url: 'force_strength'
       width: 3660
