@@ -16,20 +16,20 @@ module Global8ballGame
           { left:
             [
               {
-                x: -( @halfWidth + @cushionWidth ),
-                y: @quarterWidth - @angleDiff10px
-              },
-              {
-                x: -( @halfWidth + @cushionWidth ),
-                y: -( @quarterWidth - @angleDiff10px )
+                x: -@halfWidth,
+                y: @quarterWidth - @angleDiff36px
               },
               {
                 x: -@halfWidth,
                 y: -( @quarterWidth - @angleDiff36px )
               },
               {
-                x: -@halfWidth,
-                y: @quarterWidth - @angleDiff36px
+                x: -( @halfWidth + @cushionWidth ),
+                y: -( @quarterWidth - @angleDiff10px )
+              },
+              {
+                x: -( @halfWidth + @cushionWidth ),
+                y: @quarterWidth - @angleDiff10px
               }
             ],
             leftBottom:
