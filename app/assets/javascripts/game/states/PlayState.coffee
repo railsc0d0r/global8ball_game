@@ -90,5 +90,6 @@ class global8ball.PlayState extends global8ball.FullState
       config.spriteKey = spriteKey
     ball = @createSprite physicsGroupId, x, y, config, makeCircularBody
     ball.body.applyDamping @gameConfig.config.tableDamping
+    ball.body.mass = config.data.mass
 
     ball
