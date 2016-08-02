@@ -99,10 +99,12 @@ module Global8ballGame
       }
 
       borders_config.keys.each do |key|
-        logger.info "creating border: #{key}"
         body = P2PhysicsWrapper::P2.Body.new body_options
 
-        vertices = { vertices: borders_config[key].map {|v| v.values} }
+        vertices = { vertices: borders_config[key].map do |vertice|
+            [vertice['x'], -vertice['y']]
+          end
+        }
 
         body.addShape convex vertices
         @world.addBody body
@@ -114,7 +116,6 @@ module Global8ballGame
     end
 
     def convex vertices
-      logger.info "with vertices: #{vertices}"
       P2PhysicsWrapper::P2.Convex.new vertices
     end
 
