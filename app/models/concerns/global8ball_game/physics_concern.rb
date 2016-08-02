@@ -101,10 +101,9 @@ module Global8ballGame
       borders_config.keys.each do |key|
         body = P2PhysicsWrapper::P2.Body.new body_options
 
-        vertices = { vertices: borders_config[key].map do |vertice|
+        vertices = borders_config[key].map do |vertice|
             [vertice['x'], -vertice['y']]
-          end
-        }
+        end
 
         body.addShape convex vertices
         @world.addBody body
@@ -125,18 +124,17 @@ module Global8ballGame
         }
         body = P2PhysicsWrapper::P2.Body.new body_options
 
-        radius = { radius: hole_config['radius'] }
-        body.addShape circle radius
+        body.addShape circle hole_config['radius']
         @world.addBody body
       end
     end
 
     def convex vertices
-      P2PhysicsWrapper::P2.Convex.new vertices
+      P2PhysicsWrapper::P2.Convex.new({vertices: vertices})
     end
 
     def circle radius
-      P2PhysicsWrapper::P2.Circle.new radius
+      P2PhysicsWrapper::P2.Circle.new({ radius: radius })
     end
   end
 end
