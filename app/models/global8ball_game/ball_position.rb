@@ -9,6 +9,7 @@ module Global8ballGame
     @radius = @diameter / 2          # 11px
     @xDiff = Math.sqrt(3 * @radius ** 2)
     @yDiff = @diameter
+    @mass = 0.17 # kg
 
     @positions = {
       'PlayForBegin': {
@@ -19,6 +20,7 @@ module Global8ballGame
                             color: 'white',
                             owner: nil,
                             radius: @radius,
+                            mass: @mass,
                             position: {
                               x: -@quarterWidth,
                               y: -@eighthWidth
@@ -30,6 +32,7 @@ module Global8ballGame
                             color: 'white',
                             owner: nil,
                             radius: @radius,
+                            mass: @mass,
                             position: {
                               x: -@quarterWidth,
                               y: @eighthWidth
@@ -45,6 +48,7 @@ module Global8ballGame
                               color: 'white',
                               owner: nil,
                               radius: @radius,
+                              mass: @mass,
                               position: {
                                 x: -@quarterWidth,
                                 y: 0
@@ -70,6 +74,7 @@ module Global8ballGame
             color: color,
             owner: nil,
             radius: @radius,
+            mass: @mass,
             position: {
               x: @quarterWidth + (x-2) * @xDiff,
               y: -(x * @radius) + y * @yDiff
@@ -83,6 +88,7 @@ module Global8ballGame
             color: 'black',
             owner: nil,
             radius: @radius,
+            mass: @mass,
             position: {
               x: @quarterWidth + (x-2) * @xDiff,
               y: -(x * @radius) + y * @yDiff
