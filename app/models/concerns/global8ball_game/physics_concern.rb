@@ -81,7 +81,10 @@ module Global8ballGame
     end
 
     def initialize_table table_config
-      @world = P2PhysicsWrapper::P2.World.new
+      world_options = {
+        gravity: [0,0]
+      }
+      @world = P2PhysicsWrapper::P2.World.new world_options
 
       initialize_borders table_config['borders']
       initialize_holes table_config['holes']
