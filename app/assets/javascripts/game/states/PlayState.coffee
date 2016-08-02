@@ -60,7 +60,8 @@ class global8ball.PlayState extends global8ball.FullState
   # @param {number} power A value sent from shot control, ranges from 0 to 1.
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
   sendShotEvent: (power, onSendShot) ->
-    @shoot power * 3 # TODO: Make it configurable
+    power = power * 2
+    @shoot power # TODO: Make it configurable
     cue = @currentlyControlledCue()
     if cue
       ev =
