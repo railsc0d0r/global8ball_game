@@ -12,6 +12,9 @@ this.initGlobal8Ball = (gameConfig) ->
     holes: gameConfig.holes
     borders:gameConfig.borders
     tableDamping: gameConfig.table.damping
+    cue:
+      hardness: gameConfig.table.cue_hardness
+      mass: gameConfig.table.cue_mass
     physicsConfig:
       mpx: (v) ->
         v * gameConfig.table.scaling_factor
