@@ -113,6 +113,22 @@ module Global8ballGame
     end
 
     def initialize_holes holes_config
+      holes_config.keys.each do |key|
+        hole_config = holes_config[key]
+
+        body_options = {
+          mass:0,
+          position: [hole_config['x'], -hole_config['y']],
+          angle: 0,
+          velocity: [0, 0],
+          angularVelocity: 0
+        }
+        body = P2PhysicsWrapper::P2.Body.new body_options
+
+        radius = { radius: hole_config['radius'] }
+        body.addShape circle radius
+        @world.addBody body
+      end
     end
 
     def convex vertices
