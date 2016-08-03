@@ -118,6 +118,8 @@ module Global8ballGame
             [vertice['x'], -vertice['y']]
         end
         shape = convex vertices
+        shape.collisionGroup = BORDER
+        shape.collisionMask = BORDER_COLLIDES_WITH
 
         body.addShape shape
         @world.addBody body
