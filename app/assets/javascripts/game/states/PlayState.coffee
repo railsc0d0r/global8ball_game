@@ -79,18 +79,20 @@ class global8ball.PlayState extends global8ball.FullState
     x = @game.width  / 2 + @physics.p2.mpx ballConfig.position.x
     y = @game.height / 2 + @physics.p2.mpx ballConfig.position.y
     radius = @physics.p2.mpx ballConfig.radius
-    makeBallBody = (body) ->
+
+    makeBallBody = (body) =>
       body.clearShapes()
       radius = radius
       offsetX = 0
       offsetY = 0
       rotation = 0
       body.addCircle radius, offsetX, offsetY, rotation
+      body.applyDamping @gameConfig.config.tableDamping
+      body.mass = ballConfig.mass
+
     config = data: ballConfig
     if spriteKey
       config.spriteKey = spriteKey
     ball = @createSprite physicsGroupId, x, y, config, makeBallBody
-    ball.body.applyDamping @gameConfig.config.tableDamping
-    ball.body.mass = ballConfig.mass
 
     ball
