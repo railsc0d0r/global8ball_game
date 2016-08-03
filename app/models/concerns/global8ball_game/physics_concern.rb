@@ -117,8 +117,9 @@ module Global8ballGame
         vertices = borders_config[key].map do |vertice|
             [vertice['x'], -vertice['y']]
         end
+        shape = convex vertices
 
-        body.addShape convex vertices
+        body.addShape shape
         @world.addBody body
       end
 
@@ -137,7 +138,9 @@ module Global8ballGame
         }
         body = P2PhysicsWrapper::P2.Body.new body_options
 
-        body.addShape circle hole_config['radius']
+        shape = circle hole_config['radius']
+
+        body.addShape shape
         @world.addBody body
       end
     end
