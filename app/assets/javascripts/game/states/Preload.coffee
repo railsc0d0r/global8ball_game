@@ -18,15 +18,18 @@ class global8ball.Preload extends Phaser.State
       loader.spritesheet key, url, spritesheet.width, spritesheet.height
 
   @IMAGES:
-    background:      'background'
-    blackBall:       'black_ball'
-    border:          'border'
-    cue:             'cue'
-    hole:            'hole'
-    redBall:         'red_ball'
-    table:           'table_pool_without_background'
-    whiteBall:       'white_ball'
-    yellowBall:      'yellow_ball'
+    background:            'background'
+    blackBall:             'black_ball'
+    border:                'border'
+    cue:                   'cue'
+    hole:                  'hole'
+    redBall:               'red_ball'
+    sliderTrackActive:     'ui_elements/slider-track_active'
+    sliderTrackBackground: 'ui_elements/slider-track-bg'
+    sliderTrackInactive:   'ui_elements/slider-track_inactive'
+    table:                 'table_pool_without_background'
+    whiteBall:             'white_ball'
+    yellowBall:            'yellow_ball'
 
   @SPRITESHEETS:
     crosshair:
@@ -41,6 +44,10 @@ class global8ball.Preload extends Phaser.State
       url: 'ui_elements/slider-track-minus_combined'
       width: 52
       height: 54
+    sliderTrackButton:
+      url: 'ui_elements/slider-track-button_combined'
+      width: 33
+      height: 34
     shootButton:
       url: 'ui_elements/pointer-ball_combined'
       width: 48
