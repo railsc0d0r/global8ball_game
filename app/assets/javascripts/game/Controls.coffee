@@ -159,6 +159,12 @@ class StateControls
     @shotStrengthMask.beginFill '#ffffff'
     @updateShotStrengthMask()
 
+    @cueControlGui.directShotStrengthControl = @state.game.add.graphics hCenter - 100, y - 40
+    @cueControlGui.directShotStrengthControl.width = 200
+    @cueControlGui.directShotStrengthControl.height = 40
+    @cueControlGui.directShotStrengthControl.inputEnabled = true
+    @cueControlGui.directShotStrengthControl.events.onInputDown.add @startSettingForce
+
   # Generic listener for mousedown events.
   #
   # @param {Phaser.Pointer} pointer
