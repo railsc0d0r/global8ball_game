@@ -124,7 +124,7 @@ class StateControls
         x: hCenter
         y: y
         w: 200
-        h: 40
+        h: 8
         action: "startSettingForce"
       lessenForce:
         x: hCenter - 120
