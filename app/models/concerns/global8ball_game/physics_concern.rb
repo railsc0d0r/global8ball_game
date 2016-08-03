@@ -10,6 +10,16 @@ module Global8ballGame
 
     included do
       attr_reader :world
+
+      BORDER = 2 ** 2
+      HOLE = 2 ** 3
+      BALL = 2 ** 4
+      LINE = 2 ** 5
+
+      BORDER_COLLIDES_WITH = BALL
+      HOLE_COLLIDES_WITH = BALL
+      LINE_COLLIDES_WITH = BALL
+      BALL_COLLIDES_WITH = BORDER | HOLE | BALL | LINE
     end
 
     protected
