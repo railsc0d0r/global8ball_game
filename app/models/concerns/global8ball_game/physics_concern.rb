@@ -141,6 +141,8 @@ module Global8ballGame
         body = P2PhysicsWrapper::P2.Body.new body_options
 
         shape = circle hole_config['radius']
+        shape.collisionGroup = HOLE
+        shape.collisionMask = HOLE_COLLIDES_WITH
 
         body.addShape shape
         @world.addBody body
