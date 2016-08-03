@@ -115,6 +115,10 @@ class StateControls
     @cueControlGui = {}
     hCenter = @state.game.width / 2
     y = @state.game.height - 70
+    @cueControlGui.sliderTrackBackground = @state.game.add.sprite hCenter, y, 'sliderTrackBackground'
+    @cueControlGui.sliderTrackBackground.anchor.setTo 0.5, 0.5
+    @cueControlGui.sliderTrackBackground.width = 200
+    @cueControlGui.sliderTrackBackground.height = 40
     elements =
       forceStrength:
         x: hCenter
