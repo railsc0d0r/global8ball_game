@@ -17,9 +17,7 @@ class StateChannel < ApplicationCable::Channel
       @game.initialize_state stage_name, breaker
     end
 
-    state = @game.results.last.result_set
-
-    transmit state
+    transmit @game.last_result
   end
 
 end
