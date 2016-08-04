@@ -2,7 +2,7 @@
 class GamesChannel < ApplicationCable::Channel
   def subscribed
     @game = Game.find(params[:game_id])
-    transmit @game.config_hash
+    transmit @game.config
   end
 
   def unsubscribed

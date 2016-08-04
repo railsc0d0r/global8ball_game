@@ -21,11 +21,11 @@ class Game < ApplicationRecord
     config = game.new_table_config
     config.merge!(players_config)
 
-    game.config = config.to_json
+    game.config_json = config.to_json
   end
 
-  def config_hash
-    JSON.parse(config)
+  def config
+    JSON.parse(config_json)
   end
 
   def player_1= player
@@ -49,7 +49,7 @@ class Game < ApplicationRecord
   end
 
   def eval_shot shot
-    initialize_table config_hash
+    initialize_table config
   end
 
   # Convinience methods to be used as standard in PhysicsConcern
