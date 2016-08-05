@@ -145,21 +145,21 @@ module Global8ballGame
       initialize_holes table_config['holes']
     end
 
-    private
-
     def initialize_borders borders_config
-      body_options = {
-        mass:0,
-        position: [0, 0],
-        angle: 0,
-        velocity: [0, 0],
-        angularVelocity: 0
-      }
-
       borders_config.keys.each do |key|
-        body = P2PhysicsWrapper::P2.Body.new body_options
+        border_config = borders_config[key]
+        body_options = {
+          mass:0,
+          position: [0, 0],
+          angle: 0,
+          velocity: [0, 0],
+          angularVelocity: 0
+        }
 
-        vertices = borders_config[key].map do |vertice|
+        body = P2PhysicsWrapper::P2.Body.new body_options
+        body.name = key
+
+        vertices = border_config.map do |vertice|
             [vertice['x'], -vertice['y']]
         end
         shape = convex vertices
@@ -169,7 +169,6 @@ module Global8ballGame
         body.addShape shape
         @world.addBody body
       end
-
     end
 
     def initialize_holes holes_config
@@ -184,6 +183,7 @@ module Global8ballGame
           angularVelocity: 0
         }
         body = P2PhysicsWrapper::P2.Body.new body_options
+        body.name = key
 
         shape = circle hole_config['radius']
         shape.collisionGroup = HOLE
