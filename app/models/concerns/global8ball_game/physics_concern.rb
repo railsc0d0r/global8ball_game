@@ -4,6 +4,8 @@
 # Lets model including this concern instanciate a physics-world by given config and last state
 # and interact w/ this world to return a new state end evaluate certain rules by given ruleset
 #
+# Models including this concern have to provide config and last_result as hashes representing the table_config and the last state
+#
 module Global8ballGame
   module PhysicsConcern
     extend ActiveSupport::Concern
@@ -95,7 +97,45 @@ module Global8ballGame
       state
     end
 
-    def initialize_table table_config
+    private
+
+    def initialize_last_state
+      damping = self.config['table']['damping']
+      state = self.last_result
+
+      state['balls'].each do |ball|
+        ball_id = ball['id']
+        owner = ball['owner']
+        mass = ball['mass']
+        radius = ball['radius']
+        x = ball['position']['x']
+        y = ball['position']['y']
+
+        body_options = {
+          mass: mass,
+          position: [x, y],
+          angle: 0,
+          velocity: [0, 0],
+          angularVelocity: 0
+        }
+
+        body = P2PhysicsWrapper::P2.Body.new body_options
+        body.ball_id = ball_id
+        body.owner = owner
+
+        shape = circle radius
+        shape.collisionGroup = BALL
+        shape.collisionMask = BALL_COLLIDES_WITH
+
+        body.addShape shape
+        body.applyDamping damping
+        @world.addBody body
+      end
+    end
+
+    def initialize_table
+      table_config = self.config
+
       world_options = {
         gravity: [0,0]
       }
