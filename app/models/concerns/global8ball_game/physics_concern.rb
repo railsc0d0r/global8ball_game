@@ -104,7 +104,7 @@ module Global8ballGame
       state = self.last_result
 
       state['balls'].each do |ball|
-        ball_id = ball['id']
+        key = ball['id']
         owner = ball['owner']
         mass = ball['mass']
         radius = ball['radius']
@@ -119,16 +119,13 @@ module Global8ballGame
           angularVelocity: 0
         }
 
-        body = P2PhysicsWrapper::P2.Body.new body_options
-        body.ball_id = ball_id
-        body.owner = owner
-
         shape = circle radius
         shape.collisionGroup = BALL
         shape.collisionMask = BALL_COLLIDES_WITH
 
-        body.addShape shape
+        body = create_body key, body_options, shape
         body.applyDamping damping
+        body.owner = owner
         @world.addBody body
       end
     end
@@ -156,9 +153,6 @@ module Global8ballGame
           angularVelocity: 0
         }
 
-        body = P2PhysicsWrapper::P2.Body.new body_options
-        body.name = key
-
         vertices = border_config.map do |vertice|
             [vertice['x'], -vertice['y']]
         end
@@ -166,7 +160,7 @@ module Global8ballGame
         shape.collisionGroup = BORDER
         shape.collisionMask = BORDER_COLLIDES_WITH
 
-        body.addShape shape
+        body = create_body key, body_options, shape
         @world.addBody body
       end
     end
@@ -182,16 +176,21 @@ module Global8ballGame
           velocity: [0, 0],
           angularVelocity: 0
         }
-        body = P2PhysicsWrapper::P2.Body.new body_options
-        body.name = key
 
         shape = circle hole_config['radius']
         shape.collisionGroup = HOLE
         shape.collisionMask = HOLE_COLLIDES_WITH
 
-        body.addShape shape
+        body = create_body key, body_options, shape
         @world.addBody body
       end
+    end
+
+    def create_body key, options, shape
+      body = P2PhysicsWrapper::P2.Body.new options
+      body.key = key
+      body.addShape shape
+      body
     end
 
     def convex vertices
