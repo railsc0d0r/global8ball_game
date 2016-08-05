@@ -48,10 +48,6 @@ class Game < ApplicationRecord
     self.last_result = initial_state self.player_1_id, self.player_2_id, stage_name, breaker
   end
 
-  def eval_shot shot
-    initialize_table config
-  end
-
   # Convinience methods to be used as standard in PhysicsConcern
   def last_result
     self.results.empty? ? nil : self.results.last.result_set

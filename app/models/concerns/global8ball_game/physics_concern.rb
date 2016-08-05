@@ -22,6 +22,11 @@ module Global8ballGame
       BALL_COLLIDES_WITH = BORDER | HOLE | BALL | LINE
     end
 
+    def eval_shot shot
+      initialize_table
+      initialize_last_state
+    end
+
     protected
 
     def new_table_config
