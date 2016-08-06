@@ -124,8 +124,9 @@ module Global8ballGame
         shape.collisionMask = BALL_COLLIDES_WITH
 
         body = create_body key, body_options, shape
-        body.applyDamping damping
+        body.damping = damping
         body.owner = owner
+
         @world.addBody body
       end
     end
