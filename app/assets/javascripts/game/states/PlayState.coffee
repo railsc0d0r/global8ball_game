@@ -43,6 +43,9 @@ class global8ball.PlayState extends global8ball.FullState
 
   update: ->
     super()
+    if @events.hasShot()
+      @shoot @events.getShot().shot.strength
+      @events.clearShot()
 
   aimAt: (x, y) ->
     @cues.player1.aimAt x: x, y: y
@@ -61,7 +64,6 @@ class global8ball.PlayState extends global8ball.FullState
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
   sendShotEvent: (power, onSendShot) ->
     power = power * 2
-    @shoot power # TODO: Make it configurable
     cue = @currentlyControlledCue()
     if cue
       ev =
