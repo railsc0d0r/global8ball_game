@@ -6,8 +6,8 @@
 # State for determining which player may shoot first in the first round of
 # normal play.
 class global8ball.PlayForBegin extends global8ball.PlayState
-  constructor: (gameConfig, players) ->
-    super gameConfig, players
+  constructor: (gameConfig, players, events) ->
+    super gameConfig, players, events
 
   initGameState: (gameState) ->
     super gameState

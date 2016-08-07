@@ -8,8 +8,8 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     red: 'redBall'
     gold: 'yellowBall'
 
-  constructor: (gameConfig, players) ->
-    super gameConfig, players
+  constructor: (gameConfig, players, events) ->
+    super gameConfig, players, events
 
   initGameState: (gameState) ->
     super gameState
