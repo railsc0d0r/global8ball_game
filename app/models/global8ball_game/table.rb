@@ -1,5 +1,5 @@
 #
-# Model to create a world and interact w/ this world to return a new state end evaluate certain rules by given ruleset
+# Model to create a world and interact w/ this world to return a new state and evaluate certain rules by given ruleset
 #
 module Global8ballGame
   class Table
@@ -56,6 +56,10 @@ module Global8ballGame
 
         @world.addBody body
       end
+    end
+
+    def shoot shot
+      {}
     end
 
     private

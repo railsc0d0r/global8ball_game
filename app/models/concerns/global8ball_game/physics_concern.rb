@@ -16,6 +16,7 @@ module Global8ballGame
 
     def eval_shot shot
       initialize_table
+      shoot shot
     end
 
     protected
@@ -93,5 +94,11 @@ module Global8ballGame
       @table.initialize_last_state self.last_result
     end
 
+    def shoot shot
+      result = @table.shoot shot
+      # self.last_result = result
+
+      result
+    end
   end
 end
