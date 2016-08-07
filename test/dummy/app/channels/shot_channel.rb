@@ -13,6 +13,6 @@ class ShotChannel < ApplicationCable::Channel
     shot = data['shot']
 
     ActionCable.server.broadcast "shot_#{params[:game_id]}", { shot: shot }
-    @game.eval_shot shot
+    ActionCable.server.broadcast "state_#{params[:game_id]}", (@game.eval_shot shot)
   end
 end
