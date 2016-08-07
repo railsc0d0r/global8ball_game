@@ -1,5 +1,5 @@
 #
-# Model to temporarily create a table and evaluate the shot
+# Model to create a world and interact w/ this world to return a new state end evaluate certain rules by given ruleset
 #
 module Global8ballGame
   class Table

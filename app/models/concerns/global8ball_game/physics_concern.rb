@@ -1,8 +1,8 @@
 #
 # Global8ballGame::PhysicsConcern
 #
-# Lets model including this concern instanciate a physics-world by given config and last state
-# and interact w/ this world to return a new state end evaluate certain rules by given ruleset
+# Lets model including this concern instanciate a table by given config and last_result
+# and evaluate a shot on this table
 #
 # Models including this concern have to provide config and last_result as hashes representing the table_config and the last state
 #
