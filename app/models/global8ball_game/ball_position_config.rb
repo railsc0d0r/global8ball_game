@@ -1,5 +1,5 @@
 module Global8ballGame
-  class BallPosition
+  class BallPositionConfig
     # scalingFactor = 377.95 =>
     @width = 2.54
     @halfWidth = @width / 2          # 480px

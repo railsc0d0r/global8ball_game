@@ -1,5 +1,5 @@
 module Global8ballGame
-  class Table < Config
+  class TableConfig < Config
     def initialize
       @definition = {
         table: {
