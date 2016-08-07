@@ -44,7 +44,8 @@ class global8ball.PlayState extends global8ball.FullState
   update: ->
     super()
     if @events.hasShot()
-      @shoot @events.getShot().shot.strength
+      shot = @events.getShot().shot
+      @shoot shot.user_id, shot.angle, shot.strength
       @events.clearShot()
 
   aimAt: (x, y) ->
@@ -58,8 +59,8 @@ class global8ball.PlayState extends global8ball.FullState
   cueCollidesWithWhiteBall: (cueBody, ballBody) =>
     cueBody.sprite.retreatFromTable()
 
-  shoot: (power) ->
-    @cues.player1.shoot power
+  shoot: (player, angle, strength) ->
+    @cues.player1.shoot strength
 
   # @param {number} power A value sent from shot control, ranges from 0 to 1.
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
