@@ -130,6 +130,3 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     ]
 
     return specs
-
-  shoot: (power) ->
-    @cues.player1.shoot power

@@ -124,6 +124,3 @@ class global8ball.PlayForBegin extends global8ball.PlayState
   # @inheritdoc
   canShoot: ->
     not @youShot
-
-  shoot: (power) ->
-    @cues.player1.shoot power
