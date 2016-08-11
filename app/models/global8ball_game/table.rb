@@ -59,7 +59,12 @@ module Global8ballGame
     end
 
     def shoot shot
-      {}
+      time_step = 1 / 600
+      until everything_stopped do
+        @world.step(time_step)
+        # check collisions and rules
+      end
+      # return result_set
     end
 
     private
@@ -68,7 +73,7 @@ module Global8ballGame
       borders_config.keys.each do |key|
         border_config = borders_config[key]
         body_options = {
-          mass:0,
+          mass: 0,
           position: [0, 0],
           angle: 0,
           velocity: [0, 0],
@@ -123,5 +128,8 @@ module Global8ballGame
       P2PhysicsWrapper::P2.Circle.new({ radius: radius })
     end
 
+    def everything_stopped
+      true
+    end
   end
 end
