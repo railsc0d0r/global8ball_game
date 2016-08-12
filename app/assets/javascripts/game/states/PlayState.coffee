@@ -59,8 +59,19 @@ class global8ball.PlayState extends global8ball.FullState
   cueCollidesWithWhiteBall: (cueBody, ballBody) =>
     cueBody.sprite.retreatFromTable()
 
-  shoot: (player, angle, strength) ->
-    @cues.player1.shoot strength
+  shoot: (playerId, angle, strength) ->
+    cue = @getCueByPlayer playerId
+    if cue
+      cue.shoot strength
+
+  # Returns the cue which belongs to player with ID playerId or null if none
+  # such cue exists.
+  getCueByPlayer: (playerId) ->
+    cues = [@cues.player1, @cues.player2].filter (cue) -> cue.player.getId() is playerId
+    if cues.length > 0
+      cues[0]
+    else
+      null
 
   # @param {number} power A value sent from shot control, ranges from 0 to 1.
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
