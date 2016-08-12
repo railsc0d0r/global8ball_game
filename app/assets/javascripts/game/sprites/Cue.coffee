@@ -5,7 +5,7 @@
 # exactly two cues, one for each player).
 #
 # A cue can be in one of three states:
-# - Ready to shoot. It's the player's turn to shoot (or both players may shoot).
+# - Ready to shoot and visible. Used for cues the current viewer controls.
 # - Currently shooting.
 # - Away from table. If the cue's player is currently not allowed to shoot, this
 #   is the state it is in.
