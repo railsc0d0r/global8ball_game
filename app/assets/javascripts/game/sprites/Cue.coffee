@@ -24,11 +24,20 @@ class global8ball.Cue extends Phaser.Sprite
     super game, x, y, key, frame
     @states = {}
     @keyOfCurrentState = STATES.INITIAL # A lie!
+    @visibleWhenReady = no
+
+  # This cue belongs to the viewer.
+  belongsToViewer: ->
+    @visibleWhenReady = yes
 
   # Initializes the various cue states.
   initStates: ->
     @states[STATES.INITIAL] = new InitialState @
-    @states[STATES.READY] = new ReadyToShootState @
+    @states[STATES.READY] =
+      if @visibleWhenReady
+        new ReadyToShootOnTableState @
+      else
+        new ReadyToShootAwayFromTableState @
     @states[STATES.SHOOTING] = new ShootingState @
     @states[STATES.AWAY] = new AwayFromTableState @
 
@@ -102,6 +111,13 @@ class global8ball.Cue extends Phaser.Sprite
   putOnTable: ->
     @getCurrentState().putOnTable()
 
+  # Moves the cue far away from the table.
+  moveFarAwayFromTable: ->
+    @body.x = -10000
+    @body.y = -10000
+    @body.velocity.mx = 0
+    @body.velocity.my = 0
+
 # Abstract base class for cue states.
 #
 # Contains several methods meant to be overriden by the concrete states.
@@ -154,20 +170,33 @@ class InitialState extends CueState
   retreatFromTable: ->
     @nextState STATES.AWAY
 
-# Cue is ready to shoot.
-class ReadyToShootState extends CueState
+# Cue is ready to shoot and on the table.
+class ReadyToShootOnTableState extends CueState
   init: ->
     @cue.updatePosition()
     @cue.visible = yes
     @cue.updatePosition()
 
   shoot: (power) ->
+    console.log 'Shoot (on table)'
     @cue.shootingPower = power
     @nextState STATES.SHOOTING
 
   aimAt: (pos) ->
     @cue.setAngleByAim pos
     @cue.updatePosition()
+
+# Cue is ready to shoot, but away from the table.
+class ReadyToShootAwayFromTableState extends CueState
+  init: ->
+    @cue.visible = no
+    @cue.moveFarAwayFromTable()
+
+  shoot: (power) ->
+    @cue.visible = yes
+    @cue.updatePosition()
+    @cue.shootingPower = power
+    @nextState STATES.SHOOTING
 
 # Cue is currently shooting, but has not hit the ball yet.
 class ShootingState extends CueState
@@ -183,11 +212,7 @@ class ShootingState extends CueState
 class AwayFromTableState extends CueState
   init: ->
     @cue.visible = no
-    body = @cue.body
-    body.x = -10000
-    body.y = -10000
-    body.velocity.mx = 0
-    body.velocity.my = 0
+    @cue.moveFarAwayFromTable()
 
   # Puts the cue back onto the table.
   putOnTable: ->

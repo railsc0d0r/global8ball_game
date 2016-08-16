@@ -21,7 +21,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @cues.player2.setTargetBall @white2
     @world.bringToTop @spriteGroups.cues
     @cues.player1.putOnTable()
-    @cues.player2.retreatFromTable()
+    @cues.player2.putOnTable()
     @cues.player1.aimAt x: @white1.position.x + 10, y: @white1.position.y
     @cues.player2.aimAt x: @white2.position.x + 10, y: @white2.position.y
 
