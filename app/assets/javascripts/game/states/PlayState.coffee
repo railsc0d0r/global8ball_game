@@ -48,8 +48,7 @@ class global8ball.PlayState extends global8ball.FullState
   update: ->
     super()
     if @events.hasShot()
-      shot = @events.getShot().shot
-      @shoot shot.user_id, shot.angle, shot.strength
+      @shoot @events.getShot()
       @events.clearShot()
 
   aimAt: (x, y) ->
@@ -63,10 +62,10 @@ class global8ball.PlayState extends global8ball.FullState
   cueCollidesWithWhiteBall: (cueBody, ballBody) =>
     cueBody.sprite.retreatFromTable()
 
-  shoot: (playerId, angle, strength) ->
-    cue = @getCueByPlayer playerId
+  shoot: (shot) ->
+    cue = @getCueByPlayer shot.userId
     if cue
-      cue.shoot strength
+      cue.shoot shot
 
   # Returns the cue which belongs to player with ID playerId or null if none
   # such cue exists.

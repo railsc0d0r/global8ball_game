@@ -1,4 +1,5 @@
 #= require game/prolog
+#= require game/Shot
 
 # Wraps Game signals API and provides some extras.
 class global8ball.GameEvents
@@ -6,7 +7,8 @@ class global8ball.GameEvents
     @onSendShot = new Phaser.Signal
     @onReceiveShot = new Phaser.Signal
     @clearShot()
-    @onReceiveShot.add (@shot) =>
+    @onReceiveShot.add (shotData) =>
+      @shot = new global8ball.Shot shotData.shot
 
     @onSetState = new Phaser.Signal
     @onGetState = new Phaser.Signal
@@ -21,7 +23,7 @@ class global8ball.GameEvents
 
   # Returns the shot.
   #
-  # @return {object}
+  # @return {global8ball.Shot}
   getShot: ->
     @shot
 

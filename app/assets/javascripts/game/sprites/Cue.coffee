@@ -96,8 +96,8 @@ class global8ball.Cue extends Phaser.Sprite
     @width / 2 + @distanceToBall
 
   # Let the cue shoot.
-  shoot: (power) ->
-    @getCurrentState().shoot power
+  shoot: (shot) ->
+    @getCurrentState().shoot shot
 
   # @return {number}
   getShotDirectionInRadians: ->
@@ -152,9 +152,9 @@ class CueState
 
   # Attempt to shoot.
   #
-  # @param {number} power
+  # @param {global8ball.Shot} shot
   # @override
-  shoot: (power) ->
+  shoot: (shot) ->
 
   # Attempt to put cue back on the table.
   #
@@ -177,9 +177,8 @@ class ReadyToShootOnTableState extends CueState
     @cue.visible = yes
     @cue.updatePosition()
 
-  shoot: (power) ->
-    console.log 'Shoot (on table)'
-    @cue.shootingPower = power
+  shoot: (shot) ->
+    @cue.shootingPower = shot.strength
     @nextState STATES.SHOOTING
 
   aimAt: (pos) ->
@@ -192,10 +191,10 @@ class ReadyToShootAwayFromTableState extends CueState
     @cue.visible = no
     @cue.moveFarAwayFromTable()
 
-  shoot: (power) ->
+  shoot: (shot) ->
     @cue.visible = yes
     @cue.updatePosition()
-    @cue.shootingPower = power
+    @cue.shootingPower = shot.strength
     @nextState STATES.SHOOTING
 
 # Cue is currently shooting, but has not hit the ball yet.
