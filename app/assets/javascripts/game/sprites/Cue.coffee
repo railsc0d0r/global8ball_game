@@ -10,23 +10,40 @@
 # - Away from table. If the cue's player is currently not allowed to shoot, this
 #   is the state it is in.
 #
-# Cue states are represented by classes.
+# Cue states are represented by classes. They are pre-generated on initialization
+# and switched by setting them by key.
 class global8ball.Cue extends Phaser.Sprite
   # Default distance to ball.
   DEFAULT_DISTANCE_TO_BALL = 20
 
   targetBall: null
   distanceToBall: DEFAULT_DISTANCE_TO_BALL
+  shootingPower: 0
 
   constructor: (game, x, y, key, frame) ->
     super game, x, y, key, frame
-    @setCueState new InitialState
+    @states = {}
+    @keyOfCurrentState = STATES.INITIAL # A lie!
 
-  # Initializes the state of the cue and stores it.
-  setCueState: (state) ->
-    state.setCue @
-    state.init()
-    @cueState = state
+  # Initializes the various cue states.
+  initStates: ->
+    @states[STATES.INITIAL] = new InitialState @
+    @states[STATES.READY] = new ReadyToShootState @
+    @states[STATES.SHOOTING] = new ShootingState @
+    @states[STATES.AWAY] = new AwayFromTableState @
+
+  # Sets the next state by its key.
+  #
+  # @param {string} stateKey
+  nextState: (stateKey) ->
+    @states[stateKey].init()
+    @keyOfCurrentState = stateKey
+
+  # Returns the current state.
+  #
+  # @return {CueState}
+  getCurrentState: ->
+    @states[@keyOfCurrentState]
 
   # Set who the cue belongs to.
   #
@@ -52,7 +69,7 @@ class global8ball.Cue extends Phaser.Sprite
       @setAngle Math.atan2(@targetBall.body.y - pos.y, @targetBall.body.x - pos.x) / MATH_FACTOR
 
   aimAt: (pos) ->
-    @cueState.aimAt pos
+    @getCurrentState().aimAt pos
 
   updatePosition: ()->
     if @targetBall
@@ -71,7 +88,7 @@ class global8ball.Cue extends Phaser.Sprite
 
   # Let the cue shoot.
   shoot: (power) ->
-    @cueState.shoot power
+    @getCurrentState().shoot power
 
   # @return {number}
   getShotDirectionInRadians: ->
@@ -79,11 +96,11 @@ class global8ball.Cue extends Phaser.Sprite
 
   # Move the cue away from the table, hides it, etc..
   retreatFromTable: ->
-    @cueState.retreatFromTable()
+    @getCurrentState().retreatFromTable()
 
   # Put the cue on the table.
   putOnTable: ->
-    @cueState.putOnTable()
+    @getCurrentState().putOnTable()
 
 # Abstract base class for cue states.
 #
@@ -92,17 +109,14 @@ class global8ball.Cue extends Phaser.Sprite
 # @property {global8ball.Cue} Cue the state belongs to.
 class CueState
 
-  # Set the next state of the cue.
-  #
-  # @param {CueState} newState
-  setCueState: (newState) ->
-    @cue.setCueState newState
-    @cue = null
-
-  # Set the cue this state belongs to.
-  #
   # @param {global8ball.Cue} cue
-  setCue: (@cue) ->
+  constructor: (@cue) ->
+
+  # Sets the cue state to the state designated by the state key.
+  #
+  # @param {string} stateKey
+  nextState: (stateKey) ->
+    @cue.nextState stateKey
 
   # Initializes the cue state.
   #
@@ -135,10 +149,10 @@ class CueState
 # are initialized after {Phaser.Sprite.constructor} has run.
 class InitialState extends CueState
   putOnTable: ->
-    @setCueState new ReadyToShootState
+    @nextState STATES.READY
 
   retreatFromTable: ->
-    @setCueState new AwayFromTableState
+    @nextState STATES.AWAY
 
 # Cue is ready to shoot.
 class ReadyToShootState extends CueState
@@ -148,7 +162,8 @@ class ReadyToShootState extends CueState
     @cue.updatePosition()
 
   shoot: (power) ->
-    @setCueState new ShootingState power
+    @cue.shootingPower = power
+    @nextState STATES.SHOOTING
 
   aimAt: (pos) ->
     @cue.setAngleByAim pos
@@ -156,15 +171,13 @@ class ReadyToShootState extends CueState
 
 # Cue is currently shooting, but has not hit the ball yet.
 class ShootingState extends CueState
-  constructor: (@power) ->
-
   init: ->
     body = @cue.body
-    body.velocity.mx = - @power * Math.cos(MATH_FACTOR * body.angle)
-    body.velocity.my = - @power * Math.sin(MATH_FACTOR * body.angle)
+    body.velocity.mx = - @cue.shootingPower * Math.cos(MATH_FACTOR * body.angle)
+    body.velocity.my = - @cue.shootingPower * Math.sin(MATH_FACTOR * body.angle)
 
   retreatFromTable: ->
-    @setCueState new AwayFromTableState
+    @nextState STATES.AWAY
 
 # Cue is away from the table.
 class AwayFromTableState extends CueState
@@ -178,6 +191,12 @@ class AwayFromTableState extends CueState
 
   # Puts the cue back onto the table.
   putOnTable: ->
-    @setCueState new ReadyToShootState
+    @nextState STATES.READY
+
+STATES =
+  INITIAL: 'initial'
+  READY: 'ready'
+  SHOOTING: 'shooting'
+  AWAY: 'away'
 
 MATH_FACTOR = Math.PI/180
