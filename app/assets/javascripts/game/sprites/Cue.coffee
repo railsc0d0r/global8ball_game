@@ -178,6 +178,7 @@ class ReadyToShootOnTableState extends CueState
     @cue.updatePosition()
 
   shoot: (shot) ->
+    @cue.setAngle shot.angle
     @cue.shootingPower = shot.strength
     @nextState STATES.SHOOTING
 
@@ -193,6 +194,7 @@ class ReadyToShootAwayFromTableState extends CueState
 
   shoot: (shot) ->
     @cue.visible = yes
+    @cue.setAngle shot.angle
     @cue.updatePosition()
     @cue.shootingPower = shot.strength
     @nextState STATES.SHOOTING
