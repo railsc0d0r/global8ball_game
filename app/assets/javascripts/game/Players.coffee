@@ -8,6 +8,9 @@ class global8ball.Players
   # @param {global8ball.Player} first
   # @param {global8ball.Player} second
   constructor: (@viewer, @first, @second) ->
+    @players = {}
+    @players[@first.getId()] = @first
+    @players[@second.getId()] = @second
 
   # @return {global8ball.Viewer}
   getViewer: () ->
@@ -26,6 +29,11 @@ class global8ball.Players
     # Only first player needs to be checked, because if the second player would
     # be the viewer, she becomes the first player.
     @viewer.account.equals @first.account
+
+  # @param {string}
+  # @return {global8ball.Player}
+  byId: (userId) ->
+    @players[userId]
 
 # @param {object} playerData
 # @param {object} viewerData
