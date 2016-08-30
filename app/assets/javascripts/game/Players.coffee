@@ -31,10 +31,18 @@ class global8ball.Players
 # @param {object} viewerData
 # @return {global8ball.Players}
 global8ball.Players.create = (playerData, viewerData) ->
-  firstPlayer = new global8ball.Player new global8ball.Account playerData.first.id, playerData.first.name
-  secondPlayer = new global8ball.Player new global8ball.Account playerData.second.id, playerData.second.name
+  firstPlayer = createPlayerFromData playerData.first, viewerData
+  secondPlayer = createPlayerFromData playerData.second, viewerData
   viewer = new global8ball.Viewer new global8ball.Account viewerData.id, viewerData.name
   if viewer.account.equals secondPlayer.account
     new global8ball.Players viewer, secondPlayer, firstPlayer
   else
     new global8ball.Players viewer, firstPlayer, secondPlayer
+
+# @param {object} playerData
+# @param {object} viewerData
+# @return {globla8ball.Player}
+createPlayerFromData = (playerData, viewerData) ->
+  account = new global8ball.Account playerData.id, playerData.name
+  isViewer = playerData.id is viewerData.id
+  new global8ball.Player account, isViewer

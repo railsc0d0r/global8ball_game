@@ -4,7 +4,8 @@
 # represents such a player.
 class global8ball.Player
   # @param {global8ball.Account} account
-  constructor: (@account) ->
+  # @param {boolean} viewsTheGame
+  constructor: (@account, @viewsTheGame) ->
 
   # @return {string}
   getName: () ->
@@ -13,3 +14,7 @@ class global8ball.Player
   # @return {string}
   getId: () ->
     @account.id
+
+  # @return {boolean}
+  isViewer: () ->
+    @viewsTheGame
