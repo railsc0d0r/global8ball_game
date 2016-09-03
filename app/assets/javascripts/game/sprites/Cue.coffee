@@ -56,14 +56,14 @@ class global8ball.Cue extends Phaser.Sprite
 
   # Set who the cue belongs to.
   #
-  # @param {global8ball.Player} player
-  setOwner: (@player) ->
+  # @param {global8ball.Player} owner
+  setOwner: (@owner) ->
 
   # Returns the owner.
   #
   # @return {global8ball.Player}
   getOwner: ->
-    @player
+    @owner
 
   # @param {global8ball.Ball} targetBall
   setTargetBall: (@targetBall) ->
