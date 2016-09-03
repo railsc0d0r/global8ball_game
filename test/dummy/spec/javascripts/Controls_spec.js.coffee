@@ -22,6 +22,9 @@ describe 'Game controls', () ->
           beginFill: () ->
           clear: () ->
           drawRect: () ->
+          events:
+            onInputDown:
+              add: () ->
     input:
       onDown: new Phaser.Signal
       onUp: new Phaser.Signal
