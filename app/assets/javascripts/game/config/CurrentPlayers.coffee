@@ -2,7 +2,7 @@
 
 class global8ball.config.CurrentPlayers
   # @param {Array} currentPlayersData
-  constructor: currentPlayersData ->
+  constructor: (currentPlayersData) ->
     @userIds = currentPlayersData.map (currentPlayerData) -> currentPlayerData.user_id
 
   # Returns user IDs.
@@ -10,3 +10,10 @@ class global8ball.config.CurrentPlayers
   # @return {integer[]}
   getUserIds: ->
     @userIds
+
+  # Checks if the given player is one of the current players.
+  #
+  # @param {global.Player} player
+  # @return {boolean}
+  contains: (player) ->
+    @userIds.includes player.getId()
