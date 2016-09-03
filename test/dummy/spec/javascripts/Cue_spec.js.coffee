@@ -7,6 +7,13 @@ Player = global8ball.Player
 
 describe 'Cue', ->
 
+  chai.util.addProperty chai.Assertion.prototype, 'visible', () ->
+    @assert(
+      @._obj.visible
+      'Expected #{this} to be visible'
+      'Expected #{this} to be invisible'
+    )
+
   createCue = (owner) ->
     cue = new Cue
     cue.body =
@@ -24,9 +31,9 @@ describe 'Cue', ->
   it 'is visible when on the table and owner is viewer', ->
     cue = createCue Player.createViewingPlayer new Account 666, 'The Devil'
     cue.putOnTable()
-    expect(cue.visible).to.be.ok
+    expect(cue).to.be.visible
 
   it 'is invisible when not on the table and owner is viewer', ->
     cue = createCue Player.createViewingPlayer new Account 667, "The Devil's Neighbour"
     cue.retreatFromTable()
-    expect(cue.visible).to.not.be.ok
+    expect(cue).not.to.be.visible
