@@ -37,3 +37,13 @@ describe 'Cue', ->
     cue = createCue Player.createViewingPlayer new Account 667, "The Devil's Neighbour"
     cue.retreatFromTable()
     expect(cue).not.to.be.visible
+
+  it 'is invisible when on the table and owner is not the viewer', ->
+    cue = createCue Player.createNonViewingPlayer new Account 668, "The Devil's distant cousin"
+    cue.putOnTable()
+    expect(cue).not.to.be.visible
+
+  it 'is invisible when not on the table and owner is not the viewer', ->
+    cue = createCue Player.createNonViewingPlayer new Account 669, "The Devil's even more distant cousin"
+    cue.retreatFromTable()
+    expect(cue).not.to.be.visible

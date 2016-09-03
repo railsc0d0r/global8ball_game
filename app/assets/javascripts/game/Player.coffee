@@ -25,3 +25,10 @@ class global8ball.Player
 # @return {global8ball.Player}
 global8ball.Player.createViewingPlayer = (account) ->
   new global8ball.Player account, true
+
+# Creates a player which is not a viewer.
+#
+# @param {global8ball.Account} account
+# @return {global8ball.Player}
+global8ball.Player.createNonViewingPlayer = (account) ->
+  new global8ball.Player account, false
