@@ -26,16 +26,6 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @cues.player1.aimAt x: @white1.position.x + 10, y: @white1.position.y
     @cues.player2.aimAt x: @white2.position.x + 10, y: @white2.position.y
 
-  # Sets the initial state of the cue, according to the owner being one of the
-  # current players or not.
-  #
-  # @param {global8ball.Cue} cue
-  setInitialCueState: (cue) ->
-    if @currentPlayers.contains cue.getOwner()
-      cue.putOnTable()
-    else
-      cue.retreatFromTable()
-
   getPhysicsGroupSpecs: () ->
     specs = super()
     specs.white1 =

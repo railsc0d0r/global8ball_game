@@ -28,6 +28,16 @@ class global8ball.PlayState extends global8ball.FullState
     @cues.player1.initStates()
     @cues.player2.initStates()
 
+  # Sets the initial state of the cue, according to the owner being one of the
+  # current players or not.
+  #
+  # @param {global8ball.Cue} cue
+  setInitialCueState: (cue) ->
+    if @currentPlayers.contains cue.getOwner()
+      cue.putOnTable()
+    else
+      cue.retreatFromTable()
+
   getPhysicsGroupSpecs: () ->
     specs = super()
     specs.cue1 =
