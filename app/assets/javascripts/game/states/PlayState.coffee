@@ -82,7 +82,7 @@ class global8ball.PlayState extends global8ball.FullState
   # Returns the cue which belongs to player with ID playerId or null if none
   # such cue exists.
   getCueByPlayer: (playerId) ->
-    cues = [@cues.player1, @cues.player2].filter (cue) -> cue.player.getId() is playerId
+    cues = [@cues.player1, @cues.player2].filter (cue) -> cue.getOwner().getId() is playerId
     if cues.length > 0
       cues[0]
     else
