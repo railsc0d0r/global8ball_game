@@ -25,8 +25,6 @@ class global8ball.PlayState extends global8ball.FullState
     @world.bringToTop @spriteGroups.cues
     @cues.player1.setOwner @players.getFirst()
     @cues.player2.setOwner @players.getSecond()
-    if @players.viewerPlays()
-      @cues.player1.belongsToViewer()
     @cues.player1.initStates()
     @cues.player2.initStates()
 

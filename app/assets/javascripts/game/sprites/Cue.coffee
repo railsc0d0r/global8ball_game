@@ -24,17 +24,12 @@ class global8ball.Cue extends Phaser.Sprite
     super game, x, y, key, frame
     @states = {}
     @keyOfCurrentState = STATES.INITIAL # A lie!
-    @visibleWhenReady = no
-
-  # This cue belongs to the viewer.
-  belongsToViewer: ->
-    @visibleWhenReady = yes
 
   # Initializes the various cue states.
   initStates: ->
     @states[STATES.INITIAL] = new InitialState @
     @states[STATES.READY] =
-      if @visibleWhenReady
+      if @owner.isViewer()
         new ReadyToShootOnTableState @
       else
         new ReadyToShootAwayFromTableState @
