@@ -12,11 +12,10 @@ module Dummy
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.encoding = "utf-8"
 
     # Tells backend to automatically export translations and i18n-js
     config.middleware.use I18n::JS::Middleware
     I18n.available_locales = [ :de, :en, :es, :fr, :hi, :ru, :zh ]
-
   end
 end
-
