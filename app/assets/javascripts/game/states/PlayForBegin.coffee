@@ -1,4 +1,5 @@
 #= require game/config/Balls
+#= require game/config/CurrentPlayers
 #= require game/sprites/Ball
 #= require game/prolog
 #= require game/states/PlayState
@@ -10,6 +11,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     super gameConfig, players, events
 
   initGameState: (gameState) ->
+    @currentPlayers = new global8ball.config.CurrentPlayers gameState.current_players
     super gameState
 
   create: ->
