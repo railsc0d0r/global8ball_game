@@ -61,3 +61,10 @@ describe 'Cue', ->
     cue.shoot new Shot user_id: 671, strength: 1, angle: 0
     cue.retreatFromTable()
     expect(cue).not.to.be.visible
+
+  it 'ignores shots not done by the ower', ->
+    cue = createCue Player.createNonViewingPlayer new Account 42, "Mouse"
+    cue.putOnTable()
+    cue.shoot new Shot user_id: 43, strength: 1, angle: 0
+    expect(cue.body.velocity.mx).to.equal 0
+    expect(cue.body.velocity.my).to.equal 0
