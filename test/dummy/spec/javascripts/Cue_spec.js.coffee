@@ -21,14 +21,14 @@ describe 'Cue', ->
 
   it 'is visible when on the table and owner is viewer', ->
     cue = createCue()
-    cue.setOwner new Player(new Account(666, 'The Devil'), true)
+    cue.setOwner Player.createViewingPlayer new Account 666, 'The Devil'
     cue.initStates()
     cue.putOnTable()
     expect(cue.visible).to.be.ok
 
   it 'is invisible when not on the table and owner is viewer', ->
     cue = createCue()
-    cue.setOwner new Player(new Account(667, "The Devil's Neighbour"), true)
+    cue.setOwner Player.createViewingPlayer new Account 667, "The Devil's Neighbour"
     cue.initStates()
     cue.retreatFromTable()
     expect(cue.visible).to.not.be.ok
