@@ -4,6 +4,7 @@
 Account = global8ball.Account
 Cue = global8ball.Cue
 Player = global8ball.Player
+Shot = global8ball.Shot
 
 describe 'Cue', ->
 
@@ -45,5 +46,18 @@ describe 'Cue', ->
 
   it 'is invisible when not on the table and owner is not the viewer', ->
     cue = createCue Player.createNonViewingPlayer new Account 669, "The Devil's even more distant cousin"
+    cue.retreatFromTable()
+    expect(cue).not.to.be.visible
+
+  it 'is visible when shooting, even if owner is not the viewer', ->
+    cue = createCue Player.createNonViewingPlayer new Account 670, "The Devil's random relative"
+    cue.putOnTable()
+    cue.shoot new Shot user_id: 670, strength: 1, angle: 0
+    expect(cue).to.be.visible
+
+  it 'is invisible after shooting, then retrating from table, even for the viewer', ->
+    cue = createCue Player.createViewingPlayer new Account 671, "The Devil's very distant friend"
+    cue.putOnTable()
+    cue.shoot new Shot user_id: 671, strength: 1, angle: 0
     cue.retreatFromTable()
     expect(cue).not.to.be.visible
