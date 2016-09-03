@@ -15,6 +15,7 @@ class global8ball.PlayState extends global8ball.FullState
 
   initGameState: (gameState) ->
     @ballsConfig = new global8ball.config.Balls gameState.balls
+    @currentPlayers = new global8ball.config.CurrentPlayers gameState.current_players
 
   create: ->
     super()
