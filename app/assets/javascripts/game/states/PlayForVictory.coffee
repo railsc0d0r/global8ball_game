@@ -19,7 +19,6 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     @createWhiteBall()
     @createPlayBalls()
     @createBlackBall()
-    @world.bringToTop @spriteGroups.cues
     @cues.player1.setTargetBall @white
     @cues.player2.setTargetBall @white
     @cues.player1.putOnTable()
