@@ -12,7 +12,7 @@ module Global8ballGame
       expect(@config).to be_an_instance_of(Hash)
     end
 
-    it "the same config-snippet as a json-string" do
+    it "provides the same config-snippet as a json-string" do
       expect(@table_config.config_json).to be_an_instance_of(String)
       expect(JSON.parse(@table_config.config_json).deep_symbolize_keys).to eq(@table_config.config)
     end
