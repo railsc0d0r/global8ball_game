@@ -31,10 +31,12 @@ module Global8ballGame
 
     it "provides a value for border_bounce" do
       expect(@config.key?(:border_bounce)).to be_truthy
+      expect(@config[:border_bounce]).to be_a_kind_of Numeric
     end
 
     it "provides a value for cue_hardness" do
       expect(@config.key?(:cue_hardness)).to be_truthy
+      expect(@config[:cue_hardness]).to be_a_kind_of Numeric
     end
   end
 end
