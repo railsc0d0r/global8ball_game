@@ -9,11 +9,11 @@ class Game < ApplicationRecord
 
     players_config = {
       player_1: {
-        user_id: game.player_1.user_id,
+        user_id: game.player_1.id,
         name: game.player_1.name
       },
       player_2: {
-        user_id: game.player_2.user_id,
+        user_id: game.player_2.id,
         name: game.player_2.name
       }
     }
