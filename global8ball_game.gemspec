@@ -35,4 +35,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "byebug"
   s.add_development_dependency "puma"
   s.add_development_dependency "redis"
+  s.add_development_dependency "factory_girl"
+  s.add_development_dependency "database_cleaner"
 end
