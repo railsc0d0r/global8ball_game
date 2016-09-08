@@ -16,4 +16,17 @@ if defined?(Konacha)
       false
     end
   end
+
+  # Patches Konacha to run headlessly
+  module Konacha
+    require 'headless'
+    class << self
+      def run
+        Headless.ly do
+          self.mode = :runner
+          Konacha::Runner.start
+        end
+      end
+    end
+  end
 end
