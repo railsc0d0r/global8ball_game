@@ -18,11 +18,11 @@ module Global8ballGame
     end
 
     it "provides the cue-mass as 0.7kg" do
-      expect(@config[:cue_mass]).to be(0.7)
+      expect(@config[:cue_mass]).to eq 0.7
     end
 
     it "provides the factor to convert meters into px and vice versa as 377.95" do
-      expect(@config[:scaling_factor]).to be(377.95)
+      expect(@config[:scaling_factor]).to eq 377.95
     end
 
     it "provides a damping-factor between 0.12 and 0.22 to add a little randomness to each table" do
