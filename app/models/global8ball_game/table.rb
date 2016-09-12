@@ -28,6 +28,7 @@ module Global8ballGame
     end
 
     def initialize_last_state state
+      body_type = "ball"
       damping = @config['table']['damping']
 
       state['balls'].each do |ball|
@@ -50,7 +51,7 @@ module Global8ballGame
         shape.collisionGroup = BALL
         shape.collisionMask = BALL_COLLIDES_WITH
 
-        body = create_body key, body_options, shape
+        body = create_body body_type, key, body_options, shape
         body.damping = damping
         body.owner = owner
 
@@ -70,6 +71,7 @@ module Global8ballGame
     private
 
     def initialize_borders borders_config
+      body_type = "border"
       borders_config.keys.each do |key|
         border_config = borders_config[key]
         body_options = {
@@ -87,12 +89,13 @@ module Global8ballGame
         shape.collisionGroup = BORDER
         shape.collisionMask = BORDER_COLLIDES_WITH
 
-        body = create_body key, body_options, shape
+        body = create_body body_type, key, body_options, shape
         @world.addBody body
       end
     end
 
     def initialize_holes holes_config
+      body_type = "hole"
       holes_config.keys.each do |key|
         hole_config = holes_config[key]
 
@@ -108,13 +111,14 @@ module Global8ballGame
         shape.collisionGroup = HOLE
         shape.collisionMask = HOLE_COLLIDES_WITH
 
-        body = create_body key, body_options, shape
+        body = create_body body_type, key, body_options, shape
         @world.addBody body
       end
     end
 
-    def create_body key, options, shape
+    def create_body body_type, key, options, shape
       body = P2PhysicsWrapper::P2.Body.new options
+      body.body_type = body_type
       body.key = key
       body.addShape shape
       body
