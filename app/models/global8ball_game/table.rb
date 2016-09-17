@@ -54,15 +54,21 @@ module Global8ballGame
         body = create_body body_type, key, body_options, shape
         body.damping = damping
         body.owner = owner
+        body.ball_type = ball['type']
 
         @world.addBody body
       end
     end
 
     def shoot shot
-      time_step = 1 / 600
+      fixed_time_step = 1 / 60
+      velocity = [shot['velocity']['x'],shot['velocity']['y']]
+      user_id = shot['user_id']
+
+      set_breakball_velocity user_id, velocity
+
       until everything_stopped do
-        @world.step(time_step)
+        @world.step(fixed_time_step)
         # check collisions and rules
       end
       # return result_set
@@ -114,6 +120,13 @@ module Global8ballGame
         body = create_body body_type, key, body_options, shape
         @world.addBody body
       end
+    end
+
+    def set_breakball_velocity user_id, velocity
+      breakball =@world.bodies.select {|b| b.body_type == 'ball'}
+                   .select {|b| b.ball_type == 'breakball' && b.owner == user_id}
+                   .first
+      breakball.velocity = velocity
     end
 
     def create_body body_type, key, options, shape
