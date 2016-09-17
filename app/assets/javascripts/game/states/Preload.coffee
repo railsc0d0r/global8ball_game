@@ -24,7 +24,7 @@ class global8ball.Preload extends Phaser.State
     cue:                   'cue'
     hole:                  'hole'
     redBall:               'red_ball'
-    sliderTrackActive:     'ui_elements/slider-track_active'
+    forceStrength:         'ui_elements/slider-track_active'
     sliderTrackBackground: 'ui_elements/slider-track-bg'
     sliderTrackInactive:   'ui_elements/slider-track_inactive'
     table:                 'table_pool_without_background'
@@ -36,10 +36,6 @@ class global8ball.Preload extends Phaser.State
       url: 'ui_elements/pointer-crosshair_combined'
       width: 15
       height: 15
-    forceStrength:
-      url: 'ui_elements/slider-track_active'
-      width: 33
-      height: 34
     lessenForce:
       url: 'ui_elements/slider-track-minus_combined'
       width: 52
