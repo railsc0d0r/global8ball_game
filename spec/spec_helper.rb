@@ -152,10 +152,10 @@ def initial_state player_1, player_2, stage_name="PlayForBegin", breaker=nil
   }
 
   if stage_name == 'PlayForBegin'
-    state[:balls][0][:owner] = player_1
-    state[:balls][1][:owner] = player_2
-    current_players[:current_players] << { user_id: player_1}
-    current_players[:current_players] << { user_id: player_2}
+    state[:balls][0][:owner] = player_1.id
+    state[:balls][1][:owner] = player_2.id
+    current_players[:current_players] << { user_id: player_1.id}
+    current_players[:current_players] << { user_id: player_2.id}
   end
 
   if stage_name == 'PlayForVictory'
