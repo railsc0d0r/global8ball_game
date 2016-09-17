@@ -23,7 +23,7 @@ module Global8ballGame
       state = initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
-      expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 2
+      expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
