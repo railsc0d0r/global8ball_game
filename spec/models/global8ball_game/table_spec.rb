@@ -39,5 +39,22 @@ module Global8ballGame
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
     end
+
+    it "evaluates a shot given by frontend" do
+      shot = {
+        user_id: @players[:player_1].id,
+        velocity: {
+          x: 2,
+          y: 0
+        }
+      }
+      shot.deep_stringify_keys!
+
+      state = initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+      @table.shoot shot
+
+    end
   end
 end
