@@ -111,6 +111,9 @@ module Global8ballGame
         self.config(state).to_json
       end
 
+      def breakball_mass
+        @mass
+      end
     end
   end
 end
