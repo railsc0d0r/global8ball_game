@@ -17,8 +17,8 @@ module Global8ballGame
       expect(JSON.parse(@table_config.config_json).deep_symbolize_keys).to eq(@table_config.config)
     end
 
-    it "provides the cue-mass as 0.7kg" do
-      expect(@config[:cue_mass]).to eq 0.7
+    it "provides the max-breakball-speed as computed from max-cue-speed, cue-mass and ball-mass" do
+      expect(@config[:max_breakball_speed]).to eq 22.59105882352941
     end
 
     it "provides the factor to convert meters into px and vice versa as 377.95" do
@@ -32,11 +32,6 @@ module Global8ballGame
     it "provides a value for border_bounce" do
       expect(@config.key?(:border_bounce)).to be_truthy
       expect(@config[:border_bounce]).to be_a_kind_of Numeric
-    end
-
-    it "provides a value for cue_hardness" do
-      expect(@config.key?(:cue_hardness)).to be_truthy
-      expect(@config[:cue_hardness]).to be_a_kind_of Numeric
     end
   end
 end
