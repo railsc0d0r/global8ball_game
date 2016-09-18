@@ -61,15 +61,18 @@ module Global8ballGame
     end
 
     def shoot shot
-      fixed_time_step = 1 / 60
+      fixed_time_step = 0.01
       velocity = [shot['velocity']['x'],shot['velocity']['y']]
       user_id = shot['user_id']
 
       set_breakball_velocity user_id, velocity
+      @everything_stopped = false
 
-      until everything_stopped do
+      # check collisions and rules
+      @world.on('postStep', Proc.new { postStep })
+
+      until @everything_stopped do
         @world.step(fixed_time_step)
-        # check collisions and rules
       end
       # return result_set
     end
