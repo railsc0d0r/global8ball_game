@@ -123,10 +123,34 @@ module Global8ballGame
     end
 
     def set_breakball_velocity user_id, velocity
-      breakball =@world.bodies.select {|b| b.body_type == 'ball'}
+      breakball = @world.bodies.select {|b| b.body_type == 'ball'}
                    .select {|b| b.ball_type == 'breakball' && b.owner == user_id}
                    .first
       breakball.velocity = velocity
+    end
+
+    def postStep
+      puts "After step:"
+      puts "World-time: #{@world.time}"
+      show_ball_specs
+      check_velocity
+    end
+
+    def show_ball_specs
+      @world.bodies.select {|b| b.body_type == 'ball'}.each do |ball|
+        puts "ball #{ball.key} -> vx: #{ball.velocity[0]} vy: #{ball.velocity[1]} x: #{ball.position[0]} y: #{ball.position[1]}"
+      end
+      puts "---------------------------------------------------------------------------------------------------"
+    end
+
+    def check_velocity
+      everything_stopped = true
+      min_speed = 0.00001
+      @world.bodies.select {|b| b.body_type == 'ball'}.each do |ball|
+        everything_stopped = false if ball.velocity[0].abs > min_speed || ball.velocity[1].abs > min_speed
+      end
+
+      @everything_stopped = everything_stopped
     end
 
     def create_body body_type, key, options, shape
