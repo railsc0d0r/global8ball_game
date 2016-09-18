@@ -3,7 +3,7 @@
 #
 module Global8ballGame
   class Table
-    attr_reader :world, :config
+    attr_reader :world, :config, :everything_stopped
 
     BORDER = 2 ** 2
     HOLE = 2 ** 3
@@ -145,8 +145,5 @@ module Global8ballGame
       P2PhysicsWrapper::P2.Circle.new({ radius: radius })
     end
 
-    def everything_stopped
-      true
-    end
   end
 end
