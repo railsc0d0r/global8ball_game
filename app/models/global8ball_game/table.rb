@@ -71,11 +71,17 @@ module Global8ballGame
       @everything_stopped = false
 
       # check collisions and rules
+      @world.on('beginContact', Proc.new { |world| checkCollisions world.beginContactEvent })
+      @world.on('endContact', Proc.new { |world| checkCollisions world.endContactEvent })
       @world.on('postStep', Proc.new { postStep })
 
       until @everything_stopped do
         @world.step(fixed_time_step)
       end
+
+      puts "Finished stepping."
+      puts "World-time: #{@world.time}"
+      show_ball_specs
       # return result_set
     end
 
