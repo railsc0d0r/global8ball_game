@@ -63,7 +63,7 @@ module Global8ballGame
     end
 
     def shoot shot
-      fixed_time_step = 0.01
+      fixed_time_step = 0.0025
       velocity = [shot['velocity']['x'],shot['velocity']['y']]
       user_id = shot['user_id']
 
