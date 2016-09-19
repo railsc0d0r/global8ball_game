@@ -53,6 +53,8 @@ module Global8ballGame
 
         body = create_body body_type, key, body_options, shape
         body.damping = damping
+        body.ccdSpeedThreshold = 1
+        body.ccdIterations = 2
         body.owner = owner
         body.ball_type = ball['type']
 
