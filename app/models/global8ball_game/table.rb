@@ -134,10 +134,21 @@ module Global8ballGame
       breakball.velocity = velocity
     end
 
-    def postStep
-      puts "After step:"
+    def checkCollisions contact_event
+      bodyA = contact_event.bodyA
+      bodyB = contact_event.bodyB
+      puts "#{contact_event.type}:"
       puts "World-time: #{@world.time}"
-      show_ball_specs
+      puts "#{bodyA.body_type} #{bodyA.key} collides with #{bodyB.body_type} #{bodyB.key} "
+      puts "bodyA #{bodyA.key} -> vx: #{bodyA.velocity[0]} vy: #{bodyA.velocity[1]} x: #{bodyA.position[0]} y: #{bodyA.position[1]}"
+      puts "bodyB #{bodyB.key} -> vx: #{bodyB.velocity[0]} vy: #{bodyB.velocity[1]} x: #{bodyB.position[0]} y: #{bodyB.position[1]}"
+      puts "---------------------------------------------------------------------------------------------------"
+    end
+
+    def postStep
+      # puts "After step:"
+      # puts "World-time: #{@world.time}"
+      # show_ball_specs
       check_velocity
     end
 
