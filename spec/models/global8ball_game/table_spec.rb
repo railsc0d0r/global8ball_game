@@ -44,7 +44,7 @@ module Global8ballGame
       shot = {
         user_id: @players[:player_1].id,
         velocity: {
-          x: 2,
+          x: @config['table']['max_breakball_speed'],
           y: 0
         }
       }
