@@ -161,7 +161,7 @@ module Global8ballGame
 
     def check_velocity
       everything_stopped = true
-      min_speed = 0.00001
+      min_speed = 0.00000001
       @world.bodies.select {|b| b.body_type == 'ball'}.each do |ball|
         everything_stopped = false if ball.velocity[0].abs > min_speed || ball.velocity[1].abs > min_speed
       end
