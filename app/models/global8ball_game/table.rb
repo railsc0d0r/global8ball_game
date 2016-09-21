@@ -39,7 +39,7 @@ module Global8ballGame
         mass = ball['mass']
         radius = ball['radius']
         x = ball['position']['x']
-        y = ball['position']['y']
+        y = -ball['position']['y']
 
         body_options = {
           mass: mass,
