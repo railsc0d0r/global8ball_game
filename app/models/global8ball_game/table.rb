@@ -150,8 +150,8 @@ module Global8ballGame
       puts "#{contact_event.type}:"
       puts "World-time: #{@world.time}"
       puts "#{bodyA.body_type} #{bodyA.key} collides with #{bodyB.body_type} #{bodyB.key} "
-      puts "bodyA #{bodyA.key} -> vx: #{bodyA.velocity[0]} vy: #{bodyA.velocity[1]} x: #{bodyA.position[0]} y: #{bodyA.position[1]}"
-      puts "bodyB #{bodyB.key} -> vx: #{bodyB.velocity[0]} vy: #{bodyB.velocity[1]} x: #{bodyB.position[0]} y: #{bodyB.position[1]}"
+      puts "bodyA #{bodyA.body_type} #{bodyA.key} -> vx: #{bodyA.velocity[0]} vy: #{bodyA.velocity[1]} x: #{bodyA.position[0]} y: #{bodyA.position[1]}"
+      puts "bodyB #{bodyB.body_type} #{bodyB.key} -> vx: #{bodyB.velocity[0]} vy: #{bodyB.velocity[1]} x: #{bodyB.position[0]} y: #{bodyB.position[1]}"
       puts "---------------------------------------------------------------------------------------------------"
     end
 
