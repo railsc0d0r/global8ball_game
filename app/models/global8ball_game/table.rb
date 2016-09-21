@@ -23,6 +23,8 @@ module Global8ballGame
       }
       @world = P2PhysicsWrapper::P2.World.new world_options
 
+      add_contact_materials
+
       initialize_borders @config['borders']
       initialize_holes @config['holes']
     end
