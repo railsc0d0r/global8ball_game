@@ -175,6 +175,17 @@ module Global8ballGame
       @everything_stopped = everything_stopped
     end
 
+    def add_contact_materials
+      @ball_material = P2PhysicsWrapper::P2.Material.new
+      @border_material = P2PhysicsWrapper::P2.Material.new
+
+      ball_border_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @border_material, { restitution: 0.9, stiffness: Float::INFINITY }
+      @world.addContactMaterial ball_border_contact_material
+
+      ball_ball_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @ball_material, { restitution: 0.98, stiffness: Float::INFINITY }
+      @world.addContactMaterial ball_ball_contact_material
+    end
+
     def create_body body_type, key, options, shape
       body = P2PhysicsWrapper::P2.Body.new options
       body.body_type = body_type
