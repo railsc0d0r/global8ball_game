@@ -208,5 +208,8 @@ module Global8ballGame
       P2PhysicsWrapper::P2.Circle.new({ radius: radius })
     end
 
+    def line length
+      P2PhysicsWrapper::P2.Line.new({ length: length })
+    end
   end
 end
