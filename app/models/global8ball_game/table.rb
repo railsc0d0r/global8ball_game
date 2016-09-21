@@ -52,6 +52,7 @@ module Global8ballGame
         shape = circle radius
         shape.collisionGroup = BALL
         shape.collisionMask = BALL_COLLIDES_WITH
+        shape.material = @ball_material
 
         body = create_body body_type, key, body_options, shape
         body.damping = damping
@@ -107,6 +108,7 @@ module Global8ballGame
         shape = convex vertices
         shape.collisionGroup = BORDER
         shape.collisionMask = BORDER_COLLIDES_WITH
+        shape.material = @border_material
 
         body = create_body body_type, key, body_options, shape
         @world.addBody body
