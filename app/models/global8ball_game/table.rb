@@ -119,10 +119,12 @@ module Global8ballGame
       body_type = "hole"
       holes_config.keys.each do |key|
         hole_config = holes_config[key]
+        x = hole_config['x']
+        y = -hole_config['y']
 
         body_options = {
           mass:0,
-          position: [hole_config['x'], -hole_config['y']],
+          position: [x, y],
           angle: 0,
           velocity: [0, 0],
           angularVelocity: 0
