@@ -9,7 +9,7 @@ module Global8ballGame
       @xWidth=@halfWidth
       @yWidth=@quarterWidth
 
-      @real_radius=0.047625347        # 22px
+      @real_radius=0.047625347        # 18px
       @ball_radius=0.0291             # 11px
       @radius = @real_radius - @ball_radius
 
