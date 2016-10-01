@@ -1,4 +1,7 @@
 module Global8ballGame
-  class TimeOutEvent < Event
+  class ShotclockTimeOutEvent < Event
+    def initialize payload={}
+      super
+    end
   end
 end
