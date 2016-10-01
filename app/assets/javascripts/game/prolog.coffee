@@ -1,3 +1,5 @@
+#= require game/p2
+#= require game/pixi
 #= require game/phaser
 
 # window for Browser
