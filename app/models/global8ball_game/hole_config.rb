@@ -16,6 +16,8 @@ module Global8ballGame
       @cushionWidth=0.0582
       @cushionWidthHalf=0.0291
 
+      @center_correction = -0.002645853 # 1px to the left
+
       @definition = {
         holes:
           {
@@ -33,7 +35,7 @@ module Global8ballGame
               },
             centerBottom:
               {
-                x: 0,
+                x: 0 + @center_correction,
                 y: @yWidth + @cushionWidth,
                 radius: @radius
               },
@@ -51,7 +53,7 @@ module Global8ballGame
               },
             centerTop:
               {
-                x: 0,
+                x: 0 + @center_correction,
                 y: -( @yWidth + @cushionWidth ),
                 radius: @radius
               }
