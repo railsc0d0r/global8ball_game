@@ -3,8 +3,26 @@ require 'rails_helper'
 module Global8ballGame
   RSpec.describe CollisionEvent, type: :model do
     before do
-      @body_a = P2PhysicsWrapper::P2.Body.new
-      @body_b = P2PhysicsWrapper::P2.Body.new
+      body_type = "ball"
+      key = 1
+      body_options = {
+        mass: 0.7,
+        position: [0, 0],
+        angle: 0,
+        velocity: [0, 0],
+        angularVelocity: 0
+      }
+
+      @ball_a = create_body body_type, key, body_options
+      @ball_a.ball_type = "breakball"
+
+      key = 2
+      @ball_b = create_body body_type, key, body_options
+      @ball_b.ball_type = "playball"
+
+      key = 3
+      @ball_c = create_body body_type, key, body_options
+      @ball_c.ball_type = "8ball"
     end
 
     it "can be initialized w/ given payload" do
@@ -16,14 +34,25 @@ module Global8ballGame
     end
 
     it "checks if payload contains two p2-bodies" do
-      expect {CollisionEvent.new body_a: "Body A", body_b: @body_b}.to raise_error "Body A is not a p2-body."
-      expect {CollisionEvent.new body_a: @body_a, body_b: "Body B"}.to raise_error "Body B is not a p2-body."
+      expect {CollisionEvent.new body_a: "Body A", body_b: @ball_b}.to raise_error "Following bodies are not p2-bodies: body a."
+      expect {CollisionEvent.new body_a: @ball_a, body_b: "Body B"}.to raise_error "Following bodies are not p2-bodies: body b."
+      expect {CollisionEvent.new body_a: "Body A", body_b: "Body B"}.to raise_error "Following bodies are not p2-bodies: body a, body b."
     end
 
     it "stores given bodies in instance-vars and provides setters to access them" do
-      ce = CollisionEvent.new body_a: @body_a, body_b: @body_b
-      expect(ce.body_a).to be @body_a
-      expect(ce.body_b).to be @body_b
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
+      expect(ce.body_a).to be @ball_a
+      expect(ce.body_b).to be @ball_b
+    end
+
+    it "checks the event contains a breakball" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
+      expect(ce.contains_breakball).to be_truthy
+    end
+
+    it "checks the event contains the 8ball" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_c
+      expect(ce.contains_8ball).to be_truthy
     end
   end
 end
