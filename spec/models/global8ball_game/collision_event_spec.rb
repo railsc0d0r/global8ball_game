@@ -19,5 +19,11 @@ module Global8ballGame
       expect {CollisionEvent.new body_a: "Body A", body_b: @body_b}.to raise_error "Body A is not a p2-body."
       expect {CollisionEvent.new body_a: @body_a, body_b: "Body B"}.to raise_error "Body B is not a p2-body."
     end
+
+    it "stores given bodies in instance-vars and provides setters to access them" do
+      ce = CollisionEvent.new body_a: @body_a, body_b: @body_b
+      expect(ce.body_a).to be @body_a
+      expect(ce.body_b).to be @body_b
+    end
   end
 end
