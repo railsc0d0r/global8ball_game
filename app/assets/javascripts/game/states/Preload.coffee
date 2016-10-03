@@ -25,6 +25,7 @@ class global8ball.Preload extends Phaser.State
     hole:                  'hole'
     redBall:               'red_ball'
     forceStrength:         'ui_elements/slider-track_active'
+    ballShadow:            'shadow_ball'
     sliderTrackBackground: 'ui_elements/slider-track-bg'
     sliderTrackInactive:   'ui_elements/slider-track_inactive'
     table:                 'table_pool_without_background'
