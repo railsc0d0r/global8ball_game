@@ -54,5 +54,10 @@ module Global8ballGame
       ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_c
       expect(ce.contains_8ball).to be_truthy
     end
+
+    it "checks the event contains two balls" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
+      expect(ce.contains_two_balls).to be_truthy
+    end
   end
 end
