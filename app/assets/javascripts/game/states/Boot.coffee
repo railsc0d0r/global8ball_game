@@ -19,3 +19,5 @@ class global8ball.Boot extends Phaser.State
     @physics.startSystem Phaser.Physics.P2JS
     @physics.p2.restitution = 0.99999
     @physics.p2.setImpactEvents on
+    @physics.p2.world.solver.tolerance = 0
+    @physics.p2.world.solver.iterations = 1000
