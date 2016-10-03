@@ -4,3 +4,5 @@ development: &development
   url: redis://localhost:7779/1
 
 test: *development
+
+production: *development
