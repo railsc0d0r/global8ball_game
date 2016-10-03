@@ -20,9 +20,6 @@ class global8ball.FullState extends Phaser.State
     @physicsGroups = {}
 
   create: ->
-    @physics.startSystem Phaser.Physics.P2JS
-    @physics.p2.restitution = 0.99999
-    @physics.p2.setImpactEvents on
     @createSpriteGroups()
     @createCollisionGroups()
     @createPhysicsGroups()

@@ -16,3 +16,6 @@ class global8ball.Boot extends Phaser.State
     @game.state.start 'Preload'
     @game.scale.setGameSize 1200, 800
     @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+    @physics.startSystem Phaser.Physics.P2JS
+    @physics.p2.restitution = 0.99999
+    @physics.p2.setImpactEvents on
