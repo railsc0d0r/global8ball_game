@@ -117,6 +117,8 @@ class global8ball.PlayState extends global8ball.FullState
       body.addCircle radius, offsetX, offsetY, rotation
       body.damping = @gameConfig.config.tableDamping
       body.mass = ballConfig.mass
+      body.ccdSpeedThreshold = 1
+      body.ccdIterations = 1000
 
     config = data: ballConfig
     if spriteKey
