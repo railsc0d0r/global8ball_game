@@ -11,5 +11,7 @@
 // about supported directives.
 //
 //= require global8ball_game/game_assets.js
-//= require_tree ../thirdparty
+//= require ../thirdparty/p2.js
+//= require ../thirdparty/pixi.js
+//= require ../thirdparty/phaser.js
 //= require_tree ../game
