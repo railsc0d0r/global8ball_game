@@ -188,3 +188,11 @@ def initial_state player_1, player_2, stage_name="PlayForBegin", breaker=nil
 
   state
 end
+
+def create_body body_type, key, options, shape = nil
+  body = P2PhysicsWrapper::P2.Body.new options
+  body.body_type = body_type
+  body.key = key
+  body.addShape shape unless shape.nil?
+  body
+end
