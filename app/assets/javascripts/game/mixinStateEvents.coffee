@@ -1,4 +1,3 @@
-#= require game/phaser
 #= require game/prolog
 
 # All relevant state events.

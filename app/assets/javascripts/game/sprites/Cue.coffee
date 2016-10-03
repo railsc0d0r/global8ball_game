@@ -1,5 +1,4 @@
 #= require game/prolog
-#= require game/phaser
 
 # Represents a cue. A cue is always bound to a player (therefore there are always
 # exactly two cues, one for each player).
