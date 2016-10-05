@@ -133,5 +133,14 @@ module Global8ballGame
       ce = CollisionEvent.new body_a: @ball_b, body_b: @right_top_hole
       expect(ce.eightball_falls_into_a_hole).to be_falsy
     end
+
+    it "checks if the breakball crosses the center-line" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
+      expect(ce.breakball_crosses_center_line).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_b, body_b: @center_line
+      expect(ce.breakball_crosses_center_line).to be_falsy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
+      expect(ce.breakball_crosses_center_line).to be_falsy
+    end
   end
 end
