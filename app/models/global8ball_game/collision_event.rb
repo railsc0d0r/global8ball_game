@@ -27,6 +27,11 @@ module Global8ballGame
       @body_a.body_type == "ball" && @body_b.body_type == "ball"
     end
 
+    def contains_center_line
+      (@body_a.body_type == "line" && @body_a.key == "center") ||
+      (@body_b.body_type == "line" && @body_b.key == "center")
+    end
+
     private
 
     def is_p2_body obj
