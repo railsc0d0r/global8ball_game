@@ -53,6 +53,10 @@ module Global8ballGame
       ball_falls_into_a_hole && contains_breakball
     end
 
+    def eightball_falls_into_a_hole
+      ball_falls_into_a_hole && contains_8ball
+    end
+
     private
 
     def is_p2_body obj
