@@ -124,5 +124,14 @@ module Global8ballGame
       ce = CollisionEvent.new body_a: @ball_b, body_b: @right_top_hole
       expect(ce.breakball_falls_into_a_hole).to be_falsy
     end
+
+    it "checks if the 8ball falls into a hole" do
+      ce = CollisionEvent.new body_a: @ball_c, body_b: @right_top_hole
+      expect(ce.eightball_falls_into_a_hole).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_c, body_b: @right_border
+      expect(ce.eightball_falls_into_a_hole).to be_falsy
+      ce = CollisionEvent.new body_a: @ball_b, body_b: @right_top_hole
+      expect(ce.eightball_falls_into_a_hole).to be_falsy
+    end
   end
 end
