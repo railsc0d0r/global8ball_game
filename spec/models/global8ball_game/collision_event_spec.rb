@@ -60,16 +60,24 @@ module Global8ballGame
     it "checks if the event contains a breakball" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
       expect(ce.contains_breakball).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_a
+      expect(ce.contains_breakball).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_b, body_b: @ball_c
+      expect(ce.contains_breakball).to be_falsy
     end
 
     it "checks if the event contains the 8ball" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_c
       expect(ce.contains_8ball).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
+      expect(ce.contains_8ball).to be_falsy
     end
 
     it "checks if the event contains two balls" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
       expect(ce.contains_two_balls).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
+      expect(ce.contains_two_balls).to be_falsy
     end
 
     it "checks if the event contains only one ball" do
@@ -83,16 +91,22 @@ module Global8ballGame
     it "checks if the event contains the center line" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
       expect(ce.contains_center_line).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
+      expect(ce.contains_center_line).to be_falsy
     end
 
     it "checks if the event contains the right border" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
       expect(ce.contains_right_border).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_top_hole
+      expect(ce.contains_right_border).to be_falsy
     end
 
     it "checks if the event contains a hole" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @right_top_hole
       expect(ce.contains_hole).to be_truthy
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
+      expect(ce.contains_hole).to be_falsy
     end
 
     it "checks if a ball falls into a hole" do
