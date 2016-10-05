@@ -72,6 +72,14 @@ module Global8ballGame
       expect(ce.contains_two_balls).to be_truthy
     end
 
+    it "checks if the event contains only one ball" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
+      expect(ce.contains_one_ball).to be_truthy
+
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
+      expect(ce.contains_one_ball).to be_falsy
+    end
+
     it "checks if the event contains the center line" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
       expect(ce.contains_center_line).to be_truthy
