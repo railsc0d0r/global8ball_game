@@ -45,6 +45,10 @@ module Global8ballGame
       (@body_a.body_type == "hole") ^ (@body_b.body_type == "hole")
     end
 
+    def ball_goes_into_a_hole
+      contains_one_ball && contains_hole
+    end
+
     private
 
     def is_p2_body obj
