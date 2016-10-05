@@ -32,6 +32,11 @@ module Global8ballGame
       (@body_b.body_type == "line" && @body_b.key == "center")
     end
 
+    def contains_right_border
+      (@body_a.body_type == "border" && @body_a.key == "right") ||
+      (@body_b.body_type == "border" && @body_b.key == "right")
+    end
+
     private
 
     def is_p2_body obj
