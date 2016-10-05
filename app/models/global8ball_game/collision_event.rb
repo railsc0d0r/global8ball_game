@@ -19,7 +19,7 @@ module Global8ballGame
     end
 
     def contains_8ball
-      (@body_a.body_type == "ball" && @body_a.ball_type == "8ball") ||
+      (@body_a.body_type == "ball" && @body_a.ball_type == "8ball") ^
       (@body_b.body_type == "ball" && @body_b.ball_type == "8ball")
     end
 
@@ -28,13 +28,17 @@ module Global8ballGame
     end
 
     def contains_center_line
-      (@body_a.body_type == "line" && @body_a.key == "center") ||
+      (@body_a.body_type == "line" && @body_a.key == "center") ^
       (@body_b.body_type == "line" && @body_b.key == "center")
     end
 
     def contains_right_border
-      (@body_a.body_type == "border" && @body_a.key == "right") ||
+      (@body_a.body_type == "border" && @body_a.key == "right") ^
       (@body_b.body_type == "border" && @body_b.key == "right")
+    end
+
+    def contains_hole
+      (@body_a.body_type == "hole") ^ (@body_b.body_type == "hole")
     end
 
     private
