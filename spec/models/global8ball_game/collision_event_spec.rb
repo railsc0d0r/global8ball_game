@@ -27,6 +27,10 @@ module Global8ballGame
       key = "center"
       body_type = "line"
       @center_line = create_body body_type, key, body_options
+
+      key = "right"
+      body_type = "border"
+      @right_border = create_body body_type, key, body_options
     end
 
     it "can be initialized w/ given payload" do
@@ -67,6 +71,11 @@ module Global8ballGame
     it "checks if the event contains the center line" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
       expect(ce.contains_center_line).to be_truthy
+    end
+
+    it "checks if the event contains the right border" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
+      expect(ce.contains_right_border).to be_truthy
     end
   end
 end
