@@ -31,6 +31,10 @@ module Global8ballGame
       key = "right"
       body_type = "border"
       @right_border = create_body body_type, key, body_options
+
+      key = "rightTop"
+      body_type = "hole"
+      @right_top_hole = create_body body_type, key, body_options
     end
 
     it "can be initialized w/ given payload" do
@@ -76,6 +80,11 @@ module Global8ballGame
     it "checks if the event contains the right border" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @right_border
       expect(ce.contains_right_border).to be_truthy
+    end
+
+    it "checks if the event contains a hole" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @right_top_hole
+      expect(ce.contains_hole).to be_truthy
     end
   end
 end
