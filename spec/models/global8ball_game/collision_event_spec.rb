@@ -23,6 +23,10 @@ module Global8ballGame
       key = 3
       @ball_c = create_body body_type, key, body_options
       @ball_c.ball_type = "8ball"
+
+      key = "center"
+      body_type = "line"
+      @center_line = create_body body_type, key, body_options
     end
 
     it "can be initialized w/ given payload" do
@@ -58,6 +62,11 @@ module Global8ballGame
     it "checks the event contains two balls" do
       ce = CollisionEvent.new body_a: @ball_a, body_b: @ball_b
       expect(ce.contains_two_balls).to be_truthy
+    end
+
+    it "checks if the event contains the center line" do
+      ce = CollisionEvent.new body_a: @ball_a, body_b: @center_line
+      expect(ce.contains_center_line).to be_truthy
     end
   end
 end
