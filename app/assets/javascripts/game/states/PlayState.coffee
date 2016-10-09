@@ -95,12 +95,17 @@ class global8ball.PlayState extends global8ball.FullState
   sendShotEvent: (power, onSendShot) ->
     power = power * @gameConfig.config.breakBall.maxSpeed
     cue = @currentlyControlledCue()
+    angle = cue.getAngle()
+    rotation = angle*Math.PI/180
     if cue
       ev =
         shot:
           user_id: @players.getFirst().getId()
-          angle: cue.getAngle()
+          angle: angle
           strength: power
+          vector:
+            x: -power * Math.cos rotation
+            y: -power * Math.sin rotation
       onSendShot.dispatch ev
 
   # @return {global8ball.Cue|null}
