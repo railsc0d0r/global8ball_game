@@ -7,7 +7,7 @@ module Global8ballGame
     end
 
     it "returns an array of rules when given a event-type. This is empty because it's just the base class." do
-      expect(RuleBook.rules_for :fictional_event).to be_nil
+      expect(RuleBook.rules_for :fictional_event).to be_empty
     end
   end
 end
