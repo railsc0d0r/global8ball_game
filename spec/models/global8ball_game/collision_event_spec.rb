@@ -3,38 +3,7 @@ require 'rails_helper'
 module Global8ballGame
   RSpec.describe CollisionEvent, type: :model do
     before do
-      body_type = "ball"
-      key = 1
-      body_options = {
-        mass: 0.7,
-        position: [0, 0],
-        angle: 0,
-        velocity: [0, 0],
-        angularVelocity: 0
-      }
-
-      @ball_a = create_body body_type, key, body_options
-      @ball_a.ball_type = "breakball"
-
-      key = 2
-      @ball_b = create_body body_type, key, body_options
-      @ball_b.ball_type = "playball"
-
-      key = 3
-      @ball_c = create_body body_type, key, body_options
-      @ball_c.ball_type = "8ball"
-
-      key = "center"
-      body_type = "line"
-      @center_line = create_body body_type, key, body_options
-
-      key = "right"
-      body_type = "border"
-      @right_border = create_body body_type, key, body_options
-
-      key = "rightTop"
-      body_type = "hole"
-      @right_top_hole = create_body body_type, key, body_options
+      @breakball, @playball, @eightball, @center_line, @right_border, @right_top_hole = create_bodies_for_collission_events
     end
 
     it "can be initialized w/ given payload" do

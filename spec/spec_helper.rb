@@ -196,3 +196,40 @@ def create_body body_type, key, options, shape = nil
   body.addShape shape unless shape.nil?
   body
 end
+
+def create_bodies_for_collission_events
+  body_type = "ball"
+  body_options = {
+    mass: 0.7,
+    position: [0, 0],
+    angle: 0,
+    velocity: [0, 0],
+    angularVelocity: 0
+  }
+
+  key = 1
+  breakball = create_body body_type, key, body_options
+  breakball.ball_type = "breakball"
+
+  key = 2
+  playball = create_body body_type, key, body_options
+  playball.ball_type = "playball"
+
+  key = 3
+  eightball = create_body body_type, key, body_options
+  eightball.ball_type = "8ball"
+
+  key = "center"
+  body_type = "line"
+  center_line = create_body body_type, key, body_options
+
+  key = "right"
+  body_type = "border"
+  right_border = create_body body_type, key, body_options
+
+  key = "rightTop"
+  body_type = "hole"
+  right_top_hole = create_body body_type, key, body_options
+
+  return breakball, playball, eightball, center_line, right_border, right_top_hole
+end
