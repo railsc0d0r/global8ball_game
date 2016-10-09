@@ -1,7 +1,6 @@
 #= require game/Game
 
 # Currently mostly for testing purposes.
-# TODO: Implement gameConfig from backend
 this.initGlobal8Ball = (gameConfig) ->
   config =
     imageUrlMap: window.assets.game
