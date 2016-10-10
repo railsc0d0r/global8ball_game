@@ -103,7 +103,7 @@ class global8ball.PlayState extends global8ball.FullState
           user_id: @players.getFirst().getId()
           angle: angle
           strength: power
-          vector:
+          velocity:
             x: -power * Math.cos rotation
             y: -power * Math.sin rotation
       onSendShot.dispatch ev
