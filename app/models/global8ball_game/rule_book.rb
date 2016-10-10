@@ -20,10 +20,17 @@ module Global8ballGame
         if search_tag.nil?
           results.concat rules_for_event unless rules_for_event.nil? || rules_for_event.class != Array
         else
-
+          results.concat rules_for_tag rules_for_event unless rules_for_event.nil? || rules_for_event.class != Array
         end
 
         results
+      end
+
+      protected
+
+      # TODO: Implement this!!
+      def rules_for_tag rules
+        []
       end
     end
   end
