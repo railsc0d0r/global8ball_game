@@ -21,7 +21,7 @@ class global8ball.PlayState extends global8ball.FullState
     super()
     setCollisionPrecision = (body) ->
       body.ccdSpeedThreshold = 1
-      body.ccdIterations = 1000
+      body.ccdIterations = 2
 
     @cues =
       player1: @createSprite 'cue1', 10, 10, visible: no, setCollisionPrecision
