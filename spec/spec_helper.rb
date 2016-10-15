@@ -197,7 +197,7 @@ def create_body body_type, key, options, shape = nil
   body
 end
 
-def create_bodies_for_collission_events
+def create_bodies_for_collision_events
   body_type = "ball"
   body_options = {
     mass: 0.7,
