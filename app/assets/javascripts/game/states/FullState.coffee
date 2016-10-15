@@ -9,10 +9,10 @@ class global8ball.FullState extends Phaser.State
   constructor: (@gameConfig, @players) ->
     global8ball.mixinStateEvents @
 
-  addGroup: (collisionGroupName, spriteGroupName = collisionGroupName) ->
-    @collisionGroups[collisionGroupName] ?= @physics.p2.createCollisionGroup()
-    if not @spriteGroups[spriteGroupName]
-      @spriteGroups[spriteGroupName] = @add.group()
+  addGroup: (groupName) ->
+    @collisionGroups[groupName] ?= @physics.p2.createCollisionGroup()
+    if not @spriteGroups[groupName]
+      @spriteGroups[groupName] = @add.group()
 
   init: () ->
     @spriteGroups = {}
