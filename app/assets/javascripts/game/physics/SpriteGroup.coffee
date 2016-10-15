@@ -6,7 +6,7 @@ collision group, and automatically adds assigned collision callbacks.
 The class of the created sprites is controlled by the Phaser sprite group given
 on construction.
 ###
-class global8ball.PhysicsGroup
+class global8ball.SpriteGroup
 
   # @param {string} spriteKey Phaser sprite key used when creating sprites.
   # @param {Phaser.Group} spriteGroup Phaser sprite group used for sprite creation.
@@ -19,7 +19,7 @@ class global8ball.PhysicsGroup
   # @param {Phaser.Physics.CollisionGroup|Phaser.Physics.CollisionGroup[]} collisionGroup
   # @param {function} callback Optional callback when a collision happens.
   # @param {object} callbackContext Used as context for the callback. Optional.
-  # @return {global8ball.PhysicsGroup} This (for chaining).
+  # @return {global8ball.SpriteGroup} This (for chaining).
   collides: (collisionGroup, callback, callbackContext) ->
     @collisionSpecs.push group: collisionGroup, callback: callback, context: callbackContext
     return @

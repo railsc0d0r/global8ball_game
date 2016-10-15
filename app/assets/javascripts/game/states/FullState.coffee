@@ -1,7 +1,7 @@
 #= require game/sprites/Border
 #= require game/sprites/Hole
 #= require game/mixinStateEvents
-#= require game/PhysicsGroup
+#= require game/physics/SpriteGroup
 #= require game/prolog
 
 # Base class for all full Phaser states (i.e. with all images etc.)
@@ -65,7 +65,7 @@ class global8ball.FullState extends Phaser.State
 
   createPhysicsGroups: () ->
     for specId, spec of @getPhysicsGroupSpecs()
-      @physicsGroups[specId] = new global8ball.PhysicsGroup spec.spriteKey, @spriteGroups[spec.spriteGroupId], @collisionGroups[spec.collisionGroupId]
+      @physicsGroups[specId] = new global8ball.SpriteGroup spec.spriteKey, @spriteGroups[spec.spriteGroupId], @collisionGroups[spec.collisionGroupId]
       (spec.collides or []).forEach (collision) =>
         if collision.callback
           @physicsGroups[specId].collides @collisionGroups[collision.groupId], @[collision.callback], @
