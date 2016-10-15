@@ -84,6 +84,8 @@ class global8ball.FullState extends Phaser.State
       setBorderBody = (body) ->
         body.static = true
         body.addPolygon {}, borderData.map (point) -> [point.x, point.y]
+        body.ccdSpeedThreshold = 1
+        body.ccdIterations = 1000
 
       border = @createSprite 'borders', 0, 0, config, setBorderBody
 
