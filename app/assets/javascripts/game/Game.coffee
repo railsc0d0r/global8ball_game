@@ -1,3 +1,4 @@
+#= require game/config/Game
 #= require game/GameEvents
 #= require game/prolog
 #= require game/states/Boot
@@ -53,7 +54,7 @@ class Game
       @config.physicsConfig
     )
 
-    gameConfig = new Game.Config @phaserGame, @config
+    gameConfig = new global8ball.config.Game @phaserGame, @config
 
     @players = global8ball.Players.create @config.players, @config.viewer
 
