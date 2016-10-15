@@ -74,6 +74,8 @@ class global8ball.PlayState extends global8ball.FullState
 
   # A cue collides with a (white) ball. Immediately make the cue go away.
   cueCollidesWithWhiteBall: (cueBody, ballBody) =>
+    ballBody.velocity.x = cueBody.velocity.x
+    ballBody.velocity.y = cueBody.velocity.y
     cueBody.sprite.retreatFromTable()
 
   shoot: (shot) ->
