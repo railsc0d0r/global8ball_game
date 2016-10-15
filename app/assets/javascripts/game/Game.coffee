@@ -99,36 +99,6 @@ class Game
       (x, y, text, style, group) ->
         oldAddText x, y, (if typeof text is 'string' then I18n.t(text) else I18n.t(text.message, text.context)), style, group
 
-class Game.Config
-  constructor: (@game, @config) ->
-
-  # Returns holes positions.
-  holesData: ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
-
-    holes = @config.holes
-    convertMeterToPx = @config.physicsConfig.mpx
-
-    Object.keys(holes).map (key, index) ->
-      holes[key] = pos: center.clone().add convertMeterToPx(holes[key].x), convertMeterToPx(holes[key].y)
-
-    return holes
-
-  # There are six borders, they are located between the holes.
-  borderData: ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
-
-    borders = @config.borders
-    convertMeterToPx = @config.physicsConfig.mpx
-
-    Object.keys(borders).map (key, index) ->
-                             points = []
-                             for point of borders[key]
-                                phaserPoint = center.clone().add convertMeterToPx(borders[key][point].x), convertMeterToPx(borders[key][point].y)
-                                points.push(phaserPoint)
-                             borders[key] = points
-    return borders
-
 # Helper class to overload methods.
 class Game.Overload
   overload: (context, methodName, newMethodFactory) ->
