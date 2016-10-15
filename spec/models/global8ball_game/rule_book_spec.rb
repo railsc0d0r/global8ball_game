@@ -9,7 +9,7 @@ module Global8ballGame
       @rule_book = RuleBook.new
     end
 
-    it "returns a hash of all rules. This is empty because it's just the base class." do
+    it "returns a hash of all rules." do
       expect(@rule_book.all_rules).to eq @rules
       expect(@rule_book.all_rules).to be_instance_of Hash
     end
