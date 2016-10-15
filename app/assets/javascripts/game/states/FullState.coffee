@@ -1,3 +1,4 @@
+#= require game/sprites/Border
 #= require game/sprites/Hole
 #= require game/mixinStateEvents
 #= require game/PhysicsGroup
@@ -55,6 +56,7 @@ class global8ball.FullState extends Phaser.State
       collisionGroupId: 'holes'
 
   spriteClasses: () ->
+    borders: global8ball.Border
     holes: global8ball.Hole
 
   createCollisionGroups: () ->
