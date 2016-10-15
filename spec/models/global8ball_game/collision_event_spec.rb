@@ -3,7 +3,8 @@ require 'rails_helper'
 module Global8ballGame
   RSpec.describe CollisionEvent, type: :model do
     before do
-      @breakball, @playball, @eightball, @center_line, @right_border, @right_top_hole = create_bodies_for_collision_events
+      @object_creator = ObjectCreator.new
+      @breakball, @playball, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
     end
 
     it "can be initialized w/ given payload" do

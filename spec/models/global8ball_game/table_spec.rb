@@ -3,8 +3,9 @@ require 'rails_helper'
 module Global8ballGame
   RSpec.describe Table, type: :model do
     before do
-      @players = create_players
-      @config = create_table_config
+      @object_creator = ObjectCreator.new
+      @players = @object_creator.players
+      @config = @object_creator.create_table_config
       @config.deep_stringify_keys!
       @table = Global8ballGame::Table.new @config
     end
@@ -20,21 +21,21 @@ module Global8ballGame
     end
 
     it "has 2 balls defined after initializing the opening state for PlayForBegin" do
-      state = initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
-      state = initial_state @players[:player_1], @players[:player_2], "PlayForVictory"
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 16
     end
 
     it "has no balls defined after initializing the opening state for ShowResult" do
-      state = initial_state @players[:player_1], @players[:player_2], "ShowResult"
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "ShowResult"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
@@ -50,7 +51,7 @@ module Global8ballGame
       }
       shot.deep_stringify_keys!
 
-      state = initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot
