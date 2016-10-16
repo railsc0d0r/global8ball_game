@@ -61,6 +61,21 @@ module Global8ballGame
       contains_center_line && contains_breakball
     end
 
+    def kind_of_event
+      case
+        when breakball_falls_into_a_hole
+          :breakball_falls_into_a_hole
+        when eightball_falls_into_a_hole
+          :eightball_falls_into_a_hole
+        when ball_falls_into_a_hole
+          :ball_falls_into_a_hole
+        when breakball_crosses_center_line
+          :breakball_crosses_center_line
+        else
+          nil
+      end
+    end
+
     private
 
     def is_p2_body obj
