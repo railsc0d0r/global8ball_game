@@ -76,7 +76,6 @@ module Global8ballGame
 
       # check collisions and rules
       @world.on('beginContact', Proc.new { |world| checkCollisions world.beginContactEvent })
-      @world.on('endContact', Proc.new { |world| checkCollisions world.endContactEvent })
       @world.on('postStep', Proc.new { postStep })
 
       until @everything_stopped do
