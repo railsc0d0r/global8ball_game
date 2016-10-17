@@ -129,6 +129,8 @@ module Global8ballGame
       expect(ce.kind_of_event).to eq :eightball_falls_into_a_hole
       ce = CollisionEvent.new body_a: @breakball, body_b: @center_line
       expect(ce.kind_of_event).to eq :breakball_crosses_center_line
+      ce = CollisionEvent.new body_a: @breakball, body_b: @eightball
+      expect(ce.kind_of_event).to eq :breakball_collides_with_eightball
       ce = CollisionEvent.new body_a: @breakball, body_b: @right_border
       expect(ce.kind_of_event).to eq nil
     end
