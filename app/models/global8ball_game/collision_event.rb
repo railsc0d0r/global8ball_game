@@ -75,6 +75,8 @@ module Global8ballGame
           :ball_falls_into_a_hole
         when breakball_crosses_center_line
           :breakball_crosses_center_line
+        when breakball_collides_with_eightball
+          :breakball_collides_with_eightball
         else
           nil
       end
