@@ -115,6 +115,11 @@ module Global8ballGame
       expect(ce.breakball_crosses_center_line).to be_falsy
     end
 
+    it "checks if breakball collides w/ eightball" do
+      ce = CollisionEvent.new body_a: @breakball, body_b: @eightball
+      expect(ce.breakball_collides_with_eightball).to be_truthy
+    end
+
     it "returns a symbol describing the evaluated event to be used as searchtag in rules-parsing" do
       ce = CollisionEvent.new body_a: @playball, body_b: @right_top_hole
       expect(ce.kind_of_event).to eq :ball_falls_into_a_hole
