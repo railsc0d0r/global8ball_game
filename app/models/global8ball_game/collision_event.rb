@@ -61,6 +61,10 @@ module Global8ballGame
       contains_center_line && contains_breakball
     end
 
+    def breakball_collides_with_eightball
+      contains_breakball && contains_8ball
+    end
+
     def kind_of_event
       case
         when breakball_falls_into_a_hole
