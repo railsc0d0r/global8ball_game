@@ -4,7 +4,7 @@ module Global8ballGame
   RSpec.describe CollisionEvent, type: :model do
     before do
       @object_creator = ObjectCreator.new
-      @breakball, @playball, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
+      @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
     end
 
     it "can be initialized w/ given payload" do
@@ -45,6 +45,8 @@ module Global8ballGame
 
     it "checks if the event contains two balls" do
       ce = CollisionEvent.new body_a: @breakball, body_b: @playball
+      expect(ce.contains_two_balls).to be_truthy
+      ce = CollisionEvent.new body_a: @playball, body_b: @playball2
       expect(ce.contains_two_balls).to be_truthy
       ce = CollisionEvent.new body_a: @breakball, body_b: @center_line
       expect(ce.contains_two_balls).to be_falsy
