@@ -14,9 +14,8 @@ module Global8ballGame
       expect(@rule_book.all_rules).to be_instance_of Hash
     end
 
-    it "returns an array of rules when given an event-type. This is empty because it's just the base class." do
-      expect(@rule_book.rules_for :fictional_event).to be_empty
-      expect(@rule_book.rules_for :fictional_event).to be_instance_of Array
+    it "raises an ArgumentError if not given event and searchtag" do
+      expect{@rule_book.rules_for :fictional_event}.to raise_error(ArgumentError)
     end
 
     it "returns an array of rules when given an event-type and a search_tag." do
