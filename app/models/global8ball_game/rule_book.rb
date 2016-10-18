@@ -10,31 +10,26 @@ module Global8ballGame
         @rules
       end
 
-      def rules_for event=nil, search_tag=nil
-        event = event.to_sym unless event.nil?
-        search_tag = search_tag.to_sym unless search_tag.nil?
-        results = nil
+      def rules_for event, search_tag
+        event = event.to_sym
+        search_tag = search_tag.to_sym
 
         raise "You have to give at least an eventname to parse the rules for. Maybe you wanted to use :all_rules instead?" if event.nil?
         raise "Eventname given can't be symbolized" unless event.class == Symbol
         raise "Searchtag given can't be symbolized" if search_tag.nil? && !search_tag.class == Symbol
 
-        rules_for_event = @rules[event]
-
-        if search_tag.nil?
-          results = rules_for_event unless rules_for_event.nil? || rules_for_event.class != Array
-        else
-          results = rules_for_tag rules_for_event unless rules_for_event.nil? || rules_for_event.class != Array
-        end
-
-        results
+        rules_for_tag @rules[event], search_tag
       end
 
       protected
 
-      # TODO: Implement this!!
-      def rules_for_tag rules
-        []
+      def rules_for_tag rules, search_tag
+        result = rules.select do |rule|
+          rule[:searchtags].include? search_tag
+        end.map do |rule|
+          rule.delete(:searchtags)
+          rule
+        end
       end
     end
 end
