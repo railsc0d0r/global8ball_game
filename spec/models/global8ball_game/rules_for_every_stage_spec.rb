@@ -32,12 +32,6 @@ module Global8ballGame
       search_tag = :eightball_falls_into_a_hole
       expected_result = [
         {
-          msg: :eightball_falls_into_a_hole,
-          advice: :round_lost,
-          foul: true,
-          conditional: true
-        },
-        {
           msg: :ball_falls_into_a_hole,
           advice: :remove_ball,
           foul: false,
