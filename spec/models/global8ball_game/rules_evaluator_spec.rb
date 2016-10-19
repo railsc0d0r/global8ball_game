@@ -28,5 +28,61 @@ module Global8ballGame
       stage_name = 'PlayForBegin'
       expect(RulesEvaluator.new(stage_name).stage).to be stage_name
     end
+
+    it "takes an event and evaluates all rule_books concerning its stage." do
+      # breakball falls into a hole in PlayForBegin
+      stage_name = 'PlayForBegin'
+      rules_evaluator =  RulesEvaluator.new(stage_name)
+
+      ce = CollisionEvent.new body_a: @breakball, body_b: @right_top_hole
+
+      expected_result = [
+        {
+          msg: :breakball_falls_into_a_hole,
+          advice: :reinstate_breakball,
+          foul: true,
+          conditional: false
+        },
+        {
+          msg: :ball_falls_into_a_hole,
+          advice: :remove_ball,
+          foul: false,
+          conditional: false
+        }
+      ]
+
+      expect(rules_evaluator.get_rules_for ce).to eq expected_result
+
+      # eightball falls into a hole in PlayForVictory
+      stage_name = 'PlayForVictory'
+      rules_evaluator =  RulesEvaluator.new(stage_name)
+
+      ce = CollisionEvent.new body_a: @eightball, body_b: @right_top_hole
+
+      expected_result = [
+        {
+          msg: :ball_falls_into_a_hole,
+          advice: :remove_ball,
+          foul: false,
+          conditional: false
+        },
+        {
+          msg: :round_lost,
+          advice: :round_lost,
+          foul: true,
+          conditional: true,
+          condition: :breaker_is_not_eightball_owner
+        },
+        {
+          msg: :round_won,
+          advice: :round_won,
+          foul: false,
+          conditional: true,
+          condition: :breaker_is_eightball_owner
+        }
+      ]
+
+      expect(rules_evaluator.get_rules_for ce).to eq expected_result
+    end
   end
 end
