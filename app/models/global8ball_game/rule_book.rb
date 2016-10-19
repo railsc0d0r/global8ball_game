@@ -14,7 +14,6 @@ module Global8ballGame
         event = event.to_sym
         search_tag = search_tag.to_sym
 
-        raise "You have to give at least an eventname to parse the rules for. Maybe you wanted to use :all_rules instead?" if event.nil?
         raise "Eventname given can't be symbolized" unless event.class == Symbol
         raise "Searchtag given can't be symbolized" if search_tag.nil? && !search_tag.class == Symbol
 
