@@ -15,7 +15,7 @@ module Global8ballGame
         search_tag = search_tag.to_sym
 
         raise "Eventname given can't be symbolized" unless event.class == Symbol
-        raise "Searchtag given can't be symbolized" if search_tag.nil? && !search_tag.class == Symbol
+        raise "Searchtag given can't be symbolized" unless search_tag.class == Symbol
 
         rules_for_tag @rules[event], search_tag
       end
