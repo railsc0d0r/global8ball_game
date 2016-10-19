@@ -17,7 +17,8 @@ module Global8ballGame
             foul: false,
             conditional: false
           }
-        ]
+        ],
+        timeout_event: []
       }
     end
   end
