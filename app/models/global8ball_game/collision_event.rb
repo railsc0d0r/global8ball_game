@@ -78,7 +78,7 @@ module Global8ballGame
         when breakball_collides_with_eightball
           :breakball_collides_with_eightball
         else
-          nil
+          :standard_collision
       end
     end
 

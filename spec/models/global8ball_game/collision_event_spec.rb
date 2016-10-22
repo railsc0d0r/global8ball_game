@@ -132,7 +132,7 @@ module Global8ballGame
       ce = CollisionEvent.new body_a: @breakball, body_b: @eightball
       expect(ce.kind_of_event).to eq :breakball_collides_with_eightball
       ce = CollisionEvent.new body_a: @breakball, body_b: @right_border
-      expect(ce.kind_of_event).to eq nil
+      expect(ce.kind_of_event).to eq :standard_collision
     end
   end
 end
