@@ -145,28 +145,7 @@ module Global8ballGame
     end
 
     def add_center_line
-      body_type = "line"
-      key = "center"
-      x = 0
-      y = 0
-      length = 2.54
-
-      body_options = {
-        mass:0,
-        position: [x, y],
-        angle: 0,
-        velocity: [0, 0],
-        angularVelocity: 0
-      }
-
-      shape = line length
-      shape.collisionGroup = LINE
-      shape.collisionMask = LINE_COLLIDES_WITH
-      shape.collisionResponse = false
-
-      body = create_body body_type, key, body_options, shape
-      @world.addBody body
-
+      @world.addBody CenterLine.new.body
     end
 
     def set_breakball_velocity user_id, velocity
