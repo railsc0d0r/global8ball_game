@@ -19,13 +19,14 @@ class global8ball.PlayState extends global8ball.FullState
 
   create: ->
     super()
-    setCollisionPrecision = (body) ->
+    setCueBody = (body) ->
       body.ccdSpeedThreshold = 1
       body.ccdIterations = 2
+      body.damping = 0
 
     @cues =
-      player1: @createSprite 'cue1', 10, 10, visible: no, setCollisionPrecision
-      player2: @createSprite 'cue2', 10, 10, visible: no, setCollisionPrecision
+      player1: @createSprite 'cue1', 10, 10, visible: no, setCueBody
+      player2: @createSprite 'cue2', 10, 10, visible: no, setCueBody
     @world.bringToTop @spriteGroups.cues
     @cues.player1.setOwner @players.getFirst()
     @cues.player2.setOwner @players.getSecond()
