@@ -76,7 +76,7 @@ module Global8ballGame
       set_breakball_velocity user_id, velocity
       @everything_stopped = false
 
-      # check collisions and rules
+      # sets up event-listeners
       @world.on('beginContact', Proc.new { |world| checkCollisions world.beginContactEvent })
       @world.on('postStep', Proc.new { postStep })
 
