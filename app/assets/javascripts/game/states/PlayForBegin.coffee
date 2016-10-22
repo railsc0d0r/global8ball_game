@@ -2,6 +2,7 @@
 #= require game/config/CurrentPlayers
 #= require game/sprites/Ball
 #= require game/prolog
+#= require game/physics/GroupSpecs
 #= require game/states/PlayState
 
 # State for determining which player may shoot first in the first round of
@@ -25,78 +26,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @cues.player2.aimAt x: @white2.position.x + 10, y: @white2.position.y
 
   getPhysicsGroupSpecs: () ->
-    specs = super()
-    specs.white1 =
-      spriteKey: 'whiteBall'
-      spriteGroupId: 'white'
-      collisionGroupId: 'white1'
-      collides: [
-        {
-          groupId: 'cue1'
-        }
-        {
-          groupId: 'white2'
-        }
-        {
-          groupId: 'borders'
-          callback: 'whiteBallCollidesWithBorder'
-        }
-        {
-          groupId: 'holes'
-          callback: 'whiteBallFallsIntoHole'
-        }
-      ]
-    specs.white2 =
-      spriteKey: 'whiteBall'
-      spriteGroupId: 'white'
-      collisionGroupId: 'white2'
-      collides: [
-        {
-          groupId: 'cue2'
-        }
-        {
-          groupId: 'white1'
-        }
-        {
-          groupId: 'borders'
-          callback: 'whiteBallCollidesWithBorder'
-        }
-        {
-          groupId: 'holes'
-          callback: 'whiteBallFallsIntoHole'
-        }
-      ]
-    specs.cue1.collides = [
-      {
-        groupId: 'white1'
-        callback: 'cueCollidesWithWhiteBall'
-      }
-    ]
-    specs.cue2.collides = [
-      {
-        groupId: 'white2'
-        callback: 'cueCollidesWithWhiteBall'
-      }
-    ]
-
-    specs.borders.collides = [
-      {
-        groupId: 'white1'
-      }
-      {
-        groupId: 'white2'
-      }
-    ]
-
-    specs.holes.collides = [
-      {
-        groupId: 'white1'
-      }
-      {
-        groupId: 'white2'
-      }
-    ]
-
+    specs = (new global8ball.GroupSpecs).get 'common', 'play', 'twoWhiteBalls'
     return specs
 
   spriteClasses: () ->

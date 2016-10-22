@@ -37,16 +37,6 @@ class global8ball.FullState extends Phaser.State
     @borders = @createBorders()
     @world.sendToBack @spriteGroups.table
 
-  getPhysicsGroupSpecs: () ->
-    borders:
-      spriteKey: 'border'
-      spriteGroupId: 'borders'
-      collisionGroupId: 'borders'
-    holes:
-      spriteKey: 'hole'
-      spriteGroupId: 'holes'
-      collisionGroupId: 'holes'
-
   spriteClasses: () ->
     borders: global8ball.Border
     holes: global8ball.Hole

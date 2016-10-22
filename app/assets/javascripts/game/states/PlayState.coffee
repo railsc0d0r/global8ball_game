@@ -43,18 +43,6 @@ class global8ball.PlayState extends global8ball.FullState
     else
       cue.retreatFromTable()
 
-  getPhysicsGroupSpecs: () ->
-    specs = super()
-    specs.cue1 =
-      spriteKey: 'cue'
-      spriteGroupId: 'cues'
-      collisionGroupId: 'cue1'
-    specs.cue2 =
-      spriteKey: 'cue'
-      spriteGroupId: 'cues'
-      collisionGroupId: 'cue2'
-    return specs
-
   spriteClasses: () ->
     classes = super()
     classes.cues = global8ball.Cue

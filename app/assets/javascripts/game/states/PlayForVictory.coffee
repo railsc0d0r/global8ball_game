@@ -1,4 +1,5 @@
 #= require game/prolog
+#= require game/physics/GroupSpecs
 #= require game/states/PlayState
 
 # State for handling the part of the game where both players compete to win
@@ -39,92 +40,4 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     super()
 
   getPhysicsGroupSpecs: () ->
-    specs = super()
-
-    specs.white =
-      spriteKey: 'whiteBall'
-      spriteGroupId: 'white'
-      collisionGroupId: 'white'
-      collides: [
-        {
-          groupId: 'cue1'
-        }
-        {
-          groupId: 'cue2'
-        }
-        {
-          groupId: 'borders'
-        }
-        {
-          groupId: 'holes'
-          callback: 'whiteBallFallsIntoHole'
-        }
-        {
-          groupId: 'playBalls'
-        }
-        {
-          groupId: 'black'
-        }
-      ]
-
-    specs.playBalls =
-      spriteGroupId: 'playBalls'
-      collisionGroupId: 'playBalls'
-      collides: [
-        {
-          groupId: 'white'
-        }
-        {
-          groupId: 'black'
-        }
-        {
-          groupId: 'playBalls'
-        }
-        {
-          groupId: 'borders'
-        }
-      ]
-
-    specs.black =
-      spriteKey: 'blackBall'
-      spriteGroupId: 'black'
-      collisionGroupId: 'black'
-      collides: [
-        {
-          groupId: 'white'
-        }
-        {
-          groupId: 'playBalls'
-        }
-        {
-          groupId: 'borders'
-        }
-      ]
-
-    specs.cue1.collides = [
-      {
-        groupId: 'white'
-        callback: 'cueCollidesWithWhiteBall'
-      }
-    ]
-
-    specs.cue2.collides = [
-      {
-        groupId: 'white'
-        callback: 'cueCollidesWithWhiteBall'
-      }
-    ]
-
-    specs.borders.collides = [
-      {
-        groupId: 'playBalls'
-      }
-      {
-        groupId: 'black'
-      }
-      {
-        groupId: 'white'
-      }
-    ]
-
-    return specs
+    return (new global8ball.GroupSpecs).get 'common', 'play', 'oneWhiteBall', 'blackBall', 'playBalls'
