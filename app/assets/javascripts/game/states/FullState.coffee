@@ -2,6 +2,7 @@
 #= require game/sprites/Hole
 #= require game/mixinStateEvents
 #= require game/physics/SpriteGroup
+#= require game/physics/SpriteGroups
 #= require game/prolog
 
 # Base class for all full Phaser states (i.e. with all images etc.)
@@ -20,9 +21,11 @@ class global8ball.FullState extends Phaser.State
     @physicsGroups = {}
 
   create: ->
-    @createSpriteGroups()
-    @createCollisionGroups()
-    @createPhysicsGroups()
+    spriteGroups = new global8ball.SpriteGroups @add, @physics.p2, @, @getPhysicsGroupSpecs(), @spriteClasses()
+    groups = spriteGroups.create()
+    @spriteGroups = groups.spriteGroups
+    @collisionGroups = groups.collisionGroups
+    @physicsGroups = groups.physicsGroups
     @addGroup 'table'
     @game.input.maxPointers = 1 # No multi-touch
     @tableFloor = @game.add.image @game.width / 2, @game.height / 2, 'background', `/*frame=*/ undefined`, @spriteGroups.table
@@ -33,16 +36,6 @@ class global8ball.FullState extends Phaser.State
     @createPlayerInfos()
     @borders = @createBorders()
     @world.sendToBack @spriteGroups.table
-
-  createSpriteGroups: () ->
-    for specId, spec of @getPhysicsGroupSpecs()
-      if not @spriteGroups[spec.spriteGroupId] # Create sprite group only if it does not exist yet!
-        group = @add.group()
-        group.classType = @spriteClasses()[spec.spriteGroupId] or Phaser.Sprite
-        # Enable physics for *all* sprite groups.
-        group.enableBody = true
-        group.physicsBodyType = Phaser.Physics.P2JS
-        @spriteGroups[spec.spriteGroupId] = group
 
   getPhysicsGroupSpecs: () ->
     borders:
@@ -57,19 +50,6 @@ class global8ball.FullState extends Phaser.State
   spriteClasses: () ->
     borders: global8ball.Border
     holes: global8ball.Hole
-
-  createCollisionGroups: () ->
-    for specId of @getPhysicsGroupSpecs()
-      @collisionGroups[specId] ?= @physics.p2.createCollisionGroup()
-
-  createPhysicsGroups: () ->
-    for specId, spec of @getPhysicsGroupSpecs()
-      @physicsGroups[specId] = new global8ball.SpriteGroup spec.spriteKey, @spriteGroups[spec.spriteGroupId], @collisionGroups[spec.collisionGroupId]
-      (spec.collides or []).forEach (collision) =>
-        if collision.callback
-          @physicsGroups[specId].collides @collisionGroups[collision.groupId], @[collision.callback], @
-        else
-          @physicsGroups[specId].collides @collisionGroups[collision.groupId]
 
   createBorders: ->
     bordersData = @gameConfig.borderData()
