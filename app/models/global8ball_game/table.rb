@@ -27,6 +27,8 @@ module Global8ballGame
 
       initialize_borders @config['borders']
       initialize_holes @config['holes']
+
+      @event_heap = EventHeap.new
     end
 
     def initialize_last_state state
