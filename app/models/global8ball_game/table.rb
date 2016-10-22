@@ -176,26 +176,16 @@ module Global8ballGame
     def checkCollisions contact_event
       bodyA = contact_event.bodyA
       bodyB = contact_event.bodyB
-      puts "#{contact_event.type}:"
-      puts "World-time: #{@world.time}"
-      puts "#{bodyA.body_type} #{bodyA.key} collides with #{bodyB.body_type} #{bodyB.key} "
-      puts "bodyA #{bodyA.body_type} #{bodyA.key} -> vx: #{bodyA.velocity[0]} vy: #{bodyA.velocity[1]} x: #{bodyA.position[0]} y: #{bodyA.position[1]}"
-      puts "bodyB #{bodyB.body_type} #{bodyB.key} -> vx: #{bodyB.velocity[0]} vy: #{bodyB.velocity[1]} x: #{bodyB.position[0]} y: #{bodyB.position[1]}"
-      puts "---------------------------------------------------------------------------------------------------"
+
+      ce = CollisionEvent.new body_a: bodyA, body_b: bodyB
+      @event_heap.push ce
     end
 
     def postStep
-      # puts "After step:"
-      # puts "World-time: #{@world.time}"
-      # show_ball_specs
-      check_velocity
-    end
-
-    def show_ball_specs
-      @world.bodies.select {|b| b.body_type == 'ball'}.each do |ball|
-        puts "ball #{ball.key} -> vx: #{ball.velocity[0]} vy: #{ball.velocity[1]} x: #{ball.position[0]} y: #{ball.position[1]}"
+      until @event_heap.empty? do
+        event = @event_heap.return_next
       end
-      puts "---------------------------------------------------------------------------------------------------"
+      check_velocity
     end
 
     def check_velocity
