@@ -11,11 +11,8 @@ module Global8ballGame
       end
 
       def rules_for event, search_tag
-        event = event.to_sym
-        search_tag = search_tag.to_sym
-
-        raise "Eventname given can't be symbolized" unless event.class == Symbol
-        raise "Searchtag given can't be symbolized" unless search_tag.class == Symbol
+        raise "Eventname given is not a symbol" unless event.class == Symbol
+        raise "Searchtag given is not a symbol" unless search_tag.class == Symbol
 
         rules_for_tag @rules[event], search_tag
       end
