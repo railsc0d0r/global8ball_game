@@ -188,8 +188,23 @@ module Global8ballGame
       until @event_heap.empty? do
         event = @event_heap.return_next
         rules = @rules_evaluator.get_rules_for event
+
+        handle_rules rules, event
       end
       check_velocity
+    end
+
+    def handle_rules rules, event
+      rules.each do |rule|
+        is_conditional = rule[:conditional]
+
+        if is_conditional
+          condition_met = self.send(rule[:condition], event)
+          self.send(rule[:advice], event) if condition_met
+        else
+          self.send(rule[:advice], event)
+        end
+      end
     end
 
     def check_velocity
