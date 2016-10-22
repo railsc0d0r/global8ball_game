@@ -10,18 +10,18 @@ module Global8ballGame
   module BodyCreationConcern
     extend ActiveSupport::Concern
 
+    BORDER = 2 ** 2
+    HOLE = 2 ** 3
+    BALL = 2 ** 4
+    LINE = 2 ** 5
+
+    BORDER_COLLIDES_WITH = BALL
+    HOLE_COLLIDES_WITH = BALL
+    LINE_COLLIDES_WITH = BALL
+    BALL_COLLIDES_WITH = BORDER | HOLE | BALL | LINE
+
     included do
       attr_reader :body
-
-      BORDER = 2 ** 2
-      HOLE = 2 ** 3
-      BALL = 2 ** 4
-      LINE = 2 ** 5
-
-      BORDER_COLLIDES_WITH = BALL
-      HOLE_COLLIDES_WITH = BALL
-      LINE_COLLIDES_WITH = BALL
-      BALL_COLLIDES_WITH = BORDER | HOLE | BALL | LINE
     end
 
     protected
