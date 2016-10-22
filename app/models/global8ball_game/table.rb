@@ -84,9 +84,9 @@ module Global8ballGame
         @world.step(fixed_time_step)
       end
 
-      puts "Finished stepping."
-      puts "World-time: #{@world.time}"
-      show_ball_specs
+      puts "---------------------------------------------------"
+      puts "Finished stepping. World-time: #{@world.time}"
+      puts "---------------------------------------------------"
       # return result_set
     end
 
