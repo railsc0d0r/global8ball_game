@@ -36,38 +36,22 @@ module Global8ballGame
       @rules_evaluator = RulesEvaluator.new stage_name unless stage_name == 'ShowResult'
 
       add_center_line if stage_name == 'PlayForBegin'
+
       body_type = "ball"
       damping = @config['table']['damping']
 
       state['balls'].each do |ball|
         key = ball['id']
         owner = ball['owner']
+        ball_type = ball['type']
         mass = ball['mass']
         radius = ball['radius']
         x = ball['position']['x']
         y = -ball['position']['y']
+        position = [x, y]
 
-        body_options = {
-          mass: mass,
-          position: [x, y],
-          angle: 0,
-          velocity: [0, 0],
-          angularVelocity: 0
-        }
-
-        shape = circle radius
-        shape.collisionGroup = BALL
-        shape.collisionMask = BALL_COLLIDES_WITH
-        shape.material = @ball_material
-
-        body = create_body body_type, key, body_options, shape
-        body.damping = damping
-        body.ccdSpeedThreshold = 1
-        body.ccdIterations = 2
-        body.owner = owner
-        body.ball_type = ball['type']
-
-        @world.addBody body
+        ball = Ball.new key, owner, ball_type, damping, mass, radius, position, @ball_material
+        @world.addBody ball.body
       end
     end
 
