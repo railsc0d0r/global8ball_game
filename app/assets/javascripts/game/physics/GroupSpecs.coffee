@@ -193,7 +193,7 @@ class global8ball.GroupSpecs
       resultSpecs = @merge resultSpecs, specs[key]
     return resultSpecs
 
-  merge: (objects...) ->
+  merge: (objects...) -> # TODO: Move elsewhere
     result = {}
     for object in objects
       for key, value of object
