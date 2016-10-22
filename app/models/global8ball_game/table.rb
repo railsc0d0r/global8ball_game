@@ -187,6 +187,7 @@ module Global8ballGame
     def postStep
       until @event_heap.empty? do
         event = @event_heap.return_next
+        rules = @rules_evaluator.get_rules_for event
       end
       check_velocity
     end
