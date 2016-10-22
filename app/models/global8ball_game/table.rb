@@ -32,7 +32,10 @@ module Global8ballGame
     end
 
     def initialize_last_state state
-      add_center_line if state['current_stage']['stage_name'] == 'PlayForBegin'
+      stage_name = state['current_stage']['stage_name']
+      @rules_evaluator = RulesEvaluator.new stage_name unless stage_name == 'ShowResult'
+
+      add_center_line if stage_name == 'PlayForBegin'
       body_type = "ball"
       damping = @config['table']['damping']
 
