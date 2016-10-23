@@ -1,6 +1,6 @@
 module Global8ballGame
-  module Config
-    class HoleConfig < Config::Config
+  module Configuration
+    class HoleConfig < Config
       def initialize
         # scalingFactor = 377.95 =>
         @width = 2.54

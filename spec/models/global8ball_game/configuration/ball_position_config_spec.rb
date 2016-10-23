@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 module Global8ballGame
-  module Config
+  module Configuration
     RSpec.describe BallPositionConfig, type: :model do
       before do
-        @ball_position_config = Global8ballGame::Config::BallPositionConfig
+        @ball_position_config = Global8ballGame::Configuration::BallPositionConfig
         @known_states = ["PlayForBegin", "PlayForVictory", "ShowResult"]
       end
 

@@ -24,9 +24,9 @@ module Global8ballGame
     def new_table_config
       config = {}
 
-      config.merge!(Global8ballGame::TableConfig.new.config)
-      config.merge!(Global8ballGame::BorderConfig.new.config)
-      config.merge!(Global8ballGame::HoleConfig.new.config)
+      config.merge!(Global8ballGame::Configuration::TableConfig.new.config)
+      config.merge!(Global8ballGame::Configuration::BorderConfig.new.config)
+      config.merge!(Global8ballGame::Configuration::HoleConfig.new.config)
 
       config
     end
@@ -39,7 +39,7 @@ module Global8ballGame
             }
         }
 
-      state.merge!(Global8ballGame::BallPositionConfig.config stage_name)
+      state.merge!(Global8ballGame::Configuration::BallPositionConfig.config stage_name)
 
       current_players = {
         current_players: []

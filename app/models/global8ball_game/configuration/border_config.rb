@@ -1,6 +1,6 @@
 module Global8ballGame
-  module Config
-    class BorderConfig < Config::Config
+  module Configuration
+    class BorderConfig < Config
       def initialize
         # scalingFactor = 377.95 =>
         @width = 2.54

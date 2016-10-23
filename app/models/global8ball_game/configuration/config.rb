@@ -1,5 +1,5 @@
 module Global8ballGame
-  module Config
+  module Configuration
     class Config
       def config
         @definition

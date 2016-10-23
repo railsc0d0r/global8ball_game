@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 module Global8ballGame
-  module Config
+  module Configuration
     RSpec.describe BorderConfig, type: :model do
       before do
-        @border_config = Global8ballGame::Config::BorderConfig.new
+        @border_config = Global8ballGame::Configuration::BorderConfig.new
         @config = @border_config.config[:borders]
       end
 
