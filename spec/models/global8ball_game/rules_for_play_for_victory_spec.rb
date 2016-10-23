@@ -7,7 +7,7 @@ module Global8ballGame
     end
 
     it "returns all rules given the eightball falls into a hole" do
-      event = :collision_event
+      event = :collision
       search_tag = :eightball_falls_into_a_hole
       expected_result = [
         {

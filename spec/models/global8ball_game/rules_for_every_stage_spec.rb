@@ -7,7 +7,7 @@ module Global8ballGame
     end
 
     it "returns all rules given the breakball falls into a hole" do
-      event = :collision_event
+      event = :collision
       search_tag = :breakball_falls_into_a_hole
       expected_result = [
         {
@@ -28,7 +28,7 @@ module Global8ballGame
     end
 
     it "returns all rules given the eightball falls into a hole" do
-      event = :collision_event
+      event = :collision
       search_tag = :eightball_falls_into_a_hole
       expected_result = [
         {
@@ -43,7 +43,7 @@ module Global8ballGame
     end
 
     it "returns all rules given a ball falls into a hole" do
-      event = :collision_event
+      event = :collision
       search_tag = :ball_falls_into_a_hole
       expected_result = [
         {

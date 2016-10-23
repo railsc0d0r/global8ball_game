@@ -7,7 +7,7 @@ module Global8ballGame
     end
 
     it "returns all rules given the breakball crosses the center_line" do
-      event = :collision_event
+      event = :collision
       search_tag = :breakball_crosses_center_line
       expected_result = [
         {
