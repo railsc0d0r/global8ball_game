@@ -1,10 +1,9 @@
 #
-# Global8ballGame::PhysicsConcern
+# Global8ballGame::BodyCreationConcern
 #
-# Lets model including this concern instanciate a table by given config and last_result
-# and evaluate a shot on this table
+# Lets model including this concern create bodies and shapes based on P2PhysicsWrapper
 #
-# Models including this concern have to provide config and last_result as hashes representing the table_config and the last state
+# provides a reader to a body ready to be added the world
 #
 module Global8ballGame
   module BodyCreationConcern
