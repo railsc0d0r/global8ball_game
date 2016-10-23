@@ -34,7 +34,7 @@ module Global8ballGame
       stage_name = 'PlayForBegin'
       rules_evaluator =  RulesEvaluator.new(stage_name)
 
-      ce = CollisionEvent.new body_a: @breakball, body_b: @right_top_hole
+      ce = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
 
       expected_result = [
         {
@@ -57,7 +57,7 @@ module Global8ballGame
       stage_name = 'PlayForVictory'
       rules_evaluator =  RulesEvaluator.new(stage_name)
 
-      ce = CollisionEvent.new body_a: @eightball, body_b: @right_top_hole
+      ce = Event::Collision.new body_a: @eightball, body_b: @right_top_hole
 
       expected_result = [
         {

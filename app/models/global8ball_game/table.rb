@@ -111,7 +111,7 @@ module Global8ballGame
       bodyA = contact_event.bodyA
       bodyB = contact_event.bodyB
 
-      ce = CollisionEvent.new body_a: bodyA, body_b: bodyB
+      ce = Event::Collision.new body_a: bodyA, body_b: bodyB
       @event_heap.push ce
     end
 

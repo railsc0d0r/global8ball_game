@@ -7,7 +7,7 @@ module Global8ballGame
 
       @object_creator = ObjectCreator.new
       @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
-      @ce = CollisionEvent.new body_a: @breakball, body_b: @right_top_hole
+      @ce = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
     end
 
     it "takes an event and stores it." do
