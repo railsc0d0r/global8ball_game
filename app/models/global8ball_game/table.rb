@@ -96,23 +96,13 @@ module Global8ballGame
       body_type = "hole"
       holes_config.keys.each do |key|
         hole_config = holes_config[key]
+        radius = hole_config['radius']
         x = hole_config['x']
         y = -hole_config['y']
+        position = [x, y]
 
-        body_options = {
-          mass:0,
-          position: [x, y],
-          angle: 0,
-          velocity: [0, 0],
-          angularVelocity: 0
-        }
-
-        shape = circle hole_config['radius']
-        shape.collisionGroup = HOLE
-        shape.collisionMask = HOLE_COLLIDES_WITH
-
-        body = create_body body_type, key, body_options, shape
-        @world.addBody body
+        hole = Hole.new key, radius, position
+        @world.addBody hole.body
       end
     end
 
