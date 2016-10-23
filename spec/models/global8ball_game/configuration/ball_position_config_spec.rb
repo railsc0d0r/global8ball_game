@@ -4,7 +4,7 @@ module Global8ballGame
   module Configuration
     RSpec.describe BallPositionConfig, type: :model do
       before do
-        @ball_position_config = Global8ballGame::Configuration::BallPositionConfig
+        @ball_position_config = BallPositionConfig
         @known_states = ["PlayForBegin", "PlayForVictory", "ShowResult"]
       end
 

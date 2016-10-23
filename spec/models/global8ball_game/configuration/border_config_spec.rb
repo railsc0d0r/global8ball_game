@@ -4,7 +4,7 @@ module Global8ballGame
   module Configuration
     RSpec.describe BorderConfig, type: :model do
       before do
-        @border_config = Global8ballGame::Configuration::BorderConfig.new
+        @border_config = BorderConfig.new
         @config = @border_config.config[:borders]
       end
 

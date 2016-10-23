@@ -4,7 +4,7 @@ module Global8ballGame
   module Configuration
     RSpec.describe HoleConfig, type: :model do
       before do
-        @hole_config = Global8ballGame::Configuration::HoleConfig.new
+        @hole_config = HoleConfig.new
         @config = @hole_config.config[:holes]
       end
 

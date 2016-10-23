@@ -4,7 +4,7 @@ module Global8ballGame
   module Configuration
     RSpec.describe TableConfig, type: :model do
       before do
-        @table_config = Global8ballGame::Configuration::TableConfig.new
+        @table_config = TableConfig.new
         @config = @table_config.config[:table]
       end
 
