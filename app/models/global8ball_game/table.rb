@@ -83,24 +83,12 @@ module Global8ballGame
       body_type = "border"
       borders_config.keys.each do |key|
         border_config = borders_config[key]
-        body_options = {
-          mass: 0,
-          position: [0, 0],
-          angle: 0,
-          velocity: [0, 0],
-          angularVelocity: 0
-        }
-
         vertices = border_config.map do |vertice|
-            [vertice['x'], -vertice['y']]
+          [vertice['x'], -vertice['y']]
         end
-        shape = convex vertices
-        shape.collisionGroup = BORDER
-        shape.collisionMask = BORDER_COLLIDES_WITH
-        shape.material = @border_material
 
-        body = create_body body_type, key, body_options, shape
-        @world.addBody body
+        border = Border.new key, vertices, @border_material
+        @world.addBody border.body
       end
     end
 
