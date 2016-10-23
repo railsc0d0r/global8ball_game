@@ -1,6 +1,6 @@
 module Global8ballGame
   module Configuration
-    class BallPositionConfig
+    class BallPosition
       # scalingFactor = 377.95 =>
       @width = 2.54
       @halfWidth = @width / 2          # 480px
@@ -114,6 +114,10 @@ module Global8ballGame
 
         def breakball_mass
           @mass
+        end
+
+        def radius
+          @radius
         end
       end
     end

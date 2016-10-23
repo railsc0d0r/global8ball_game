@@ -1,6 +1,6 @@
 module Global8ballGame
   module Configuration
-    class HoleConfig < Base
+    class Hole < Base
       def initialize
         # scalingFactor = 377.95 =>
         @width = 2.54
@@ -10,8 +10,8 @@ module Global8ballGame
         @xWidth=@halfWidth
         @yWidth=@quarterWidth
 
-        @real_radius=0.047625347        # 18px
-        @ball_radius=0.0291             # 11px
+        @real_radius=0.047625347         # 18px
+        @ball_radius=BallPosition.radius # 11px
         @radius = @real_radius - @ball_radius
 
         @cushionWidth=0.0582

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 module Global8ballGame
   module Configuration
-    RSpec.describe HoleConfig, type: :model do
+    RSpec.describe Hole, type: :model do
       before do
-        @hole_config = HoleConfig.new
+        @hole_config = Hole.new
         @config = @hole_config.config[:holes]
       end
 

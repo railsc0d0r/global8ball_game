@@ -2,9 +2,9 @@ require 'rails_helper'
 
 module Global8ballGame
   module Configuration
-    RSpec.describe TableConfig, type: :model do
+    RSpec.describe Table, type: :model do
       before do
-        @table_config = TableConfig.new
+        @table_config = Table.new
         @config = @table_config.config[:table]
       end
 
