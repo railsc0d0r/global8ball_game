@@ -1,5 +1,6 @@
 #
-# Model to create a world and interact w/ this world to return a new state and evaluate certain rules by given ruleset
+# Model to create a world and interact w/ this world to return a new state
+# and evaluate all events happening by given ruleset
 #
 module Global8ballGame
   class Table
@@ -18,7 +19,7 @@ module Global8ballGame
       initialize_borders @config['borders']
       initialize_holes @config['holes']
 
-      @event_heap = EventHeap.new
+      @event_heap = Event::Heap.new
     end
 
     def initialize_last_state state
