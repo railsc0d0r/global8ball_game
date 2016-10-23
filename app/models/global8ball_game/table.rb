@@ -24,7 +24,7 @@ module Global8ballGame
 
     def initialize_last_state state
       stage_name = state['current_stage']['stage_name']
-      @rules_evaluator = RulesEvaluator.new stage_name unless stage_name == 'ShowResult'
+      @rules_evaluator = Rules::Evaluator.new stage_name unless stage_name == 'ShowResult'
 
       add_center_line if stage_name == 'PlayForBegin'
 
