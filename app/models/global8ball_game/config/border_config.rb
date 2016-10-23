@@ -1,20 +1,21 @@
 module Global8ballGame
-  class BorderConfig < Config
-    def initialize
-      # scalingFactor = 377.95 =>
-      @width = 2.54
-      @halfWidth = @width / 2         # 480px
-      @quarterWidth = @halfWidth / 2  # 240px
-      @cushionWidth=0.0582            # 22px
-      @radius=0.047625347        # 18px
+  module Config
+    class BorderConfig < Config::Config
+      def initialize
+        # scalingFactor = 377.95 =>
+        @width = 2.54
+        @halfWidth = @width / 2         # 480px
+        @quarterWidth = @halfWidth / 2  # 240px
+        @cushionWidth=0.0582            # 22px
+        @radius=0.047625347        # 18px
 
-      @angleDiff31px=0.082021431      # 31px
-      @angleDiff28px=0.074083874      # 28px
-      @angleDiff25px=0.066146316      # 25px
-      @angleDiff4px=0.010583411       # 4px
+        @angleDiff31px=0.082021431      # 31px
+        @angleDiff28px=0.074083874      # 28px
+        @angleDiff25px=0.066146316      # 25px
+        @angleDiff4px=0.010583411       # 4px
 
-      @definition = {
-        borders:
+        @definition = {
+          borders:
           { left:
             [
               {
@@ -130,7 +131,8 @@ module Global8ballGame
               }
             ]
           }
-      }
+        }
+      end
     end
   end
 end
