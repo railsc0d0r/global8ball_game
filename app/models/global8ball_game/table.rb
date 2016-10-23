@@ -47,7 +47,7 @@ module Global8ballGame
         mass = ball['mass']
         radius = ball['radius']
         x = ball['position']['x']
-        y = -ball['position']['y']
+        y = -ball['position']['y'] # P2 uses inverted y-coordinates
         position = [x, y]
 
         ball = Ball.new key, owner, ball_type, damping, mass, radius, position, @ball_material
@@ -84,7 +84,7 @@ module Global8ballGame
       borders_config.keys.each do |key|
         border_config = borders_config[key]
         vertices = border_config.map do |vertice|
-          [vertice['x'], -vertice['y']]
+          [vertice['x'], -vertice['y']]  # P2 uses inverted y-coordinates
         end
 
         border = Border.new key, vertices, @border_material
@@ -98,7 +98,7 @@ module Global8ballGame
         hole_config = holes_config[key]
         radius = hole_config['radius']
         x = hole_config['x']
-        y = -hole_config['y']
+        y = -hole_config['y'] # P2 uses inverted y-coordinates
         position = [x, y]
 
         hole = Hole.new key, radius, position
