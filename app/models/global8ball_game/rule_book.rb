@@ -20,6 +20,8 @@ module Global8ballGame
       protected
 
       def rules_for_tag rules, search_tag
+        return [] if rules.nil?
+
         result = rules.select do |rule|
           rule[:searchtags].include? search_tag
         end.map do |rule|
