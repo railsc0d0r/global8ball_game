@@ -1,5 +1,6 @@
 module Global8ballGame
-  class RuleBook
+  module Rules
+    class Book
       def initialize
         @rules = {
           fictional_event: []
@@ -30,4 +31,5 @@ module Global8ballGame
         end
       end
     end
+  end
 end
