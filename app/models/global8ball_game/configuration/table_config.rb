@@ -1,6 +1,6 @@
 module Global8ballGame
   module Configuration
-    class TableConfig < Config
+    class TableConfig < Base
       def initialize
         cue_mass = 0.7
         ball_mass = BallPositionConfig.breakball_mass
