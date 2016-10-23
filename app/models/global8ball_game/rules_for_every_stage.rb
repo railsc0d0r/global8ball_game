@@ -2,7 +2,7 @@ module Global8ballGame
   class RulesForEveryStage < RuleBook
     def initialize
       @rules = {
-        collision_event: [
+        collision: [
           {
             searchtags: [:breakball_falls_into_a_hole],
             msg: :breakball_falls_into_a_hole,
