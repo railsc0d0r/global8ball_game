@@ -48,7 +48,7 @@ module Global8ballGame
 
     def shoot shot
       fixed_time_step = 0.01
-      velocity = [shot['velocity']['x'],shot['velocity']['y']]
+      velocity = [shot['velocity']['x'],-(shot['velocity']['y'])] # P2 uses inverted y-coordinates
       user_id = shot['user_id']
 
       set_breakball_velocity user_id, velocity
