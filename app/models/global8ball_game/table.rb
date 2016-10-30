@@ -139,6 +139,17 @@ module Global8ballGame
       end
     end
 
+    def reinstate_breakball event
+    end
+
+    def restart_round event
+    end
+
+    def remove_ball event
+      ball = event.get_ball
+      @world.removeBody ball
+    end
+
     def check_velocity
       everything_stopped = true
       min_speed = 0.000001
