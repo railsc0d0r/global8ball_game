@@ -5,6 +5,13 @@ module Global8ballGame
         @rules = {
           collision: [
             {
+              searchtags: [:breakball_falls_into_a_hole],
+              msg: :breakball_falls_into_a_hole,
+              advice: :reinstate_breakball,
+              foul: true,
+              conditional: false
+            },
+            {
               searchtags: [:eightball_falls_into_a_hole],
               msg: :round_lost,
               advice: :round_lost,

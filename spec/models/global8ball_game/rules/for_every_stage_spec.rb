@@ -12,12 +12,6 @@ module Global8ballGame
         search_tag = :breakball_falls_into_a_hole
         expected_result = [
           {
-            msg: :breakball_falls_into_a_hole,
-            advice: :reinstate_breakball,
-            foul: true,
-            conditional: false
-          },
-          {
             msg: :ball_falls_into_a_hole,
             advice: :remove_ball,
             foul: false,

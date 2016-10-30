@@ -39,15 +39,15 @@ module Global8ballGame
 
         expected_result = [
           {
-            msg: :breakball_falls_into_a_hole,
-            advice: :reinstate_breakball,
-            foul: true,
-            conditional: false
-          },
-          {
             msg: :ball_falls_into_a_hole,
             advice: :remove_ball,
             foul: false,
+            conditional: false
+          },
+          {
+            msg: :breakball_falls_into_a_hole,
+            advice: :restart_round,
+            foul: true,
             conditional: false
           }
         ]
