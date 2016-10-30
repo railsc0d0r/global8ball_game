@@ -66,6 +66,11 @@ module Global8ballGame
         contains_breakball && contains_8ball
       end
 
+      def get_ball
+        raise "Don't know which ball to return." if contains_two_balls
+        (@body_a.body_type == "ball") ? @body_a : nil || (@body_b.body_type == "ball") ? @body_b : nil
+      end
+
       def kind_of_event
         case
         when breakball_falls_into_a_hole
