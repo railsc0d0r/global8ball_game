@@ -135,6 +135,23 @@ module Global8ballGame
         ce = Collision.new body_a: @breakball, body_b: @right_border
         expect(ce.kind_of_event).to eq :standard_collision
       end
+
+      it "raises an error, if we try to get a ball but event contains two." do
+        ce = Collision.new body_a: @playball, body_b: @breakball
+        expect{ce.get_ball}.to raise_error "Don't know which ball to return."
+      end
+
+      it "returns the ball, if the event contains only one" do
+        ce = Collision.new body_a: @breakball, body_b: @right_top_hole
+        expect(ce.get_ball).to be @breakball
+        ce = Collision.new body_a: @right_top_hole, body_b: @playball
+        expect(ce.get_ball).to be @playball
+      end
+
+      it "returns nil, if the event doesn't contain a ball" do
+        ce = Collision.new body_a: @center_line, body_b: @right_top_hole
+        expect(ce.get_ball).to be nil
+      end
     end
   end
 end
