@@ -57,5 +57,21 @@ module Global8ballGame
       @table.shoot shot
 
     end
+
+    it "shoots breakball into a hole." do
+      shot = {
+        user_id: @players[:player_1].id,
+        velocity: {
+          x: 20.637965113359744,
+          y: -3.5217953784678837
+        }
+      }
+      shot.deep_stringify_keys!
+
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+      @table.shoot shot
+    end
   end
 end
