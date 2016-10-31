@@ -35,13 +35,14 @@ module Global8ballGame
         key = ball['id']
         owner = ball['owner']
         ball_type = ball['type']
+        color = ball['color']
         mass = ball['mass']
         radius = ball['radius']
         x = ball['position']['x']
         y = -ball['position']['y'] # P2 uses inverted y-coordinates
         position = [x, y]
 
-        ball = Ball.new key, owner, ball_type, damping, mass, radius, position, @ball_material
+        ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
         @world.addBody ball.body
       end
     end
