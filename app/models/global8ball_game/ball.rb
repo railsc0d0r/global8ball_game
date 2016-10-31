@@ -2,7 +2,7 @@ module Global8ballGame
   class Ball
     include BodyCreationConcern
 
-    def initialize key, owner, ball_type, damping, mass, radius, position, material
+    def initialize key, owner, ball_type, color, damping, mass, radius, position, material
       body_type = "ball"
       body_options = {
         mass: mass,
@@ -23,6 +23,7 @@ module Global8ballGame
       @body.ccdIterations = 2
       @body.owner = owner
       @body.ball_type = ball_type
+      @body.color = color
     end
   end
 end
