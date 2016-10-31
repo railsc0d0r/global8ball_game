@@ -4,7 +4,7 @@
 #
 module Global8ballGame
   class Table
-    attr_reader :world, :config, :everything_stopped
+    attr_reader :world, :config, :stage_name, :everything_stopped
 
     def initialize table_config
       @config = table_config
@@ -23,10 +23,10 @@ module Global8ballGame
     end
 
     def initialize_last_state state
-      stage_name = state['current_stage']['stage_name']
-      @rules_evaluator = Rules::Evaluator.new stage_name unless stage_name == 'ShowResult'
+      @stage_name = state['current_stage']['stage_name']
+      @rules_evaluator = Rules::Evaluator.new @stage_name unless @stage_name == 'ShowResult'
 
-      add_center_line if stage_name == 'PlayForBegin'
+      add_center_line if @stage_name == 'PlayForBegin'
 
       body_type = "ball"
       damping = @config['table']['damping']
