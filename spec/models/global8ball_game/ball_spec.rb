@@ -6,13 +6,14 @@ module Global8ballGame
       @key = 1
       @owner = 1
       @ball_type = "breakball"
+      @color = 'white'
       @damping = 0.2
       @mass = 0.17
       @radius = 0.0291
       @position = [0,0]
       @material = P2PhysicsWrapper::P2.Material.new
 
-      @ball = Ball.new @key, @owner, @ball_type, @damping, @mass, @radius, @position, @material
+      @ball = Ball.new @key, @owner, @ball_type, @color, @damping, @mass, @radius, @position, @material
     end
 
     it "has a body w/ a circular shape and a given radius." do
@@ -34,6 +35,10 @@ module Global8ballGame
 
     it "has a body initialized w/ a given ball_type" do
       expect(@ball.body.ball_type).to eq @ball_type
+    end
+
+    it "has a body initialized w/ a given color" do
+      expect(@ball.body.color).to eq @color
     end
 
     it "has a body initialized w/ a given value for damping." do
