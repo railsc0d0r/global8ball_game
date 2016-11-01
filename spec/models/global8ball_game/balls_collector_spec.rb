@@ -21,7 +21,7 @@ module Global8ballGame
 
     it "returns an array of ball-hashes to be used in result_set" do
       bc = BallsCollector.new @table.world
-      expect(bc.balls).to eq @state['balls']
+      expect(bc.balls_states).to eq @state['balls']
     end
   end
 end
