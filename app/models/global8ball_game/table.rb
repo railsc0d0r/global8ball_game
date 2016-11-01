@@ -24,6 +24,8 @@ module Global8ballGame
 
     def initialize_last_state state
       @stage_name = state['current_stage']['stage_name']
+      @round = state['current_stage']['round'] + 1
+      @current_players = state['current_stage']['current_players']
       @rules_evaluator = Rules::Evaluator.new @stage_name unless @stage_name == 'ShowResult'
 
       add_center_line if @stage_name == 'PlayForBegin'
@@ -66,10 +68,26 @@ module Global8ballGame
       puts "---------------------------------------------------"
       puts "Finished stepping. World-time: #{@world.time}"
       puts "---------------------------------------------------"
-      # return result_set
+
+      result
     end
 
     private
+
+    def result
+      bc = BallsCollector.new @world
+
+      current_result = {
+        current_stage: {
+          stage_name: @stage_name,
+          round: @round
+        },
+        balls: bc.balls_states,
+        current_players: @current_players
+      }
+
+      current_result
+    end
 
     def initialize_borders borders_config
       body_type = "border"
