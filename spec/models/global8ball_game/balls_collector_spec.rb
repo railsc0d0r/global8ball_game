@@ -18,5 +18,10 @@ module Global8ballGame
       expect {BallsCollector.new}.to raise_error ArgumentError
       expect {BallsCollector.new Object.new}.to raise_error "Object given isn't a P2PhysicsWrapper::P2.World."
     end
+
+    it "returns an array of ball-hashes to be used in result_set" do
+      bc = BallsCollector.new @table.world
+      expect(bc.balls).to eq @state['balls']
+    end
   end
 end
