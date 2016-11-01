@@ -101,15 +101,15 @@ module Global8ballGame
       end
 
       class << self
-        def config state=''
-          raise "No state given to get starting ball-positions for." if state.blank?
-          raise "Invalid state given to get starting ball-positions for. Known states: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? state
+        def config stage=''
+          raise "No stage given to get starting ball-positions for." if stage.blank?
+          raise "Invalid stage given to get starting ball-positions for. Known stages: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? stage
 
-          @positions[state.to_sym]
+          @positions[stage.to_sym].deep_symbolize_keys
         end
 
-        def config_json state=''
-          self.config(state).to_json
+        def config_json stage=''
+          self.config(stage).to_json
         end
 
         def breakball_mass
