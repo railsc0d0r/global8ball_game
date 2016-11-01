@@ -35,7 +35,7 @@ module Global8ballGame
       state = {
           current_stage: {
               stage_name: stage_name,
-              round: 1
+              round: 0
             }
         }
 
