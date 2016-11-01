@@ -96,7 +96,7 @@ module Global8ballGame
 
     def shoot shot
       result = @table.shoot shot
-      # self.last_result = result
+      self.last_result = result
 
       self.last_result
     end
