@@ -5,16 +5,16 @@ module Global8ballGame
     RSpec.describe BallPosition, type: :model do
       before do
         @ball_position_config = BallPosition
-        @known_states = ["PlayForBegin", "PlayForVictory", "ShowResult"]
+        @known_stages = ["PlayForBegin", "PlayForVictory", "ShowResult"]
       end
 
-      it "raises an error if no state is given as argument to get positions for" do
-        expect {@ball_position_config.config}.to raise_error "No state given to get starting ball-positions for."
+      it "raises an error if no stage is given as argument to get positions for" do
+        expect {@ball_position_config.config}.to raise_error "No stage given to get starting ball-positions for."
       end
 
-      it "raises an error if given state is not defined" do
+      it "raises an error if given stage is not defined" do
         state = "PlayForNothing"
-        expect {@ball_position_config.config state}.to raise_error "Invalid state given to get starting ball-positions for. Known states: #{@known_states.map{|k| "'" + k.to_s + "'"}.join(', ')}"
+        expect {@ball_position_config.config state}.to raise_error "Invalid stage given to get starting ball-positions for. Known stages: #{@known_stages.map{|k| "'" + k.to_s + "'"}.join(', ')}"
       end
 
       it "returns a hash w/ key :balls and an array of configurations for 2 balls for state 'PlayForBegin'" do
@@ -47,7 +47,7 @@ module Global8ballGame
         ball_types = ['breakball', 'playball', '8ball']
         colors = ['white', 'black', 'red', 'gold']
 
-        @known_states.each do |state|
+        @known_stages.each do |state|
           balls = @ball_position_config.config(state)[:balls]
           balls.each do |ball_config|
             expect(ball_config.keys).to match_array properties
@@ -75,7 +75,7 @@ module Global8ballGame
       end
 
       it "provides positions for all balls within the bounds of a 9ft table" do
-        @known_states.each do |state|
+        @known_stages.each do |state|
           balls = @ball_position_config.config(state)[:balls]
           balls.each do |ball_config|
             position = ball_config[:position]
