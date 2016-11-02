@@ -85,6 +85,7 @@ class global8ball.PlayState extends global8ball.FullState
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
   sendShotEvent: (power, onSendShot) ->
     power = power * @gameConfig.config.breakBall.maxSpeed
+    console.log 'Power = ' + power
     cue = @currentlyControlledCue()
     angle = cue.getAngle()
     rotation = angle*Math.PI/180
@@ -117,8 +118,8 @@ class global8ball.PlayState extends global8ball.FullState
       body.addCircle radius, offsetX, offsetY, rotation
       body.damping = @gameConfig.config.tableDamping
       body.mass = ballConfig.mass
-      body.ccdSpeedThreshold = 1
-      body.ccdIterations = 1000
+      body.data.ccdSpeedThreshold = 1
+      body.data.ccdIterations = 100
 
     config = data: ballConfig
     if spriteKey
