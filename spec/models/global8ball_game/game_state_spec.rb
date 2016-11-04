@@ -72,5 +72,9 @@ module Global8ballGame
       expect(@gs.current_results).not_to eq @state['current_results']
       expect(@gs.current_results).to eq current_results
     end
+
+    it "returns its attributes as a hash in the format it received on initialize" do
+      expect(@gs.to_hash).to eq @state
+    end
   end
 end
