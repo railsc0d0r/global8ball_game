@@ -73,5 +73,16 @@ module Global8ballGame
       @table.initialize_last_state state
       @table.shoot shot
     end
+
+    it "returns its current state" do
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+      expect(@table.current_state).to eq state
+    end
+
+    it "raises an error, if we try to get the current_state, but table isn't initialized yet" do
+      expect{@table.current_state}.to raise_error "Table isn't initialized yet."
+    end
   end
 end
