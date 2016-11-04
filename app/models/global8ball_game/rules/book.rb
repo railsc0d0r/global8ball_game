@@ -26,8 +26,9 @@ module Global8ballGame
         result = rules.select do |rule|
           rule[:searchtags].include? search_tag
         end.map do |rule|
-          rule.delete(:searchtags)
-          rule
+          rule_to_return = rule.clone
+          rule_to_return.delete(:searchtags)
+          rule_to_return
         end
       end
     end
