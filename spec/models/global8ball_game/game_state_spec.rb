@@ -20,14 +20,14 @@ module Global8ballGame
       expect(@gs.current_results).to eq @state['current_results']
     end
 
-    it "lets round to be overwritten" do
+    it "lets round be overwritten" do
       round = 1
       @gs.round = round
       expect(@gs.round).not_to eq @state['current_stage']['round']
       expect(@gs.round).to eq round
     end
 
-    it "lets balls to be overwritten" do
+    it "lets balls be overwritten" do
       balls = [
         {
           "id" => 1,
@@ -47,7 +47,7 @@ module Global8ballGame
       expect(@gs.balls).to eq balls
     end
 
-    it "lets current_players to be overwritten" do
+    it "lets current_players be overwritten" do
       current_players = [
         {
           "user_id" => 2
@@ -59,7 +59,7 @@ module Global8ballGame
       expect(@gs.current_players).to eq current_players
     end
 
-    it "lets current_results to be overwritten" do
+    it "lets current_results be overwritten" do
       current_results = [
         {
             "stage_name" => "PlayForBegin",
