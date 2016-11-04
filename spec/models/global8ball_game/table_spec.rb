@@ -41,7 +41,7 @@ module Global8ballGame
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
     end
 
-    it "evaluates a shot given by frontend" do
+    it "evaluates a shot given by frontend in PlayForBegin" do
       shot = {
         user_id: @players[:player_1].id,
         velocity: {
@@ -56,6 +56,24 @@ module Global8ballGame
       @table.initialize_last_state state
       @table.shoot shot
 
+    end
+
+    it "evaluates a shot given by frontend in PlayForVictory" do
+      breaker = @players[:player_1].id
+
+      shot = {
+        user_id: breaker,
+        velocity: {
+          x: @config['table']['max_breakball_speed'],
+          y: 0
+        }
+      }
+      shot.deep_stringify_keys!
+
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+      @table.shoot shot
     end
 
     it "shoots breakball into a hole." do
