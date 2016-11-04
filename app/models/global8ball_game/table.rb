@@ -23,17 +23,15 @@ module Global8ballGame
     end
 
     def initialize_last_state state
-      @stage_name = state['current_stage']['stage_name']
-      @round = state['current_stage']['round'] + 1
-      @current_players = state['current_stage']['current_players']
-      @rules_evaluator = Rules::Evaluator.new @stage_name unless @stage_name == 'ShowResult'
+      @current_state = GameState.new state
+      @rules_evaluator = Rules::Evaluator.new @current_state.stage_name unless @current_state.stage_name == 'ShowResult'
 
-      add_center_line if @stage_name == 'PlayForBegin'
+      add_center_line if @current_state.stage_name == 'PlayForBegin'
 
       body_type = "ball"
       damping = @config['table']['damping']
 
-      state['balls'].each do |ball|
+      @current_state.balls.each do |ball|
         key = ball['id']
         owner = ball['owner']
         ball_type = ball['type']
@@ -65,25 +63,18 @@ module Global8ballGame
         @world.step(fixed_time_step)
       end
 
-      result
+      return
+    end
+
+    def current_state
+      raise "Table isn't initialized yet." if @current_state.nil?
+
+      bc = BallsCollector.new @world
+      @current_state.balls = bc.balls_states
+      @current_state.to_hash
     end
 
     private
-
-    def result
-      bc = BallsCollector.new @world
-
-      current_result = {
-        current_stage: {
-          stage_name: @stage_name,
-          round: @round
-        },
-        balls: bc.balls_states,
-        current_players: @current_players
-      }
-
-      current_result
-    end
 
     def initialize_borders borders_config
       body_type = "border"
