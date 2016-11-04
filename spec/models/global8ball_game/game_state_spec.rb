@@ -12,10 +12,10 @@ module Global8ballGame
       @gs = GameState.new @state
     end
 
-    it "takes a state and stores its values w/o balls" do
+    it "takes a state and stores its values as attributes" do
       expect(@gs.stage_name).to eq @state['current_stage']['stage_name']
       expect(@gs.round).to eq @state['current_stage']['round']
-      expect(@gs.balls).to be nil
+      expect(@gs.balls).to be @state['balls']
       expect(@gs.current_players).to eq @state['current_players']
       expect(@gs.current_results).to eq @state['current_results']
     end
@@ -44,7 +44,6 @@ module Global8ballGame
       ]
 
       @gs.balls = balls
-      expect(@gs.balls).not_to be nil
       expect(@gs.balls).to eq balls
     end
 
