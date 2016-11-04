@@ -15,7 +15,6 @@ module Global8ballGame
     end
 
     def eval_shot shot
-      initialize_table
       shoot shot
     end
 
@@ -35,7 +34,7 @@ module Global8ballGame
       state = {
           current_stage: {
               stage_name: stage_name,
-              round: 0
+              round: 1
             }
         }
 
@@ -90,13 +89,16 @@ module Global8ballGame
     private
 
     def initialize_table
-      @table = Global8ballGame::Table.new self.config
-      @table.initialize_last_state self.last_result
+      table = Global8ballGame::Table.new self.config
+      table.initialize_last_state self.last_result
+
+      table
     end
 
     def shoot shot
-      result = @table.shoot shot
-      self.last_result = result
+      table = initialize_table
+      table.shoot shot
+      self.last_result = table.current_state
 
       self.last_result
     end
