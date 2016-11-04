@@ -28,23 +28,7 @@ module Global8ballGame
 
       add_center_line if @current_state.stage_name == 'PlayForBegin'
 
-      body_type = "ball"
-      damping = @config['table']['damping']
-
-      @current_state.balls.each do |ball|
-        key = ball['id']
-        owner = ball['owner']
-        ball_type = ball['type']
-        color = ball['color']
-        mass = ball['mass']
-        radius = ball['radius']
-        x = ball['position']['x']
-        y = -ball['position']['y'] # P2 uses inverted y-coordinates
-        position = [x, y]
-
-        ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
-        @world.addBody ball.body
-      end
+      initialize_balls @current_state.balls
     end
 
     def shoot shot
@@ -100,6 +84,26 @@ module Global8ballGame
 
         hole = Hole.new key, radius, position
         @world.addBody hole.body
+      end
+    end
+
+    def initialize_balls balls
+      body_type = "ball"
+      damping = @config['table']['damping']
+
+      balls.each do |ball|
+        key = ball['id']
+        owner = ball['owner']
+        ball_type = ball['type']
+        color = ball['color']
+        mass = ball['mass']
+        radius = ball['radius']
+        x = ball['position']['x']
+        y = -ball['position']['y'] # P2 uses inverted y-coordinates
+        position = [x, y]
+
+        ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
+        @world.addBody ball.body
       end
     end
 
