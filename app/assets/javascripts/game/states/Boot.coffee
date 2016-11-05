@@ -22,4 +22,5 @@ class global8ball.Boot extends Phaser.State
     @physics.p2.applySpringForces = no
     @physics.p2.setImpactEvents on
     @physics.p2.world.solver.tolerance = 0
-    @physics.p2.world.solver.iterations = 1000
+    @physics.p2.world.solver.iterations = 5
+    @physics.p2.frameRate = 1 / 128
