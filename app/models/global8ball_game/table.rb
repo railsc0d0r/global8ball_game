@@ -150,14 +150,36 @@ module Global8ballGame
     end
 
     def reinstate_breakball event
+      puts "reinstate_breakball"
     end
 
     def restart_round event
+      puts "restart_round"
     end
 
     def remove_ball event
       ball = event.get_ball
       @world.removeBody ball
+    end
+
+    def round_lost event
+      puts "round_lost"
+    end
+
+    def round_won event
+      puts "round_won"
+    end
+
+    # Only for PlayForVictory
+    def breaker_is_eightball_owner event
+      breaker = @current_state.current_players.first['user_id']
+      eightball = event.get_ball
+      eightball['owner'] == breaker
+    end
+
+    # Only for PlayForVictory
+    def breaker_is_not_eightball_owner event
+      !breaker_is_eightball_owner event
     end
 
     def check_velocity
