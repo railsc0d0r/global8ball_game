@@ -4,7 +4,7 @@ module Global8ballGame
       def initialize
         cue_mass = 0.7
         ball_mass = BallPosition.breakball_mass
-        max_cue_speed = 5.4864 # m/s => See http://billiards.colostate.edu/threads/physics.html#properties, fast shot
+        max_cue_speed = 2.7432 # m/s => See http://billiards.colostate.edu/threads/physics.html#properties, fast shot
         max_breakball_speed = cue_mass / ball_mass * max_cue_speed
 
         @definition = {
