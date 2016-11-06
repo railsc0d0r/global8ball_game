@@ -9,10 +9,10 @@ module Global8ballGame
 
         @definition = {
           table: {
-            border_bounce: 0,
             damping: 0.12 + Random.new.rand(0.05...0.1),
             max_breakball_speed: max_breakball_speed,
-            scaling_factor: 377.95
+            scaling_factor: 377.95,
+            contact_materials: {}
           }
         }
       end
