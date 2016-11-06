@@ -14,7 +14,7 @@ module Global8ballGame
       }
       @world = P2PhysicsWrapper::P2.World.new world_options
 
-      add_contact_materials
+      add_contact_materials @config['table']['contact_materials']
 
       initialize_borders @config['borders']
       initialize_holes @config['holes']
@@ -185,22 +185,34 @@ module Global8ballGame
     def check_velocity
       everything_stopped = true
       min_speed = 0.000001
-      @world.bodies.select {|b| b.body_type == 'ball'}.each do |ball|
+
+      bc = BallsCollector.new @world
+      bc.balls.each do |ball|
         everything_stopped = false if ball.velocity[0].abs > min_speed || ball.velocity[1].abs > min_speed
       end
 
       @everything_stopped = everything_stopped
     end
 
-    def add_contact_materials
+    def add_contact_materials contact_materials
       @ball_material = P2PhysicsWrapper::P2.Material.new
       @border_material = P2PhysicsWrapper::P2.Material.new
 
-      ball_border_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @border_material, { restitution: 0.9, stiffness: Float::INFINITY }
+      restitution = parse_infinity contact_materials['ball_border']['restitution']
+      stiffness = parse_infinity contact_materials['ball_border']['stiffness']
+
+      ball_border_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @border_material, { restitution: restitution, stiffness: stiffness }
       @world.addContactMaterial ball_border_contact_material
 
-      ball_ball_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @ball_material, { restitution: 0.98, stiffness: Float::INFINITY }
+      restitution = parse_infinity contact_materials['ball_ball']['restitution']
+      stiffness = parse_infinity contact_materials['ball_ball']['stiffness']
+
+      ball_ball_contact_material = P2PhysicsWrapper::P2.ContactMaterial.new @ball_material, @ball_material, { restitution: restitution, stiffness: stiffness }
       @world.addContactMaterial ball_ball_contact_material
+    end
+
+    def parse_infinity value
+      value == 'INFINITY' ? Float::INFINITY : value
     end
   end
 end
