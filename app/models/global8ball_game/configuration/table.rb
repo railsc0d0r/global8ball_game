@@ -12,7 +12,16 @@ module Global8ballGame
             damping: 0.12 + Random.new.rand(0.05...0.1),
             max_breakball_speed: max_breakball_speed,
             scaling_factor: 377.95,
-            contact_materials: {}
+            contact_materials: {
+              ball_border: {
+                restitution: 0.9,
+                stiffness: 'INFINITY'
+              },
+              ball_ball: {
+                restitution: 0.98,
+                stiffness: 'INFINITY'
+              }
+            }
           }
         }
       end
