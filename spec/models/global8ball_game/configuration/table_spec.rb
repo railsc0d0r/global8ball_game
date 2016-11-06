@@ -30,9 +30,9 @@ module Global8ballGame
         expect(0.12...0.22).to cover(@config[:damping])
       end
 
-      it "provides a value for border_bounce" do
-        expect(@config.key?(:border_bounce)).to be_truthy
-        expect(@config[:border_bounce]).to be_a_kind_of Numeric
+      it "provides values for contact_materials" do
+        expect(@config.key?(:contact_materials)).to be_truthy
+        expect(@config[:contact_materials]).to be_a_kind_of Hash
       end
     end
   end
