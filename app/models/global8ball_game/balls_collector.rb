@@ -1,15 +1,21 @@
 module Global8ballGame
   class BallsCollector
-    attr_reader :balls_states
+    attr_reader :balls
 
     def initialize world
       raise "Object given isn't a P2PhysicsWrapper::P2.World." unless world.class == V8::Object && world['constructor'].name == 'World'
       @balls_states = []
 
-      balls = world.bodies.select{|body| body.body_type == 'ball'}
-      balls.each do |ball|
-        @balls_states << ball_state(ball)
+      @balls = world.bodies.select{|body| body.body_type == 'ball'}
+    end
+
+    def balls_states
+      result = []
+      @balls.each do |ball|
+        result << ball_state(ball)
       end
+
+      result
     end
 
     private
