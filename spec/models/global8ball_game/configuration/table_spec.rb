@@ -19,7 +19,7 @@ module Global8ballGame
       end
 
       it "provides the max-breakball-speed as computed from max-cue-speed, cue-mass and ball-mass" do
-        expect(@config[:max_breakball_speed]).to eq 22.59105882352941
+        expect(@config[:max_breakball_speed]).to eq 11.295529411764704
       end
 
       it "provides the factor to convert meters into px and vice versa as 377.95" do
