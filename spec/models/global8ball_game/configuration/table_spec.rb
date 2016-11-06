@@ -34,6 +34,26 @@ module Global8ballGame
         expect(@config.key?(:contact_materials)).to be_truthy
         expect(@config[:contact_materials]).to be_a_kind_of Hash
       end
+
+      it "provides values for contact_material for ball<->border" do
+        expect(@config[:contact_materials].key?(:ball_border)).to be_truthy
+        expect(@config[:contact_materials][:ball_border]).to be_a_kind_of Hash
+
+        expect(@config[:contact_materials][:ball_border].key?(:restitution)).to be_truthy
+        expect(@config[:contact_materials][:ball_border][:restitution]).to eq 0.9
+        expect(@config[:contact_materials][:ball_border].key?(:stiffness)).to be_truthy
+        expect(@config[:contact_materials][:ball_border][:stiffness]).to eq 'INFINITY'
+      end
+
+      it "provides values for contact_material for ball<->ball" do
+        expect(@config[:contact_materials].key?(:ball_ball)).to be_truthy
+        expect(@config[:contact_materials][:ball_ball]).to be_a_kind_of Hash
+
+        expect(@config[:contact_materials][:ball_ball].key?(:restitution)).to be_truthy
+        expect(@config[:contact_materials][:ball_ball][:restitution]).to eq 0.98
+        expect(@config[:contact_materials][:ball_ball].key?(:stiffness)).to be_truthy
+        expect(@config[:contact_materials][:ball_ball][:stiffness]).to eq 'INFINITY'
+      end
     end
   end
 end
