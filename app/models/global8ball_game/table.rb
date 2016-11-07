@@ -19,7 +19,7 @@ module Global8ballGame
       initialize_borders @config['borders']
       initialize_holes @config['holes']
 
-      @event_heap = Event::Heap.new
+      @event_heap = Heap.new
     end
 
     def initialize_last_state state
