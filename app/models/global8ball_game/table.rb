@@ -171,6 +171,11 @@ module Global8ballGame
     end
 
     # Only for PlayForVictory
+    def change_breaker event
+      puts "change_breaker"
+    end
+
+    # Only for PlayForVictory
     def breaker_is_eightball_owner event
       breaker = @current_state.current_players.first['user_id']
       eightball = event.get_ball
