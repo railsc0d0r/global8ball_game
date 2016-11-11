@@ -83,6 +83,16 @@ module Global8ballGame
 
       state.merge!(current_results)
 
+      shot_results = {
+        shot_results: {
+          shot: {},
+          foul: false,
+          events: []
+        }
+      }
+
+      state.merge!(shot_results)
+
       state
     end
 
