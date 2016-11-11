@@ -30,13 +30,19 @@ module Global8ballGame
         expect(@rules_for_play_for_victory.rules_for event, search_tag).to eq expected_result
       end
 
-      it "returns all rules given the eightball falls into a hole" do
+      it "returns all rules given the breakball falls into a hole" do
         event = :collision
         search_tag = :breakball_falls_into_a_hole
         expected_result = [
           {
             msg: :breakball_falls_into_a_hole,
             advice: :reinstate_breakball,
+            foul: true,
+            conditional: false
+          },
+          {
+            msg: :breakball_falls_into_a_hole,
+            advice: :change_breaker,
             foul: true,
             conditional: false
           }
