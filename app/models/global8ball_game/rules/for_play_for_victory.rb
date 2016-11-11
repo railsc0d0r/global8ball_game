@@ -12,6 +12,13 @@ module Global8ballGame
               conditional: false
             },
             {
+              searchtags: [:breakball_falls_into_a_hole],
+              msg: :breakball_falls_into_a_hole,
+              advice: :change_breaker,
+              foul: true,
+              conditional: false
+            },
+            {
               searchtags: [:eightball_falls_into_a_hole],
               msg: :round_lost,
               advice: :round_lost,
