@@ -41,5 +41,18 @@ module Global8ballGame
 
       expect(@event_heap.to_a).to eq [ce_1, ce_2]
     end
+
+    it "can be cleared" do
+      ce_1 = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
+      ce_2 = Event::Collision.new body_a: @eightball, body_b: @right_top_hole
+
+      @event_heap.push ce_1
+      @event_heap.push ce_2
+      expect(@event_heap.empty?).to be_falsy
+
+      @event_heap.clear
+
+      expect(@event_heap.empty?).to be_truthy
+    end
   end
 end
