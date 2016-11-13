@@ -31,5 +31,15 @@ module Global8ballGame
       @event_heap.return_next
       expect(@event_heap.empty?).to be_truthy
     end
+
+    it "returns all elements it contains as an array" do
+      ce_1 = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
+      ce_2 = Event::Collision.new body_a: @eightball, body_b: @right_top_hole
+
+      @event_heap.push ce_1
+      @event_heap.push ce_2
+
+      expect(@event_heap.to_a).to eq [ce_1, ce_2]
+    end
   end
 end
