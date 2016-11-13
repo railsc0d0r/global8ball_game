@@ -1,23 +1,27 @@
 module Global8ballGame
   class Heap
     def initialize
-      @events = []
+      @elements = []
     end
 
     def push event
-      @events << event
+      @elements << event
     end
 
     def return_next
-      @events.shift
+      @elements.shift
     end
 
     def count
-      @events.count
+      @elements.count
     end
 
     def empty?
-      @events.empty?
+      @elements.empty?
+    end
+
+    def to_a
+      @elements
     end
   end
 end
