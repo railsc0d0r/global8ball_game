@@ -42,14 +42,15 @@ module Global8ballGame
     end
 
     it "evaluates a shot given by frontend in PlayForBegin" do
-      shot = {
+      shot_hash = {
         user_id: @players[:player_1].id,
         velocity: {
           x: @config['table']['max_breakball_speed'],
           y: 0
         }
       }
-      shot.deep_stringify_keys!
+      shot_hash.deep_stringify_keys!
+      shot = Shot.new shot_hash
 
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
@@ -61,14 +62,15 @@ module Global8ballGame
     it "evaluates a shot given by frontend in PlayForVictory" do
       breaker = @players[:player_1].id
 
-      shot = {
+      shot_hash = {
         user_id: breaker,
         velocity: {
           x: @config['table']['max_breakball_speed'],
           y: 0
         }
       }
-      shot.deep_stringify_keys!
+      shot_hash.deep_stringify_keys!
+      shot = Shot.new shot_hash
 
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
       state.deep_stringify_keys!
@@ -77,14 +79,15 @@ module Global8ballGame
     end
 
     it "shoots breakball into a hole." do
-      shot = {
+      shot_hash = {
         user_id: @players[:player_1].id,
         velocity: {
-          x: 20.637965113359744,
-          y: -3.5217953784678837
+          x: 5.579606637080942,
+          y: -0.8747776565806149
         }
       }
-      shot.deep_stringify_keys!
+      shot_hash.deep_stringify_keys!
+      shot = Shot.new shot_hash
 
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!

@@ -14,7 +14,8 @@ module Global8ballGame
       attr_reader :table
     end
 
-    def eval_shot shot
+    def eval_shot shot_hash
+      shot = Shot.new shot_hash
       shoot shot
     end
 

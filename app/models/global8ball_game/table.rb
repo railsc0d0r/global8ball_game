@@ -34,10 +34,9 @@ module Global8ballGame
     def shoot shot
       @shot_result_heap = Heap.new
       fixed_time_step = 0.0078125
-      velocity = [shot['velocity']['x'],-(shot['velocity']['y'])] # P2 uses inverted y-coordinates
-      user_id = shot['user_id']
+      velocity = [shot.velocity_x,-(shot.velocity_y)] # P2 uses inverted y-coordinates
 
-      set_breakball_velocity user_id, velocity
+      set_breakball_velocity shot.shooter, velocity
       @everything_stopped = false
 
       # sets up event-listeners
