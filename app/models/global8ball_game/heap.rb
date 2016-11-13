@@ -20,6 +20,10 @@ module Global8ballGame
       @elements.empty?
     end
 
+    def clear
+      @elements = []
+    end
+
     def to_a
       @elements
     end
