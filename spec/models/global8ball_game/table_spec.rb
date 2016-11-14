@@ -99,6 +99,11 @@ module Global8ballGame
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
+      shot_result = {
+        shot_results: {}
+      }
+      shot_result.deep_stringify_keys!
+      state.merge!(shot_result)
       expect(@table.current_state).to eq state
     end
 
