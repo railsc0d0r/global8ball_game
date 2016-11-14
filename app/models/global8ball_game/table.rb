@@ -33,9 +33,10 @@ module Global8ballGame
 
     def shoot shot
       @shot_result_heap = Heap.new
+      @shot_result = ShotResult.new shot
+
       fixed_time_step = 0.0078125
       velocity = [shot.velocity_x,-(shot.velocity_y)] # P2 uses inverted y-coordinates
-
       set_breakball_velocity shot.shooter, velocity
       @everything_stopped = false
 
@@ -55,6 +56,11 @@ module Global8ballGame
 
       bc = BallsCollector.new @world
       @current_state.balls = bc.balls_states
+
+      unless @shot_result.nil?
+        @shot_result.events = @shot_result_heap.to_a
+        @current_state.shot_results = @shot_result.to_hash
+      end
       @current_state.to_hash
     end
 
