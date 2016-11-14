@@ -26,7 +26,7 @@ module Global8ballGame
         id: ball.key,
         type: ball.ball_type,
         color: ball.color,
-        owner: ball.owner,
+        owner: ball['owner'],
         radius: ball.shapes.first.radius,
         mass: ball.mass,
         position: {
