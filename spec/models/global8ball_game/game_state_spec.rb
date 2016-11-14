@@ -72,8 +72,63 @@ module Global8ballGame
       expect(@gs.current_results).to eq current_results
     end
 
+    it "initializes shot_results as empty hash" do
+      expect(@gs.shot_results).to be_kind_of Hash
+      expect(@gs.shot_results).to be_empty
+    end
+
+    it "lets shot_results to be overwritten" do
+      shot_hash = {
+        user_id: @players[:player_1].id,
+        velocity: {
+          x: 5.579606637080942,
+          y: -0.8747776565806149
+        }
+      }
+      shot_hash.deep_stringify_keys!
+
+      events = []
+
+      event = {
+        ball_id: 1,
+        event: 'ball falls into hole',
+        advice: 'remove_ball'
+      }
+      event.deep_stringify_keys!
+      events << event
+
+      event = {
+        ball_id: 2,
+        event: 'breakball falls into hole',
+        advice: 'reinstate_breakball'
+      }
+
+      event.deep_stringify_keys!
+      events << event
+
+      foul = true
+
+      shot_results = {
+        shot_results: {
+          shot: shot_hash,
+          foul: foul,
+          events: events
+        }
+      }
+
+      shot_results.deep_stringify_keys!
+      @gs.shot_results = shot_results
+
+      expect(@gs.shot_results).to eq shot_results
+    end
+
     it "returns its attributes as a hash in the format it received on initialize" do
-      expect(@gs.to_hash).to eq @state
+      shot_results = {
+        shot_results: {}
+      }
+      shot_results.deep_stringify_keys!
+      result_hash = @state.merge(shot_results)
+      expect(@gs.to_hash).to eq result_hash
     end
   end
 end
