@@ -1,12 +1,12 @@
 module Global8ballGame
   class ShotResult
-    attr_reader :shot
-    attr_accessor :foul, :events
+    attr_reader :shot, :events
+    attr_accessor :foul
     def initialize shot
       raise "Shot given isn't a valid Shot-object." unless shot.class == Shot
       @shot = shot
       @foul = false
-      @events = []
+      @events = Heap.new
     end
 
     def to_hash
@@ -14,7 +14,7 @@ module Global8ballGame
         shot_results: {
           shot: @shot.to_hash,
           foul: @foul,
-          events: @events
+          events: @events.to_a
         }
       }
       result.deep_stringify_keys
