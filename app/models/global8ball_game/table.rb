@@ -57,7 +57,6 @@ module Global8ballGame
       @current_state.balls = bc.balls_states
 
       unless @shot_result.nil?
-        @shot_result.events = @shot_result_heap.to_a
         @current_state.shot_results = @shot_result.to_hash
       end
       @current_state.to_hash
