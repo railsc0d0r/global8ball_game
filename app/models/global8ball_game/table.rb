@@ -154,7 +154,15 @@ module Global8ballGame
     end
 
     def reinstate_breakball event
-      puts "reinstate_breakball"
+      @shot_result.foul = true
+
+      result = {
+        ball_id: event.get_ball.id,
+        event: event.kind_of_event,
+        advice: 'reinstate_breakball'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     def restart_round event
