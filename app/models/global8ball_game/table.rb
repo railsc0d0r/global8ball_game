@@ -172,10 +172,27 @@ module Global8ballGame
     def remove_ball event
       ball = event.get_ball
       @world.removeBody ball
+
+      result = {
+        ball_id: ball.id,
+        event: event.kind_of_event,
+        advice: 'remove_ball'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     def round_lost event
       puts "round_lost"
+      @shot_result.foul = true
+
+      result = {
+        ball_id: event.get_ball.id,
+        event: event.kind_of_event,
+        advice: 'round_lost'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     def round_won event
