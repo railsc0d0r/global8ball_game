@@ -39,8 +39,8 @@ module Global8ballGame
     end
 
     it "initializes events as an empty array and provides reader/writer to it." do
-      expect(@shot_result.events).to be_kind_of Array
-      expect(@shot_result.events).to be_empty
+      expect(@shot_result.events).to be_kind_of Heap
+      expect(@shot_result.events.empty?).to be_truthy
     end
 
     it "returns itself as a hash as specified." do
@@ -53,6 +53,7 @@ module Global8ballGame
       }
       event.deep_stringify_keys!
       events << event
+      @shot_result.events.push event
 
       event = {
         ball_id: 2,
@@ -62,11 +63,11 @@ module Global8ballGame
 
       event.deep_stringify_keys!
       events << event
+      @shot_result.events.push event
 
       foul = true
 
       @shot_result.foul = foul
-      @shot_result.events = events
 
       result = {
         shot_results: {
