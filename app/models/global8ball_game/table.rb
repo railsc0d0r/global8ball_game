@@ -32,7 +32,6 @@ module Global8ballGame
     end
 
     def shoot shot
-      @shot_result_heap = Heap.new
       @shot_result = ShotResult.new shot
 
       fixed_time_step = 0.0078125
