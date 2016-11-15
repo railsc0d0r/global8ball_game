@@ -202,6 +202,13 @@ module Global8ballGame
     # Only for PlayForVictory
     def change_breaker event
       puts "change_breaker"
+      result = {
+        ball_id: event.get_ball.id,
+        event: event.kind_of_event,
+        advice: 'change_breaker'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     # Only for PlayForVictory
