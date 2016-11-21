@@ -34,20 +34,40 @@ module Global8ballGame
     def shoot shot
       @shot_result = ShotResult.new shot
 
-      fixed_time_step = 0.0078125
       velocity = [shot.velocity_x,-(shot.velocity_y)] # P2 uses inverted y-coordinates
       set_breakball_velocity shot.shooter, velocity
-      @everything_stopped = false
 
-      # sets up event-listeners
-      @world.on('beginContact', Proc.new { |world| checkCollisions world.beginContactEvent })
-      @world.on('postStep', Proc.new { postStep })
+      # Sets up event-listener to handle events -> this evaluates the rules
+      @world.on('postStep', Proc.new { handle_events })
 
-      until @everything_stopped do
-        @world.step(fixed_time_step)
-      end
+      step_the_world
+      return true
+    end
 
-      return
+    # Only for PlayForVictory
+    def reinstate breakball_at_position
+      return false unless ball_position_valid? breakball_at_position
+      breaker_id = @current_state.current_players.first['user_id']
+
+      body_type = "ball"
+      damping = @config['table']['damping']
+
+      key = 1
+      owner = breaker_id
+      ball_type = 'breakball'
+      color = 'white'
+      mass = BallPosition.mass
+      radius = BallPosition.radius
+      x = breakball_at_position['x']
+      y = -breakball_at_position['y'] # P2 uses inverted y-coordinates
+      position = [x, y]
+
+      ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
+      @world.addBody ball.body
+
+      step_the_world
+
+      @event_heap.empty?
     end
 
     def current_state
@@ -122,7 +142,7 @@ module Global8ballGame
       breakball.velocity = velocity
     end
 
-    def checkCollisions contact_event
+    def check_collisions contact_event
       bodyA = contact_event.bodyA
       bodyB = contact_event.bodyB
 
@@ -130,14 +150,13 @@ module Global8ballGame
       @event_heap.push ce
     end
 
-    def postStep
+    def handle_events
       until @event_heap.empty? do
         event = @event_heap.return_next
         rules = @rules_evaluator.get_rules_for event
 
         handle_rules rules, event
       end
-      check_velocity
     end
 
     def handle_rules rules, event
@@ -233,6 +252,27 @@ module Global8ballGame
       end
 
       @everything_stopped = everything_stopped
+    end
+
+    def ball_position_valid? position
+      halfWidth = BallPosition.halfWidth
+      quarterWidth = BallPosition.quarterWidth
+
+      (-halfWidth < position['x'] < halfWidth) && (-quarterWidth < position['y'] < quarterWidth)
+    end
+
+    def step_the_world
+      fixed_time_step = 0.0078125
+
+      @everything_stopped = false
+
+      # sets up event-listeners
+      @world.on('beginContact', Proc.new { |world| check_collisions world.beginContactEvent })
+      @world.on('postStep', Proc.new { check_velocity })
+
+      until @everything_stopped do
+        @world.step(fixed_time_step)
+      end
     end
 
     def add_contact_materials contact_materials
