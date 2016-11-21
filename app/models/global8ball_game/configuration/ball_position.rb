@@ -101,6 +101,8 @@ module Global8ballGame
       end
 
       class << self
+        attr_reader :halfWidth, :quarterWidth, :mass, :radius
+
         def config stage=''
           raise "No stage given to get starting ball-positions for." if stage.blank?
           raise "Invalid stage given to get starting ball-positions for. Known stages: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? stage
