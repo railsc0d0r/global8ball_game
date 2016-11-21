@@ -84,6 +84,22 @@ module Global8ballGame
           end
         end
       end
+
+      it "defines ball-mass and exposes it" do
+        expect(@ball_position_config.mass).to eq 0.17
+      end
+
+      it "defines halfWidth and exposes it" do
+        expect(@ball_position_config.halfWidth).to eq 1.27
+      end
+
+      it "defines quarterWidth and exposes it" do
+        expect(@ball_position_config.quarterWidth).to eq 0.635
+      end
+
+      it "defines radius and exposes it" do
+        expect(@ball_position_config.radius).to eq 0.0291
+      end
     end
   end
 end
