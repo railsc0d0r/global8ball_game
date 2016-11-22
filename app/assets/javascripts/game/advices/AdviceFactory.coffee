@@ -1,4 +1,4 @@
-#= require game/config/prolog
+#= require game/prolog
 
 class global8ball.AdviceFactory
   constructor:
