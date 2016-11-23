@@ -13,7 +13,7 @@ module Global8ballGame
       result = {
         shot: @shot.to_hash,
         foul: @foul,
-        events: @events.to_a
+        events: @events.to_a.uniq
       }
       result.deep_stringify_keys
     end
