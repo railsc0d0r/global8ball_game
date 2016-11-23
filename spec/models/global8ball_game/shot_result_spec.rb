@@ -70,11 +70,9 @@ module Global8ballGame
       @shot_result.foul = foul
 
       result = {
-        shot_results: {
-          shot: @shot_hash,
-          foul: foul,
-          events: events
-        }
+        shot: @shot_hash,
+        foul: foul,
+        events: events
       }
 
       result.deep_stringify_keys!

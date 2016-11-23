@@ -11,11 +11,9 @@ module Global8ballGame
 
     def to_hash
       result = {
-        shot_results: {
-          shot: @shot.to_hash,
-          foul: @foul,
-          events: @events.to_a
-        }
+        shot: @shot.to_hash,
+        foul: @foul,
+        events: @events.to_a
       }
       result.deep_stringify_keys
     end
