@@ -78,7 +78,7 @@ module Global8ballGame
       @table.shoot shot
     end
 
-    it "shoots breakball into a hole." do
+    it "shoots breakball into a hole in PlayForBegin. Triggers a foul, remove_ball and restart_round." do
       shot_hash = {
         user_id: @players[:player_1].id,
         velocity: {
@@ -93,6 +93,31 @@ module Global8ballGame
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot
+      current_state = @table.current_state
+
+      shot_results = current_state['shot_results']
+
+      expect(shot_results['shot']).to eq shot_hash
+      expect(shot_results['foul']).to be_truthy
+
+      events = shot_results['events'].map do |e|
+        e.delete('ball_id')
+        e
+      end
+
+      expected_events = [
+        {
+          event: :breakball_falls_into_a_hole,
+          advice: 'remove_ball'
+        },
+        {
+          event: :breakball_falls_into_a_hole,
+          advice: 'restart_round'
+        }
+      ]
+      expected_events.each {|e| e.deep_stringify_keys!}
+
+      expect(events).to eq expected_events
     end
 
     it "returns its current state" do
