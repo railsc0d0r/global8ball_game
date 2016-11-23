@@ -120,6 +120,44 @@ module Global8ballGame
       expect(events).to eq expected_events
     end
 
+    it "shoots breakball across the CenterLine in PlayForBegin. Triggers a foul, restart_round." do
+      shot_hash = {
+        user_id: @players[:player_1].id,
+        velocity: {
+          x: 0.5717777628398706,
+          y: 0.49371039723116894
+        }
+      }
+      shot_hash.deep_stringify_keys!
+      shot = Shot.new shot_hash
+
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+      @table.shoot shot
+      current_state = @table.current_state
+
+      shot_results = current_state['shot_results']
+
+      expect(shot_results['shot']).to eq shot_hash
+      expect(shot_results['foul']).to be_truthy
+
+      events = shot_results['events'].map do |e|
+        e.delete('ball_id')
+        e
+      end
+
+      expected_events = [
+        {
+          event: :breakball_crosses_center_line,
+          advice: 'restart_round'
+        }
+      ]
+      expected_events.each {|e| e.deep_stringify_keys!}
+
+      expect(events).to eq expected_events
+    end
+
     it "returns its current state" do
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
