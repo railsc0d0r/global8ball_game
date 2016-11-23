@@ -173,6 +173,7 @@ module Global8ballGame
     end
 
     def reinstate_breakball event
+      puts "reinstate_breakball"
       @shot_result.foul = true
 
       result = {
@@ -186,9 +187,19 @@ module Global8ballGame
 
     def restart_round event
       puts "restart_round"
+      @shot_result.foul = true
+
+      result = {
+        ball_id: event.get_ball.id,
+        event: event.kind_of_event,
+        advice: 'restart_round'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     def remove_ball event
+      puts "remove_ball"
       ball = event.get_ball
       @world.removeBody ball
 
@@ -216,6 +227,13 @@ module Global8ballGame
 
     def round_won event
       puts "round_won"
+      result = {
+        ball_id: event.get_ball.id,
+        event: event.kind_of_event,
+        advice: 'round_won'
+      }
+
+      @shot_result.events.push result.deep_stringify_keys
     end
 
     # Only for PlayForVictory
