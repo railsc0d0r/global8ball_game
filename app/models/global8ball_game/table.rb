@@ -272,11 +272,15 @@ module Global8ballGame
       @everything_stopped = everything_stopped
     end
 
-    def ball_position_valid? position
-      halfWidth = BallPosition.halfWidth
-      quarterWidth = BallPosition.quarterWidth
+    def step_only_one_time
+      @everything_stopped = true
+    end
 
-      (-halfWidth < position['x'] < halfWidth) && (-quarterWidth < position['y'] < quarterWidth)
+    def ball_position_valid? position
+      halfWidth = Configuration::BallPosition.halfWidth
+      quarterWidth = Configuration::BallPosition.quarterWidth
+
+      position['x'].between?(-halfWidth,halfWidth) && position['y'].between?(-quarterWidth,quarterWidth)
     end
 
     def step_the_world
