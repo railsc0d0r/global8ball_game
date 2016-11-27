@@ -23,9 +23,9 @@ class global8ball.config.Game
     convertMeterToPx = @config.physicsConfig.mpx
 
     Object.keys(borders).map (key, index) ->
-                             points = []
-                             for point of borders[key]
-                                phaserPoint = center.clone().add convertMeterToPx(borders[key][point].x), convertMeterToPx(borders[key][point].y)
-                                points.push(phaserPoint)
-                             borders[key] = points
+      points = []
+      for point of borders[key]
+        phaserPoint = center.clone().add convertMeterToPx(borders[key][point].x), convertMeterToPx(borders[key][point].y)
+        points.push(phaserPoint)
+      borders[key] = points
     return borders
