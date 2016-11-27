@@ -65,6 +65,9 @@ module Global8ballGame
       ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
       @world.addBody ball.body
 
+      # Sets up event-listener to stop stepping after the 1st step
+      @world.on('postStep', Proc.new { step_only_one_time })
+
       step_the_world
 
       @event_heap.empty?
