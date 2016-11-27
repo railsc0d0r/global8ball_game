@@ -8,6 +8,7 @@ class global8ball.PlayState extends global8ball.FullState
   constructor: (gameConfig, players, @events) ->
     super gameConfig, players
     @ballsConfig = []
+    @ballsInHolesCount = 0
 
   init: (gameState) ->
     super()
@@ -123,4 +124,5 @@ class global8ball.PlayState extends global8ball.FullState
 
     ball
 
-  ballFallsIntoHole: (ball, hole) =>
+  ballFallsIntoHole: (ballBody, holeBody) =>
+    ballBody.sprite.removeFromTable @ballsInHolesCount++

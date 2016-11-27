@@ -26,6 +26,13 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     @cues.player1.aimAt x: @white.position.x + 10, y: @white.position.y
     @cues.player2.aimAt x: @white.position.x + 10, y: @white.position.y
 
+  spriteClasses: () ->
+    classes = super()
+    classes.white = global8ball.Ball
+    classes.black = global8ball.Ball
+    classes.playBalls = global8ball.Ball
+    return classes
+
   createWhiteBall: () ->
     @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
 
