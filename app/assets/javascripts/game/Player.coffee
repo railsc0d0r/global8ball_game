@@ -19,6 +19,11 @@ class global8ball.Player
   isViewer: () ->
     @viewsTheGame
 
+  # @param {global8ball.Player} player
+  # @return {boolean}
+  equals: (player) ->
+    player && player.account && @account.equals player.account
+
 # Creates a player which is also a viewer.
 #
 # @param {global8ball.Account} account
