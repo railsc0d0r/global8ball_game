@@ -83,7 +83,15 @@ class global8ball.FullState extends Phaser.State
     @physicsGroups[physicsId].create x, y, config, bodyModifier
 
   getSprites: (predicate) ->
-    return @world.children.filter predicate
+    foundSprites = []
+    currentChildren = @world.children.concat()
+    while currentChildren.length > 0
+      child = currentChildren.shift()
+      if child.type is Phaser.SPRITE && predicate child
+        foundSprites.push child
+      if child.type is Phaser.GROUP
+        currentChildren = currentChildren.concat child.children
+    return foundSprites
 
   getSprite: (predicate) ->
     sprites = @getSprites predicate
