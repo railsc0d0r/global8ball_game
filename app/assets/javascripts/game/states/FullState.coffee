@@ -81,3 +81,6 @@ class global8ball.FullState extends Phaser.State
 
   createSprite: (physicsId, x, y, config = {}, bodyModifier = () ->) ->
     @physicsGroups[physicsId].create x, y, config, bodyModifier
+
+  getSprites: (predicate) ->
+    return @world.children.filter predicate
