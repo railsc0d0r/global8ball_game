@@ -158,6 +158,24 @@ module Global8ballGame
       expect(events).to eq expected_events
     end
 
+    it "reinstates the breakball at a given position." do
+      breaker = @players[:player_1].id
+
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state[:balls].delete_if {|ball| ball[:type] == 'breakball'}
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+
+      at_position = {
+        x: -Configuration::BallPosition.quarterWidth,
+        y: 0
+      }
+      at_position.deep_stringify_keys!
+      result = @table.reinstate at_position
+
+      expect(result).to be_truthy
+    end
+
     it "returns its current state" do
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
       state.deep_stringify_keys!
