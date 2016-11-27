@@ -85,7 +85,6 @@ class global8ball.PlayState extends global8ball.FullState
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
   sendShotEvent: (power, onSendShot) ->
     power = power * @gameConfig.config.breakBall.maxSpeed
-    console.log 'Power = ' + power
     cue = @currentlyControlledCue()
     angle = cue.getAngle()
     rotation = angle*Math.PI/180
