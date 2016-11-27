@@ -66,9 +66,10 @@ class global8ball.FullState extends Phaser.State
 
   # @return {Hole}
   createHole: (key, holeData) ->
-    sprite = @createSprite 'holes', holeData.pos.x, holeData.pos.y, holeKey: key
+    createHoleBody = (body) ->
+      body.static = true # Holes are immobile
+    sprite = @createSprite 'holes', holeData.pos.x, holeData.pos.y, { holeKey: key }, createHoleBody
     sprite.anchor.setTo 0.5, 0.5
-    sprite.body.static = true # Holes are immobile
     return sprite
 
   createPlayerInfos: () ->
