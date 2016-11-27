@@ -84,3 +84,7 @@ class global8ball.FullState extends Phaser.State
 
   getSprites: (predicate) ->
     return @world.children.filter predicate
+
+  getSprite: (predicate) ->
+    sprites = @getSprites predicate
+    return sprites[0]
