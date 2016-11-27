@@ -26,8 +26,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @cues.player2.aimAt x: @white2.position.x + 10, y: @white2.position.y
 
   getPhysicsGroupSpecs: () ->
-    specs = (new global8ball.GroupSpecs).get 'common', 'play', 'twoWhiteBalls'
-    return specs
+    return (new global8ball.GroupSpecs).get 'common', 'play', 'twoWhiteBalls'
 
   spriteClasses: () ->
     classes = super()
@@ -44,8 +43,6 @@ class global8ball.PlayForBegin extends global8ball.PlayState
         @[ballProperty] = @createBallSprite physicsGroupId, ballConfig
 
   whiteBallCollidesWithBorder: (ballBody, borderBody) =>
-
-  whiteBallFallsIntoHole: (ballBody, holeBody) =>
 
   update: ->
     super()
