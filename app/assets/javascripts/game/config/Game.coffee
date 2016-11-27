@@ -7,11 +7,14 @@ class global8ball.config.Game
   holesData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
 
-    holes = @config.holes
+    holes = {}
     convertMeterToPx = @config.physicsConfig.mpx
 
-    Object.keys(holes).map (key, index) ->
-      holes[key] = pos: center.clone().add convertMeterToPx(holes[key].x), convertMeterToPx(holes[key].y)
+    Object.keys(@config.holes).map (key, index) =>
+      currentHoleConfig = @config.holes[key]
+      holes[key] =
+        pos: center.clone().add convertMeterToPx(currentHoleConfig.x), convertMeterToPx(currentHoleConfig.y)
+        radius: currentHoleConfig.radius
 
     return holes
 
