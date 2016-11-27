@@ -56,8 +56,8 @@ module Global8ballGame
       owner = breaker_id
       ball_type = 'breakball'
       color = 'white'
-      mass = BallPosition.mass
-      radius = BallPosition.radius
+      mass = Configuration::BallPosition.mass
+      radius = Configuration::BallPosition.radius
       x = breakball_at_position['x']
       y = -breakball_at_position['y'] # P2 uses inverted y-coordinates
       position = [x, y]
