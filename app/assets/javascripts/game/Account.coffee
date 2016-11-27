@@ -12,4 +12,4 @@ class global8ball.Account
   # @param {global8ball.Account} otherAccount
   # @return {boolean}
   equals: (otherAccount) ->
-    otherAccount.id is @id
+    otherAccount && otherAccount.id is @id
