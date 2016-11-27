@@ -12,6 +12,8 @@
 # Cue states are represented by classes. They are pre-generated on initialization
 # and switched by setting them by key.
 class global8ball.Cue extends Phaser.Sprite
+  @TYPE = 'cue'
+
   # Default distance to ball.
   DEFAULT_DISTANCE_TO_BALL = 20
 
@@ -23,6 +25,7 @@ class global8ball.Cue extends Phaser.Sprite
     super game, x, y, key, frame
     @states = {}
     @keyOfCurrentState = STATES.INITIAL # A lie!
+    @spriteType = global8ball.Cue.TYPE
 
   # Initializes the various cue states.
   initStates: ->

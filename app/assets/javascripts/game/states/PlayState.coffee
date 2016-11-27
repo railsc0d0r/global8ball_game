@@ -75,11 +75,7 @@ class global8ball.PlayState extends global8ball.FullState
   # Returns the cue which belongs to player with ID playerId or null if none
   # such cue exists.
   getCueByPlayer: (playerId) ->
-    cues = [@cues.player1, @cues.player2].filter (cue) -> cue.getOwner().getId() is playerId
-    if cues.length > 0
-      cues[0]
-    else
-      null
+    @getSprite new global8ball.spritePredicates.CueByPlayer @players.byId playerId
 
   # @param {number} power A value sent from shot control, ranges from 0 to 1.
   # @param {Phaser.Signal} onSendShot Event sink for shot events.
