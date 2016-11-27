@@ -8,8 +8,8 @@ module Global8ballGame
       @eighthWidth = @quarterWidth / 2 # 120px
       @diameter = 0.0582               # 22px
       @radius = @diameter / 2          # 11px
-      @xDiff = Math.sqrt(3 * @radius ** 2)
-      @yDiff = @diameter
+      @xDiff = Math.sqrt(3 * @radius ** 2) + 0.01
+      @yDiff = @diameter + 0.01
       @mass = 0.17 # kg
 
       @positions = {
