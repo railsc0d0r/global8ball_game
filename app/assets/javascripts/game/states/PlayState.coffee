@@ -122,3 +122,5 @@ class global8ball.PlayState extends global8ball.FullState
     ball = @createSprite physicsGroupId, x, y, config, makeBallBody
 
     ball
+
+  ballFallsIntoHole: (ball, hole) =>

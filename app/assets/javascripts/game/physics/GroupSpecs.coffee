@@ -38,7 +38,7 @@ class global8ball.GroupSpecs
           }
           {
             groupId: 'holes'
-            callback: 'whiteBallFallsIntoHole'
+            callback: 'ballFallsIntoHole'
           }
           {
             groupId: 'playBalls'
@@ -67,6 +67,12 @@ class global8ball.GroupSpecs
             groupId: 'white'
           }
         ]
+      holes:
+        collides: [
+          {
+            groupId: 'white'
+          }
+        ]
     twoWhiteBalls:
       white1:
         spriteKey: 'whiteBall'
@@ -85,7 +91,7 @@ class global8ball.GroupSpecs
           }
           {
             groupId: 'holes'
-            callback: 'whiteBallFallsIntoHole'
+            callback: 'ballFallsIntoHole'
           }
         ]
       white2:
@@ -105,7 +111,7 @@ class global8ball.GroupSpecs
           }
           {
             groupId: 'holes'
-            callback: 'whiteBallFallsIntoHole'
+            callback: 'ballFallsIntoHole'
           }
         ]
       cue1:
@@ -155,8 +161,18 @@ class global8ball.GroupSpecs
           {
             groupId: 'borders'
           }
+          {
+            groupId: 'holes'
+            callback: 'ballFallsIntoHole'
+          }
         ]
       borders:
+        collides: [
+          {
+            groupId: 'black'
+          }
+        ]
+      holes:
         collides: [
           {
             groupId: 'black'
@@ -179,8 +195,18 @@ class global8ball.GroupSpecs
           {
             groupId: 'borders'
           }
+          {
+            groupId: 'holes'
+            callback: 'ballFallsIntoHole'
+          }
         ]
       borders:
+        collides: [
+          {
+            groupId: 'playBalls'
+          }
+        ]
+      holes:
         collides: [
           {
             groupId: 'playBalls'
