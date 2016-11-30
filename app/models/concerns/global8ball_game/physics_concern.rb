@@ -19,6 +19,10 @@ module Global8ballGame
       shoot shot
     end
 
+    def eval_reinstating_at breakball_position
+      reinstate_at breakball_position
+    end
+
     protected
 
     def new_table_config
@@ -112,6 +116,15 @@ module Global8ballGame
       self.last_result = table.current_state
 
       self.last_result
+    end
+
+    def reinstate_at breakball_position
+      table = initialize_table
+      result = table.reinstate breakball_position
+
+      self.last_result = table.current_state if result['reinstated']
+
+      result
     end
   end
 end
