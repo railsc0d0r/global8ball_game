@@ -46,7 +46,16 @@ module Global8ballGame
 
     # Only for PlayForVictory
     def reinstate breakball_at_position
-      return false unless ball_position_valid? breakball_at_position
+      result = {
+        reinstated: false,
+        reasons: []
+      }
+
+      unless ball_position_valid? breakball_at_position
+        result[:reasons] << :position_out_of_table_boundaries
+        return result.deep_stringify_keys
+      end
+
       breaker_id = @current_state.current_players.first['user_id']
 
       body_type = "ball"
@@ -70,7 +79,15 @@ module Global8ballGame
 
       step_the_world
 
-      @event_heap.empty?
+      if @event_heap.empty?
+        result[:reinstated] = true
+      else
+        @event_heap.to_a.each do |event|
+          result[:reasons] << event.kind_of_event
+        end
+      end
+
+      result.deep_stringify_keys
     end
 
     def current_state
