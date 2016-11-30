@@ -10,6 +10,10 @@ class ReinstateBreakballChannel < ApplicationCable::Channel
   end
 
   def reinstate_breakball data
-    reinstate_breakball = data['reinstate_breakball']
+    breakball_position = data['reinstate_breakball']
+    result = @game.eval_reinstating_at breakball_position
+
+    transmit result
+    ActionCable.server.broadcast "state_#{params[:game_id]}", (@game.last_result) if result['reinstated']
   end
 end
