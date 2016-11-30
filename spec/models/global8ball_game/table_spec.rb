@@ -173,7 +173,44 @@ module Global8ballGame
       at_position.deep_stringify_keys!
       result = @table.reinstate at_position
 
-      expect(result).to be_truthy
+      expect(result['reinstated']).to be_truthy
+    end
+
+    it "tries to reinstate the breakball out of table-boundaries." do
+      breaker = @players[:player_1].id
+
+      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state[:balls].delete_if {|ball| ball[:type] == 'breakball'}
+      state.deep_stringify_keys!
+      @table.initialize_last_state state
+
+      positions = [
+        {
+          x: -(Configuration::BallPosition.halfWidth + 0.01),
+          y: 0
+        },
+        {
+          x: (Configuration::BallPosition.halfWidth + 0.01),
+          y: 0
+        },
+        {
+          x: 0,
+          y: -(Configuration::BallPosition.quarterWidth + 0.01)
+        },
+        {
+          x: 0,
+          y: (Configuration::BallPosition.quarterWidth + 0.01)
+        }
+      ]
+
+      positions.each do |at_position|
+        at_position =
+        at_position.deep_stringify_keys!
+        result = @table.reinstate at_position
+
+        expect(result['reinstated']).to be_falsy
+        expect(result['reasons']).to contain_exactly :position_out_of_table_boundaries
+      end
     end
 
     it "returns its current state" do
