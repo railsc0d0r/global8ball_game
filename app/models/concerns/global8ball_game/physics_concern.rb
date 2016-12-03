@@ -23,7 +23,6 @@ module Global8ballGame
       reinstate_at breakball_position
     end
 
-    protected
 
     def new_table_config
       config = {}
