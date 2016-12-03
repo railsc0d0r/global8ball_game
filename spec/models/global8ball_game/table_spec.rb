@@ -21,14 +21,14 @@ module Global8ballGame
     end
 
     it "has 2 balls defined after initializing the opening state for PlayForBegin" do
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory"
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 16
@@ -52,7 +52,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot
@@ -72,7 +72,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot
@@ -89,7 +89,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot
@@ -131,7 +131,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       state.deep_stringify_keys!
       @table.initialize_last_state state
       @table.shoot shot

@@ -6,7 +6,7 @@ module Global8ballGame
       @object_creator = ObjectCreator.new
       @players = @object_creator.players
 
-      @state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
+      @state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @state.deep_stringify_keys!
 
       @gs = GameState.new @state
@@ -21,7 +21,7 @@ module Global8ballGame
     end
 
     it "lets round be overwritten" do
-      round = 1
+      round = 2
       @gs.round = round
       expect(@gs.round).not_to eq @state['current_stage']['round']
       expect(@gs.round).to eq round
