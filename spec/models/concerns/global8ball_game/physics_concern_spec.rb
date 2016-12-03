@@ -2,6 +2,36 @@ require 'rails_helper'
 
 module Global8ballGame
   RSpec.describe PhysicsConcern, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+    before do
+      @object_creator = ObjectCreator.new
+
+      @game = Game.new
+      @game.player_1 = @object_creator.players[:player_1]
+      @game.player_2 = @object_creator.players[:player_2]
+      @game.save
+    end
+
+    it "can provide a new table_config with definitions for the table, borders and holes." do
+      config = @game.new_table_config
+      expect(config.keys).to match_array [:table, :borders, :holes]
+      expect(config[:table].keys).to match_array [:damping, :max_breakball_speed, :scaling_factor, :contact_materials]
+      expect(config[:borders].keys).to match_array [:left, :leftBottom, :rightBottom, :right, :rightTop, :leftTop]
+      expect(config[:holes].keys).to match_array [:leftTop, :leftBottom, :centerBottom, :rightBottom, :rightTop, :centerTop]
+    end
+
+    it "can provide an initial state for PlayForBegin to be saved as last_result." do
+      state = @game.initial_state @game.player_1_id, @game.player_2_id
+      expected_state = @object_creator.initial_state @game.player_1_id, @game.player_2_id
+
+      expect(state).to eql expected_state
+    end
+
+    it "can provide an initial state for PlayForVictory to be saved as last_result." do
+      breaker = @game.player_1_id
+      state = @game.initial_state @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
+      expected_state = @object_creator.initial_state @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
+
+      expect(state).to eql expected_state
+    end
   end
 end
