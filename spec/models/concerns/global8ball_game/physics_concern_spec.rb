@@ -36,5 +36,82 @@ module Global8ballGame
 
       expect(state).to eql expected_state
     end
+
+    it "can evaluate a shot in PlayForBegin." do
+      breaker = @object_creator.players[:player_1].id
+      stage_name = 'PlayForBegin'
+
+      @game.initialize_state stage_name, breaker
+
+      shot_hash = {
+        user_id: breaker,
+        velocity: {
+          x: @config['table']['max_breakball_speed'],
+          y: 0
+        }
+      }
+      shot_hash.deep_stringify_keys!
+
+      expected_result =
+      {
+        "current_stage" =>
+          {
+            "stage_name" => "PlayForBegin",
+            "round" => 1
+          },
+        "balls" =>
+          [
+            {
+              "id" => 1,
+              "type" => "breakball",
+              "color" => "white",
+              "owner" => 1,
+              "radius" => 0.0291,
+              "mass" => 0.17,
+              "position" =>
+                {
+                  "x" => 0.6559660050258933,
+                  "y" => -0.3175
+                }
+            },
+            {
+              "id" => 2,
+              "type" => "breakball",
+              "color" => "white",
+              "owner" => 2,
+              "radius" => 0.0291,
+              "mass" => 0.17,
+              "position" =>
+                {
+                  "x" => -0.635,
+                  "y" => 0.3175
+                }
+            }
+          ],
+        "current_players" =>
+          [
+            {"user_id"=>1},
+            {"user_id"=>2}
+          ],
+        "current_results" => [],
+        "shot_results" =>
+          {
+            "shot" =>
+              {
+                "user_id" => 1,
+                "velocity" =>
+                  {
+                    "x" => 11.295529411764704,
+                    "y" => 0
+                  }
+              },
+            "foul" => false,
+            "events"=>[]
+          }
+      }
+      result = @game.eval_shot shot_hash
+
+      expect(result).to eql expected_result
+    end
   end
 end
