@@ -5,5 +5,7 @@ App.reinstate_breakball = App.cable.subscriptions.create {"ReinstateBreakballCha
   disconnected: ->
     # Called when the subscription has been terminated by the server
 
-  received: (data) ->
+  received: (result) ->
     # Called when there's incoming data on the websocket for this channel
+    dummy_component.game.events.onReceiveReinstateBreakball.dispatch result
+    return
