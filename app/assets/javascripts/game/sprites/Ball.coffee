@@ -1,6 +1,8 @@
 #= require game/prolog
 
 class global8ball.Ball extends Phaser.Sprite
+  @TYPE = 'UNKNOWN'
+
   FIRST_BALL_POSITION =
     x: 6666
     y: 6666

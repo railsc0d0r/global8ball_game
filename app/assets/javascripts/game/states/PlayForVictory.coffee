@@ -1,5 +1,8 @@
 #= require game/prolog
 #= require game/physics/GroupSpecs
+#= require game/sprites/BreakBall
+#= require game/sprites/Global8Ball
+#= require game/sprites/PlayBall
 #= require game/states/PlayState
 
 # State for handling the part of the game where both players compete to win
@@ -28,9 +31,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
 
   spriteClasses: () ->
     classes = super()
-    classes.white = global8ball.Ball
-    classes.black = global8ball.Ball
-    classes.playBalls = global8ball.Ball
+    classes.white = global8ball.sprites.BreakBall
+    classes.black = global8ball.sprites.Global8Ball
+    classes.playBalls = global8ball.sprites.PlayBall
     return classes
 
   createWhiteBall: () ->

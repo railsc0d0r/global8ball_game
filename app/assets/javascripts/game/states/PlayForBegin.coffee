@@ -30,8 +30,8 @@ class global8ball.PlayForBegin extends global8ball.PlayState
 
   spriteClasses: () ->
     classes = super()
-    classes.white1 = global8ball.Ball
-    classes.white2 = global8ball.Ball
+    classes.white1 = global8ball.sprites.BreakBall
+    classes.white2 = global8ball.sprites.BreakBall
     return classes
 
   createWhiteBalls: () ->
