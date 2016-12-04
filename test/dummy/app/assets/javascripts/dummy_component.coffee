@@ -26,6 +26,7 @@ class this.DummyComponent
                   @game = initGlobal8Ball(@config)
                   @game.events.onGetState.add(@requestCurrentState, @)
                   @game.events.onSendShot.add(@sendShot, @)
+                  @game.events.onSendReinstateBreakball.add(@sendReinstateBreakball, @)
 
                   return
 
@@ -49,5 +50,10 @@ class this.DummyComponent
 
         sendShot: (shot) ->
                   App.shot.perform 'setShot', shot
+
+                  return
+
+        sendReinstateBreakball: (position) ->
+                  App.reinstate_breakball.perform 'reinstate_breakball', position
 
                   return
