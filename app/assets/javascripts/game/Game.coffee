@@ -5,6 +5,7 @@
 #= require game/states/Preload
 #= require game/states/PlayForBegin
 #= require game/states/PlayForVictory
+#= require game/states/Reinstate
 #= require game/states/ShowResult
 #= require game/states/WaitForGameState
 
@@ -63,6 +64,7 @@ class Game
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState @events
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin gameConfig, @players, @events
     @phaserGame.state.add 'PlayForVictory', new global8ball.PlayForVictory gameConfig, @players, @events
+    @phaserGame.state.add 'Reinstate', new global8ball.Reinstate gameConfig, @players, @events
     @phaserGame.state.add 'ShowResult', new global8ball.ShowResult gameConfig, @players
 
     if @players.viewerPlays()

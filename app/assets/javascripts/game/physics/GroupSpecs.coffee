@@ -212,6 +212,10 @@ class global8ball.GroupSpecs
             groupId: 'playBalls'
           }
         ]
+    reinstate:
+      reinstateBall:
+        spriteGroupId: 'reinstateBall'
+        collisionGroupId: 'reinstateBall'
 
   get: (keys...) ->
     resultSpecs = {}
