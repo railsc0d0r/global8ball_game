@@ -8,10 +8,6 @@
 # State for handling the part of the game where both players compete to win
 # rounds.
 class global8ball.PlayForVictory extends global8ball.PlayState
-  PLAY_BALL_COLOR_MAPPING =
-    red: 'redBall'
-    gold: 'yellowBall'
-
   constructor: (gameConfig, players, events) ->
     super gameConfig, players, events
 
@@ -41,7 +37,7 @@ class global8ball.PlayForVictory extends global8ball.PlayState
 
   createPlayBalls: () ->
     @playBalls = @ballsConfig.getPlayBallsConfig().forEach (ballConfig) =>
-      @createBallSprite 'playBalls', ballConfig, PLAY_BALL_COLOR_MAPPING[ballConfig.color]
+      @createBallSprite 'playBalls', ballConfig, global8ball.sprites.PlayBall.BALL_COLOR_MAPPING[ballConfig.color]
 
   createBlackBall: () ->
     @blackBall = @createBallSprite 'black', @ballsConfig.get8BallConfig()
