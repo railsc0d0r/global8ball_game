@@ -15,6 +15,10 @@ class global8ball.GameEvents
     @clearGameState()
     @onSetState.add (@state) =>
 
+    @onSendReinstateBreakball = new Phaser.Signal
+    @onReceiveReinstateBreakball = new Phaser.Signal
+    @onReceiveReinstateBreakball.add (reinstateBreakballData) =>
+
   # Wether there is a new shot pending or not.
   #
   # @return {boolean}
