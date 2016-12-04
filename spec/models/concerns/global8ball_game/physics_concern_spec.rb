@@ -4,10 +4,13 @@ module Global8ballGame
   RSpec.describe PhysicsConcern, type: :model do
     before do
       @object_creator = ObjectCreator.new
+      @config = @object_creator.create_table_config
+      @config[:table][:damping] = 0.2 # Sets damping to a fixed value to correctly predict results without accounting for random variations
+      @config.deep_stringify_keys!
 
-      @game = Game.new
-      @game.player_1 = @object_creator.players[:player_1]
-      @game.player_2 = @object_creator.players[:player_2]
+      @game = Game.create!
+
+      @game.config_json = @config.to_json
       @game.save
     end
 
