@@ -1,4 +1,5 @@
 #= require game/prolog
+#= require game/sprites/Cue
 #= require game/sprites/CueAdder
 #= require game/states/FullState
 
