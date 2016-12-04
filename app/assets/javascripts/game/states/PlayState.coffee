@@ -1,4 +1,4 @@
-#= require game/sprites/Cue
+#= require game/sprites/CueAdder
 #= require game/prolog
 #= require game/states/FullState
 
@@ -20,19 +20,7 @@ class global8ball.PlayState extends global8ball.FullState
 
   create: ->
     super()
-    setCueBody = (body) ->
-      body.ccdSpeedThreshold = 1
-      body.ccdIterations = 2
-      body.damping = 0
-
-    @cues =
-      player1: @createSprite 'cue1', 10, 10, visible: no, setCueBody
-      player2: @createSprite 'cue2', 10, 10, visible: no, setCueBody
-    @world.bringToTop @spriteGroups.cues
-    @cues.player1.setOwner @players.getFirst()
-    @cues.player2.setOwner @players.getSecond()
-    @cues.player1.initStates()
-    @cues.player2.initStates()
+    (new global8ball.CueAdder).addCues @
 
   # Sets the initial state of the cue, according to the owner being one of the
   # current players or not.
