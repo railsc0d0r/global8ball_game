@@ -5,8 +5,6 @@ module Global8ballGame
     before do
       @object_creator = ObjectCreator.new
       @config = @object_creator.create_table_config
-      @config[:table][:damping] = 0.2 # Sets damping to a fixed value to correctly predict results without accounting for random variations
-      @config.deep_stringify_keys!
 
       @game = Game.create!
 
@@ -46,7 +44,7 @@ module Global8ballGame
       shot_hash = {
         user_id: breaker,
         velocity: {
-          x: @config['table']['max_breakball_speed'],
+          x: @config[:table][:max_breakball_speed],
           y: 0
         }
       }

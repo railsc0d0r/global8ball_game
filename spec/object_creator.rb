@@ -14,6 +14,7 @@ class ObjectCreator
     config = {}
 
     config.merge!(Global8ballGame::Configuration::Table.new.config)
+    config[:table][:damping] = 0.2 # Sets damping to a fixed value to correctly predict results without accounting for random variations
     config.merge!(Global8ballGame::Configuration::Border.new.config)
     config.merge!(Global8ballGame::Configuration::Hole.new.config)
     config.merge!(players_config)
