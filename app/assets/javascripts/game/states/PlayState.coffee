@@ -1,5 +1,5 @@
-#= require game/sprites/CueAdder
 #= require game/prolog
+#= require game/sprites/CueAdder
 #= require game/states/FullState
 
 # Base class for all states where players can play, i.e. there are cues, balls
