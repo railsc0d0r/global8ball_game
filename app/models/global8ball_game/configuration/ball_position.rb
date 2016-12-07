@@ -66,6 +66,7 @@ module Global8ballGame
       color = 'red'
 
       0.upto(4) do |x|
+        color = x.even? ? 'red' : 'gold' unless x == 4 # We do this to mix the balls properly in PlayForVictory
         0.upto(x) do |y|
           counter += 1
           unless counter == 6
