@@ -35,69 +35,27 @@ module Global8ballGame
     end
 
     def initial_state player_1_id, player_2_id, stage_name="PlayForBegin", breaker=nil
-      state = {
-          current_stage: {
-              stage_name: stage_name,
-              round: 1
-            }
-        }
-
-      state.merge!(Global8ballGame::Configuration::BallPosition.config stage_name)
-
-      current_players = {
-        current_players: []
-      }
-
-      current_results = {
-        current_results: []
-      }
-
-      if stage_name == 'PlayForBegin'
-        state[:balls][0][:owner] = player_1_id
-        state[:balls][1][:owner] = player_2_id
-        current_players[:current_players] << { user_id: player_1_id}
-        current_players[:current_players] << { user_id: player_2_id}
-      end
-
-      if stage_name == 'PlayForVictory'
-        state[:balls][0][:owner] = breaker
-        current_players[:current_players] << { user_id: breaker}
-        current_results[:current_results] << {
-          stage_name: 'PlayForBegin',
-          winner: breaker
-        }
-      end
-
-      state.merge!(current_players)
+      state = InitialState.new player_1_id, player_2_id, stage_name, breaker
 
       if stage_name == 'ShowResult'
-        current_results[:current_results] << {
+        current_results = []
+
+        current_results << {
           stage_name: 'PlayForBegin',
           winner: breaker
         }
 
         1.upto 3 do |round|
-          current_results[:current_results] << {
+          current_results << {
             stage_name: 'PlayForVictory',
             round: round,
             winner: breaker
           }
         end
+        state.current_results = current_results
       end
 
-      state.merge!(current_results)
-
-      shot_results = {
-        shot_results: {
-          shot: {},
-          foul: false,
-          events: []
-        }
-      }
-
-      state.merge!(shot_results)
-
-      state
+      state.to_hash
     end
 
     private
