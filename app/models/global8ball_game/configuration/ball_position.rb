@@ -13,8 +13,7 @@ module Global8ballGame
       @mass = 0.17 # kg
 
       @positions = {
-        'PlayForBegin': {
-          balls: [
+        'PlayForBegin': [
             {
               id: 1,
               type: 'breakball',
@@ -39,10 +38,8 @@ module Global8ballGame
                 y: @eighthWidth
               }
             }
-          ]
-        },
-        'PlayForVictory': {
-          balls: [
+        ],
+        'PlayForVictory': [
             {
               id: 1,
               type: 'breakball',
@@ -55,11 +52,8 @@ module Global8ballGame
                 y: 0
               }
             }
-          ]
-        },
-        'ShowResult': {
-          balls: []
-        }
+        ],
+        'ShowResult': []
       }
 
       counter = 1
@@ -97,7 +91,7 @@ module Global8ballGame
               }
             }
           end
-          @positions['PlayForVictory'.to_sym][:balls] << position
+          @positions['PlayForVictory'.to_sym] << position
         end
       end
 
@@ -108,7 +102,7 @@ module Global8ballGame
           raise "No stage given to get starting ball-positions for." if stage.blank?
           raise "Invalid stage given to get starting ball-positions for. Known stages: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? stage
 
-          @positions[stage.to_sym].deep_symbolize_keys
+          @positions[stage.to_sym]
         end
 
         def config_json stage=''

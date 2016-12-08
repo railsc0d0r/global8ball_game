@@ -43,7 +43,7 @@ class ObjectCreator
       }
     }
 
-    state.merge!(Global8ballGame::Configuration::BallPosition.config stage_name)
+    state[:balls] = Global8ballGame::Configuration::BallPosition.config stage_name
 
     current_players = {
       current_players: []

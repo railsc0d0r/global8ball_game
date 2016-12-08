@@ -162,8 +162,9 @@ module Global8ballGame
       breaker = @players[:player_1].id
 
       state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
-      state[:balls].delete_if {|ball| ball[:type] == 'breakball'}
       state.deep_stringify_keys!
+      state['balls'].delete_if {|ball| ball['type'] == 'breakball'}
+
       @table.initialize_last_state state
 
       at_position = {

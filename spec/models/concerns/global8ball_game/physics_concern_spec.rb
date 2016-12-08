@@ -24,7 +24,7 @@ module Global8ballGame
       state = @game.initial_state @game.player_1_id, @game.player_2_id
       expected_state = @object_creator.initial_state @game.player_1_id, @game.player_2_id
 
-      expect(state).to eql expected_state
+      expect(state).to eql expected_state.deep_stringify_keys
     end
 
     it "can provide an initial state for PlayForVictory to be saved as last_result." do
@@ -32,7 +32,7 @@ module Global8ballGame
       state = @game.initial_state @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
       expected_state = @object_creator.initial_state @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
 
-      expect(state).to eql expected_state
+      expect(state).to eql expected_state.deep_stringify_keys
     end
 
     it "can evaluate a shot in PlayForBegin." do
