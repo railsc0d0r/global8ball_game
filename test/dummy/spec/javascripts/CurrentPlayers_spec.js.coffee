@@ -11,9 +11,9 @@ describe 'CurrentPlayers', ->
   it 'contains players when their user ID is one of the current players', ->
 
     player = new Player new Account(15, "Myself"), false
-    expect(currentPlayers.contains player).to.be.ok
+    expect(currentPlayers.contains player).toBeTruthy()
 
   it 'does not contain a player whose user ID is not one of the current players', ->
 
     player = new Player new Account(10, "Someone"), false
-    expect(currentPlayers.contains player).to.not.be.ok
+    expect(currentPlayers.contains player).toBeFalsy()
