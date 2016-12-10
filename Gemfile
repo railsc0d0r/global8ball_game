@@ -15,3 +15,7 @@ gemspec
 
 # Loads external gem-wrapper for physics-engine
 gem "p2_physics_wrapper", :git => "ssh://git@p2501.twilightparadox.com:33333/home/git/git_repos/p2_physics_wrapper.git", :ref => '57cfd475e518e9545dbccfc24baf3313bee8ce5e'
+
+group :test, :development do
+  gem 'jasmine-rails'
+end

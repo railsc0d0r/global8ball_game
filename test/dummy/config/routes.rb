@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root 'games#show'
 end
