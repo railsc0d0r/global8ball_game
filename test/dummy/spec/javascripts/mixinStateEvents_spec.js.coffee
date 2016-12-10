@@ -114,3 +114,5 @@ describe 'State events Mixin', () ->
         state = mixinStateEvents new State
 
         state[event]()
+
+        fail('Pending: expectation has to be implemented for ' + event + '() yet.')
