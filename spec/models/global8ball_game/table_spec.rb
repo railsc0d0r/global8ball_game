@@ -22,19 +22,19 @@ module Global8ballGame
 
     it "has 2 balls defined after initializing the opening state for PlayForBegin" do
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      @table.initialize_last_state state
+      @table.initialize_state state
       expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
-      @table.initialize_last_state state
+      @table.initialize_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 16
     end
 
     it "has no balls defined after initializing the opening state for ShowResult" do
       state = InitialState.new @players[:player_1], @players[:player_2], "ShowResult"
-      @table.initialize_last_state state
+      @table.initialize_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
     end
 
@@ -50,7 +50,7 @@ module Global8ballGame
       shot = Shot.new shot_hash
 
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      @table.initialize_last_state state
+      @table.initialize_state state
       @table.shoot shot
     end
 
@@ -68,7 +68,7 @@ module Global8ballGame
       shot = Shot.new shot_hash
 
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
-      @table.initialize_last_state state
+      @table.initialize_state state
       @table.shoot shot
     end
 
@@ -84,7 +84,7 @@ module Global8ballGame
       shot = Shot.new shot_hash
 
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      @table.initialize_last_state state
+      @table.initialize_state state
       @table.shoot shot
       current_state = @table.current_state
 
@@ -125,7 +125,7 @@ module Global8ballGame
       shot = Shot.new shot_hash
 
       state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      @table.initialize_last_state state
+      @table.initialize_state state
       @table.shoot shot
       current_state = @table.current_state
 
@@ -156,7 +156,7 @@ module Global8ballGame
       state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
       state.balls.delete_if {|ball| ball['type'] == 'breakball'}
 
-      @table.initialize_last_state state
+      @table.initialize_state state
 
       at_position = {
         x: -Configuration::BallPosition.quarterWidth,
@@ -173,7 +173,7 @@ module Global8ballGame
 
       state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
       state.balls.delete_if {|ball| ball['type'] == 'breakball'}
-      @table.initialize_last_state state
+      @table.initialize_state state
 
       positions = [
         {
@@ -206,7 +206,7 @@ module Global8ballGame
 
     it "returns its current state" do
       state = InitialState.new @players[:player_1], @players[:player_2], "PlayForBegin"
-      @table.initialize_last_state state
+      @table.initialize_state state
       expect(@table.current_state).to eq state.to_hash
     end
 

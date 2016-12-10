@@ -22,7 +22,7 @@ module Global8ballGame
       @event_heap = Heap.new
     end
 
-    def initialize_last_state state
+    def initialize_state state
       @current_state = state
       @rules_evaluator = Rules::Evaluator.new @current_state.stage_name unless @current_state.stage_name == 'ShowResult'
 
