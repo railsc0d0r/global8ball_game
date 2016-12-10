@@ -1,6 +1,6 @@
 #= require game/Controls
 #= require game/mixinStateEvents
-#= require game/phaser
+#= require thirdparty/phaser
 
 describe 'Game controls', () ->
 
