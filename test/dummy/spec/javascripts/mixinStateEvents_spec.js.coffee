@@ -24,8 +24,8 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(observedState).to.equal state
-        expect(observedEvent).to.equal event
+        expect(observedState).toEqual state
+        expect(observedEvent).toEqual event
 
       it 'is called within a specific context for ' + event + ' event', () ->
 
@@ -38,7 +38,7 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(observedContext).to.equal context
+        expect(observedContext).toEqual context
 
       it 'is called with respect to its priority for ' + event + ' events', () ->
 
@@ -53,7 +53,7 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(calls).to.deep.equal ['first', 'second', 'third']
+        expect(calls).toEqual ['first', 'second', 'third']
 
       it 'is called with additional arguments for ' + event + ' events', () ->
 
@@ -65,7 +65,7 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(observedArguments).to.deep.equal additionalArguments
+        expect(observedArguments).toEqual additionalArguments
 
 
       it 'can be removed for ' + event + ' events', () ->
@@ -92,7 +92,7 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(state[event + '_called']).to.equal state
+        expect(state[event + '_called']).toEqual state
 
       it 'calls the original ' + event + '() method with additional parameters', () ->
 
@@ -104,7 +104,7 @@ describe 'State events Mixin', () ->
 
         state[event] additionalArguments...
 
-        expect(state[event + '_args']).to.deep.equal additionalArguments
+        expect(state[event + '_args']).toEqual additionalArguments
 
       it 'gains a ' + event + '() method if it had none', () ->
 
