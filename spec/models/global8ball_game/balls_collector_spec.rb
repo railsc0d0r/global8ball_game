@@ -9,9 +9,8 @@ module Global8ballGame
       @config.deep_stringify_keys!
       @table = Global8ballGame::Table.new @config
 
-      @state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
-      @state.deep_stringify_keys!
-      @table.initialize_last_state @state
+      @state = InitialState.new @players[:player_1], @players[:player_2], "PlayForBegin"
+      @table.initialize_state @state
     end
 
     it "takes a world-object to initialize" do
@@ -26,7 +25,7 @@ module Global8ballGame
 
     it "returns an array of ball-hashes to be used in result_set" do
       bc = BallsCollector.new @table.world
-      expect(bc.balls_states).to eq @state['balls']
+      expect(bc.balls_states).to eq @state.balls
     end
   end
 end
