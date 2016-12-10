@@ -44,7 +44,7 @@ module Global8ballGame
 
     def initialize_table
       table = Global8ballGame::Table.new self.config
-      table.initialize_last_state self.last_result
+      table.initialize_last_state GameState.new self.last_result
 
       table
     end
