@@ -21,5 +21,13 @@ module Global8ballGame
 
       expect(state.to_hash).to eql expected_state.deep_stringify_keys
     end
+
+    it "returns an initial state for ShowResult - for dev and testing purposes" do
+      breaker = @players[:player_1].id
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, 'ShowResult', breaker
+      expected_state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "ShowResult", breaker
+
+      expect(state.to_hash).to eql expected_state.deep_stringify_keys
+    end
   end
 end
