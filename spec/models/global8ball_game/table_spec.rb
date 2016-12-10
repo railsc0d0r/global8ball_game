@@ -21,22 +21,19 @@ module Global8ballGame
     end
 
     it "has 2 balls defined after initializing the opening state for PlayForBegin" do
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_last_state state
       expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 16
     end
 
     it "has no balls defined after initializing the opening state for ShowResult" do
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "ShowResult"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1], @players[:player_2], "ShowResult"
       @table.initialize_last_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
     end
@@ -52,11 +49,9 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_last_state state
       @table.shoot shot
-
     end
 
     it "evaluates a shot given by frontend in PlayForVictory" do
@@ -72,8 +67,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
       @table.initialize_last_state state
       @table.shoot shot
     end
@@ -89,8 +83,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_last_state state
       @table.shoot shot
       current_state = @table.current_state
@@ -131,8 +124,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_last_state state
       @table.shoot shot
       current_state = @table.current_state
@@ -161,9 +153,8 @@ module Global8ballGame
     it "reinstates the breakball at a given position." do
       breaker = @players[:player_1].id
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
-      state.deep_stringify_keys!
-      state['balls'].delete_if {|ball| ball['type'] == 'breakball'}
+      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state.balls.delete_if {|ball| ball['type'] == 'breakball'}
 
       @table.initialize_last_state state
 
@@ -180,9 +171,8 @@ module Global8ballGame
     it "tries to reinstate the breakball out of table-boundaries." do
       breaker = @players[:player_1].id
 
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForVictory", breaker
-      state[:balls].delete_if {|ball| ball[:type] == 'breakball'}
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state.balls.delete_if {|ball| ball['type'] == 'breakball'}
       @table.initialize_last_state state
 
       positions = [
@@ -215,15 +205,9 @@ module Global8ballGame
     end
 
     it "returns its current state" do
-      state = @object_creator.initial_state @players[:player_1], @players[:player_2], "PlayForBegin"
-      state.deep_stringify_keys!
+      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForBegin"
       @table.initialize_last_state state
-      shot_result = {
-        shot_results: {}
-      }
-      shot_result.deep_stringify_keys!
-      state.merge!(shot_result)
-      expect(@table.current_state).to eq state
+      expect(@table.current_state).to eq state.to_hash
     end
 
     it "raises an error, if we try to get the current_state, but table isn't initialized yet" do
