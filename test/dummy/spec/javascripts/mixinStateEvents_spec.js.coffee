@@ -78,7 +78,7 @@ describe 'State events Mixin', () ->
 
         state[event]()
 
-        expect(listenerCalled).to.equal no
+        expect(listenerCalled).toEqual no
 
   describe 'State', () ->
 
