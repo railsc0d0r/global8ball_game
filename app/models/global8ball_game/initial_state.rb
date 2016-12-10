@@ -27,6 +27,22 @@ module Global8ballGame
           winner: breaker
         }
       end
+
+      if stage_name == 'ShowResult'
+        @current_results << {
+          stage_name: 'PlayForBegin',
+          winner: breaker
+        }
+
+        1.upto 3 do |round|
+          @current_results << {
+            stage_name: 'PlayForVictory',
+            round: round,
+            winner: breaker
+          }
+        end
+      end
+
     end
   end
 end

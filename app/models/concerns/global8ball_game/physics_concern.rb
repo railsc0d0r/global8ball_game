@@ -37,24 +37,6 @@ module Global8ballGame
     def initial_state player_1_id, player_2_id, stage_name="PlayForBegin", breaker=nil
       state = InitialState.new player_1_id, player_2_id, stage_name, breaker
 
-      if stage_name == 'ShowResult'
-        current_results = []
-
-        current_results << {
-          stage_name: 'PlayForBegin',
-          winner: breaker
-        }
-
-        1.upto 3 do |round|
-          current_results << {
-            stage_name: 'PlayForVictory',
-            round: round,
-            winner: breaker
-          }
-        end
-        state.current_results = current_results
-      end
-
       state.to_hash
     end
 
