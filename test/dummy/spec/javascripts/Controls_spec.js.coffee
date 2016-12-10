@@ -50,8 +50,9 @@ describe 'Game controls', () ->
     state.input.onDown.dispatch { x: 100, y: 200 }
     state.update()
 
-    expect(state.aims).to.not.be.empty
-    expect(state.aims[0]).to.deep.equal x: 100, y: 200
+    expect(state.aims).toEqual jasmine.any(Array)
+    expect(state.aims.length).toBeGreaterThan 0
+    expect(state.aims[0]).toEqual x: 100, y: 200
 
   it 'stops aiming the cue when pointer button is not held down', () ->
     pointer = { x: 100, y: 200, isDown: false }
@@ -63,7 +64,7 @@ describe 'Game controls', () ->
     state.input.moveCallbacks.forEach (callback) -> callback pointer, pointer.x, pointer.y
     state.update()
 
-    expect(state.aims.length).to.equal 1
+    expect(state.aims.length).toEqual 1
 
   it 'continues aiming the cue when pointer button is held down', () ->
     pointer = { x: 100, y: 200, isDown: true }
@@ -75,5 +76,5 @@ describe 'Game controls', () ->
     state.input.moveCallbacks.forEach (callback) -> callback pointer, pointer.x, pointer.y
     state.update()
 
-    expect(state.aims.length).to.equal 2
-    expect(state.aims[1]).to.deep.equal x: 150, y: 250
+    expect(state.aims.length).toEqual 2
+    expect(state.aims[1]).toEqual x: 150, y: 250
