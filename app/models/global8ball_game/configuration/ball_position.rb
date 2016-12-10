@@ -102,7 +102,9 @@ module Global8ballGame
           raise "No stage given to get starting ball-positions for." if stage.blank?
           raise "Invalid stage given to get starting ball-positions for. Known stages: #{@positions.keys.map{|k| "'" + k.to_s + "'"}.join(', ')}" unless @positions.keys.map{|k| k.to_s}.include? stage
 
-          @positions[stage.to_sym]
+          @positions[stage.to_sym].map do |ball_position|
+            ball_position.deep_stringify_keys
+          end
         end
 
         def config_json stage=''
