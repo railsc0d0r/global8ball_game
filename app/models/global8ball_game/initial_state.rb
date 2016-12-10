@@ -43,6 +43,10 @@ module Global8ballGame
         end
       end
 
+      @balls.map! {|ball| ball.deep_stringify_keys}
+      @current_results.map! {|result| result.deep_stringify_keys}
+      @current_players.map! {|player| player.deep_stringify_keys}
+      @shot_results.deep_stringify_keys!
     end
   end
 end
