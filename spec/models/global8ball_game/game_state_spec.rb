@@ -6,9 +6,7 @@ module Global8ballGame
       @object_creator = ObjectCreator.new
       @players = @object_creator.players
 
-      @state = @object_creator.initial_state @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
-      @state.deep_stringify_keys!
-
+      @state = InitialState.new(@players[:player_1].id, @players[:player_2].id, "PlayForBegin").to_hash
       @gs = GameState.new @state
     end
 
