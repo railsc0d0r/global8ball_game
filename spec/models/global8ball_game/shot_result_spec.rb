@@ -19,8 +19,12 @@ module Global8ballGame
       @shot_result = ShotResult.new @shot
     end
 
-    it "needs a shot-vector to be initialized" do
-      expect {ShotResult.new}.to raise_error ArgumentError
+    it "initializes ShotResult with an empty hash as shot if no shot is given" do
+      shot_result = ShotResult.new
+      expected_shot = {}
+      actual_shot_results_hash = shot_result.to_hash
+
+      expect(actual_shot_results_hash['shot']).to eql expected_shot
     end
 
     it "expects shot to be a Shot" do
