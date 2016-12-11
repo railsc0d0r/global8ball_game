@@ -36,6 +36,21 @@ module Global8ballGame
       expect(@shot_result.shot).to eq @shot
     end
 
+    it "lets shot be overwritten" do
+      shot_result = ShotResult.new
+      shot_result.shot = @shot
+      actual_shot_results_hash = shot_result.to_hash
+
+      expect(actual_shot_results_hash['shot']).to eql @shot_hash
+    end
+
+    it "expects shot to be a Shot when storing the shot" do
+      shot = Object.new
+      shot_result = ShotResult.new
+
+      expect {shot_result.shot = shot}.to raise_error "Shot given isn't a valid Shot-object."
+    end
+
     it "initializes attribute foul w/ false and provides reader/writer to it." do
       expect(@shot_result.foul).to be_falsy
       @shot_result.foul = true
