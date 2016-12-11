@@ -127,12 +127,7 @@ module Global8ballGame
     end
 
     it "returns its attributes as a hash in the format it received on initialize" do
-      shot_results = {
-        shot_results: {}
-      }
-      shot_results.deep_stringify_keys!
-      result_hash = @state.merge(shot_results)
-      expect(@gs.to_hash).to eq result_hash
+      expect(@gs.to_hash).to eq @state
     end
   end
 end
