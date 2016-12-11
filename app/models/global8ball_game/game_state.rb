@@ -9,7 +9,7 @@ module Global8ballGame
       @balls = state['balls']
       @current_players = state['current_players']
       @current_results = state['current_results']
-      @shot_results = {}
+      @shot_results = state['shot_results']
     end
 
     def to_hash
