@@ -70,9 +70,15 @@ module Global8ballGame
       expect(@gs.current_results).to eq current_results
     end
 
-    it "initializes shot_results as empty hash" do
+    it "takes shot_results from given state" do
+      expected_shot_results = {
+        "shot"=>{},
+        "foul"=>false,
+        "events"=>[]
+      }
+
       expect(@gs.shot_results).to be_kind_of Hash
-      expect(@gs.shot_results).to be_empty
+      expect(@gs.shot_results).to eql expected_shot_results
     end
 
     it "lets shot_results to be overwritten" do
