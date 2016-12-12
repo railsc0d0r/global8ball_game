@@ -111,5 +111,31 @@ module Global8ballGame
 
       expect(result).to eql expected_result
     end
+
+    it "handles change_breaker from last_result before returning the current state" do
+      breakers = [
+        @game.player_1_id,
+        @game.player_2_id
+      ]
+
+      breakers.each do |breaker|
+        state = InitialState.new @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
+
+        event = {
+            event: :breakball_falls_into_a_hole,
+            advice: 'change_breaker'
+        }
+        event.deep_stringify_keys!
+
+        state.shot_results['events'] << event
+
+        @game.last_result = state.to_hash
+
+        current_state = GameState.new @game.get_state
+        expected_breaker = breaker == @game.player_1_id ? @game.player_2_id : @game.player_1_id
+
+        expect(current_state.current_players).to eql [{'user_id' => expected_breaker}]
+      end
+    end
   end
 end
