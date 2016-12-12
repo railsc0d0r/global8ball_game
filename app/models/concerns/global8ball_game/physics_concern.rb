@@ -65,5 +65,21 @@ module Global8ballGame
 
       result
     end
+
+    def handle_advices state
+      advices = state.shot_results['events'].map {|event| event['advice'].to_sym}
+      advices.delete :remove_ball
+
+      advices.each do |advice|
+        state = self.send advice, state
+      end
+
+      state
+    end
+
+    def change_breaker state
+      state.current_players[0]['user_id'] = state.current_players[0]['user_id'] == self.player_1_id ? self.player_2_id : self.player_1_id
+      state
+    end
   end
 end
