@@ -40,6 +40,15 @@ module Global8ballGame
       state.to_hash
     end
 
+    def get_state
+      old_state = GameState.new self.last_result
+      current_state = handle_advices old_state
+      current_state.shot_results = ShotResult.new.to_hash
+      self.last_result = current_state.to_hash
+
+      self.last_result
+    end
+
     private
 
     def initialize_table
