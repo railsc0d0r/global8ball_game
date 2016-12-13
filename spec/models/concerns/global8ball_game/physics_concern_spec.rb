@@ -135,7 +135,28 @@ module Global8ballGame
         expected_breaker = breaker == @game.player_1_id ? @game.player_2_id : @game.player_1_id
 
         expect(current_state.current_players).to eql [{'user_id' => expected_breaker}]
+        expect(current_state.shot_results).to eql ShotResult.new.to_hash
       end
+    end
+
+    it "handles restart_round from last_result in PlayForBegin" do
+      state = InitialState.new @game.player_1_id, @game.player_2_id
+
+      event = {
+        event: :breakball_falls_into_a_hole,
+        advice: 'restart_round'
+      }
+
+      state.shot_results['events'] << event
+      state.balls[0]['position']['x'] = 0.635
+      @game.last_result = state.to_hash
+
+      current_state = GameState.new @game.get_state
+      initial_state = InitialState.new @game.player_1_id, @game.player_2_id
+
+      expect(current_state.balls).to eql initial_state.balls
+      expect(current_state.round).to eql 2
+      expect(current_state.shot_results).to eql ShotResult.new.to_hash
     end
   end
 end
