@@ -90,5 +90,15 @@ module Global8ballGame
       state.current_players[0]['user_id'] = state.current_players[0]['user_id'] == self.player_1_id ? self.player_2_id : self.player_1_id
       state
     end
+
+    # Only happens in PlayForBegin
+    def restart_round state
+      raise "Restarting round happens only in PlayForBegin" unless state.stage_name == 'PlayForBegin'
+      new_state = InitialState.new self.player_1_id, self.player_2_id
+      state.balls = new_state.balls
+      state.round += 1
+
+      state
+    end
   end
 end
