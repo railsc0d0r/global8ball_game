@@ -43,7 +43,6 @@ module Global8ballGame
     def get_state
       old_state = GameState.new self.last_result
       current_state = handle_advices old_state
-      current_state.shot_results = ShotResult.new.to_hash
       self.last_result = current_state.to_hash
 
       self.last_result
@@ -76,11 +75,18 @@ module Global8ballGame
     end
 
     def handle_advices state
-      advices = state.shot_results['events'].map {|event| event['advice'].to_sym}
-      advices.delete :remove_ball
+      advices = []
+      state.shot_results['events'].each do |event|
+        unless event['advice'] == 'reinstate_breakball'
+          advices << event['advice'].to_sym
+          state.shot_results['events'].delete(event)
+        end
+      end
 
       advices.each do |advice|
-        state = self.send advice, state
+        # Some advices like :remove_ball won't be implemented.
+        # So we send only advices already implemented to avoid triggering method_missing.
+        state = self.send advice, state if self.class.private_method_defined? advice
       end
 
       state
