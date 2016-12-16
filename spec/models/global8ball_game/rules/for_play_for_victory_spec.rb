@@ -12,14 +12,12 @@ module Global8ballGame
         search_tag = :eightball_falls_into_a_hole
         expected_result = [
           {
-            msg: :round_lost,
             advice: :round_lost,
             foul: true,
             conditional: true,
             condition: :breaker_is_not_eightball_owner
           },
           {
-            msg: :round_won,
             advice: :round_won,
             foul: false,
             conditional: true,
@@ -35,13 +33,11 @@ module Global8ballGame
         search_tag = :breakball_falls_into_a_hole
         expected_result = [
           {
-            msg: :breakball_falls_into_a_hole,
             advice: :reinstate_breakball,
             foul: true,
             conditional: false
           },
           {
-            msg: :breakball_falls_into_a_hole,
             advice: :change_breaker,
             foul: true,
             conditional: false

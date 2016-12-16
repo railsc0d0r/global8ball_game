@@ -6,21 +6,18 @@ module Global8ballGame
           collision: [
             {
               searchtags: [:breakball_falls_into_a_hole],
-              msg: :breakball_falls_into_a_hole,
               advice: :reinstate_breakball,
               foul: true,
               conditional: false
             },
             {
               searchtags: [:breakball_falls_into_a_hole],
-              msg: :breakball_falls_into_a_hole,
               advice: :change_breaker,
               foul: true,
               conditional: false
             },
             {
               searchtags: [:eightball_falls_into_a_hole],
-              msg: :round_lost,
               advice: :round_lost,
               foul: true,
               conditional: true,
@@ -28,7 +25,6 @@ module Global8ballGame
             },
             {
               searchtags: [:eightball_falls_into_a_hole],
-              msg: :round_won,
               advice: :round_won,
               foul: false,
               conditional: true,
