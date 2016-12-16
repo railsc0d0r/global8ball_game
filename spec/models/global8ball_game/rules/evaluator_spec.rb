@@ -39,13 +39,11 @@ module Global8ballGame
 
         expected_result = [
           {
-            msg: :ball_falls_into_a_hole,
             advice: :remove_ball,
             foul: false,
             conditional: false
           },
           {
-            msg: :breakball_falls_into_a_hole,
             advice: :restart_round,
             foul: true,
             conditional: false
@@ -62,20 +60,17 @@ module Global8ballGame
 
         expected_result = [
           {
-            msg: :ball_falls_into_a_hole,
             advice: :remove_ball,
             foul: false,
             conditional: false
           },
           {
-            msg: :round_lost,
             advice: :round_lost,
             foul: true,
             conditional: true,
             condition: :breaker_is_not_eightball_owner
           },
           {
-            msg: :round_won,
             advice: :round_won,
             foul: false,
             conditional: true,
