@@ -12,7 +12,6 @@ module Global8ballGame
         search_tag = :breakball_crosses_center_line
         expected_result = [
           {
-            msg: :breakball_crosses_center_line,
             advice: :restart_round,
             foul: true,
             conditional: false
