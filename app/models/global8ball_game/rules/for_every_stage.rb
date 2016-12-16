@@ -6,7 +6,6 @@ module Global8ballGame
           collision: [
             {
               searchtags: [:breakball_falls_into_a_hole, :eightball_falls_into_a_hole, :ball_falls_into_a_hole],
-              msg: :ball_falls_into_a_hole,
               advice: :remove_ball,
               foul: false,
               conditional: false
