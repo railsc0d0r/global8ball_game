@@ -119,7 +119,7 @@ module Global8ballGame
       ]
 
       breakers.each do |breaker|
-        state = InitialState.new @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
+        state = State::Initial.new @game.player_1_id, @game.player_2_id, "PlayForVictory", breaker
 
         event = {
             event: 'breakball_falls_into_a_hole',
@@ -131,7 +131,7 @@ module Global8ballGame
 
         @game.last_result = state.to_hash
 
-        current_state = GameState.new @game.get_state
+        current_state = State::Base.new @game.get_state
         expected_breaker = breaker == @game.player_1_id ? @game.player_2_id : @game.player_1_id
 
         expect(current_state.current_players).to eql [{'user_id' => expected_breaker}]
@@ -140,7 +140,7 @@ module Global8ballGame
     end
 
     it "handles restart_round from last_result in PlayForBegin" do
-      state = InitialState.new @game.player_1_id, @game.player_2_id
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
 
       event = {
         event: 'breakball_falls_into_a_hole',
@@ -152,8 +152,8 @@ module Global8ballGame
       state.balls[0]['position']['x'] = 0.635
       @game.last_result = state.to_hash
 
-      current_state = GameState.new @game.get_state
-      initial_state = InitialState.new @game.player_1_id, @game.player_2_id
+      current_state = State::Base.new @game.get_state
+      initial_state = State::Initial.new @game.player_1_id, @game.player_2_id
 
       expect(current_state.balls).to eql initial_state.balls
       expect(current_state.round).to eql 2
@@ -162,7 +162,7 @@ module Global8ballGame
 
     it "doesn't handle reinstate_breakball from last_result in PlayForVictory" do
       breaker = @game.player_1_id
-      state = InitialState.new @game.player_1_id, @game.player_2_id, 'PlayForVictory', breaker
+      state = State::Initial.new @game.player_1_id, @game.player_2_id, 'PlayForVictory', breaker
 
       event = {
         event: 'breakball_falls_into_a_hole',
@@ -173,7 +173,7 @@ module Global8ballGame
       state.shot_results['events'] << event
       @game.last_result = state.to_hash
 
-      current_state = GameState.new @game.get_state
+      current_state = State::Base.new @game.get_state
 
       expect(current_state.shot_results['events']).to eql [event]
     end

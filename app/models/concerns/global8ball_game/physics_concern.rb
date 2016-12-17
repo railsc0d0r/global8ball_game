@@ -35,13 +35,13 @@ module Global8ballGame
     end
 
     def initial_state player_1_id, player_2_id, stage_name="PlayForBegin", breaker=nil
-      state = InitialState.new player_1_id, player_2_id, stage_name, breaker
+      state = State::Initial.new player_1_id, player_2_id, stage_name, breaker
 
       state.to_hash
     end
 
     def get_state
-      old_state = GameState.new self.last_result
+      old_state = State::Base.new self.last_result
       current_state = handle_advices old_state
       self.last_result = current_state.to_hash
 
@@ -52,7 +52,7 @@ module Global8ballGame
 
     def initialize_table
       table = Global8ballGame::Table.new self.config
-      table.initialize_state GameState.new self.last_result
+      table.initialize_state State::Base.new self.last_result
 
       table
     end
@@ -100,7 +100,7 @@ module Global8ballGame
     # Only happens in PlayForBegin
     def restart_round state
       raise "Restarting round happens only in PlayForBegin" unless state.stage_name == 'PlayForBegin'
-      new_state = InitialState.new self.player_1_id, self.player_2_id
+      new_state = State::Initial.new self.player_1_id, self.player_2_id
       state.balls = new_state.balls
       state.round += 1
 
