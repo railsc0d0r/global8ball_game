@@ -71,7 +71,7 @@ module Global8ballGame
       y = -breakball_at_position['y'] # P2 uses inverted y-coordinates
       position = [x, y]
 
-      ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
+      ball = Physics::Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
       @world.addBody ball.body
 
       # Sets up event-listener to stop stepping after the 1st step
@@ -112,7 +112,7 @@ module Global8ballGame
           [vertice['x'], -vertice['y']]  # P2 uses inverted y-coordinates
         end
 
-        border = Border.new key, vertices, @border_material
+        border = Physics::Border.new key, vertices, @border_material
         @world.addBody border.body
       end
     end
@@ -126,7 +126,7 @@ module Global8ballGame
         y = -hole_config['y'] # P2 uses inverted y-coordinates
         position = [x, y]
 
-        hole = Hole.new key, radius, position
+        hole = Physics::Hole.new key, radius, position
         @world.addBody hole.body
       end
     end
@@ -146,13 +146,13 @@ module Global8ballGame
         y = -ball['position']['y'] # P2 uses inverted y-coordinates
         position = [x, y]
 
-        ball = Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
+        ball = Physics::Ball.new key, owner, ball_type, color, damping, mass, radius, position, @ball_material
         @world.addBody ball.body
       end
     end
 
     def add_center_line
-      @world.addBody CenterLine.new.body
+      @world.addBody Physics::CenterLine.new.body
     end
 
     def set_breakball_velocity user_id, velocity
