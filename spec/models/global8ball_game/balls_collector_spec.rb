@@ -9,7 +9,7 @@ module Global8ballGame
       @config.deep_stringify_keys!
       @table = Global8ballGame::Table.new @config
 
-      @state = InitialState.new @players[:player_1], @players[:player_2], "PlayForBegin"
+      @state = State::Initial.new @players[:player_1], @players[:player_2], "PlayForBegin"
       @table.initialize_state @state
     end
 
