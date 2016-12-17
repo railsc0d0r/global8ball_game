@@ -21,19 +21,19 @@ module Global8ballGame
     end
 
     it "has 2 balls defined after initializing the opening state for PlayForBegin" do
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_state state
       expect(@table.world.bodies.count {|e| e.body_type == "ball"}).to eq 2
     end
 
     it "has 16 balls defined after initializing the opening state for PlayForVictory" do
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory"
       @table.initialize_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 16
     end
 
     it "has no balls defined after initializing the opening state for ShowResult" do
-      state = InitialState.new @players[:player_1], @players[:player_2], "ShowResult"
+      state = State::Initial.new @players[:player_1], @players[:player_2], "ShowResult"
       @table.initialize_state state
       expect(@table.world.bodies.to_a.count {|e| e.body_type == "ball"}).to eq 0
     end
@@ -49,7 +49,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_state state
       @table.shoot shot
     end
@@ -67,7 +67,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForVictory", breaker
       @table.initialize_state state
       @table.shoot shot
     end
@@ -83,7 +83,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_state state
       @table.shoot shot
       current_state = @table.current_state
@@ -124,7 +124,7 @@ module Global8ballGame
       shot_hash.deep_stringify_keys!
       shot = Shot.new shot_hash
 
-      state = InitialState.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
+      state = State::Initial.new @players[:player_1].id, @players[:player_2].id, "PlayForBegin"
       @table.initialize_state state
       @table.shoot shot
       current_state = @table.current_state
@@ -153,7 +153,7 @@ module Global8ballGame
     it "reinstates the breakball at a given position." do
       breaker = @players[:player_1].id
 
-      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state = State::Initial.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
       state.balls.delete_if {|ball| ball['type'] == 'breakball'}
 
       @table.initialize_state state
@@ -171,7 +171,7 @@ module Global8ballGame
     it "tries to reinstate the breakball out of table-boundaries." do
       breaker = @players[:player_1].id
 
-      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
+      state = State::Initial.new @players[:player_1], @players[:player_2], "PlayForVictory", breaker
       state.balls.delete_if {|ball| ball['type'] == 'breakball'}
       @table.initialize_state state
 
@@ -205,7 +205,7 @@ module Global8ballGame
     end
 
     it "returns its current state" do
-      state = InitialState.new @players[:player_1], @players[:player_2], "PlayForBegin"
+      state = State::Initial.new @players[:player_1], @players[:player_2], "PlayForBegin"
       @table.initialize_state state
       expect(@table.current_state).to eq state.to_hash
     end
