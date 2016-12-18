@@ -37,6 +37,10 @@ class global8ball.Preload extends Phaser.State
       url: 'ui_elements/pointer-crosshair_combined'
       width: 15
       height: 15
+    forceButton:
+      url: 'ui_elements/slider-track-button_combined'
+      width: 33
+      height: 34
     lessenForce:
       url: 'ui_elements/slider-track-minus_combined'
       width: 52
