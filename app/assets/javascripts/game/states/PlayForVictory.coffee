@@ -33,7 +33,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     return classes
 
   createWhiteBall: () ->
-    @white = @createBallSprite 'white', @ballsConfig.getBreakBallsConfig()[0]
+    whiteBallConfig = @ballsConfig.getBreakBallsConfig()[0]
+    if whiteBallConfig
+      @white = @createBallSprite 'white', whiteBallConfig
 
   createPlayBalls: () ->
     @playBalls = @ballsConfig.getPlayBallsConfig().forEach (ballConfig) =>
