@@ -28,6 +28,7 @@ class global8ball.PlayForBegin extends global8ball.PlayState
   getPhysicsGroupSpecs: () ->
     return (new global8ball.GroupSpecs).get 'common', 'play', 'twoWhiteBalls'
 
+  # @return {Object.<string, function>} Map of classes
   spriteClasses: () ->
     classes = super()
     classes.white1 = global8ball.sprites.BreakBall

@@ -33,6 +33,7 @@ class global8ball.PlayState extends global8ball.FullState
     else
       cue.retreatFromTable()
 
+  # @return {Object.<string, function>} Map of classes
   spriteClasses: () ->
     classes = super()
     classes.cues = global8ball.Cue

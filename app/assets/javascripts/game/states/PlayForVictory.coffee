@@ -25,6 +25,7 @@ class global8ball.PlayForVictory extends global8ball.PlayState
       @setInitialCueState cue
       cue.aimAt x: @white.position.x + 10, y: @white.position.y
 
+  # @return {Object.<string, function>} Map of classes
   spriteClasses: () ->
     classes = super()
     classes.white = global8ball.sprites.BreakBall

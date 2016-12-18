@@ -37,6 +37,7 @@ class global8ball.FullState extends Phaser.State
     @borders = @createBorders()
     @world.sendToBack @spriteGroups.table
 
+  # @return {Object.<string, function>} Map of classes
   spriteClasses: () ->
     borders: global8ball.Border
     holes: global8ball.Hole
