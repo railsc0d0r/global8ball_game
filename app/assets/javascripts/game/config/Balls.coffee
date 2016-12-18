@@ -9,12 +9,15 @@ class global8ball.config.Balls
   constructor: (ballsData) ->
     @balls = ballsData.map (ballData) -> new global8ball.config.Ball ballData
 
+  # @return global8ball.config.Ball[]
   getBreakBallsConfig: ->
     @balls.filter (ball) -> ball.type is BREAK_BALL
 
+  # @return global8ball.config.Ball[]
   getPlayBallsConfig: ->
     @balls.filter (ball) -> ball.type is PLAY_BALL
 
+  # @return global8ball.config.Ball[]
   get8BallConfig: ->
     @balls.filter((ball) -> ball.type is EIGHT_BALL)[0]
 
@@ -28,5 +31,7 @@ class global8ball.config.Ball
     @radius = ballData.radius
     @mass = ballData.mass
 
+  # @param {global8ball.Player} player
+  # @return boolean
   belongsTo: (player) ->
     @owner is player.getId()
