@@ -21,9 +21,9 @@ class global8ball.PlayForVictory extends global8ball.PlayState
     @createBlackBall()
     @cues.player1.setTargetBall @white
     @cues.player2.setTargetBall @white
-    [@cues.player1, @cues.player2].forEach (cue) => @setInitialCueState cue
-    @cues.player1.aimAt x: @white.position.x + 10, y: @white.position.y
-    @cues.player2.aimAt x: @white.position.x + 10, y: @white.position.y
+    [@cues.player1, @cues.player2].forEach (cue) =>
+      @setInitialCueState cue
+      cue.aimAt x: @white.position.x + 10, y: @white.position.y
 
   spriteClasses: () ->
     classes = super()
