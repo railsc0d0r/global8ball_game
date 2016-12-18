@@ -1,6 +1,8 @@
 #= require game/config/prolog
 
 class global8ball.config.Game
+  # @param {Phaser.Game} game
+  # @param {object} config
   constructor: (@game, @config) ->
 
   # Returns holes positions.
