@@ -286,11 +286,15 @@ module Global8ballGame
 
       bc = BallsCollector.new @world
       bc.balls.each do |ball|
-        # TODO: Use the absolute vector-value to check velocity!!!!!
-        everything_stopped = false if ball.velocity[0].abs > min_speed || ball.velocity[1].abs > min_speed
+        everything_stopped = false if absolute_value(ball.velocity) > min_speed
       end
 
       @everything_stopped = everything_stopped
+    end
+
+    # Calculates the absolute value of a vector
+    def absolute_value vector
+      Math.sqrt(vector[0]**2 + vector[1]**2)
     end
 
     def step_only_one_time
