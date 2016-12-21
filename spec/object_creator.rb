@@ -128,7 +128,7 @@ class ObjectCreator
     playball.ball_type = "playball"
 
     key = 3
-    playball2 = create_body body_type, key, body_options
+    playball_2 = create_body body_type, key, body_options
     playball.ball_type = "playball"
 
     key = 4
@@ -155,7 +155,23 @@ class ObjectCreator
     body_type = "hole"
     left_top_hole = create_body body_type, key, body_options
 
-    return breakball, playball, playball2, eightball, center_line, right_border, right_top_hole, left_border, left_top_hole
+    {
+      balls: {
+        breakball: breakball,
+        playball: playball,
+        playball_2: playball_2,
+        eightball: eightball
+      },
+      center_line: center_line,
+      borders: {
+        right_border: right_border,
+        left_border: left_border
+      },
+      holes: {
+        right_top_hole: right_top_hole,
+        left_top_hole: left_top_hole
+      }
+    }
   end
 
   private
