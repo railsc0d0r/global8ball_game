@@ -210,6 +210,7 @@ module Global8ballGame
         right_border = @bodies[:borders][:right_border]
         right_top_hole = @bodies[:holes][:right_top_hole]
         left_border = @bodies[:borders][:left_border]
+        left_top_border = @bodies[:borders][:left_top_border]
 
         ce = Collision.new body_a: playball, body_b: right_top_hole
         expect(ce.kind_of_event).to eq :ball_falls_into_a_hole
@@ -222,6 +223,10 @@ module Global8ballGame
         ce = Collision.new body_a: breakball, body_b: eightball
         expect(ce.kind_of_event).to eq :breakball_collides_with_eightball
         ce = Collision.new body_a: breakball, body_b: right_border
+        expect(ce.kind_of_event).to eq :breakball_collides_with_right_border
+        ce = Collision.new body_a: breakball, body_b: left_border
+        expect(ce.kind_of_event).to eq :breakball_collides_with_left_border
+        ce = Collision.new body_a: breakball, body_b: left_top_border
         expect(ce.kind_of_event).to eq :standard_collision
       end
 
