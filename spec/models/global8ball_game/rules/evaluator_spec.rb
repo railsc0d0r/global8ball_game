@@ -5,7 +5,7 @@ module Global8ballGame
     RSpec.describe Evaluator, type: :model do
       before do
         @object_creator = ObjectCreator.new
-        @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
+        @bodies = @object_creator.create_bodies_for_collision_events
       end
 
       it "can be instanciated w/ a given stage_name" do
@@ -31,11 +31,15 @@ module Global8ballGame
       end
 
       it "takes an event and evaluates all rule_books concerning its stage." do
+        breakball = @bodies[:balls][:breakball]
+        eightball = @bodies[:balls][:eightball]
+        right_top_hole = @bodies[:holes][:right_top_hole]
+
         # breakball falls into a hole in PlayForBegin
         stage_name = 'PlayForBegin'
         rules_evaluator =  Evaluator.new(stage_name)
 
-        ce = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
+        ce = Event::Collision.new body_a: breakball, body_b: right_top_hole
 
         expected_result = [
           {
@@ -56,7 +60,7 @@ module Global8ballGame
         stage_name = 'PlayForVictory'
         rules_evaluator =  Evaluator.new(stage_name)
 
-        ce = Event::Collision.new body_a: @eightball, body_b: @right_top_hole
+        ce = Event::Collision.new body_a: eightball, body_b: right_top_hole
 
         expected_result = [
           {
