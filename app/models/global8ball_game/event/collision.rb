@@ -71,6 +71,14 @@ module Global8ballGame
         contains_breakball && contains_8ball
       end
 
+      def breakball_collides_with_right_border
+        contains_breakball && contains_right_border
+      end
+
+      def breakball_collides_with_left_border
+        contains_breakball && contains_left_border
+      end
+
       def get_ball
         raise "Don't know which ball to return." if contains_two_balls
         (@body_a.body_type == "ball") ? @body_a : nil || (@body_b.body_type == "ball") ? @body_b : nil
@@ -88,6 +96,10 @@ module Global8ballGame
           :breakball_crosses_center_line
         when breakball_collides_with_eightball
           :breakball_collides_with_eightball
+        when breakball_collides_with_right_border
+          :breakball_collides_with_right_border
+        when breakball_collides_with_left_border
+          :breakball_collides_with_left_border
         else
           :standard_collision
         end
