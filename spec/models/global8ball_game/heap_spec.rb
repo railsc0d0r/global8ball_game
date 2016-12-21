@@ -6,7 +6,11 @@ module Global8ballGame
       @event_heap = Heap.new
 
       @object_creator = ObjectCreator.new
-      @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
+      @bodies = @object_creator.create_bodies_for_collision_events
+      @breakball = @bodies[:balls][:breakball]
+      @eightball = @bodies[:balls][:eightball]
+      @right_top_hole = @bodies[:holes][:right_top_hole]
+
       @ce = Event::Collision.new body_a: @breakball, body_b: @right_top_hole
     end
 
