@@ -143,11 +143,19 @@ class ObjectCreator
     body_type = "border"
     right_border = create_body body_type, key, body_options
 
+    key = "left"
+    body_type = "border"
+    left_border = create_body body_type, key, body_options
+
     key = "rightTop"
     body_type = "hole"
     right_top_hole = create_body body_type, key, body_options
 
-    return breakball, playball, playball2, eightball, center_line, right_border, right_top_hole
+    key = "leftTop"
+    body_type = "hole"
+    left_top_hole = create_body body_type, key, body_options
+
+    return breakball, playball, playball2, eightball, center_line, right_border, right_top_hole, left_border, left_top_hole
   end
 
   private
