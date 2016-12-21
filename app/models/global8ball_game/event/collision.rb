@@ -42,6 +42,11 @@ module Global8ballGame
         (@body_b.body_type == "border" && @body_b.key == "right")
       end
 
+      def contains_left_border
+        (@body_a.body_type == "border" && @body_a.key == "left") ^
+        (@body_b.body_type == "border" && @body_b.key == "left")
+      end
+
       def contains_hole
         (@body_a.body_type == "hole") ^ (@body_b.body_type == "hole")
       end
