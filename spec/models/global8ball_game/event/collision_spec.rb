@@ -5,7 +5,7 @@ module Global8ballGame
     RSpec.describe Collision, type: :model do
       before do
         @object_creator = ObjectCreator.new
-        @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole = @object_creator.create_bodies_for_collision_events
+        @breakball, @playball, @playball2, @eightball, @center_line, @right_border, @right_top_hole, @left_border, @left_top_hole = @object_creator.create_bodies_for_collision_events
       end
 
       it "can be initialized w/ given payload" do
@@ -73,6 +73,13 @@ module Global8ballGame
         expect(ce.contains_right_border).to be_truthy
         ce = Collision.new body_a: @breakball, body_b: @right_top_hole
         expect(ce.contains_right_border).to be_falsy
+      end
+
+      it "checks if the event contains the left border" do
+        ce = Collision.new body_a: @breakball, body_b: @left_border
+        expect(ce.contains_left_border).to be_truthy
+        ce = Collision.new body_a: @breakball, body_b: @left_top_hole
+        expect(ce.contains_left_border).to be_falsy
       end
 
       it "checks if the event contains a hole" do
