@@ -148,6 +148,14 @@ class ObjectCreator
     left_border = create_body body_type, key, body_options
 
     key = "rightTop"
+    body_type = "border"
+    right_top_border = create_body body_type, key, body_options
+
+    key = "leftTop"
+    body_type = "border"
+    left_top_border = create_body body_type, key, body_options
+
+    key = "rightTop"
     body_type = "hole"
     right_top_hole = create_body body_type, key, body_options
 
@@ -165,7 +173,9 @@ class ObjectCreator
       center_line: center_line,
       borders: {
         right_border: right_border,
-        left_border: left_border
+        right_top_border: right_top_border,
+        left_border: left_border,
+        left_top_border: left_top_border
       },
       holes: {
         right_top_hole: right_top_hole,
