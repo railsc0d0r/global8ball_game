@@ -186,6 +186,22 @@ module Global8ballGame
         expect(ce.breakball_collides_with_eightball).to be_truthy
       end
 
+      it "checks if breakball collides w/ right_border" do
+        breakball = @bodies[:balls][:breakball]
+        right_border = @bodies[:borders][:right_border]
+
+        ce = Collision.new body_a: breakball, body_b: right_border
+        expect(ce.breakball_collides_with_right_border).to be_truthy
+      end
+
+      it "checks if breakball collides w/ left_border" do
+        breakball = @bodies[:balls][:breakball]
+        left_border = @bodies[:borders][:left_border]
+
+        ce = Collision.new body_a: breakball, body_b: left_border
+        expect(ce.breakball_collides_with_left_border).to be_truthy
+      end
+
       it "returns a symbol describing the evaluated event to be used as searchtag in rules-parsing" do
         breakball = @bodies[:balls][:breakball]
         eightball = @bodies[:balls][:eightball]
