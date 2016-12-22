@@ -109,6 +109,8 @@ module Global8ballGame
           :breakball_collides_with_right_border
         when breakball_collides_with_left_border
           :breakball_collides_with_left_border
+        when breakball_collides_with_side_border
+          :breakball_collides_with_side_border
         else
           :standard_collision
         end
