@@ -255,6 +255,8 @@ module Global8ballGame
         ce = Collision.new body_a: breakball, body_b: left_border
         expect(ce.kind_of_event).to eq :breakball_collides_with_left_border
         ce = Collision.new body_a: breakball, body_b: left_top_border
+        expect(ce.kind_of_event).to eq :breakball_collides_with_side_border
+        ce = Collision.new body_a: breakball, body_b: playball
         expect(ce.kind_of_event).to eq :standard_collision
       end
 
