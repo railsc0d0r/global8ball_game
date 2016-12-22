@@ -105,7 +105,7 @@ module Global8ballGame
         },
         {
           event: :breakball_falls_into_a_hole,
-          advice: 'restart_round'
+          advice: 'round_lost'
         }
       ]
       expected_events.each {|e| e.deep_stringify_keys!}
@@ -142,7 +142,11 @@ module Global8ballGame
       expected_events = [
         {
           event: :breakball_crosses_center_line,
-          advice: 'restart_round'
+          advice: 'round_lost'
+        },
+        {
+          event: :breakball_collides_with_side_border,
+          advice: 'round_lost'
         }
       ]
       expected_events.each {|e| e.deep_stringify_keys!}
