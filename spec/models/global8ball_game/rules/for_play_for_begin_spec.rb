@@ -12,7 +12,7 @@ module Global8ballGame
         search_tag = :breakball_crosses_center_line
         expected_result = [
           {
-            advice: :restart_round,
+            advice: :round_lost,
             foul: true,
             conditional: false
           }
@@ -26,7 +26,21 @@ module Global8ballGame
         search_tag = :breakball_falls_into_a_hole
         expected_result = [
           {
-            advice: :restart_round,
+            advice: :round_lost,
+            foul: true,
+            conditional: false
+          }
+        ]
+
+        expect(@rules_for_play_for_begin.rules_for event, search_tag).to eq expected_result
+      end
+
+      it "returns all rules given the breakball touches a side-border in PlayForBegin" do
+        event = :collision
+        search_tag = :breakball_collides_with_side_border
+        expected_result = [
+          {
+            advice: :round_lost,
             foul: true,
             conditional: false
           }
