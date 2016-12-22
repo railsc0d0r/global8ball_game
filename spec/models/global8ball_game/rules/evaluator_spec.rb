@@ -48,7 +48,7 @@ module Global8ballGame
             conditional: false
           },
           {
-            advice: :restart_round,
+            advice: :round_lost,
             foul: true,
             conditional: false
           }
