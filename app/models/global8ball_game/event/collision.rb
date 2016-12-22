@@ -84,6 +84,10 @@ module Global8ballGame
         contains_breakball && contains_left_border
       end
 
+      def breakball_collides_with_side_border
+        contains_breakball && contains_side_border
+      end
+
       def get_ball
         raise "Don't know which ball to return." if contains_two_balls
         (@body_a.body_type == "ball") ? @body_a : nil || (@body_b.body_type == "ball") ? @body_b : nil
