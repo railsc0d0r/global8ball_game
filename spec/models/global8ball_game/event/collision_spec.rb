@@ -114,6 +114,26 @@ module Global8ballGame
         expect(ce.contains_left_border).to be_falsy
       end
 
+      it "checks if the event contains a side-border" do
+        breakball = @bodies[:balls][:breakball]
+        left_border = @bodies[:borders][:left_border]
+        left_top_border = @bodies[:borders][:left_top_border]
+        right_top_border = @bodies[:borders][:right_top_border]
+        left_bottom_border = @bodies[:borders][:left_bottom_border]
+        right_bottom_border = @bodies[:borders][:right_bottom_border]
+
+        ce = Collision.new body_a: breakball, body_b: left_border
+        expect(ce.contains_side_border).to be_falsy
+        ce = Collision.new body_a: breakball, body_b: left_top_border
+        expect(ce.contains_side_border).to be_truthy
+        ce = Collision.new body_a: breakball, body_b: right_top_border
+        expect(ce.contains_side_border).to be_truthy
+        ce = Collision.new body_a: breakball, body_b: left_bottom_border
+        expect(ce.contains_side_border).to be_truthy
+        ce = Collision.new body_a: breakball, body_b: right_bottom_border
+        expect(ce.contains_side_border).to be_truthy
+      end
+
       it "checks if the event contains a hole" do
         breakball = @bodies[:balls][:breakball]
         right_border = @bodies[:borders][:right_border]
