@@ -282,7 +282,7 @@ module Global8ballGame
 
     def check_velocity
       everything_stopped = true
-      min_speed = 0.000001
+      min_speed = @config['table']['min_ball_speed']
 
       bc = BallsCollector.new @world
       bc.balls.each do |ball|
