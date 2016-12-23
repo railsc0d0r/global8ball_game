@@ -22,6 +22,10 @@ module Global8ballGame
         expect(@config[:max_breakball_speed]).to eq 11.295529411764704
       end
 
+      it "provides the minimum speed which defines the moment the simulation in backend and the game in frontend stops after a shot." do
+        expect(@config[:min_ball_speed]).to eq 0.000001
+      end
+
       it "provides the factor to convert meters into px and vice versa as 377.95" do
         expect(@config[:scaling_factor]).to eq 377.95
       end
