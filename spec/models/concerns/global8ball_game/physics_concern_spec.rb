@@ -15,7 +15,7 @@ module Global8ballGame
     it "can provide a new table_config with definitions for the table, borders and holes." do
       config = @game.new_table_config
       expect(config.keys).to match_array [:table, :borders, :holes]
-      expect(config[:table].keys).to match_array [:damping, :max_breakball_speed, :scaling_factor, :contact_materials]
+      expect(config[:table].keys).to match_array [:damping, :max_breakball_speed, :min_ball_speed, :scaling_factor, :contact_materials]
       expect(config[:borders].keys).to match_array [:left, :leftBottom, :rightBottom, :right, :rightTop, :leftTop]
       expect(config[:holes].keys).to match_array [:leftTop, :leftBottom, :centerBottom, :rightBottom, :rightTop, :centerTop]
     end
