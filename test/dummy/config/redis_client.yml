@@ -1,0 +1,22 @@
+#
+# Provides a config for Redic to connect to a redis-instance
+#
+# Will be used by ohm-initializer to construct an url in the form of:
+#
+# redis://:<passwd>@<host>:<port>/<database>
+#
+default: &default
+  host: localhost
+  port: 7779
+
+production:
+  <<: *default
+  database: 1
+
+development:
+  <<: *default
+  database: 2
+
+test: &test
+  <<: *default
+  database: <%= 3 + (ENV['TEST_ENV_NUMBER'].to_i || 0) %>

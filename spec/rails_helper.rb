@@ -54,4 +54,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Flush Redis before each spec
+  config.before(:each) do
+    Ohm.redis.call('FLUSHDB')
+  end
 end
