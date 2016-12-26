@@ -15,8 +15,9 @@ module Global8ballGame
         b: "123"
       }
 
-      result = Result.create
+      result = Result.new
       result.result_set = content
+      result.save
 
       expect(Result.all.first.content).to eq content.to_json
     end
