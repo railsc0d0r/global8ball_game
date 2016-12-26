@@ -4,6 +4,7 @@ module Global8ballGame
 
     def result_set= content_hash
       self.content = content_hash.to_json
+      self.save
     end
   end
 end
