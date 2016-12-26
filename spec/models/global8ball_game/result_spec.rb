@@ -20,5 +20,15 @@ module Global8ballGame
 
       expect(Result.all.first.content).to eq content.to_json
     end
+
+    it "provides a method to convert stored content-string to hash and return it" do
+      content = {
+        a: 1,
+        b: "123"
+      }
+
+      Result.create content: content.to_json
+      expect(Result.all.first.result_set).to eq content.deep_stringify_keys
+    end
   end
 end
