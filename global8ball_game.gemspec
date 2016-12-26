@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-rails", "~> 4.1.0"
   s.add_dependency "ohm", ">= 3.1.0"
   s.add_dependency "ohm-contrib", ">= 3.0.0"
-  s.add_dependency "scrivener", ">= 1.0.0"
+  s.add_dependency "ohm-validations", ">= 1.1.0"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec"
