@@ -41,5 +41,12 @@ module Global8ballGame
     it "validates presence of a game" do
       expect {Result.create result_set: @content}.to raise_error "No game given for Result."
     end
+
+    it "provides timestamps on create and update" do
+      result = Result.create result_set: @content, game: @game
+
+      expect(result.created_at).to be_kind_of Time
+      expect(result.updated_at).to be_kind_of Time
+    end
   end
 end
