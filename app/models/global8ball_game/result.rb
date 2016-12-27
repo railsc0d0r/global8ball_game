@@ -1,5 +1,7 @@
 module Global8ballGame
   class Result < Ohm::Model
+    include Ohm::Validations
+
     attribute :content
     reference :game, :Game
 
@@ -13,6 +15,12 @@ module Global8ballGame
 
     def game
       Game.find game_id
+    end
+
+    protected
+
+    def validate
+      raise "No content/result_set given for Result." unless assert_present(:content)
     end
   end
 end
