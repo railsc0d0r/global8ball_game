@@ -7,6 +7,9 @@ module Global8ballGame
         a: 1,
         b: "123"
       }
+
+      object_creator = ObjectCreator.new
+      @game = Game.create!
     end
 
     it "provides an attribute called content to store json as string" do
@@ -27,11 +30,12 @@ module Global8ballGame
     end
 
     it "belongs to a Game" do
-      object_creator = ObjectCreator.new
-      game = Game.create!
+      Result.create result_set: @content, game: @game
+      expect(Result.all.first.game).to eq @game
+    end
 
-      Result.create result_set: @content, game: game
-      expect(Result.all.first.game).to eq game
+    it "validates presence of content" do
+      expect {Result.create}.to raise_error "No content/result_set given for Result."
     end
   end
 end
