@@ -1,6 +1,7 @@
 module Global8ballGame
   class Result < Ohm::Model
     include Ohm::Validations
+    include Ohm::Timestamps
 
     attribute :content
     reference :game, :Game
