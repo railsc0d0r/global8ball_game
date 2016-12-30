@@ -26,12 +26,4 @@ ActiveRecord::Schema.define(version: 20160907190329) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "results", force: :cascade do |t|
-    t.string   "content"
-    t.integer  "game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_results_on_game_id"
-  end
-
 end
