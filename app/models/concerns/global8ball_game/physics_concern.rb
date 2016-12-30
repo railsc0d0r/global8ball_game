@@ -61,6 +61,10 @@ module Global8ballGame
       Result.find(game_id: self.id).to_a
     end
 
+    def last_result
+      self.results.empty? ? nil : self.results.last.result_set
+    end
+
     private
 
     def initialize_table

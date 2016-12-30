@@ -45,9 +45,4 @@ class Game < ApplicationRecord
   def initialize_state stage_name, breaker
     self.last_result = initial_state self.player_1_id, self.player_2_id, stage_name, breaker
   end
-
-  # Convinience methods to be used as standard in PhysicsConcern
-  def last_result
-    self.results.empty? ? nil : self.results.last.result_set
-  end
 end
