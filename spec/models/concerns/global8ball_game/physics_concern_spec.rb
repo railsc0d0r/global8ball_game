@@ -194,5 +194,15 @@ module Global8ballGame
       expect(results.count).to eq 1
       expect(results.last.result_set).to eq state.to_hash
     end
+
+    # TODO: Debug deleting stuff from Redis. Throws an error atm...
+    # it "cleans up results if model including this concern is destroyed" do
+    #   state = State::Initial.new @game.player_1_id, @game.player_2_id
+    #   @game.last_result = state.to_hash
+    #   game_id = @game.id
+    #   @game.destroy
+    #
+    #   expect(Result.find(game_id:game_id)).to be_nil
+    # end
   end
 end

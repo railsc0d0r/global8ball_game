@@ -12,6 +12,11 @@ module Global8ballGame
 
     included do
       attr_reader :table
+
+      # TODO: Debug deleting stuff from Redis. Throws an error atm...
+      # before_destroy do
+      #   Result.find(game_id: self.id).map &:delete
+      # end
     end
 
     def eval_shot shot_hash
