@@ -48,6 +48,10 @@ module Global8ballGame
       self.last_result
     end
 
+    def last_result= state_hash
+      Result.create result_set: state_hash, game: self
+    end
+
     private
 
     def initialize_table

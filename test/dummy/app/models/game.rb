@@ -52,12 +52,4 @@ class Game < ApplicationRecord
   def last_result
     self.results.empty? ? nil : self.results.last.result_set
   end
-
-  def last_result=result_set
-    result = Result.new
-    result.result_set = result_set
-
-    self.results << result
-    self.save!
-  end
 end
