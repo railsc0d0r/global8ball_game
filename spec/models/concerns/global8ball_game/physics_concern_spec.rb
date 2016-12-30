@@ -177,5 +177,12 @@ module Global8ballGame
 
       expect(current_state.shot_results['events']).to eql [event]
     end
+
+    it "provides a method to store the last result in Redis abstracted by an ohm-model" do
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
+      @game.last_result = state.to_hash
+
+      expect(Result.all.to_a.last.result_set).to eq state.to_hash
+    end
   end
 end
