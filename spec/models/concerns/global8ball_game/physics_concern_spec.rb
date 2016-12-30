@@ -184,5 +184,15 @@ module Global8ballGame
 
       expect(Result.all.to_a.last.result_set).to eq state.to_hash
     end
+
+    it "provides a method to retrieve all results of a model including PhysicsConcern" do
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
+      @game.last_result = state.to_hash
+
+      results = @game.results
+      expect(results).to be_kind_of Array
+      expect(results.count).to eq 1
+      expect(results.last.result_set).to eq state.to_hash
+    end
   end
 end
