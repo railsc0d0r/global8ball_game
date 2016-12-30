@@ -204,5 +204,14 @@ module Global8ballGame
     #
     #   expect(Result.find(game_id:game_id)).to be_nil
     # end
+
+    it "provides a method to retrieve the last result for a model including this concern." do
+      expect(@game.last_result).to be_nil
+
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
+      @game.last_result = state.to_hash
+
+      expect(@game.last_result).to eq state.to_hash
+    end
   end
 end
