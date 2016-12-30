@@ -52,6 +52,10 @@ module Global8ballGame
       Result.create result_set: state_hash, game: self
     end
 
+    def results
+      Result.find(game_id: self.id).to_a
+    end
+
     private
 
     def initialize_table
