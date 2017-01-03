@@ -41,4 +41,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "headless"
   s.add_development_dependency "uglifier"
   s.add_development_dependency "awesome_print"
+  s.add_development_dependency "timecop"
 end
