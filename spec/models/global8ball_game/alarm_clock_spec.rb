@@ -13,7 +13,7 @@ module Global8ballGame
     end
 
     it "stores a finish-timestamp" do
-      finish = Time.at(Time.now.since(10).to_i)
+      finish = Time.at(Time.now.in(5.minutes).to_i)
       AlarmClock.create game: @game, finish: finish
       expect(AlarmClock.all.first.finish).to be_kind_of Time
       expect(AlarmClock.all.first.finish).to eq finish
@@ -24,6 +24,20 @@ module Global8ballGame
 
       expect(alarm_clock.created_at).to be_kind_of Time
       expect(alarm_clock.updated_at).to be_kind_of Time
+    end
+
+    it "can tell if the alarm is to be sounded" do
+      time_now = Time.now
+      finish = Time.at(time_now.in(5.seconds).to_i)
+      alarm_clock = AlarmClock.create game: @game, finish: finish
+
+      Timecop.freeze(Time.at(time_now.in(4.seconds).to_i)) do
+        expect(alarm_clock.finished?).to be_falsy
+      end
+
+      Timecop.freeze(Time.at(time_now.in(5.seconds).to_i)) do
+        expect(alarm_clock.finished?).to be_truthy
+      end
     end
   end
 end
