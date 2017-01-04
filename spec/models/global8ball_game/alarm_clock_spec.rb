@@ -18,5 +18,12 @@ module Global8ballGame
       expect(AlarmClock.all.first.finish).to be_kind_of Time
       expect(AlarmClock.all.first.finish).to eq finish
     end
+
+    it "provides timestamps on create and update" do
+      alarm_clock = AlarmClock.create game: @game, finish: Time.now
+
+      expect(alarm_clock.created_at).to be_kind_of Time
+      expect(alarm_clock.updated_at).to be_kind_of Time
+    end
   end
 end
