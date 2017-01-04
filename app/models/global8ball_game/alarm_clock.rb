@@ -1,5 +1,5 @@
 module Global8ballGame
-  class StopWatch < Ohm::Model
+  class AlarmClock < Ohm::Model
     include Ohm::DataTypes
 
     attribute :start, Type::Time
