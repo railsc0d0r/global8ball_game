@@ -1,6 +1,7 @@
 module Global8ballGame
   class AlarmClock < Ohm::Model
     include Ohm::DataTypes
+    include Ohm::Timestamps
 
     attribute :finish, Type::Time
     reference :game, :Game
