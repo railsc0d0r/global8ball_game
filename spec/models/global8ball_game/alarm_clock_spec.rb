@@ -39,5 +39,14 @@ module Global8ballGame
         expect(alarm_clock.finished?).to be_truthy
       end
     end
+
+    it "can add x seconds to finish-timestamp and persist the new timestamp" do
+      finish = Time.at(Time.now.in(5.minutes).to_i)
+      alarm_clock = AlarmClock.create game: @game, finish: finish
+      alarm_clock.add_seconds 20
+      expected_result = finish.in(20.seconds)
+
+      expect(AlarmClock.all.first.finish).to eq expected_result
+    end
   end
 end
