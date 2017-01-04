@@ -9,5 +9,9 @@ module Global8ballGame
     def game
       Game.find game_id
     end
+
+    def finished?
+      !(self.finish > Time.at(Time.now.to_i))
+    end
   end
 end
