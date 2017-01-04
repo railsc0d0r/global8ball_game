@@ -13,5 +13,10 @@ module Global8ballGame
     def finished?
       !(self.finish > Time.at(Time.now.to_i))
     end
+
+    def add_seconds seconds
+      self.finish = self.finish.in seconds
+      self.save
+    end
   end
 end
