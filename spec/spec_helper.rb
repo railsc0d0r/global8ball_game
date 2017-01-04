@@ -20,6 +20,7 @@ require 'pry'
 require 'support/factory_girl'
 require 'support/database_cleaner'
 require 'object_creator'
+require 'timecop'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
