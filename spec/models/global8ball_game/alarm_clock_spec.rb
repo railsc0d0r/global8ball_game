@@ -12,11 +12,11 @@ module Global8ballGame
       expect(AlarmClock.all.first.game).to eq @game
     end
 
-    it "stores a stop-timestamp" do
-      stop = Time.at(Time.now.since(10).to_i)
-      AlarmClock.create game: @game, stop: stop
-      expect(AlarmClock.all.first.stop).to be_kind_of Time
-      expect(AlarmClock.all.first.stop).to eq stop
+    it "stores a finish-timestamp" do
+      finish = Time.at(Time.now.since(10).to_i)
+      AlarmClock.create game: @game, finish: finish
+      expect(AlarmClock.all.first.finish).to be_kind_of Time
+      expect(AlarmClock.all.first.finish).to eq finish
     end
   end
 end
