@@ -40,6 +40,27 @@ module Global8ballGame
       end
     end
 
+    it "can check the alarm_clock and publishes an event if the alarm is to be sounded" do
+      time_now = Time.now
+      finish = Time.at(time_now.in(5.seconds).to_i)
+      alarm_clock = AlarmClock.create game: @game, finish: finish
+      result = false
+
+      alarm_clock.on(:sound_the_alarm) do
+        result = true
+      end
+
+      Timecop.freeze(Time.at(time_now.in(4.seconds).to_i)) do
+        alarm_clock.check!
+        expect(result).to be_falsy
+      end
+
+      Timecop.freeze(Time.at(time_now.in(5.seconds).to_i)) do
+        alarm_clock.check!
+        expect(result).to be_truthy
+      end
+    end
+
     it "can add x seconds to finish-timestamp and persist the new timestamp" do
       finish = Time.at(Time.now.in(5.minutes).to_i)
       alarm_clock = AlarmClock.create game: @game, finish: finish
