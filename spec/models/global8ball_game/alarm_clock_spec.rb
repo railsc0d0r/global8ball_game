@@ -26,7 +26,7 @@ module Global8ballGame
       expect(alarm_clock.updated_at).to be_kind_of Time
     end
 
-    it "can tell if the alarm is to be sounded" do
+    it "can tell if the alarm-time passed already" do
       time_now = Time.now
       finish = Time.at(time_now.in(5.seconds).to_i)
       alarm_clock = AlarmClock.create game: @game, finish: finish
