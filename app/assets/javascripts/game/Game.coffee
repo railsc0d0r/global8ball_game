@@ -55,7 +55,7 @@ class Game
       @config.physicsConfig
     )
 
-    gameConfig = new global8ball.config.Game @phaserGame, @config
+    gameConfig = new global8ball.config.Game @config
 
     @players = global8ball.Players.create @config.players, @config.viewer
 

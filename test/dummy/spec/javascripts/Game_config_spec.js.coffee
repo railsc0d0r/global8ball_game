@@ -165,7 +165,7 @@ describe 'Game config', ->
     cfg = createConfig()
     cfg.table.scaling_factor = 300
 
-    gameConfig = new GameConfig {}, cfg
+    gameConfig = new GameConfig cfg
     physicsConfig = gameConfig.getPhysicsConfig()
 
     scaledValue = physicsConfig.mpx 2
@@ -175,7 +175,7 @@ describe 'Game config', ->
     cfg = createConfig()
     cfg.table.scaling_factor = 400
 
-    gameConfig = new GameConfig {}, cfg
+    gameConfig = new GameConfig cfg
     physicsConfig = gameConfig.getPhysicsConfig()
 
     scaledValue = physicsConfig.mpxi 0.5
@@ -185,7 +185,7 @@ describe 'Game config', ->
     cfg = createConfig()
     cfg.table.scaling_factor = 250
 
-    gameConfig = new GameConfig {}, cfg
+    gameConfig = new GameConfig cfg
     physicsConfig = gameConfig.getPhysicsConfig()
 
     scaledValue = physicsConfig.pxm 125
@@ -195,7 +195,7 @@ describe 'Game config', ->
     cfg = createConfig()
     cfg.table.scaling_factor = 350
 
-    gameConfig = new GameConfig {}, cfg
+    gameConfig = new GameConfig cfg
     physicsConfig = gameConfig.getPhysicsConfig()
 
     scaledValue = physicsConfig.pxmi 700
