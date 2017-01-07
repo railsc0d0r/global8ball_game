@@ -19,6 +19,22 @@ module Global8ballGame
       expect(AlarmClock.all.first.finish).to eq finish
     end
 
+    it "stores its context" do
+      context = :shotclock
+      AlarmClock.create game: @game, finish: Time.now, context: context
+      result_clock = AlarmClock.all.first
+
+      expect(result_clock.context).to be_kind_of Symbol
+      expect(result_clock.context).to eq context
+    end
+
+    it "stores the player this alarm_clock belongs to" do
+      player = @game.player_1
+      alarm_clock = AlarmClock.create game: @game, finish: Time.now, player: player
+
+      expect(AlarmClock.all.first.player).to eq player
+    end
+
     it "provides timestamps on create and update" do
       alarm_clock = AlarmClock.create game: @game, finish: Time.now
 
