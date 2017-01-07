@@ -9,10 +9,11 @@ module Global8ballGame
       @finish = Time.at(@time_now.in(5.seconds).to_i)
       @context = :shotclock
       @player = @game.player_1
+
+      @alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
     end
 
     it "belongs to a Game" do
-      AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
       expect(AlarmClock.all.first.game).to eq @game
     end
 
@@ -21,7 +22,6 @@ module Global8ballGame
     end
 
     it "stores a finish-timestamp" do
-      AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
       result_clock = AlarmClock.all.first
 
       expect(result_clock.finish).to be_kind_of Time
@@ -33,7 +33,6 @@ module Global8ballGame
     end
 
     it "stores its context" do
-      AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
       result_clock = AlarmClock.all.first
 
       expect(result_clock.context).to be_kind_of Symbol
@@ -45,8 +44,6 @@ module Global8ballGame
     end
 
     it "stores the player this alarm_clock belongs to" do
-      AlarmClock.create game: @game, finish: @finish, player: @player, context: @context
-
       expect(AlarmClock.all.first.player).to eq @player
     end
 
@@ -55,46 +52,40 @@ module Global8ballGame
     end
 
     it "provides timestamps on create and update" do
-      alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
-
-      expect(alarm_clock.created_at).to be_kind_of Time
-      expect(alarm_clock.updated_at).to be_kind_of Time
+      expect(@alarm_clock.created_at).to be_kind_of Time
+      expect(@alarm_clock.updated_at).to be_kind_of Time
     end
 
     it "can tell if the alarm-time passed already" do
-      alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
-
       Timecop.freeze(Time.at(@time_now.in(4.seconds).to_i)) do
-        expect(alarm_clock.finished?).to be_falsy
+        expect(@alarm_clock.finished?).to be_falsy
       end
 
       Timecop.freeze(Time.at(@time_now.in(5.seconds).to_i)) do
-        expect(alarm_clock.finished?).to be_truthy
+        expect(@alarm_clock.finished?).to be_truthy
       end
     end
 
     it "can check the alarm_clock and publishes an event if the alarm is to be sounded" do
-      alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
       result = false
 
-      alarm_clock.on(:sound_the_alarm) do
+      @alarm_clock.on(:sound_the_alarm) do
         result = true
       end
 
       Timecop.freeze(Time.at(@time_now.in(4.seconds).to_i)) do
-        alarm_clock.check!
+        @alarm_clock.check!
         expect(result).to be_falsy
       end
 
       Timecop.freeze(Time.at(@time_now.in(5.seconds).to_i)) do
-        alarm_clock.check!
+        @alarm_clock.check!
         expect(result).to be_truthy
       end
     end
 
     it "can add x seconds to finish-timestamp and persist the new timestamp" do
-      alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
-      alarm_clock.add_seconds 20
+      @alarm_clock.add_seconds 20
       expected_result = @finish.in(20.seconds)
 
       expect(AlarmClock.all.first.finish).to eq expected_result
