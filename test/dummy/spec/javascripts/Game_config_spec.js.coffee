@@ -161,45 +161,47 @@ describe 'Game config', ->
       min_ball_speed: 0.01
       scaling_factor: 400
 
-  it 'provides an mpx converter', ->
-    cfg = createConfig()
-    cfg.table.scaling_factor = 300
+  describe 'Physics config', ->
 
-    gameConfig = new GameConfig cfg
-    physicsConfig = gameConfig.getPhysicsConfig()
+    it 'provides an mpx converter', ->
+      cfg = createConfig()
+      cfg.table.scaling_factor = 300
 
-    scaledValue = physicsConfig.mpx 2
-    expect(scaledValue).toEqual 600
+      gameConfig = new GameConfig cfg
+      physicsConfig = gameConfig.getPhysicsConfig()
 
-  it 'provides an mpxi converter', ->
-    cfg = createConfig()
-    cfg.table.scaling_factor = 400
+      scaledValue = physicsConfig.mpx 2
+      expect(scaledValue).toEqual 600
 
-    gameConfig = new GameConfig cfg
-    physicsConfig = gameConfig.getPhysicsConfig()
+    it 'provides an mpxi converter', ->
+      cfg = createConfig()
+      cfg.table.scaling_factor = 400
 
-    scaledValue = physicsConfig.mpxi 0.5
-    expect(scaledValue).toEqual -200
+      gameConfig = new GameConfig cfg
+      physicsConfig = gameConfig.getPhysicsConfig()
 
-  it 'provides an pxm converter', ->
-    cfg = createConfig()
-    cfg.table.scaling_factor = 250
+      scaledValue = physicsConfig.mpxi 0.5
+      expect(scaledValue).toEqual -200
 
-    gameConfig = new GameConfig cfg
-    physicsConfig = gameConfig.getPhysicsConfig()
+    it 'provides an pxm converter', ->
+      cfg = createConfig()
+      cfg.table.scaling_factor = 250
 
-    scaledValue = physicsConfig.pxm 125
-    expect(scaledValue).toEqual 0.5
+      gameConfig = new GameConfig cfg
+      physicsConfig = gameConfig.getPhysicsConfig()
 
-  it 'provides an pxmi converter', ->
-    cfg = createConfig()
-    cfg.table.scaling_factor = 350
+      scaledValue = physicsConfig.pxm 125
+      expect(scaledValue).toEqual 0.5
 
-    gameConfig = new GameConfig cfg
-    physicsConfig = gameConfig.getPhysicsConfig()
+    it 'provides an pxmi converter', ->
+      cfg = createConfig()
+      cfg.table.scaling_factor = 350
 
-    scaledValue = physicsConfig.pxmi 700
-    expect(scaledValue).toEqual -2
+      gameConfig = new GameConfig cfg
+      physicsConfig = gameConfig.getPhysicsConfig()
+
+      scaledValue = physicsConfig.pxmi 700
+      expect(scaledValue).toEqual -2
 
   it 'provides converted holes data', ->
     cfg = createConfig()
