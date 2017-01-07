@@ -20,4 +20,9 @@ namespace :redis do
   task status: :environment do
     puts RedisInstance.is_running? ? "Redis is running." : "Redis is not running."
   end
+
+  desc "Flushes DB for RAILS_ENV"
+  task flush_db: :environment do
+    RedisInstance.flush_db
+  end
 end
