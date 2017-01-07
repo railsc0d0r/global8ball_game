@@ -17,8 +17,8 @@ class global8ball.config.Game
       v / -(cfg.table.scaling_factor)
 
   # Returns holes positions.
-  holesData: ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
+  holesData: (size) ->
+    center = new Phaser.Point size.width / 2, size.height / 2
 
     holes = {}
     convertMeterToPx = @config.physicsConfig.mpx
@@ -32,8 +32,8 @@ class global8ball.config.Game
     return holes
 
   # There are six borders, they are located between the holes.
-  borderData: ->
-    center = new Phaser.Point @game.width / 2, @game.height / 2
+  borderData: (size) ->
+    center = new Phaser.Point size.width / 2, size.height / 2
 
     borders = @config.borders
     convertMeterToPx = @config.physicsConfig.mpx
