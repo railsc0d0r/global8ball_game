@@ -217,3 +217,29 @@ describe 'Game config', ->
     expect(leftBottomHole.radius).toEqual 2
     expect(leftBottomHole.pos.x).toEqual 340
     expect(leftBottomHole.pos.y).toEqual 520
+
+  it 'provides converted borders data', ->
+    cfg = createConfig()
+    cfg.table.scaling_factor = 300
+    cfg.borders.left = [
+      {
+        x: -1
+        y: -1
+      },
+      {
+        x: 1
+        y: 0.5
+      },
+      {
+        x: -0.5
+        y: 1
+      }
+    ]
+
+    gameConfig = new GameConfig cfg
+    physicsConfig = gameConfig.getPhysicsConfig()
+
+    leftBorderPoints = gameConfig.borderData(width: 800, height: 600).left
+    expect(leftBorderPoints).toContain new Phaser.Point(100, 0)
+    expect(leftBorderPoints).toContain new Phaser.Point(700, 450)
+    expect(leftBorderPoints).toContain new Phaser.Point(250, 600)

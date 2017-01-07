@@ -35,7 +35,7 @@ class global8ball.config.Game
     center = new Phaser.Point size.width / 2, size.height / 2
 
     borders = @config.borders
-    convertMeterToPx = @config.physicsConfig.mpx
+    convertMeterToPx = @getPhysicsConfig().mpx
 
     Object.keys(borders).map (key, index) ->
       points = []
