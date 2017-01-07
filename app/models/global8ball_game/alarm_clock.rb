@@ -2,6 +2,7 @@ module Global8ballGame
   class AlarmClock < Ohm::Model
     include Ohm::DataTypes
     include Ohm::Timestamps
+    include Ohm::Validations
     include Wisper::Publisher
 
     attribute :finish, Type::Time
@@ -28,6 +29,12 @@ module Global8ballGame
     def add_seconds seconds
       self.finish = self.finish.in seconds
       self.save
+    end
+
+    protected
+
+    def validate
+      raise "No game given to create AlarmClock." unless assert_present(:game_id)
     end
   end
 end
