@@ -15,15 +15,6 @@ this.initGlobal8Ball = (gameConfig) ->
     cue:
       hardness: gameConfig.table.cue_hardness
       mass: gameConfig.table.cue_mass
-    physicsConfig:
-      mpx: (v) ->
-        v * gameConfig.table.scaling_factor
-      mpxi: (v) ->
-        v * -(gameConfig.table.scaling_factor)
-      pxm: (v) ->
-        v / gameConfig.table.scaling_factor
-      pxmi: (v) ->
-        v / -(gameConfig.table.scaling_factor)
     players:
       first:
         id: gameConfig.player_1.user_id
