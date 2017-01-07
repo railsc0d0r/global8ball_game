@@ -27,6 +27,10 @@ module Global8ballGame
       expect(result_clock.finish).to eq @finish
     end
 
+    it "validates presence of :finish" do
+      expect {AlarmClock.create game: @game, context: @context}.to raise_error "No :finish given as timestamp to define when clock runs out."
+    end
+
     it "stores its context" do
       AlarmClock.create game: @game, finish: @finish, context: @context
       result_clock = AlarmClock.all.first
