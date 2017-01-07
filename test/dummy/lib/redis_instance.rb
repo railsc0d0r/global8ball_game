@@ -45,6 +45,10 @@ module RedisInstance
       running
     end
 
+    def flush_db
+      Ohm.redis.call('FLUSHDB')
+    end
+
     private
       # Returns true if redis is installed, otherwise false
       def redis_installed?
