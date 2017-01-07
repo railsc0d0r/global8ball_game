@@ -5,10 +5,16 @@ module Global8ballGame
     include Wisper::Publisher
 
     attribute :finish, Type::Time
+    attribute :context, Type::Symbol
     reference :game, :Game
+    reference :player, :Player
 
     def game
       Game.find game_id
+    end
+
+    def player
+      Player.find player_id
     end
 
     def finished?
