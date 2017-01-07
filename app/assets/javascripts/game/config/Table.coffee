@@ -1,6 +1,6 @@
 #= require game/config/prolog
 
-class global8ball.config.TableParameters
+class global8ball.config.Table
   constructor: (data) ->
     @borderBounce = Number data.border_bounce
     @tableFriction = Number data.table_friction
