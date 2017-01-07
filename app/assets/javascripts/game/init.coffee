@@ -15,13 +15,8 @@ this.initGlobal8Ball = (gameConfig) ->
     cue:
       hardness: gameConfig.table.cue_hardness
       mass: gameConfig.table.cue_mass
-    players:
-      first:
-        id: gameConfig.player_1.user_id
-        name: gameConfig.player_1.name
-      second:
-        id: gameConfig.player_2.user_id
-        name: gameConfig.player_2.name
+    player_1: gameConfig.player_1
+    player_2: gameConfig.player_2
     viewer:
       id: gameConfig.current_viewer.user_id
       name: gameConfig.current_viewer.name
