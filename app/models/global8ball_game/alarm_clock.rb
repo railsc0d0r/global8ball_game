@@ -35,6 +35,7 @@ module Global8ballGame
 
     def validate
       raise "No game given to create AlarmClock." unless assert_present(:game_id)
+      raise "No :finish given as timestamp to define when clock runs out." unless assert_present(:finish)
     end
   end
 end
