@@ -44,6 +44,8 @@ class Game
 
   # @return {Game} The game itself.
   start: ->
+    gameConfig = new global8ball.config.Game @config
+
     @phaserGame = new Phaser.Game(
       @config.size.width,
       @config.size.height,
@@ -52,10 +54,8 @@ class Game
       null,
       false,
       true,
-      @config.physicsConfig
+      gameConfig.getPhysicsConfig()
     )
-
-    gameConfig = new global8ball.config.Game @config
 
     @players = global8ball.Players.create @config.players, @config.viewer
 
