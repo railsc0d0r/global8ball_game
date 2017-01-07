@@ -200,3 +200,20 @@ describe 'Game config', ->
 
     scaledValue = physicsConfig.pxmi 700
     expect(scaledValue).toEqual -2
+
+  it 'provides converted holes data', ->
+    cfg = createConfig()
+    cfg.table.scaling_factor = 200
+    cfg.holes.leftBottom =
+      x: -0.8
+      y: 0.6
+      radius: 0.01
+
+    gameConfig = new GameConfig cfg
+    physicsConfig = gameConfig.getPhysicsConfig()
+
+    leftBottomHole = gameConfig.holesData(width: 1000, height: 800).leftBottom
+
+    expect(leftBottomHole.radius).toEqual 2
+    expect(leftBottomHole.pos.x).toEqual 340
+    expect(leftBottomHole.pos.y).toEqual 520
