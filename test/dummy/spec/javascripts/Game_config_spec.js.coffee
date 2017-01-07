@@ -114,9 +114,6 @@ describe 'Game config', ->
           y: -0.6
         }
       ]
-    current_viewer:
-      name: ""
-      user_id: 1
     holes:
       centerBottom:
         radius: 0.01
@@ -142,6 +139,9 @@ describe 'Game config', ->
         radius: 0.01
         x: -0.2
         y: 0.6
+    current_viewer:
+      name: ""
+      user_id: 1
     player_1:
       name: ""
       user_id: 1

@@ -19,11 +19,9 @@ this.initGlobal8Ball = (gameConfig) ->
       first:
         id: gameConfig.player_1.user_id
         name: gameConfig.player_1.name
-        shot: false
       second:
         id: gameConfig.player_2.user_id
         name: gameConfig.player_2.name
-        shot: false
     viewer:
       id: gameConfig.current_viewer.user_id
       name: gameConfig.current_viewer.name
