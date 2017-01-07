@@ -5,15 +5,15 @@ class global8ball.config.Game
   constructor: (@config) ->
 
   getPhysicsConfig: ->
-    cfg = @config
+    scalingFactor = @config.table.scaling_factor
     mpx: (v) ->
-      v * cfg.table.scaling_factor
+      v * scalingFactor
     mpxi: (v) ->
-      v * -(cfg.table.scaling_factor)
+      v * -scalingFactor
     pxm: (v) ->
-      v / cfg.table.scaling_factor
+      v / scalingFactor
     pxmi: (v) ->
-      v / -(cfg.table.scaling_factor)
+      v / -scalingFactor
 
   # Returns holes positions.
   holesData: (size) ->
