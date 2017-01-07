@@ -44,3 +44,11 @@ class global8ball.config.Game
         points.push(phaserPoint)
       borders[key] = points
     return borders
+
+  getPlayerData: ->
+    first:
+      id: @config.player_1.user_id
+      name: @config.player_1.name
+    second:
+      id: @config.player_2.user_id
+      name: @config.player_2.name

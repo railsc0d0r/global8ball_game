@@ -245,3 +245,20 @@ describe 'Game config', ->
     expect(leftBorderPoints).toContain new Phaser.Point(100, 0)
     expect(leftBorderPoints).toContain new Phaser.Point(700, 450)
     expect(leftBorderPoints).toContain new Phaser.Point(250, 600)
+
+  it 'provides player configs', ->
+    cfg = createConfig()
+    cfg.player_1 =
+      user_id: 33
+      name: "Kunta Kinte"
+    cfg.player_2 =
+      user_id: 666
+      name: "NOT the devil"
+
+    gameConfig = new GameConfig cfg
+    playerData = gameConfig.getPlayerData()
+
+    expect(playerData.first.id).toEqual 33
+    expect(playerData.first.name).toEqual "Kunta Kinte"
+    expect(playerData.second.id).toEqual 666
+    expect(playerData.second.name).toEqual "NOT the devil"
