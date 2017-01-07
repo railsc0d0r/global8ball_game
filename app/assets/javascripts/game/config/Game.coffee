@@ -5,6 +5,17 @@ class global8ball.config.Game
   # @param {object} config
   constructor: (@game, @config) ->
 
+  getPhysicsConfig: ->
+    cfg = @config
+    mpx: (v) ->
+      v * cfg.table.scaling_factor
+    mpxi: (v) ->
+      v * -(cfg.table.scaling_factor)
+    pxm: (v) ->
+      v / cfg.table.scaling_factor
+    pxmi: (v) ->
+      v / -(cfg.table.scaling_factor)
+
   # Returns holes positions.
   holesData: ->
     center = new Phaser.Point @game.width / 2, @game.height / 2
