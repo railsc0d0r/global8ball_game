@@ -30,6 +30,9 @@ chdir APP_ROOT do
   puts "\n== Restarting redis =="
   system! 'bin/rails redis:restart'
 
+  puts "\n== Flushing Redis-DB"
+  system! 'bin/rails redis:flush_db'
+
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
 
