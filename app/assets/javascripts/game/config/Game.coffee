@@ -52,3 +52,7 @@ class global8ball.config.Game
     second:
       id: @config.player_2.user_id
       name: @config.player_2.name
+
+  getCurrentViewerData: ->
+    id: @config.current_viewer.user_id
+    name: @config.current_viewer.name

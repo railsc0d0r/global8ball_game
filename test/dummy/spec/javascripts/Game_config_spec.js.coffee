@@ -262,3 +262,15 @@ describe 'Game config', ->
     expect(playerData.first.name).toEqual "Kunta Kinte"
     expect(playerData.second.id).toEqual 666
     expect(playerData.second.name).toEqual "NOT the devil"
+
+  it 'provides current viewer data', ->
+    cfg = createConfig()
+    cfg.current_viewer =
+      user_id: 42
+      name: "Mysterious Man"
+
+    gameConfig = new GameConfig cfg
+    currentViewerData = gameConfig.getCurrentViewerData()
+
+    expect(currentViewerData.id).toEqual 42
+    expect(currentViewerData.name).toEqual "Mysterious Man"
