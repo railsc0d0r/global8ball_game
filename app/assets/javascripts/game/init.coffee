@@ -17,9 +17,7 @@ this.initGlobal8Ball = (gameConfig) ->
       mass: gameConfig.table.cue_mass
     player_1: gameConfig.player_1
     player_2: gameConfig.player_2
-    viewer:
-      id: gameConfig.current_viewer.user_id
-      name: gameConfig.current_viewer.name
+    current_viewer: gameConfig.current_viewer
     breakBall:
       maxSpeed: gameConfig.table.max_breakball_speed
 

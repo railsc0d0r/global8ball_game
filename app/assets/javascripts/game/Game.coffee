@@ -57,7 +57,7 @@ class Game
       gameConfig.getPhysicsConfig()
     )
 
-    @players = global8ball.Players.create gameConfig.getPlayerData(), @config.viewer
+    @players = global8ball.Players.create gameConfig.getPlayerData(), gameConfig.getCurrentViewerData()
 
     @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
