@@ -1,5 +1,6 @@
 module Global8ballGame
   class AlarmClock < Ohm::Model
+    include HandleErrorsConcern
     include Ohm::DataTypes
     include Ohm::Timestamps
     include Ohm::Validations
@@ -34,10 +35,12 @@ module Global8ballGame
     protected
 
     def validate
-      raise "No game given to create AlarmClock." unless assert_present(:game_id)
-      raise "No :finish given as timestamp to define when clock runs out." unless assert_present(:finish)
-      raise "No :context given for AlarmClock." unless assert_present(:context)
-      raise "No player given for AlarmClock." unless assert_present(:player_id)
+      assert_present(:game_id)
+      assert_present(:finish)
+      assert_present(:context)
+      assert_present(:player_id)
+
+      handle_errors errors unless errors.empty?
     end
   end
 end
