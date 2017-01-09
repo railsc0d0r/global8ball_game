@@ -18,7 +18,7 @@ module Global8ballGame
     end
 
     it "validates presence of Game" do
-      expect {AlarmClock.create finish: @finish, context: @context, player: @player}.to raise_error "No game given to create AlarmClock."
+      expect {result_clock = AlarmClock.create finish: @finish, context: @context, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: game_id is not present."
     end
 
     it "stores a finish-timestamp" do
@@ -29,7 +29,7 @@ module Global8ballGame
     end
 
     it "validates presence of :finish" do
-      expect {AlarmClock.create game: @game, context: @context, player: @player}.to raise_error "No :finish given as timestamp to define when clock runs out."
+      expect {AlarmClock.create game: @game, context: @context, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: finish is not present."
     end
 
     it "stores its context" do
@@ -40,7 +40,7 @@ module Global8ballGame
     end
 
     it "validates presence of :context" do
-      expect {AlarmClock.create game: @game, finish: @finish, player: @player}.to raise_error "No :context given for AlarmClock."
+      expect {AlarmClock.create game: @game, finish: @finish, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: context is not present."
     end
 
     it "stores the player this alarm_clock belongs to" do
@@ -48,7 +48,7 @@ module Global8ballGame
     end
 
     it "validates presence of :player" do
-      expect {AlarmClock.create game: @game, finish: @finish, context: @context}.to raise_error "No player given for AlarmClock."
+      expect {AlarmClock.create game: @game, finish: @finish, context: @context}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: player_id is not present."
     end
 
     it "provides timestamps on create and update" do
