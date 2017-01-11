@@ -1,4 +1,5 @@
 #= require game/config/prolog
+#= require game/config/Table
 
 class global8ball.config.Game
   # @param {object} config
@@ -56,3 +57,6 @@ class global8ball.config.Game
   getCurrentViewerData: ->
     id: @config.current_viewer.user_id
     name: @config.current_viewer.name
+
+  getTable: ->
+    new global8ball.config.Table @config.table

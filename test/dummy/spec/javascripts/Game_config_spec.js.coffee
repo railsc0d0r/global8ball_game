@@ -274,3 +274,13 @@ describe 'Game config', ->
 
     expect(currentViewerData.id).toEqual 42
     expect(currentViewerData.name).toEqual "Mysterious Man"
+
+  describe 'Table config', ->
+
+    it 'exposes table damping', ->
+      cfg = createConfig()
+      cfg.table.damping = 0.1
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getDamping()).toEqual 0.1
