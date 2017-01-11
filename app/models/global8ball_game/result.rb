@@ -14,8 +14,8 @@ module Global8ballGame
     protected
 
     def validate
-      raise "No content/result_set given for Result." unless assert_present(:content)
-      raise "No game given for Result." unless assert_present(:game_id)
+      assert_present(:result_set)
+      assert_present(:game_id)
     end
   end
 end
