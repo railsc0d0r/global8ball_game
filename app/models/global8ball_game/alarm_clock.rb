@@ -1,9 +1,8 @@
 module Global8ballGame
   class AlarmClock < Ohm::Model
-    include HandleErrorsConcern
+    include ModelValidationConcern
     include Ohm::DataTypes
     include Ohm::Timestamps
-    include Ohm::Validations
     include Wisper::Publisher
 
     attribute :finish, Type::Time
@@ -39,8 +38,6 @@ module Global8ballGame
       assert_present(:finish)
       assert_present(:context)
       assert_present(:player_id)
-
-      handle_errors errors unless errors.empty?
     end
   end
 end
