@@ -1,18 +1,11 @@
 module Global8ballGame
   class Result < Ohm::Model
-    include Ohm::Validations
+    include ModelValidationConcern
+    include Ohm::DataTypes
     include Ohm::Timestamps
 
-    attribute :content
+    attribute :result_set, Type::Hash
     reference :game, :Game
-
-    def result_set
-      JSON.parse content
-    end
-
-    def result_set= content_hash
-      self.content = content_hash.to_json
-    end
 
     def game
       Game.find game_id
