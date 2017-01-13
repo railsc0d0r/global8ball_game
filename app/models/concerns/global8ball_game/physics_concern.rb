@@ -12,10 +12,6 @@ module Global8ballGame
 
     included do
       attr_reader :table
-
-      before_destroy do
-        Result.find(game_id: self.id).map &:delete
-      end
     end
 
     def eval_shot shot_hash
