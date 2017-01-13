@@ -13,9 +13,9 @@ module Global8ballGame
       expect(@game.updated_at).to be_kind_of Time
     end
 
-    # it "includes Global8ballGame::PhysicsConcern" do
-    #   expect(Game.include? Global8ballGame::PhysicsConcern).to be_truthy
-    # end
+    it "includes Global8ballGame::PhysicsConcern" do
+      expect(Game.include? Global8ballGame::PhysicsConcern).to be_truthy
+    end
 
     it "provides config as attribute to store a hash" do
       expect(Game.all.first.config).to eq @config.deep_stringify_keys
