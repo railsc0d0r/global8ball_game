@@ -28,5 +28,20 @@ module Global8ballGame
     it "provides config as json, too" do
       expect(Game.all.first.config_json).to eq @config.to_json
     end
+
+    it "has a collection of results" do
+      result = Result.create result_set: {a: "test"}, game: @game
+
+      expect(@game.results).to be_kind_of Ohm::Set
+      expect(@game.results.first).to eq result
+    end
+
+    it "deletes all results belonging to it if deleted" do
+      game_id = @game.id
+      result = Result.create result_set: {a: "test"}, game: @game
+      @game.delete
+
+      expect(Result.find(game_id: game_id)).to be_empty
+    end
   end
 end
