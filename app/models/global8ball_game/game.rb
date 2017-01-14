@@ -7,7 +7,7 @@ module Global8ballGame
     include Ohm::Callbacks
 
     attribute :config, Type::Hash
-    attribute :player_1_id, Type::Integer
+    attribute :player_1_id
 
     def before_delete
       Result.find(game_id: self.id).map &:delete
@@ -25,6 +25,7 @@ module Global8ballGame
 
     def validate
       assert_present(:config)
+      assert_present(:player_1_id)
     end
   end
 end
