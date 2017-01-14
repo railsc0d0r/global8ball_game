@@ -6,7 +6,8 @@ module Global8ballGame
       object_creator = ObjectCreator.new
       @config = object_creator.create_table_config
       @player_1 = object_creator.players[:player_1]
-      @game = Game.create config: @config, player_1_id: @player_1.id
+      @player_2 = object_creator.players[:player_2]
+      @game = Game.create config: @config, player_1_id: @player_1.id, player_2_id: @player_2.id
     end
 
     it "provides timestamps on create and update" do
@@ -51,6 +52,10 @@ module Global8ballGame
 
     it "validates presence of player_1_id" do
       expect {Game.create config: @config}.to raise_error "Global8ballGame::Game is not valid. Errors: player_1_id is not present."
+    end
+
+    it "stores player 2 as id" do
+      expect(Game.all.first.player_2_id).to eq @player_2.id.to_s
     end
   end
 end
