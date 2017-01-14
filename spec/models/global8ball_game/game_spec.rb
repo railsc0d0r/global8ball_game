@@ -5,6 +5,7 @@ module Global8ballGame
     before do
       object_creator = ObjectCreator.new
       @config = object_creator.create_table_config
+      @player_1 = object_creator.players[:player_1]
       @game = Game.create config: @config
     end
 
@@ -42,6 +43,11 @@ module Global8ballGame
       @game.delete
 
       expect(Result.find(game_id: game_id)).to be_empty
+    end
+
+    it "stores player 1 as id" do
+      Game.create config: @config, player_1_id: @player_1.id
+      expect(Game.all.to_a.last.player_1_id).to eq @player_1.id
     end
   end
 end
