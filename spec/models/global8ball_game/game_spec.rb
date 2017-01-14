@@ -24,7 +24,7 @@ module Global8ballGame
     end
 
     it "validates presence of :config" do
-      expect {Game.create player_1_id: @player_1.id}.to raise_error "Global8ballGame::Game is not valid. Errors: config is not present."
+      expect {Game.create player_1_id: @player_1.id, player_2_id: @player_2.id}.to raise_error "Global8ballGame::Game is not valid. Errors: config is not present."
     end
 
     it "provides config as json, too" do
@@ -51,11 +51,15 @@ module Global8ballGame
     end
 
     it "validates presence of player_1_id" do
-      expect {Game.create config: @config}.to raise_error "Global8ballGame::Game is not valid. Errors: player_1_id is not present."
+      expect {Game.create config: @config, player_2_id: @player_2.id}.to raise_error "Global8ballGame::Game is not valid. Errors: player_1_id is not present."
     end
 
     it "stores player 2 as id" do
       expect(Game.all.first.player_2_id).to eq @player_2.id.to_s
+    end
+
+    it "validates presence of player_2_id" do
+      expect {Game.create config: @config, player_1_id: @player_1.id}.to raise_error "Global8ballGame::Game is not valid. Errors: player_2_id is not present."
     end
   end
 end
