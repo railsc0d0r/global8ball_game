@@ -27,6 +27,7 @@ module Global8ballGame
     def validate
       assert_present(:config)
       assert_present(:player_1_id)
+      assert_present(:player_2_id)
     end
   end
 end
