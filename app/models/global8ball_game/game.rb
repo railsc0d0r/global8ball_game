@@ -18,7 +18,7 @@ module Global8ballGame
 
 
     def before_delete
-      Result.find(game_id: self.id).map &:delete
+      self.results.map &:delete
     end
 
     def results
