@@ -9,7 +9,9 @@ module Global8ballGame
       }
 
       object_creator = ObjectCreator.new
-      @game = Game.create!
+      @player_1 = object_creator.players[:player_1]
+      @player_2 = object_creator.players[:player_2]
+      @game = Game.create player_1_id: @player_1.id, player_1_name: @player_1.name, player_2_id: @player_2.id, player_2_name: @player_2.name
     end
 
     it "provides an attribute to store a result_set-hash" do
