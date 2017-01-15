@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20160907190329) do
 
-  create_table "games", force: :cascade do |t|
-    t.string   "config_json"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "player_1_id"
-    t.integer  "player_2_id"
-  end
-
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
