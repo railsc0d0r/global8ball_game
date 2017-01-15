@@ -4,13 +4,14 @@ module Global8ballGame
   RSpec.describe AlarmClock, type: :model do
     before do
       object_creator = ObjectCreator.new
-      @game = Game.create!
+      @player_1 = object_creator.players[:player_1]
+      @player_2 = object_creator.players[:player_2]
+      @game = Game.create player_1_id: @player_1.id, player_1_name: @player_1.name, player_2_id: @player_2.id, player_2_name: @player_2.name
       @time_now = Time.now
       @finish = Time.at(@time_now.in(5.seconds).to_i)
       @context = :shotclock
-      @player = @game.player_1
 
-      @alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player
+      @alarm_clock = AlarmClock.create game: @game, finish: @finish, context: @context, player: @player_1
     end
 
     it "belongs to a Game" do
@@ -18,7 +19,7 @@ module Global8ballGame
     end
 
     it "validates presence of Game" do
-      expect {result_clock = AlarmClock.create finish: @finish, context: @context, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: game_id is not present."
+      expect {result_clock = AlarmClock.create finish: @finish, context: @context, player: @player_1}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: game_id is not present."
     end
 
     it "stores a finish-timestamp" do
@@ -29,7 +30,7 @@ module Global8ballGame
     end
 
     it "validates presence of :finish" do
-      expect {AlarmClock.create game: @game, context: @context, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: finish is not present."
+      expect {AlarmClock.create game: @game, context: @context, player: @player_1}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: finish is not present."
     end
 
     it "stores its context" do
@@ -40,11 +41,11 @@ module Global8ballGame
     end
 
     it "validates presence of :context" do
-      expect {AlarmClock.create game: @game, finish: @finish, player: @player}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: context is not present."
+      expect {AlarmClock.create game: @game, finish: @finish, player: @player_1}.to raise_error "Global8ballGame::AlarmClock is not valid. Errors: context is not present."
     end
 
     it "stores the player this alarm_clock belongs to" do
-      expect(AlarmClock.all.first.player).to eq @player
+      expect(AlarmClock.all.first.player).to eq @player_1
     end
 
     it "validates presence of :player" do
