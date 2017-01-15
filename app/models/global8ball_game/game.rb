@@ -1,3 +1,12 @@
+#
+# Global8ball::Game is an Ohm-based model to be used as instance of the game
+#
+# It provides the config of the game, stores id and name for player_1 and player_2
+# and provides a set of results belonging to the game
+#
+# It includes Global8ballGame::PhysicsConcern to provide aspects concerning a physical
+# world.
+#
 module Global8ballGame
   class Game < Ohm::Model
     include ModelValidationConcern
