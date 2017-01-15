@@ -8,6 +8,7 @@ module Global8ballGame
 
     attribute :config, Type::Hash
     attribute :player_1_id
+    attribute :player_1_name
     attribute :player_2_id
 
     def before_delete
