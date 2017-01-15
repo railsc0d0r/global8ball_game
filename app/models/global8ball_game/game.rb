@@ -10,6 +10,7 @@ module Global8ballGame
     attribute :player_1_id
     attribute :player_1_name
     attribute :player_2_id
+    attribute :player_2_name
 
     def before_delete
       Result.find(game_id: self.id).map &:delete
