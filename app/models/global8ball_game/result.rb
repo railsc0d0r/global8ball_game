@@ -7,6 +7,10 @@ module Global8ballGame
     attribute :result_set, Type::Hash
     reference :game, :Game
 
+    def game
+      Game[game_id]
+    end
+
     protected
 
     def validate
