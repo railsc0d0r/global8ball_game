@@ -1,4 +1,4 @@
-App.reinstate_breakball = App.cable.subscriptions.create {"ReinstateBreakballChannel", game_id: dummy_component.game_id},
+App.reinstate_breakball = App.cable.subscriptions.create {channel: "ReinstateBreakballChannel", game_id: dummy_component.game_id},
   connected: ->
     # Called when the subscription is ready for use on the server
 
