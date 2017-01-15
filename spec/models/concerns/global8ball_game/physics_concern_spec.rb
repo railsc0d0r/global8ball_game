@@ -4,11 +4,13 @@ module Global8ballGame
   RSpec.describe PhysicsConcern, type: :model do
     before do
       @object_creator = ObjectCreator.new
-      @config = @object_creator.create_table_config
+      @config = @object_creator.create_table_config.deep_stringify_keys
 
-      @game = Game.create!
+      @player_1 = @object_creator.players[:player_1]
+      @player_2 = @object_creator.players[:player_2]
+      @game = Game.create player_1_id: @player_1.id, player_1_name: @player_1.name, player_2_id: @player_2.id, player_2_name: @player_2.name
 
-      @game.config_json = @config.to_json
+      @game.config = @config
       @game.save
     end
 
@@ -44,7 +46,7 @@ module Global8ballGame
       shot_hash = {
         user_id: breaker,
         velocity: {
-          x: @config[:table][:max_breakball_speed],
+          x: @config['table']['max_breakball_speed'],
           y: 0
         }
       }
