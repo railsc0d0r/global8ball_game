@@ -34,6 +34,10 @@ module Global8ballGame
       Result.find(game_id: self.id)
     end
 
+    def last_result= state_hash
+      Result.create result_set: state_hash, game: self
+    end
+
     protected
 
     def validate
