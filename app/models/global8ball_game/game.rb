@@ -31,6 +31,7 @@ module Global8ballGame
       assert_present(:player_1_id)
       assert_present(:player_1_name)
       assert_present(:player_2_id)
+      assert_present(:player_2_name)
     end
   end
 end
