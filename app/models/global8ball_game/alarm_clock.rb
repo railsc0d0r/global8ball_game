@@ -11,7 +11,7 @@ module Global8ballGame
     reference :player, :Player
 
     def game
-      Game.find game_id
+      Game[game_id]
     end
 
     def player
