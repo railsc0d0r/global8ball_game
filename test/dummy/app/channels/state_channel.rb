@@ -2,7 +2,7 @@
 class StateChannel < ApplicationCable::Channel
   def subscribed
     stream_from "state_#{params[:game_id]}"
-    @game = Game.find(params[:game_id])
+    @game = Global8ballGame::Game[params[:game_id]]
   end
 
   def unsubscribed
