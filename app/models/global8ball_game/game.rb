@@ -38,6 +38,10 @@ module Global8ballGame
       Result.create result_set: state_hash, game: self
     end
 
+    def last_result
+      self.results.empty? ? nil : self.results.to_a.last.result_set
+    end
+
     protected
 
     def validate
