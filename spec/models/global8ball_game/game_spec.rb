@@ -23,14 +23,6 @@ module Global8ballGame
       expect(Game.all.first.config).to eq @config.deep_stringify_keys
     end
 
-    it "validates presence of :config" do
-      expect {Game.create player_1_id: @player_1.id, player_1_name: @player_1.name, player_2_id: @player_2.id, player_2_name: @player_2.name}.to raise_error "Global8ballGame::Game is not valid. Errors: config is not present."
-    end
-
-    it "provides config as json, too" do
-      expect(Game.all.first.config_json).to eq @config.to_json
-    end
-
     it "has a collection of results" do
       result = Result.create result_set: {a: "test"}, game: @game
 
