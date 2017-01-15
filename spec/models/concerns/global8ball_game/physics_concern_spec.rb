@@ -177,33 +177,5 @@ module Global8ballGame
 
       expect(current_state.shot_results['events']).to eql [event]
     end
-
-    it "provides a method to retrieve all results of a model including PhysicsConcern" do
-      state = State::Initial.new @game.player_1_id, @game.player_2_id
-      @game.last_result = state.to_hash
-
-      results = @game.results
-      expect(results).to be_kind_of Array
-      expect(results.count).to eq 1
-      expect(results.last.result_set).to eq state.to_hash
-    end
-
-    it "cleans up results if model including this concern is destroyed" do
-      state = State::Initial.new @game.player_1_id, @game.player_2_id
-      @game.last_result = state.to_hash
-      game_id = @game.id
-      @game.destroy
-
-      expect(Result.find(game_id:game_id).to_a).to be_empty
-    end
-
-    it "provides a method to retrieve the last result for a model including this concern." do
-      expect(@game.last_result).to be_nil
-
-      state = State::Initial.new @game.player_1_id, @game.player_2_id
-      @game.last_result = state.to_hash
-
-      expect(@game.last_result).to eq state.to_hash
-    end
   end
 end
