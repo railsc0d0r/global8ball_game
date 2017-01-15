@@ -12,6 +12,11 @@ module Global8ballGame
     attribute :player_2_id
     attribute :player_2_name
 
+    def before_create
+      generate_config
+    end
+
+
     def before_delete
       Result.find(game_id: self.id).map &:delete
     end
@@ -27,6 +32,26 @@ module Global8ballGame
       assert_present(:player_1_name)
       assert_present(:player_2_id)
       assert_present(:player_2_name)
+    end
+
+    private
+
+    def generate_config
+      players_config = {
+        player_1: {
+          user_id: self.player_1_id,
+          name: self.player_1_name
+        },
+        player_2: {
+          user_id: self.player_2_id,
+          name: self.player_2_name
+        }
+      }
+
+      config = self.new_table_config
+      config.merge!(players_config)
+
+      self.config = config
     end
   end
 end
