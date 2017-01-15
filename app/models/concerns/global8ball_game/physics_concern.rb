@@ -48,10 +48,6 @@ module Global8ballGame
       self.last_result
     end
 
-    def last_result
-      self.results.empty? ? nil : self.results.last.result_set
-    end
-
     private
 
     def initialize_table
