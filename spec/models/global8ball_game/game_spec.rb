@@ -94,5 +94,12 @@ module Global8ballGame
     it "validates presence of player_2_name" do
       expect {Game.create player_1_id: @player_1.id, player_1_name: @player_1.name, player_2_id: @player_2.id}.to raise_error "Global8ballGame::Game is not valid. Errors: player_2_name is not present."
     end
+
+    it "generates an initial state and stores it as last_result" do
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
+      @game.initialize_state
+
+      expect(@game.last_result).to eq state.to_hash
+    end
   end
 end
