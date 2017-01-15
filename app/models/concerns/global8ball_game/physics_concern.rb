@@ -48,10 +48,6 @@ module Global8ballGame
       self.last_result
     end
 
-    def last_result= state_hash
-      Result.create result_set: state_hash, game: self
-    end
-
     def last_result
       self.results.empty? ? nil : self.results.last.result_set
     end
