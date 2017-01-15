@@ -54,6 +54,15 @@ module Global8ballGame
       expect(Result.find(game_id: @game.id).to_a.last.result_set).to eq state.to_hash
     end
 
+    it "provides a method to retrieve the last result for a game" do
+      expect(@game.last_result).to be_nil
+
+      state = State::Initial.new @game.player_1_id, @game.player_2_id
+      @game.last_result = state.to_hash
+
+      expect(@game.last_result).to eq state.to_hash
+    end
+
     it "stores id of player 1" do
       expect(Game.all.first.player_1_id).to eq @player_1.id.to_s
     end
