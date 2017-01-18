@@ -41,6 +41,10 @@ module Global8ballGame
       self.results.empty? ? nil : self.results.to_a.last.result_set
     end
 
+    def alarm_clocks
+      AlarmClock.find(game_id: self.id)
+    end
+
     def initialize_state stage_name='PlayForBegin', breaker=nil
       self.last_result = initial_state self.player_1_id, self.player_2_id, stage_name, breaker
     end
