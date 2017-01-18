@@ -73,6 +73,18 @@ module Global8ballGame
       expect(@game.alarm_clocks.first).to eq alarm_clock
     end
 
+    it "deletes all AlarmClocks belonging to it if deleted" do
+      game_id = @game.id
+      time_now = Time.now
+      finish = Time.at(time_now.in(5.seconds).to_i)
+      context = :shotclock
+      alarm_clock = AlarmClock.create game: @game, finish: finish, context: context, player: @player_1
+
+      @game.delete
+
+      expect(AlarmClock.find(game_id: game_id)).to be_empty
+    end
+
     it "stores id of player 1" do
       expect(Game.all.first.player_1_id).to eq @player_1.id.to_s
     end
