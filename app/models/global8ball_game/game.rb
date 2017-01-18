@@ -27,6 +27,7 @@ module Global8ballGame
 
     def before_delete
       self.results.map &:delete
+      self.alarm_clocks.map &:delete
     end
 
     def results
