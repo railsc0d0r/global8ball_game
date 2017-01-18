@@ -63,6 +63,16 @@ module Global8ballGame
       expect(@game.last_result).to eq state.to_hash
     end
 
+    it "has a collection of AlarmClocks" do
+      time_now = Time.now
+      finish = Time.at(time_now.in(5.seconds).to_i)
+      context = :shotclock
+      alarm_clock = AlarmClock.create game: @game, finish: finish, context: context, player: @player_1
+
+      expect(@game.alarm_clocks).to be_kind_of Ohm::Set
+      expect(@game.alarm_clocks.first).to eq alarm_clock
+    end
+
     it "stores id of player 1" do
       expect(Game.all.first.player_1_id).to eq @player_1.id.to_s
     end
