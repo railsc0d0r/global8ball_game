@@ -16,3 +16,18 @@ class global8ball.physics.P2Init
     physics.p2.world.solver.tolerance = 0
     physics.p2.world.solver.iterations = 5
     physics.p2.frameRate = 1 / 128
+
+    ballMaterial = @gameConfig.getBallMaterial()
+    borderMaterial = @gameConfig.getBorderMaterial()
+
+    ballBallContactMaterialOptions =
+      restitution: @gameConfig.getTable().getBallBallRestitution()
+      stiffness: @gameConfig.getTable().getBallBallStiffness()
+
+    physics.p2.addContactMaterial new Phaser.Physics.P2.ContactMaterial ballMaterial, ballMaterial, ballBallContactMaterialOptions
+
+    ballBorderContactMaterialOptions =
+      restitution: @gameConfig.getTable().getBallBorderRestitution()
+      stiffness: @gameConfig.getTable().getBallBorderStiffness()
+
+    physics.p2.addContactMaterial new Phaser.Physics.P2.ContactMaterial ballMaterial, borderMaterial, ballBorderContactMaterialOptions
