@@ -11,9 +11,6 @@ this.initGlobal8Ball = (gameConfig) ->
     holes: gameConfig.holes
     borders:gameConfig.borders
     table: gameConfig.table
-    cue:
-      hardness: gameConfig.table.cue_hardness
-      mass: gameConfig.table.cue_mass
     player_1: gameConfig.player_1
     player_2: gameConfig.player_2
     current_viewer: gameConfig.current_viewer
