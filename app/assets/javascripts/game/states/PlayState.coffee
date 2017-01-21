@@ -106,6 +106,7 @@ class global8ball.PlayState extends global8ball.FullState
       body.mass = ballConfig.mass
       body.data.ccdSpeedThreshold = 1
       body.data.ccdIterations = 100
+      body.setMaterial @gameConfig.getBallMaterial()
 
     config = data: ballConfig
     if spriteKey
