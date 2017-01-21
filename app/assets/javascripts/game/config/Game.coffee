@@ -60,3 +60,13 @@ class global8ball.config.Game
 
   getTable: ->
     new global8ball.config.Table @config.table
+
+  # @return {Phaser.Physics.P2.Material}
+  getBallMaterial: ->
+    @ballMaterial = @ballMaterial ? new Phaser.Physics.P2.Material 'ball'
+    return @ballMaterial
+
+  # return {Phaser.Physics.P2.Material}
+  getBorderMaterial: ->
+    @borderMaterial = @borderMaterial ? new Phaser.Physics.P2.Material 'border'
+    return @borderMaterial
