@@ -22,7 +22,7 @@ class global8ball.PlayState extends global8ball.FullState
 
   create: ->
     super()
-    (new global8ball.physics.P2Init @gameConfig).init @physics
+    (new global8ball.physics.P2Init @gameConfig).applyContactMaterials @physics
     (new global8ball.CueAdder).addCues @
 
   # Sets the initial state of the cue, according to the owner being one of the

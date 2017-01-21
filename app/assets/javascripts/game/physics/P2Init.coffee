@@ -17,6 +17,10 @@ class global8ball.physics.P2Init
     physics.p2.world.solver.iterations = 5
     physics.p2.frameRate = 1 / 128
 
+  # Applies contact materials.
+  #
+  # @param {Phaser.Physics.P2}
+  applyContactMaterials: (physics) ->
     ballMaterial = @gameConfig.getBallMaterial()
     borderMaterial = @gameConfig.getBorderMaterial()
 
