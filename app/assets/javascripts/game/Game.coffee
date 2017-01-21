@@ -59,7 +59,7 @@ class Game
 
     @players = global8ball.Players.create gameConfig.getPlayerData(), gameConfig.getCurrentViewerData()
 
-    @phaserGame.state.add 'Boot', new global8ball.Boot(@), true
+    @phaserGame.state.add 'Boot', new global8ball.Boot(gameConfig, @), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState @events
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin gameConfig, @players, @events
