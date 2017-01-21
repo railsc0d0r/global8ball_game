@@ -4,9 +4,9 @@
 # The first state. Contains only minor initializations and everything necessary
 # to start the next state, Preload.
 class global8ball.Boot extends Phaser.State
-  # @param {global8ball.config.Game} gameConfig
+  # @param {global8ball.physics.P2Init} p2Init
   # @param {global8ball.Game} g8bGame
-  constructor: (@gameConfig, @g8bGame)->
+  constructor: (@p2Init, @g8bGame)->
 
   preload: ->
     @game.stage.disableVisibilityChange = true
@@ -19,5 +19,4 @@ class global8ball.Boot extends Phaser.State
     @game.state.start 'Preload'
     @game.scale.setGameSize 1200, 800
     @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
-    physicsInit = new global8ball.physics.P2Init @gameConfig
-    physicsInit.init(@physics)
+    @p2Init.init(@physics)

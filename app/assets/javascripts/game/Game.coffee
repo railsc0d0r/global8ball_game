@@ -1,5 +1,6 @@
 #= require game/config/Game
 #= require game/GameEvents
+#= require game/physics/P2Init
 #= require game/prolog
 #= require game/states/Boot
 #= require game/states/Preload
@@ -59,7 +60,7 @@ class Game
 
     @players = global8ball.Players.create gameConfig.getPlayerData(), gameConfig.getCurrentViewerData()
 
-    @phaserGame.state.add 'Boot', new global8ball.Boot(gameConfig, @), true
+    @phaserGame.state.add 'Boot', new global8ball.Boot(new global8ball.physics.P2Init(gameConfig), @), true
     @phaserGame.state.add 'Preload', new global8ball.Preload @currentState()
     @phaserGame.state.add 'WaitForConfiguration', new global8ball.WaitForGameState @events
     @phaserGame.state.add 'PlayForBegin', new global8ball.PlayForBegin gameConfig, @players, @events
