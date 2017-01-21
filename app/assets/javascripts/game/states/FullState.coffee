@@ -55,9 +55,10 @@ class global8ball.FullState extends Phaser.State
 
       poly = new Phaser.Polygon(borderData)
 
-      setBorderBody = (body) ->
+      setBorderBody = (body) =>
         body.static = true
         body.addPolygon {}, borderData.map (point) -> [point.x, point.y]
+        body.setMaterial @gameConfig.getBorderMaterial()
 
       border = @createSprite 'borders', 0, 0, config, setBorderBody
 
