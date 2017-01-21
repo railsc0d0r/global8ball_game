@@ -1,10 +1,15 @@
 #= require game/config/prolog
 
 class global8ball.config.Table
+  toStiffness = (rawStiffness) ->
+    if typeof rawStiffness is 'string' and rawStiffness.toLowerCase() is "infinity"
+      +Infinity
+    else
+      rawStiffness
+
   constructor: (@data) ->
-    @ballBallStiffness = @data.contact_materials.ball_ball.stiffness
-    if typeof @ballBallStiffness is 'string' and @ballBallStiffness.toLowerCase() is "infinity"
-      @ballBallStiffness = +Infinity
+    @ballBallStiffness = toStiffness @data.contact_materials.ball_ball.stiffness
+    @ballBorderStiffness = toStiffness @data.contact_materials.ball_border.stiffness
 
   getDamping: ->
     @data.damping
@@ -14,3 +19,6 @@ class global8ball.config.Table
 
   getBallBallStiffness: ->
     @ballBallStiffness
+
+  getBallBorderStiffness: ->
+    @ballBorderStiffness

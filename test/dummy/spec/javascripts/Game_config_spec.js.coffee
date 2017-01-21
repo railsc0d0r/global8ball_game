@@ -308,3 +308,19 @@ describe 'Game config', ->
       gameConfig = new GameConfig cfg
 
       expect(gameConfig.getTable().getBallBallStiffness()).toEqual +Infinity
+
+    it 'exposes ball/border stiffness', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_border.stiffness = 0.75
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBorderStiffness()).toEqual 0.75
+
+    it 'exposes infinite ball/border stiffness', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_border.stiffness = 'inFinitY'
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBorderStiffness()).toEqual +Infinity
