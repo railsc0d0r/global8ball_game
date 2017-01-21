@@ -18,7 +18,7 @@ class global8ball.config.Balls
   getPlayBallsConfig: ->
     @balls.filter (ball) -> ball.type is PLAY_BALL
 
-  # @return global8ball.config.Ball[]
+  # @return {global8ball.config.Ball|undefined}
   get8BallConfig: ->
     @balls.filter((ball) -> ball.type is EIGHT_BALL)[0]
 
