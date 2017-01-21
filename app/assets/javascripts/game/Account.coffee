@@ -5,7 +5,8 @@
 class global8ball.Account
   # @param {string} id
   # @param {string} name
-  constructor: (@id, @name) ->
+  constructor: (id, @name) ->
+    @id = id + ''
 
   # Checks wether this account is equal to another account.
   #

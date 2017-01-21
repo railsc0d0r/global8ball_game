@@ -14,3 +14,9 @@ describe 'Account', () ->
     otherAccount = new Account 'barfoo', 'Bar Foo'
 
     expect(anAccount.equals otherAccount).toBeFalsy()
+
+  it 'stringifies numeric IDs', ->
+    anAccount = new Account 9001, 'Son Goku'
+    otherAccount = new Account '9001', 'Son Goku'
+
+    expect(anAccount.equals otherAccount).toBeTruthy()
