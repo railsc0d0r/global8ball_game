@@ -6,7 +6,7 @@ class global8ball.physics.P2Init
 
   # Initializes Phaser P2 physics.
   #
-  # @param {}
+  # @param {Phaser.Physics.P2}
   init: (physics) ->
     physics.startSystem Phaser.Physics.P2JS
     physics.p2.restitution = 0.99999
