@@ -23,7 +23,7 @@ module Global8ballGame
     end
 
     def check!
-      broadcast(:sound_the_alarm) if self.finished?
+      broadcast(:sound_the_alarm, self.id) if self.finished?
     end
 
     def add_seconds seconds
