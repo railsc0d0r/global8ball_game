@@ -22,3 +22,6 @@ class global8ball.config.Table
 
   getBallBorderStiffness: ->
     @ballBorderStiffness
+
+  getBallBallRestitution: ->
+    @data.contact_materials.ball_ball.restitution

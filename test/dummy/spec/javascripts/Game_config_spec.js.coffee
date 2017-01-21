@@ -324,3 +324,11 @@ describe 'Game config', ->
       gameConfig = new GameConfig cfg
 
       expect(gameConfig.getTable().getBallBorderStiffness()).toEqual +Infinity
+
+    it 'exposes ball/ball restitution', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_ball.restitution = 0.75
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBallRestitution()).toEqual 0.75
