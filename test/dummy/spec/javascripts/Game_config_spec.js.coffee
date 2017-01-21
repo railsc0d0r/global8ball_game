@@ -332,3 +332,11 @@ describe 'Game config', ->
       gameConfig = new GameConfig cfg
 
       expect(gameConfig.getTable().getBallBallRestitution()).toEqual 0.75
+
+    it 'exposes ball/border restitution', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_border.restitution = 0.875
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBorderRestitution()).toEqual 0.875

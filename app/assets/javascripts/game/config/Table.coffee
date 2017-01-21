@@ -25,3 +25,6 @@ class global8ball.config.Table
 
   getBallBallRestitution: ->
     @data.contact_materials.ball_ball.restitution
+
+  getBallBorderRestitution: ->
+    @data.contact_materials.ball_border.restitution
