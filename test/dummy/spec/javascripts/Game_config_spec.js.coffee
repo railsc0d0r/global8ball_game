@@ -292,3 +292,19 @@ describe 'Game config', ->
       gameConfig = new GameConfig cfg
 
       expect(gameConfig.getTable().getMaximumBreakballSpeed()).toEqual 12
+
+    it 'exposes ball/ball stiffness', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_ball.stiffness = 0.8
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBallStiffness()).toEqual 0.8
+
+    it 'exposes infinite ball/ball stiffness', ->
+      cfg = createConfig()
+      cfg.table.contact_materials.ball_ball.stiffness = 'InfiNity'
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getBallBallStiffness()).toEqual +Infinity
