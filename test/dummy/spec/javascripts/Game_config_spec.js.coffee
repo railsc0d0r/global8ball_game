@@ -284,3 +284,11 @@ describe 'Game config', ->
       gameConfig = new GameConfig cfg
 
       expect(gameConfig.getTable().getDamping()).toEqual 0.1
+
+    it 'exposes maximum breakball speed', ->
+      cfg = createConfig()
+      cfg.table.max_breakball_speed = 12
+
+      gameConfig = new GameConfig cfg
+
+      expect(gameConfig.getTable().getMaximumBreakballSpeed()).toEqual 12

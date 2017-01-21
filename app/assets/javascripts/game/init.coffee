@@ -17,8 +17,6 @@ this.initGlobal8Ball = (gameConfig) ->
     player_1: gameConfig.player_1
     player_2: gameConfig.player_2
     current_viewer: gameConfig.current_viewer
-    breakBall:
-      maxSpeed: gameConfig.table.max_breakball_speed
 
   gameState =
     state: 'PlayForBegin'

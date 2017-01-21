@@ -9,3 +9,6 @@ class global8ball.config.Table
 
   getDamping: ->
     @data.damping
+
+  getMaximumBreakballSpeed: ->
+    @data.max_breakball_speed
