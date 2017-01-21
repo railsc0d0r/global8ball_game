@@ -1,6 +1,7 @@
 #= require game/config/Balls
 #= require game/config/CurrentPlayers
 #= require game/sprites/Ball
+#= require game/sprites/BreakBall
 #= require game/prolog
 #= require game/physics/GroupSpecs
 #= require game/states/PlayState
