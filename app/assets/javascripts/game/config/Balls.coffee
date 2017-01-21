@@ -6,6 +6,7 @@ class global8ball.config.Balls
   PLAY_BALL = 'playball'
   EIGHT_BALL = '8ball';
 
+  # @param {object[]} ballsData - List of ball data, see global8ball.config.Ball for details.
   constructor: (ballsData) ->
     @balls = ballsData.map (ballData) -> new global8ball.config.Ball ballData
 
@@ -22,6 +23,16 @@ class global8ball.config.Balls
     @balls.filter((ball) -> ball.type is EIGHT_BALL)[0]
 
 class global8ball.config.Ball
+  # @param {object} ballData Data for one ball
+  # @param {string} ballData.id Unique ball ID
+  # @param {string} ballData.type Ball type, like breakball, normal playball, etc.
+  # @param {string} ballData.color Ball color
+  # @param {string} ballData.owner Ball owner ID, may be nil.
+  # @param {object} ballData.position Initial ball position.
+  # @param {number} ballData.position.x
+  # @param {number} ballData.position.y
+  # @param {number} ballData.radius
+  # @param {number} ballData.mass
   constructor: (ballData) ->
     @id = ballData.id
     @type = ballData.type
