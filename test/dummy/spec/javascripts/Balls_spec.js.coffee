@@ -67,3 +67,50 @@ describe 'Balls config', ->
     expect(ballsConfig.getBreakBallsConfig()).toEqual []
     expect(ballsConfig.getPlayBallsConfig()).toEqual []
     expect(ballsConfig.get8BallConfig()).not.toEqual undefined
+
+  it 'classifies a ball according to its owner', ->
+
+    owner =
+      getId: ->
+        "12345"
+
+    ballsConfig = new BallsConfig [
+      {
+        color: "white"
+        id: 37
+        mass: 0.17
+        owner: "12345"
+        radius: 0.0291
+        type: "breakball"
+        position:
+          x: -0.5
+          y: -0.25
+      }
+    ]
+
+    ownedBall = ballsConfig.getBreakBallsConfig()[0]
+    expect(ownedBall.belongsTo(owner)).toBeTruthy()
+
+
+  it 'classifies a ball according to some non-owner player', ->
+
+    notOwner =
+      getId: ->
+        "12345"
+
+    ballsConfig = new BallsConfig [
+      {
+        color: "white"
+        id: 37
+        mass: 0.17
+        owner: "12346"
+        radius: 0.0291
+        type: "breakball"
+        position:
+          x: -0.5
+          y: -0.25
+      }
+    ]
+
+    ownedBall = ballsConfig.getBreakBallsConfig()[0]
+    expect(ownedBall.belongsTo(notOwner)).toBeFalsy()
