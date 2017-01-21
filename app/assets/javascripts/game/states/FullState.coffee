@@ -7,6 +7,8 @@
 
 # Base class for all full Phaser states (i.e. with all images etc.)
 class global8ball.FullState extends Phaser.State
+  # @param {global8ball.config.Game} gameConfig
+  # @param {global8ball.Players} players
   constructor: (@gameConfig, @players) ->
     global8ball.mixinStateEvents @
 
