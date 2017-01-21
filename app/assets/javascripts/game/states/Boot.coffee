@@ -3,6 +3,7 @@
 # The first state. Contains only minor initializations and everything necessary
 # to start the next state, Preload.
 class global8ball.Boot extends Phaser.State
+  # @param {global8ball.Game} g8bGame
   constructor: (@g8bGame)->
 
   preload: ->
