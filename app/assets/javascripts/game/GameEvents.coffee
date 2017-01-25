@@ -19,6 +19,9 @@ class global8ball.GameEvents
     @onReceiveReinstateBreakball = new Phaser.Signal
     @onReceiveReinstateBreakball.add (reinstateBreakballData) =>
 
+    @onReceiveTimeOut = new Phaser.Signal
+    @onReceiveTimeOut.add (timeOutEvent) =>
+
   # Wether there is a new shot pending or not.
   #
   # @return {boolean}
