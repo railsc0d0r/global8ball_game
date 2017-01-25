@@ -41,6 +41,20 @@ module Global8ballGame
       expect {Shot.new shot_hash}.to raise_error "No user_id given in shot-arguments."
     end
 
+    it "casts given user_id as an integer checks if it isn't null" do
+      shot_hash = {
+        user_id: "a",
+        velocity: {
+          x: @config['table']['max_breakball_speed'],
+          y: 0
+        }
+      }
+
+      shot_hash.deep_stringify_keys!
+
+      expect {Shot.new shot_hash}.to raise_error "Given user_id isn't valid."
+    end
+
     it "checks, if values in shot-hash given as argument contain a velocity-vector" do
       shot_hash = {
         user_id: @players[:player_1].id,

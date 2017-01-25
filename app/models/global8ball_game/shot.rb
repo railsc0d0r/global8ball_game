@@ -1,9 +1,13 @@
 module Global8ballGame
+  # A model to describe a shot
   class Shot
     attr_reader :shooter, :velocity_x, :velocity_y
     def initialize shot
       @shooter = shot['user_id']
       raise "No user_id given in shot-arguments." if @shooter.nil?
+
+      @shooter = @shooter.to_i
+      raise "Given user_id isn't valid." if @shooter == 0
 
       velocity = shot['velocity']
       raise "No velocity-vector given in shot-arguments." if velocity.nil?
