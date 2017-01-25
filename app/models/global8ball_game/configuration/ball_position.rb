@@ -1,5 +1,7 @@
 module Global8ballGame
   module Configuration
+    # A static class to provide config-parameters for ball-positions depending
+    # on a stage given
     class BallPosition
       # scalingFactor = 377.95 =>
       @width = 2.54

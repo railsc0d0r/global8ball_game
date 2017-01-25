@@ -1,4 +1,5 @@
 module Global8ballGame
+  # A generic class to be used as temp-store for events
   class Heap
     def initialize
       @elements = []

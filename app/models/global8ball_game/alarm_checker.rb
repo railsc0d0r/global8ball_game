@@ -1,4 +1,6 @@
 module Global8ballGame
+  # Class to check all running alarm_clocks
+  # Triggers :sound_the_alarm if a clock is finished thus alerting subscribed listeners
   class AlarmChecker
     class << self
       def run

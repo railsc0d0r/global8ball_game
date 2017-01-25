@@ -1,8 +1,8 @@
-#
-# Model to create a world and interact w/ this world to return a new state
-# and evaluate all events happening by given ruleset
-#
 module Global8ballGame
+  #
+  # Model to create a world and interact w/ this world to return a new state
+  # and evaluate all events happening by given ruleset
+  #
   class Table
     attr_reader :world, :config, :stage_name, :everything_stopped
 

@@ -1,4 +1,5 @@
 module Global8ballGame
+  # A class to be used to collect all balls_states from the world
   class BallsCollector
     attr_reader :balls
 

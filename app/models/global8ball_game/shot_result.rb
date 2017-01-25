@@ -1,4 +1,5 @@
 module Global8ballGame
+  # A model to describe the results of a shot
   class ShotResult
     attr_reader :shot, :events
     attr_accessor :foul

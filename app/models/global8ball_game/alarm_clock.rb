@@ -1,4 +1,6 @@
 module Global8ballGame
+  # A class to store a timestamp in the future indicating an event by :context that is triggered
+  # if the clock still runs and the given time is reached if checked
   class AlarmClock < Ohm::Model
     include ModelValidationConcern
     include Ohm::DataTypes

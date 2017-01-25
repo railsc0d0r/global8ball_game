@@ -1,4 +1,5 @@
 module Global8ballGame
+  # A model to persist a game-state in redis
   class Result < Ohm::Model
     include ModelValidationConcern
     include Ohm::DataTypes

@@ -1,5 +1,6 @@
 module Global8ballGame
   module Configuration
+    # A class to define general parameters of our game
     class Table < Base
       def initialize
         cue_mass = 0.7

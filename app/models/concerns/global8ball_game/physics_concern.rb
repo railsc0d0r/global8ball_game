@@ -1,12 +1,12 @@
-#
-# Global8ballGame::PhysicsConcern
-#
-# Lets model including this concern instanciate a table by given config and last_result
-# and evaluate a shot on this table
-#
-# Models including this concern have to provide config and last_result as hashes representing the table_config and the last state
-#
 module Global8ballGame
+  #
+  # Global8ballGame::PhysicsConcern
+  #
+  # Lets model including this concern instanciate a table by given config and last_result
+  # and evaluate a shot on this table
+  #
+  # Models including this concern have to provide config and last_result as hashes representing the table_config and the last state
+  #
   module PhysicsConcern
     extend ActiveSupport::Concern
 

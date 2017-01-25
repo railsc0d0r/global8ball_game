@@ -1,5 +1,6 @@
 module Global8ballGame
   module Configuration
+    # A class to define the hole-objects of our game
     class Hole < Base
       def initialize
         # scalingFactor = 377.95 =>

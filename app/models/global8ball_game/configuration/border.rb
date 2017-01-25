@@ -1,5 +1,6 @@
 module Global8ballGame
   module Configuration
+    # A class to define the border-objects of our game
     class Border < Base
       def initialize
         # scalingFactor = 377.95 =>
