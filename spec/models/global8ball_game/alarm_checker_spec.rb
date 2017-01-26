@@ -21,7 +21,7 @@ module Global8ballGame
     end
 
     it "checks the alarm for all games" do
-      Timecop.freeze(Time.at(@time_now.in(15.seconds).to_i)) do
+      Timecop.freeze(@time_now.in(15.seconds)) do
         notifier = AlarmClockNotifier.new
         AlarmClock.subscribe(notifier)
 

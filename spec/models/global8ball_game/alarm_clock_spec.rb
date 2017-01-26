@@ -58,11 +58,11 @@ module Global8ballGame
     end
 
     it "can tell if the alarm-time passed already" do
-      Timecop.freeze(Time.at(@time_now.in(4.seconds).to_i)) do
+      Timecop.freeze(@time_now.in(4.seconds)) do
         expect(@alarm_clock.finished?).to be_falsy
       end
 
-      Timecop.freeze(Time.at(@time_now.in(5.seconds).to_i)) do
+      Timecop.freeze(@time_now.in(5.seconds)) do
         expect(@alarm_clock.finished?).to be_truthy
       end
     end
@@ -74,12 +74,12 @@ module Global8ballGame
         result = true
       end
 
-      Timecop.freeze(Time.at(@time_now.in(4.seconds).to_i)) do
+      Timecop.freeze(@time_now.in(4.seconds)) do
         @alarm_clock.check!
         expect(result).to be_falsy
       end
 
-      Timecop.freeze(Time.at(@time_now.in(5.seconds).to_i)) do
+      Timecop.freeze(@time_now.in(5.seconds)) do
         @alarm_clock.check!
         expect(result).to be_truthy
       end
