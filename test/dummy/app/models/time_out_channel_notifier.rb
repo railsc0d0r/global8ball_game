@@ -3,7 +3,7 @@
 #
 class TimeOutChannelNotifier
   def sound_the_alarm alarm_clock_id
-    clock = AlarmClock[alarm_clock_id]
+    clock = Global8ballGame::AlarmClock[alarm_clock_id]
 
     event = {
       context: clock.context,
