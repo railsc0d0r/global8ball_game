@@ -2,6 +2,10 @@
 
 # Shot class.
 class global8ball.Shot
+  # @param {object} shotData
+  # @param {string} shotData.user_id
+  # @param {number} shotData.strength
+  # @param {number} shotData.angle
   constructor: (shotData) ->
     @userId = shotData.user_id + ''
     @strength = shotData.strength
