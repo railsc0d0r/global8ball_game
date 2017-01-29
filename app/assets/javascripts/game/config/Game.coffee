@@ -1,6 +1,8 @@
 #= require game/config/prolog
 #= require game/config/Table
 
+# Game configuration class. Wraps the game config 'struct' and exposes them
+# in a more usable manner.
 class global8ball.config.Game
   # @param {object} config
   constructor: (@config) ->
@@ -58,6 +60,7 @@ class global8ball.config.Game
     id: @config.current_viewer.user_id
     name: @config.current_viewer.name
 
+  # @return {global8ball.config.Table}
   getTable: ->
     new global8ball.config.Table @config.table
 
