@@ -36,7 +36,7 @@ class global8ball.PlayState extends global8ball.FullState
       cue.retreatFromTable()
 
   # @return {Object.<string, function>} Map of classes
-  spriteClasses: () ->
+  spriteClasses: ->
     classes = super()
     classes.cues = global8ball.Cue
     return classes
@@ -90,7 +90,7 @@ class global8ball.PlayState extends global8ball.FullState
       onSendShot.dispatch ev
 
   # @return {global8ball.Cue|null}
-  currentlyControlledCue: () ->
+  currentlyControlledCue: ->
     @cues.player1
 
   createBallSprite: (physicsGroupId, ballConfig, spriteKey = null) ->

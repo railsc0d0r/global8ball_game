@@ -17,7 +17,7 @@ class global8ball.FullState extends Phaser.State
     if not @spriteGroups[groupName]
       @spriteGroups[groupName] = @add.group()
 
-  init: () ->
+  init: ->
     @spriteGroups = {}
     @collisionGroups = {}
     @physicsGroups = {}
@@ -40,7 +40,7 @@ class global8ball.FullState extends Phaser.State
     @world.sendToBack @spriteGroups.table
 
   # @return {Object.<string, function>} Map of classes
-  spriteClasses: () ->
+  spriteClasses: ->
     borders: global8ball.Border
     holes: global8ball.Hole
 
@@ -80,7 +80,7 @@ class global8ball.FullState extends Phaser.State
     sprite.anchor.setTo 0.5, 0.5
     return sprite
 
-  createPlayerInfos: () ->
+  createPlayerInfos: ->
     you = @game.add.text 20, 30, {message: 'game.player_info.you', context: { name: @players.getFirst().getName() } }
     you.anchor.setTo 0, 0
     you.fill = '#ffffff'

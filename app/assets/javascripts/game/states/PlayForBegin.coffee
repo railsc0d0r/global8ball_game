@@ -26,17 +26,17 @@ class global8ball.PlayForBegin extends global8ball.PlayState
     @cues.player1.aimAt x: @white1.position.x + 10, y: @white1.position.y
     @cues.player2.aimAt x: @white2.position.x + 10, y: @white2.position.y
 
-  getPhysicsGroupSpecs: () ->
+  getPhysicsGroupSpecs: ->
     return (new global8ball.GroupSpecs).get 'common', 'play', 'twoWhiteBalls'
 
   # @return {Object.<string, function>} Map of classes
-  spriteClasses: () ->
+  spriteClasses: ->
     classes = super()
     classes.white1 = global8ball.sprites.BreakBall
     classes.white2 = global8ball.sprites.BreakBall
     return classes
 
-  createWhiteBalls: () ->
+  createWhiteBalls: ->
     @ballsConfig.
       getBreakBallsConfig().
       forEach (ballConfig) =>

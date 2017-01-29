@@ -7,5 +7,5 @@ class global8ball.Viewer
   constructor: (@account) ->
 
   # @return {string}
-  getName: () ->
+  getName: ->
     @account.name

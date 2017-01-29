@@ -17,11 +17,11 @@ class global8ball.Reinstate extends global8ball.FullState
     @ballToReinstate.body.x = x
     @ballToReinstate.body.y = y
 
-  getPhysicsGroupSpecs: () ->
+  getPhysicsGroupSpecs: ->
     return (new global8ball.GroupSpecs).get 'common', 'reinstate'
 
   # @return {Object.<string, function>} Map of classes
-  spriteClasses: () ->
+  spriteClasses: ->
     classes = super()
     classes.reinstateBall = global8ball.ReinstateBall
     return classes

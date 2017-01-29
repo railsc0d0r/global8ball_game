@@ -26,23 +26,23 @@ class global8ball.PlayForVictory extends global8ball.PlayState
       cue.aimAt x: @white.position.x + 10, y: @white.position.y
 
   # @return {Object.<string, function>} Map of classes
-  spriteClasses: () ->
+  spriteClasses: ->
     classes = super()
     classes.white = global8ball.sprites.BreakBall
     classes.black = global8ball.sprites.Global8Ball
     classes.playBalls = global8ball.sprites.PlayBall
     return classes
 
-  createWhiteBall: () ->
+  createWhiteBall: ->
     whiteBallConfig = @ballsConfig.getBreakBallsConfig()[0]
     if whiteBallConfig
       @white = @createBallSprite 'white', whiteBallConfig
 
-  createPlayBalls: () ->
+  createPlayBalls: ->
     @playBalls = @ballsConfig.getPlayBallsConfig().forEach (ballConfig) =>
       @createBallSprite 'playBalls', ballConfig, global8ball.sprites.PlayBall.BALL_COLOR_MAPPING[ballConfig.color]
 
-  createBlackBall: () ->
+  createBlackBall: ->
     blackBallConfig = @ballsConfig.get8BallConfig()
     if blackBallConfig
       @blackBall = @createBallSprite 'black', blackBallConfig
@@ -50,5 +50,5 @@ class global8ball.PlayForVictory extends global8ball.PlayState
   update: ->
     super()
 
-  getPhysicsGroupSpecs: () ->
+  getPhysicsGroupSpecs: ->
     return (new global8ball.GroupSpecs).get 'common', 'play', 'oneWhiteBall', 'blackBall', 'playBalls'

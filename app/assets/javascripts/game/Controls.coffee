@@ -58,7 +58,7 @@ class StateControls
     @inputDownHandledBySprite = false
 
   # Attaches itself to the state if not already done.
-  attach: () ->
+  attach: ->
     if @attached # If already attached to the state, do not attach again.
       return @
     @attach = () =>
@@ -77,17 +77,17 @@ class StateControls
   # Cleanup is only needed for custom event handling (e.g. a self-defined
   # Phaser.Signal). Listeners added to the various Phaser.Input signals are
   # automatically removed when switching to another state.
-  shutdown: () ->
+  shutdown: ->
     @stateUpdateEventBinding.detach()
     @stateShutdownEventBinding.detach()
 
   # Called on every update of the state. Handles changes regarding shot strength.
-  update: () ->
+  update: ->
     @updateShotStrength()
     @consumeAimingFromLastFrame()
 
   # Checks for changes regarding the shot strength and updates it accordingly.
-  updateShotStrength: () ->
+  updateShotStrength: ->
     @shotStrength.update()
     @updateShotStrengthMask()
 
@@ -96,7 +96,7 @@ class StateControls
   # ones, ignoring priority. Because the state event handlers (like create) can
   # only be called at the beginning (in a sane way), it's impossible to attach
   # listeners to sprites created by the state.
-  consumeAimingFromLastFrame: () ->
+  consumeAimingFromLastFrame: ->
     if @aimingNextFrame
       # Check if cue control GUI already handled the event.
       if not @inputDownHandledBySprite
@@ -111,7 +111,7 @@ class StateControls
 
   # Adds the whole GUI to control the cue, i.e. set the strength. Also includes
   # a shoot button.
-  addCueControlGui: () ->
+  addCueControlGui: ->
     @cueControlGui = {}
     hCenter = @state.game.width / 2
     y = @state.game.height - 70
@@ -228,7 +228,7 @@ class StateControls
       @updateShotStrengthMask()
 
   # Stop shot strength changing (increase/decrease buttons)
-  stopChangingForce: () =>
+  stopChangingForce: =>
     @shotStrength.stopChanging()
 
   # @param {Phaser.Sprite} sprite

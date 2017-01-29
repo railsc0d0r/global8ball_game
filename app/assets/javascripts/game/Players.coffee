@@ -13,19 +13,19 @@ class global8ball.Players
     @players[@second.getId()] = @second
 
   # @return {global8ball.Viewer}
-  getViewer: () ->
+  getViewer: ->
     @viewer
 
   # @return {global8ball.Player}
-  getFirst: () ->
+  getFirst: ->
     @first
 
   # @return {global8ball.Player}
-  getSecond: () ->
+  getSecond: ->
     @second
 
   # @return {boolean}
-  viewerPlays: () ->
+  viewerPlays: ->
     # Only first player needs to be checked, because if the second player would
     # be the viewer, she becomes the first player.
     @viewer.account.equals @first.account

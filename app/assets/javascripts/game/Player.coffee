@@ -8,15 +8,15 @@ class global8ball.Player
   constructor: (@account, @viewsTheGame) ->
 
   # @return {string}
-  getName: () ->
+  getName: ->
     @account.name
 
   # @return {string}
-  getId: () ->
+  getId: ->
     @account.id
 
   # @return {boolean}
-  isViewer: () ->
+  isViewer: ->
     @viewsTheGame
 
   # @param {global8ball.Player} player

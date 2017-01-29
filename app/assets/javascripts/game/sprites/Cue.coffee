@@ -72,7 +72,7 @@ class global8ball.Cue extends Phaser.Sprite
     @updatePosition()
 
   # @return {number}
-  getAngle: () ->
+  getAngle: ->
     @body.angle
 
   # @param {Point} Position to aim at. The cue will point TO that position, not FROM it!
@@ -83,7 +83,7 @@ class global8ball.Cue extends Phaser.Sprite
   aimAt: (pos) ->
     @getCurrentState().aimAt pos
 
-  updatePosition: ()->
+  updatePosition: ->
     if @targetBall
       @body.x = @targetBall.x + @getOffsetToBall() * Math.cos(MATH_FACTOR * @body.angle)
       @body.y = @targetBall.y + @getOffsetToBall() * Math.sin(MATH_FACTOR * @body.angle)
@@ -95,7 +95,7 @@ class global8ball.Cue extends Phaser.Sprite
     @distanceToBall = distanceToBall ? DEFAULT_DISTANCE_TO_BALL
 
   # @return {number}
-  getOffsetToBall: () ->
+  getOffsetToBall: ->
     @width / 2 + @distanceToBall
 
   # Let the cue shoot.

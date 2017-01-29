@@ -16,7 +16,7 @@ class global8ball.AdviceFactory
     if @creators[event.advice]
       @creators[event.advice](event)
 
-global8ball.AdviceFactory.createDefault = () ->
+global8ball.AdviceFactory.createDefault = ->
   factory = new global8ball.AdviceFactory
   factory.addCreator 'change_breaker', global8ball.advices.ChangeBreakerAdvice
   factory.addCreator 'reinstate_breakball', global8ball.advices.ReinstateBreakballAdvice
