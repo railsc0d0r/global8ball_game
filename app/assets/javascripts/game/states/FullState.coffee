@@ -44,6 +44,7 @@ class global8ball.FullState extends Phaser.State
     borders: global8ball.Border
     holes: global8ball.Hole
 
+  # @return {global8ball.Border[]}
   createBorders: ->
     bordersData = @gameConfig.borderData @game
     for borderKey of bordersData
@@ -64,6 +65,7 @@ class global8ball.FullState extends Phaser.State
 
     @spriteGroups.borders
 
+  # @return {global8ball.Hole[]}
   createHoles: ->
     holesData = @gameConfig.holesData @game
     @holes = (@createHole key, holesData[key] for key of holesData)
