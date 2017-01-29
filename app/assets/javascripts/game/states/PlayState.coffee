@@ -60,6 +60,7 @@ class global8ball.PlayState extends global8ball.FullState
     ballBody.velocity.y = cueBody.velocity.y
     cueBody.sprite.retreatFromTable()
 
+  # @param {global8ball.Shot}
   shoot: (shot) ->
     cue = @getCueByPlayer shot.userId
     if cue

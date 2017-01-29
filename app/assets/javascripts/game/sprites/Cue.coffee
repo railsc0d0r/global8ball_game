@@ -99,6 +99,8 @@ class global8ball.Cue extends Phaser.Sprite
     @width / 2 + @distanceToBall
 
   # Let the cue shoot.
+  #
+  # @param {global8ball.Shot} shot
   shoot: (shot) ->
     if shot.wasDoneBy @owner
       @getCurrentState().shoot shot
